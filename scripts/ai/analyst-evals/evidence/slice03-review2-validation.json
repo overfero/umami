@@ -1,0 +1,200 @@
+{
+  "complete": true,
+  "observedAtJakarta": "2026-11-18T02:17:56.681665+07:00",
+  "implementationRevision": "de1033b04fc6acb3c2eb5eb708f85c8fbaa12769",
+  "reports": {
+    "image-qualification-red": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-image-qualification-red.json",
+      "sha256": "a9471bf6c12ccb1404f9bd8363c8049a80ab2d2abb2f1d5a1e1a2a94ad51594a",
+      "exit": 1
+    },
+    "image-qualification-green": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-image-qualification-green.json",
+      "sha256": "4ff172739b2a9d7cb0f7eec15bbe93f3325a3d887fcaae2178ee0172ce44ab9f",
+      "exit": 0
+    },
+    "pairing-red": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-pairing-red.json",
+      "sha256": "db6cded3061367f3746ff8f881bf6c3d7bb9bf8054dc5bd0677e070935e9a10f",
+      "exit": 1
+    },
+    "pairing-green": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-pairing-green.json",
+      "sha256": "eccf0a297a7d9b82c87dffb7bb29650756ff0480c17e37de5efcede4a4f4080a",
+      "exit": 0
+    },
+    "startup-red": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-startup-red.json",
+      "sha256": "bc5a9e4ad15c085b3a9368e4b686f0f943963efb35245f2296f072e8aabcf7e4",
+      "exit": 1
+    },
+    "review2-controls-green": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-review2-controls-green.json",
+      "sha256": "f772f6f9b7beb92d2bc92b9efa04e0c71de7dc5b7f62d14bab1327449212a63b",
+      "exit": 0
+    },
+    "review2-launcher": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-review2-launcher.json",
+      "sha256": "78f29f636b6939e9c70fe06f78aa982e90164eb9022198ff1cdb7a13f5a02191",
+      "exit": 0
+    },
+    "review2-browser": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-review2-browser.json",
+      "sha256": "0fdcbe2cc1f8a7c646cef27829e952091dab8bf487b339c1b59d6dc5dfd7d8e0",
+      "exit": 0
+    },
+    "review2-e1": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-review2-e1.json",
+      "sha256": "f6732a5d0885d82f694f8ac2eecbf99fe63dc79390ea10d27c86f392a5575c6b",
+      "exit": 0
+    }
+  },
+  "sourceHashesRechecked": true,
+  "additionalControlHashes": {
+    "scripts/ai/analyst-evals/verifier-image.test.ts": "31b78cf0bd7d3e304e64d7c0473edee687b370437337c4ce5d29f5f5ecec7071",
+    "scripts/ai/analyst-evals/browser-commands.test.ts": "789ac0b53cab35727d71f912d76985c9d3c77fd665a6647a8cd59f6f1c169f50",
+    "scripts/ai/analyst-evals/browser-receipt.test.ts": "5251aa82ff4ddfa580dc4b628bbf2ec2f8870124c42f46365b27650c1d591695",
+    "scripts/ai/analyst-evals/fixture-startup.test.ts": "7ae77eaee4fbcc5bc7a5e11a3359a83f70bde88472185ec6c542c0eda0a951aa",
+    "scripts/ai/analyst-fixture/startup.mjs": "9a4ca6f5d98344164a332ed3bf4913ab26c13c7a3919821fcc1feff3678a2b74",
+    "src/lib/analyst-verifier/launcher.mjs": "5b049fed3272efb6b063924cd33358651e9079a307d1f962fbcb042ff3e8f1ee",
+    "src/lib/ai/assistant/analyst/deps.ts": "d722bd2e2509b03a03c21ed8a5fc3c1856c99d7919046797268248402e60fa7b"
+  },
+  "strictE1": {
+    "command": "conda run -n umami npx --yes pnpm@12.3.4 exec tsx scripts/ai/eval-analyst.ts --offline --strict --browser-receipt /tmp/analyst-slice03/review2-browser.json --output /tmp/analyst-slice03/review2-e1.json",
+    "exit": 0,
+    "proven": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "pending": [],
+    "vitest": [
+      {
+        "report": "vitestReport",
+        "passed": 35,
+        "skipped": 0
+      },
+      {
+        "report": "lifecycleProductReport",
+        "passed": 102,
+        "skipped": 1
+      },
+      {
+        "report": "authorityVitestReport",
+        "passed": 14,
+        "skipped": 0
+      }
+    ]
+  },
+  "verifierImage": {
+    "imageId": "sha256:cc36eef3f9bc243ac472c47a3e10cc77a308ee398d423c5f5fc75b19bbefb30f",
+    "repoDigests": [
+      "umami-analyst-verifier@sha256:cc36eef3f9bc243ac472c47a3e10cc77a308ee398d423c5f5fc75b19bbefb30f"
+    ],
+    "fileHashes": {
+      "src/lib/analyst-verifier/worker.mjs": "b56520dc10f87ec9998585ec757084aa51ddafd93fde01bd3a81c41f61e9bfc1",
+      "src/lib/analyst-verifier/images.mjs": "a3628a5ae3641464823b588f0121a3e058b9cdea964083cd76796dc03f070935",
+      "scripts/ai/verifier/container-worker.mjs": "65f7e35cb3d274a8cc16642bd1464f8746fbee4bf41264743d9b400d33ba96ec"
+    },
+    "buildDefinitionHashes": {
+      "deploy/analyst-verifier/Dockerfile.verifier": "67c3e0f6652e669f89bcad93826ea4b9e5585a4c094edf7be9e4aca9b6c0cd58",
+      "scripts/ai/verifier/build-image.sh": "7128fd1ff34ee46591514560c346a8a8371379f059464ab37991b72d411cce35"
+    },
+    "buildProvenance": "Existing local image: copied worker/entrypoint bytes verified. Original Dockerfile/base build correspondence is not independently established; current build definitions fingerprinted, not retrospectively attested."
+  },
+  "browser": [
+    {
+      "id": "browser-on",
+      "stats": {
+        "startTime": "2026-11-17T19:04:48.828Z",
+        "duration": 43001.783,
+        "expected": 5,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "id": "browser-off",
+      "stats": {
+        "startTime": "2026-11-17T19:05:36.190Z",
+        "duration": 4997.592,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "id": "browser-compat",
+      "stats": {
+        "startTime": "2026-11-17T19:05:41.962Z",
+        "duration": 5570.987999999999,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "id": "browser-b3",
+      "stats": {
+        "startTime": "2026-11-17T19:05:48.427Z",
+        "duration": 66815.819,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "id": "browser-notice",
+      "stats": {
+        "startTime": "2026-11-17T19:06:59.510Z",
+        "duration": 5182.357,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    }
+  ],
+  "commandPairing": {
+    "expectedIds": [
+      "browser-prisma",
+      "browser-build",
+      "browser-on",
+      "browser-off",
+      "browser-compat",
+      "browser-b3",
+      "browser-notice"
+    ],
+    "allExitZero": true,
+    "pinnedImageEveryCommand": true,
+    "parsedStdoutEqualsReports": true
+  },
+  "startupCleanup": {
+    "controlTestPassed": true,
+    "actualBrowserOwnedNamespaceCleaned": true,
+    "noLegacyPublicMutation": true
+  },
+  "tsc": {
+    "exit": 2,
+    "diagnostics": "ERROR conda.cli.main_run:execute(142): `conda run npx --yes pnpm@12.3.4 exec tsc --noEmit` failed. (See above for error)\nsrc/app/(main)/websites/[websiteId]/events/EventsTable.tsx(46,46): error TS2322: Type '{ children: Element[]; alignItems: \"center\"; gap: \"2\"; flexWrap: string; style: { minWidth: number; }; }' is not assignable to type 'IntrinsicAttributes & RowProps'.\n  Property 'flexWrap' does not exist on type 'IntrinsicAttributes & RowProps'.\nsrc/app/(main)/websites/[websiteId]/events/EventsTable.tsx(54,44): error TS2322: Type '{ children: Element[]; alignItems: \"center\"; gap: true; flexWrap: string; style: { minWidth: number; }; }' is not assignable to type 'IntrinsicAttributes & RowProps'.\n  Property 'flexWrap' does not exist on type 'IntrinsicAttributes & RowProps'.\nsrc/app/api/admin/users/[userId]/2fa/route.test.ts(61,3): error TS2589: Type instantiation is excessively deep and possibly infinite.\n"
+  },
+  "limitations": [
+    "Fresh independent re-review required; prior evidenceP1 qualification not retroactively repaired.",
+    "Original image/base/build-definition correspondence unknown. Existing immutable image worker/entrypoint source bytes verified; no rebuild needed or claimed.",
+    "25Next+2styled-jsx excluded external traces/shared dependencies remain nonhermetic packaging limit for05.",
+    "No live provider vision preflight, paid calls, keys/.env reads, deploy, main or push."
+  ]
+}

@@ -1,8 +1,11 @@
 # Current frontier — all12 deterministic groups executed; independent review required
 
-Slice03 fresh `evidence/slice03-frontier-e1.json` records actual strict exit0 and
+Slice03 corrected `evidence/slice03-review2-e1.json` records actual strict exit0 and
 `proven:[1,2,3,4,5,6,7,8,9,10,11,12]`. Exact source-qualified bindings for10–12 are
-`lifecycle-evidence.ts`; complete fresh browser receipt is retained separately.
+`lifecycle-evidence.ts`; corrected `slice03-review2-browser.json` binds immutable
+executing verifier image/source equality and exact command/stdout/report pairs.
+Prior frontier receipt was rejected for qualificationP1s; retained historically.
+See `review2-validation.md` for fixes and still-explicit provenance limits.
 No live model reasoning, configured-provider vision, hermetic deployment or release
 acceptance follows. The slice01/02 sections below retain historical evidence boundaries.
 

@@ -1,8 +1,10 @@
 # Current: strict deterministic E1 all12 executed; independent review pending
 
-See [frontier-validation.md](frontier-validation.md) for current actual exit0,
-complete fresh API/browser/Vitest evidence, exact source fingerprints and residual
-packaging/TypeScript/live-release limits. The checkpoint below is historical and
+See [review2-validation.md](review2-validation.md) for current corrected qualification
+and fresh actual exit0. Independent evidence review rejected prior frontier image/
+command pairing; those historical receipts remain observed runs, not accepted proof.
+Current immutable-image/paired-command browser+strict receipts fix those findings,
+with fresh re-review still required. Packaging/TypeScript/live-release limits remain. The checkpoint below is historical and
 preserved for failure/progress provenance; its pending list is superseded, not erased.
 
 ## Historical slice03 checkpoint — implementation partial, not accepted
