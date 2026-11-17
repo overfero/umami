@@ -1,4 +1,8 @@
-# Slice 05 — implementation checkpoint (NOT accepted)
+# Slice 05 — accepted integration
+
+**2026-11-18 04:42 WIB:** independent ACCEPT `19a2e99f-22f4-4c9f-a8b0-2b526d55272e`, committed tip `15bfb944a`, merge `3f295eb3a65b853f7a7defc085ff5705ae6fc9db`. Ticket05 resolved with fresh MAIN I1/I2, frozen workspace install/build, API-client25/MCP27/affected40/fixture20/evaluator37 and historical receipt requalification (all exit0). [Integration record](integration-slice05.md) supersedes pending-review/checkpoint language below; original execution boundaries preserved. Remote CI/full main-Docker startup and target release gates remain outstanding; no release-complete claim or next-ticket launch.
+
+## Historical implementation checkpoint (pre-acceptance)
 
 2026-11-18 03:25 WIB. Based on a285a1806, analyst-slice-05; integration merge check reports already up to date. No main worktree edits, deployment, model/provider calls, role/volume cleanup or credentials read.
 
