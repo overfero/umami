@@ -1,10 +1,14 @@
-# Review correction checkpoint — scenario6 pending
+# Review correction — native scenario6 now executed, independent review pending
 
-P1 review rejected the historical evaluator-only withAiRead/UTC schema wrapper.
-Scenario6 is NOT proven by the old clarification-authority.json receipt. The
-manifest now requires a newly named native loopback discovery assertion; no
-receipt supplies it yet. Historical1–9 claims below are superseded for6 until
-a corrected real request-path regression executes. No product defect inferred.
+P1 rejected the old evaluator-only withAiRead/UTC wrapper. The historical
+clarification-authority.json receipt does NOT prove6. Fresh
+`evidence/utc-clarification-authority.json` now executes the distinct native-loopback
+assertion in UTC/Jakarta/NY with the operator-approved central sessionUTC policy.
+Real executeTool -> loopbackHTTP -> native handlers discovers login taxonomy and
+property schemas without an evaluator read scope, followed by meaningful ask_user,
+persisted awaiting_user and no guessed mutation. `utc-session-policy.md` documents
+the independently executed input/output/pool/calendar matrix and policy limitations.
+Proven1–9; pending10–12; strictE1 remains exit1. Independent re-review required.
 
 # Offline assertion coverage manifest
 

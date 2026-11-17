@@ -137,6 +137,10 @@ export async function runOffline(strict: boolean, outputPath?: string, reuseApiP
   const summary = summarizeCoverage(evidence);
   const sourceFiles = [
     'wiki/specs/analyst-dashboard-lifecycle.md',
+    'src/lib/prisma.ts',
+    'src/lib/prisma-session.ts',
+    'src/lib/prisma-session.test.ts',
+    'scripts/ai/analyst-evals/session-policy.ts',
     'scripts/ai/analyst-evals/authority.ts',
     'scripts/ai/analyst-evals/schema-server.ts',
     'scripts/ai/analyst-evals/authority-evidence.ts',

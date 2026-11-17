@@ -1,0 +1,1045 @@
+{
+  "complete": true,
+  "mode": "offline-scripted-no-model-no-browser",
+  "sourceRevision": "c940d3f16eed0617d3ff90495cd24e93254a00b4",
+  "sourceDirty": true,
+  "observedAtJakarta": "Tuesday, 17 November 2026 at 20:47:57 GMT+7",
+  "sourceHashes": {
+    "wiki/specs/analyst-dashboard-lifecycle.md": "a418013ff461110daa77ff6007f1b527d106bd9eb2c6b45cf91b1c405de8b638",
+    "src/lib/prisma.ts": "14c57096a627a75a816f0536161314c50690777a0ba76ab793a39c84a8c8ba8f",
+    "src/lib/prisma-session.ts": "23e6d90da2ff48a2cdc86c8b840a988b1e4f75c79f490f07ad4cceb0b2e02028",
+    "src/lib/prisma-session.test.ts": "2fadbb7da46bdfbccd05d840272dd680ec58d5815e40cf0359e50c140fa269e8",
+    "scripts/ai/analyst-evals/session-policy.ts": "ccadd28ff34766d8ba1a6c185e90ed19775258ffe7a5151903da03bf2eaf1de9",
+    "scripts/ai/analyst-evals/authority.ts": "f6b17afffbe8bc9da611ebecef4ddb757adce5d9c00e71d46277f613c2ed19cf",
+    "scripts/ai/analyst-evals/schema-server.ts": "809777c912acec1467dc51fd0169bb10609eb2ac4daff213328ef885ebe7ada9",
+    "scripts/ai/analyst-evals/authority-evidence.ts": "fc1fcd6c7fa9c6cd6767b5d54994618cedc695cec78571c1a899a5e53a607b75",
+    "scripts/ai/analyst-evals/authority-evidence.test.ts": "169d57a9b816e84ef4b0b9ba2709617a85d862c437af64cf22e3814ec1222c33",
+    "scripts/ai/analyst-evals/clarification.ts": "6a5bc6ab7e259103b559197afa469678f6195c0af2e4659f688f358895f40767",
+    "scripts/ai/analyst-evals/clarification.test.ts": "0fc4ff700544490f927c7b6bba78a171f8cff41c7ad2a1d9b054fd7b0a08ec03",
+    "scripts/ai/analyst-evals/generic-authority.test.ts": "a27b3412c9d99f7277a68e4c651e4ce62af562a8f22d346b2da711ad9eb3c98a",
+    "src/lib/analyst-verifier/authority.test.ts": "9f8c826f4cccb7b2d11ebf70f6c073e68ca247a4428141e7640618aff5332d11",
+    "src/lib/analyst-verifier/port.test.ts": "27aa659254e454cb970012531fa0f4b7412dc3141debade9fa4eef9687700963",
+    "src/lib/analyst-verifier/port.mjs": "a65dbc012432bfcd281f6c6aeb1859f65618e3cf1c12345fbf08e3d4cad1737a",
+    "src/lib/analyst-verifier/images.mjs": "a3628a5ae3641464823b588f0121a3e058b9cdea964083cd76796dc03f070935",
+    "src/lib/analyst-verifier/capability.mjs": "673e0073c04877577249cc18765093d1bd6f6f93664a5bb6a2d2a05775b66d0a",
+    "src/lib/ai/assistant/analyst/tools.ts": "123c6aae737180d1f6363a92bda0370dd908b4474264b15be0236f17c0dd5a7b",
+    "src/lib/ai/assistant/analyst/task.ts": "adef3d22f3c52067eaf62a63c39e46b9176fb45901a67e9a9a1119db056b51c2",
+    "src/lib/ai/assistant/tools.ts": "76dddfe2aaa0b81cd75b7301cc73b039ad2d65768f1351550542476e5519928b",
+    "src/queries/prisma/analysis.ts": "aee6b8f2069422be73246073f6626fed3f28d9bc59bd6989c16b159c5bb9b079",
+    "src/permissions/analysis.ts": "ab6e7d4416493f2847359e5c075b5ac366faae1d65dcf1266e6c1516b62986f1",
+    "src/permissions/website.ts": "34effa98ed8050bdbd33e2310b7b63ccc4c0a9d452440dd06baa281d9fd67fd8",
+    "src/permissions/share.ts": "85b5cdb46e05b55b266407b3d5a5da9688f884322c33bee6ed9fa8c9bef4d7aa",
+    "scripts/ai/eval-analyst.ts": "0892ee067ffa0ba773374b77a2b25d49ccad1d84eaf5d5e54a365716a77c248a",
+    "scripts/ai/analyst-evals/run-offline.ts": "39955aeaf6ba608578a7ab131c1b38f190d73a28d7288f55a55beb37c43abfb2",
+    "scripts/ai/analyst-evals/vitest.config.ts": "ef180650eba93c7f5064ce423e7110c3b57a4c08cd30cdd3ffebdf7fd6ccc3a2",
+    "src/test/setup.ts": "074a8edf8244ceeb01af9619dd689a087b0ac003e5ab2be93c0858a40de68d1b",
+    "scripts/ai/analyst-evals/staff-dashboard.ts": "234561a3f280bc7fabd531c99fc41d64925e5a43cde424011fe6d53c90482c31",
+    "scripts/ai/analyst-evals/staff-dashboard.test.ts": "7da27d4939f751cd148b74f33ac5f0d70ce3d35c43523b5994e5ee1855427de5",
+    "scripts/ai/analyst-evals/vitest-evidence.test.ts": "d666c0736a0297537fb7490d3b787bf3858587ca5e684a3c3aa4bdc0b366a0ed",
+    "scripts/ai/analyst-evals/api-evidence.test.ts": "9654740432fb3837707511050478c275a6ebd66f5c84feba873e05b65d2c9e3c",
+    "scripts/ai/analyst-evals/offline.test.ts": "da629375735c8b8f590d72e56e9d7639f9afe718424e337d216daa2565dd4940",
+    "scripts/test-analyst-api.ts": "dd0a4f6aa58aaddd4c1bbc26bdd6364cb1e208a501edcc19f438546c8c0b3c1d",
+    "scripts/ai/analyst-evals/dashboard.ts": "7c41e62ed31bee1e1e1e843821771c91e839e7b51f42e9056f0efbd25fd741cd",
+    "scripts/ai/analyst-evals/offline.ts": "a19901b0855dd9c2e104d88431feb165fd2134542be020d9df8a07ea3cf8ca3b",
+    "scripts/ai/analyst-evals/numeric-render.test.tsx": "d214e472921949d4eb94c87ca6f2294802c667b54ab8b3d58504f3c8c0cd1a56",
+    "scripts/ai/analyst-evals/missing-metric.test.ts": "618ce55777ffb19c1ccc7110573209c857a480a86715c4b4ad53eeb8e1a6b4ac",
+    "src/lib/ai/assistant/analyst/deps.ts": "6b0660b30484b8822e64c20729a08dfdb08c29c11781474f3e8bd1310292ffb0",
+    "src/queries/sql/getWebsiteDateRange.ts": "8dafe559be2d524ba65af19a2f005656db45737c92adfe53fc90ea6e8bf27aa4"
+  },
+  "fixtureHash": "7c41e62ed31bee1e1e1e843821771c91e839e7b51f42e9056f0efbd25fd741cd",
+  "evidence": [
+    {
+      "suite": "postgres-api",
+      "assertions": [
+        "application session is UTC despite inherited non-UTC request (UTC)",
+        "create is disabled without AI_ANALYST_ENABLED",
+        "preview is disabled without AI_ANALYST_ENABLED",
+        "nothing persisted while disabled",
+        "totals pageviews = 5 (start boundary in, end boundary out, foreign site excluded)",
+        "envelope provenance and completeness",
+        "totals sessions = 4",
+        "totals visits = 4",
+        "totals signup events = 3",
+        "totals unknown event is explicit zero",
+        "totals identified users = 2 (u1, u2)",
+        "filtered totals pageviews country=DE = 4",
+        "filtered totals pageviews country!=DE = 1",
+        "filtered totals pageviews path contains /a = 3 (end-boundary /a excluded)",
+        "series pageviews/day UTC = 3,1,1",
+        "series total equals bucket sum",
+        "series pageviews/day America/New_York = 1,2,1,1 local buckets",
+        "series sessions/day = 2,1,1 with bucketSessionSum, no unique total",
+        "series signup/day = 1,1,1",
+        "breakdown sessions by country = DE 3, FR 1, complete",
+        "top-1 breakdown is labeled partial top-N without fabricated remainder",
+        "breakdown sessions by path = /a 3, /b 1, /c 1",
+        "breakdown signup events by country = DE 2, FR 1",
+        "event numeric amount sum = 40",
+        "event numeric amount average = 20",
+        "event numeric amount median = 20",
+        "event numeric amount min = 10",
+        "event numeric amount max = 30",
+        "event numeric amount count = 2",
+        "session numeric age sum = 60 over 2 values",
+        "missing numeric values are null, not zero",
+        "unknown metric → unsupported_combination",
+        "eq value containing a comma (would split and widen population) → unsupported_filter",
+        "filtered identified users → unsupported_combination",
+        "event property filter on pageviews → unsupported_combination",
+        "property filter on numeric aggregate → unsupported_combination",
+        "unknown filter → unsupported_filter",
+        "schema version 2 → unsupported_schema_version",
+        "raw sql field → invalid_definition",
+        "too many buckets → result_too_large",
+        "preview of another principal’s website is denied",
+        "create returns draft revision 1 with normalized hash",
+        "same key + same request replays the original result",
+        "same key + different request conflicts",
+        "concurrent same-key creates yield exactly one analysis",
+        "caller cannot choose the owner principal",
+        "cannot save an analysis over an inaccessible source",
+        "team analyses cannot be private drafts",
+        "non-members cannot create team analyses",
+        "PATCH with expected revision advances to 2",
+        "stale expected revision conflicts",
+        "PATCH requires expectedRevision",
+        "PATCH validates the definition",
+        "concurrent PATCH at same revision: exactly one wins",
+        "revision history is append-only and complete",
+        "definition change creates revision 4 with a new hash; revision 1 is unchanged",
+        "readback returns stored definition whose hash re-derives",
+        "saved execution = DE signups 2 with saved provenance",
+        "preview of the read-back definition equals saved execution data",
+        "execute rejects caller overrides",
+        "stranger cannot read, execute or patch a private draft",
+        "team member cannot see owner’s private draft",
+        "list is principal-scoped and bounded",
+        "page size above 100 is rejected",
+        "team view-only member can read but not edit a ready team analysis",
+        "execution rechecks source access: viewer lacks website access → denied",
+        "revoked source access denies saved execution (no stale grant)",
+        "restored access executes again",
+        "board with own analysis widget saves at revision 1",
+        "renderer incompatible with result shape is rejected",
+        "widget config cannot carry SQL/rows/extra props",
+        "cannot reference another principal’s analysis",
+        "team board cannot expose a private draft",
+        "team board may reference a ready team analysis",
+        "board compare-and-set at revision 1 → 2",
+        "stale board revision → 409 without mutation",
+        "legacy save without expectedRevision still works and advances revision",
+        "board update re-validates analysis visibility",
+        "sharing a board with analysis widgets is explicitly unsupported",
+        "refused share leaves widget intact and creates no share",
+        "revoked source access denies board create and update save",
+        "bundle commits one board + two analyses with revisions atomically",
+        "bundle-linked signup totals = 3 (all interior timestamps, no boundary rows)",
+        "bundle with ref outside AnalysisWidget props is rejected and writes nothing",
+        "bundle-created series executes with correct UTC buckets on non-UTC session",
+        "principal/task/key replay and concurrent same-key commits return the same board",
+        "cancelled task: fenced bundle commits no board/analysis/operation",
+        "winning commit records provenance in-transaction; cancelled task rejects late writes",
+        "cancel-first cancel/commit round 0 is all-or-nothing; cancel stays terminal",
+        "round 0: pause/resume/ensureTask after cancel do not revive the task",
+        "commit-first cancel/commit round 1 is all-or-nothing; cancel stays terminal",
+        "round 1: pause/resume/ensureTask after cancel do not revive the task",
+        "concurrent cancel/commit round 2 is all-or-nothing; cancel stays terminal",
+        "round 2: pause/resume/ensureTask after cancel do not revive the task",
+        "cancel-first cancel/commit round 3 is all-or-nothing; cancel stays terminal",
+        "round 3: pause/resume/ensureTask after cancel do not revive the task",
+        "commit-first cancel/commit round 4 is all-or-nothing; cancel stays terminal",
+        "round 4: pause/resume/ensureTask after cancel do not revive the task",
+        "concurrent cancel/commit round 5 is all-or-nothing; cancel stays terminal",
+        "round 5: pause/resume/ensureTask after cancel do not revive the task",
+        "both cancel-won and commit-won linearizations observed",
+        "same key is scoped by principal/task; changed request under a key conflicts",
+        "unknown analysisRef is rejected before any write",
+        "no public self-service confirmation route; invented grant ids are denied",
+        "existing-board edit without/with wrong-task, wrong-diff, foreign-principal or expired (otherwise matching) grant is denied with no mutation",
+        "authority revoked after grant issuance denies the commit with zero mutation",
+        "confirmation grant is bound to the exact bundle hash",
+        "stale revision conflicts and rolls back analyses, grant claim and idempotency record",
+        "matching grant applies once; identical bundle under a fresh key cannot reuse it; same key replays",
+        "revoked source denies bundle save",
+        "before fresh writes: rolling 24h = 0, fixed = 3",
+        "after fresh writes: rolling 24h = 2 (48h-old excluded), fixed stays 3",
+        "restarted process executes persisted definitions with identical semantics and results",
+        "flag off: saved execution works, mutation is disabled"
+      ],
+      "passed": true
+    },
+    {
+      "suite": "postgres-supplement-UTC",
+      "assertions": [
+        "exact observed labels and daily event occurrences, separate product/ops",
+        "identified users stay source-scoped despite repeated identity",
+        "staff board persists separate source widgets and observed-only meaning",
+        "filtered event/person series survives real child process reopen",
+        "numeric zero/null aggregates and unsupported numeric grouping",
+        "absent collection coverage differs from covered explicit zero",
+        "matching saved analysis reused; different filter/population never substituted"
+      ],
+      "passed": true
+    },
+    {
+      "suite": "postgres-supplement-Asia/Jakarta",
+      "assertions": [
+        "exact observed labels and daily event occurrences, separate product/ops",
+        "identified users stay source-scoped despite repeated identity",
+        "staff board persists separate source widgets and observed-only meaning",
+        "filtered event/person series survives real child process reopen",
+        "numeric zero/null aggregates and unsupported numeric grouping",
+        "absent collection coverage differs from covered explicit zero",
+        "matching saved analysis reused; different filter/population never substituted"
+      ],
+      "passed": true
+    },
+    {
+      "suite": "postgres-supplement-America/New_York",
+      "assertions": [
+        "exact observed labels and daily event occurrences, separate product/ops",
+        "identified users stay source-scoped despite repeated identity",
+        "staff board persists separate source widgets and observed-only meaning",
+        "filtered event/person series survives real child process reopen",
+        "numeric zero/null aggregates and unsupported numeric grouping",
+        "absent collection coverage differs from covered explicit zero",
+        "matching saved analysis reused; different filter/population never substituted"
+      ],
+      "passed": true
+    },
+    {
+      "suite": "postgres-supplement",
+      "passed": true,
+      "assertions": [
+        "exact observed labels and daily event occurrences, separate product/ops",
+        "identified users stay source-scoped despite repeated identity",
+        "staff board persists separate source widgets and observed-only meaning",
+        "filtered event/person series survives real child process reopen",
+        "numeric zero/null aggregates and unsupported numeric grouping",
+        "absent collection coverage differs from covered explicit zero",
+        "matching saved analysis reused; different filter/population never substituted"
+      ]
+    },
+    {
+      "suite": "clickhouse-api",
+      "assertions": [
+        "application session is UTC despite inherited non-UTC request (UTC)",
+        "create is disabled without AI_ANALYST_ENABLED",
+        "preview is disabled without AI_ANALYST_ENABLED",
+        "nothing persisted while disabled",
+        "totals pageviews = 5 (start boundary in, end boundary out, foreign site excluded)",
+        "envelope provenance and completeness",
+        "totals sessions = 4",
+        "totals visits = 4",
+        "totals signup events = 3",
+        "totals unknown event is explicit zero",
+        "totals identified users = 2 (u1, u2)",
+        "filtered totals pageviews country=DE = 4",
+        "filtered totals pageviews country!=DE = 1",
+        "filtered totals pageviews path contains /a = 3 (end-boundary /a excluded)",
+        "series pageviews/day UTC = 3,1,1",
+        "series total equals bucket sum",
+        "series pageviews/day America/New_York = 1,2,1,1 local buckets",
+        "series sessions/day = 2,1,1 with bucketSessionSum, no unique total",
+        "series signup/day = 1,1,1",
+        "breakdown sessions by country = DE 3, FR 1, complete",
+        "top-1 breakdown is labeled partial top-N without fabricated remainder",
+        "breakdown sessions by path = /a 3, /b 1, /c 1",
+        "breakdown signup events by country = DE 2, FR 1",
+        "event numeric amount sum = 40",
+        "event numeric amount average = 20",
+        "event numeric amount median = 20",
+        "event numeric amount min = 10",
+        "event numeric amount max = 30",
+        "event numeric amount count = 2",
+        "session numeric age sum = 60 over 2 values",
+        "missing numeric values are null, not zero",
+        "unknown metric → unsupported_combination",
+        "eq value containing a comma (would split and widen population) → unsupported_filter",
+        "filtered identified users → unsupported_combination",
+        "event property filter on pageviews → unsupported_combination",
+        "property filter on numeric aggregate → unsupported_combination",
+        "unknown filter → unsupported_filter",
+        "schema version 2 → unsupported_schema_version",
+        "raw sql field → invalid_definition",
+        "too many buckets → result_too_large",
+        "preview of another principal’s website is denied",
+        "create returns draft revision 1 with normalized hash",
+        "same key + same request replays the original result",
+        "same key + different request conflicts",
+        "concurrent same-key creates yield exactly one analysis",
+        "caller cannot choose the owner principal",
+        "cannot save an analysis over an inaccessible source",
+        "team analyses cannot be private drafts",
+        "non-members cannot create team analyses",
+        "PATCH with expected revision advances to 2",
+        "stale expected revision conflicts",
+        "PATCH requires expectedRevision",
+        "PATCH validates the definition",
+        "concurrent PATCH at same revision: exactly one wins",
+        "revision history is append-only and complete",
+        "definition change creates revision 4 with a new hash; revision 1 is unchanged",
+        "readback returns stored definition whose hash re-derives",
+        "saved execution = DE signups 2 with saved provenance",
+        "preview of the read-back definition equals saved execution data",
+        "execute rejects caller overrides",
+        "stranger cannot read, execute or patch a private draft",
+        "team member cannot see owner’s private draft",
+        "list is principal-scoped and bounded",
+        "page size above 100 is rejected",
+        "team view-only member can read but not edit a ready team analysis",
+        "execution rechecks source access: viewer lacks website access → denied",
+        "revoked source access denies saved execution (no stale grant)",
+        "restored access executes again",
+        "board with own analysis widget saves at revision 1",
+        "renderer incompatible with result shape is rejected",
+        "widget config cannot carry SQL/rows/extra props",
+        "cannot reference another principal’s analysis",
+        "team board cannot expose a private draft",
+        "team board may reference a ready team analysis",
+        "board compare-and-set at revision 1 → 2",
+        "stale board revision → 409 without mutation",
+        "legacy save without expectedRevision still works and advances revision",
+        "board update re-validates analysis visibility",
+        "sharing a board with analysis widgets is explicitly unsupported",
+        "refused share leaves widget intact and creates no share",
+        "revoked source access denies board create and update save",
+        "bundle commits one board + two analyses with revisions atomically",
+        "bundle-linked signup totals = 3 (all interior timestamps, no boundary rows)",
+        "bundle with ref outside AnalysisWidget props is rejected and writes nothing",
+        "bundle-created series executes with correct UTC buckets on non-UTC session",
+        "principal/task/key replay and concurrent same-key commits return the same board",
+        "cancelled task: fenced bundle commits no board/analysis/operation",
+        "winning commit records provenance in-transaction; cancelled task rejects late writes",
+        "cancel-first cancel/commit round 0 is all-or-nothing; cancel stays terminal",
+        "round 0: pause/resume/ensureTask after cancel do not revive the task",
+        "commit-first cancel/commit round 1 is all-or-nothing; cancel stays terminal",
+        "round 1: pause/resume/ensureTask after cancel do not revive the task",
+        "concurrent cancel/commit round 2 is all-or-nothing; cancel stays terminal",
+        "round 2: pause/resume/ensureTask after cancel do not revive the task",
+        "cancel-first cancel/commit round 3 is all-or-nothing; cancel stays terminal",
+        "round 3: pause/resume/ensureTask after cancel do not revive the task",
+        "commit-first cancel/commit round 4 is all-or-nothing; cancel stays terminal",
+        "round 4: pause/resume/ensureTask after cancel do not revive the task",
+        "concurrent cancel/commit round 5 is all-or-nothing; cancel stays terminal",
+        "round 5: pause/resume/ensureTask after cancel do not revive the task",
+        "both cancel-won and commit-won linearizations observed",
+        "same key is scoped by principal/task; changed request under a key conflicts",
+        "unknown analysisRef is rejected before any write",
+        "no public self-service confirmation route; invented grant ids are denied",
+        "existing-board edit without/with wrong-task, wrong-diff, foreign-principal or expired (otherwise matching) grant is denied with no mutation",
+        "authority revoked after grant issuance denies the commit with zero mutation",
+        "confirmation grant is bound to the exact bundle hash",
+        "stale revision conflicts and rolls back analyses, grant claim and idempotency record",
+        "matching grant applies once; identical bundle under a fresh key cannot reuse it; same key replays",
+        "revoked source denies bundle save",
+        "before fresh writes: rolling 24h = 0, fixed = 3",
+        "after fresh writes: rolling 24h = 2 (48h-old excluded), fixed stays 3",
+        "restarted process executes persisted definitions with identical semantics and results",
+        "flag off: saved execution works, mutation is disabled"
+      ],
+      "passed": true
+    },
+    {
+      "suite": "clickhouse-supplement-UTC",
+      "assertions": [
+        "exact observed labels and daily event occurrences, separate product/ops",
+        "identified users stay source-scoped despite repeated identity",
+        "staff board persists separate source widgets and observed-only meaning",
+        "filtered event/person series survives real child process reopen",
+        "numeric zero/null aggregates and unsupported numeric grouping",
+        "absent collection coverage differs from covered explicit zero",
+        "matching saved analysis reused; different filter/population never substituted"
+      ],
+      "passed": true
+    },
+    {
+      "suite": "clickhouse-supplement-Asia/Jakarta",
+      "assertions": [
+        "exact observed labels and daily event occurrences, separate product/ops",
+        "identified users stay source-scoped despite repeated identity",
+        "staff board persists separate source widgets and observed-only meaning",
+        "filtered event/person series survives real child process reopen",
+        "numeric zero/null aggregates and unsupported numeric grouping",
+        "absent collection coverage differs from covered explicit zero",
+        "matching saved analysis reused; different filter/population never substituted"
+      ],
+      "passed": true
+    },
+    {
+      "suite": "clickhouse-supplement-America/New_York",
+      "assertions": [
+        "exact observed labels and daily event occurrences, separate product/ops",
+        "identified users stay source-scoped despite repeated identity",
+        "staff board persists separate source widgets and observed-only meaning",
+        "filtered event/person series survives real child process reopen",
+        "numeric zero/null aggregates and unsupported numeric grouping",
+        "absent collection coverage differs from covered explicit zero",
+        "matching saved analysis reused; different filter/population never substituted"
+      ],
+      "passed": true
+    },
+    {
+      "suite": "clickhouse-supplement",
+      "passed": true,
+      "assertions": [
+        "exact observed labels and daily event occurrences, separate product/ops",
+        "identified users stay source-scoped despite repeated identity",
+        "staff board persists separate source widgets and observed-only meaning",
+        "filtered event/person series survives real child process reopen",
+        "numeric zero/null aggregates and unsupported numeric grouping",
+        "absent collection coverage differs from covered explicit zero",
+        "matching saved analysis reused; different filter/population never substituted"
+      ]
+    },
+    {
+      "suite": "authority-pg-UTC",
+      "assertions": [
+        "native loopback schema discovery then meaningful clarification with persisted wait and no guessed mutation",
+        "declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies",
+        "partial failure after metadata writes rolls back board analyses revisions operation and task provenance",
+        "source revocation denies render authority and existing artifact release",
+        "foreign stale malformed and team-revoked references deny capability and artifact release"
+      ],
+      "passed": true
+    },
+    {
+      "suite": "authority-pg-Asia/Jakarta",
+      "assertions": [
+        "native loopback schema discovery then meaningful clarification with persisted wait and no guessed mutation",
+        "declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies",
+        "partial failure after metadata writes rolls back board analyses revisions operation and task provenance",
+        "source revocation denies render authority and existing artifact release",
+        "foreign stale malformed and team-revoked references deny capability and artifact release"
+      ],
+      "passed": true
+    },
+    {
+      "suite": "authority-pg-America/New_York",
+      "assertions": [
+        "native loopback schema discovery then meaningful clarification with persisted wait and no guessed mutation",
+        "declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies",
+        "partial failure after metadata writes rolls back board analyses revisions operation and task provenance",
+        "source revocation denies render authority and existing artifact release",
+        "foreign stale malformed and team-revoked references deny capability and artifact release"
+      ],
+      "passed": true
+    },
+    {
+      "suite": "authority-pg",
+      "passed": true,
+      "assertions": [
+        "native loopback schema discovery then meaningful clarification with persisted wait and no guessed mutation",
+        "source revocation denies render authority and existing artifact release",
+        "foreign stale malformed and team-revoked references deny capability and artifact release",
+        "partial failure after metadata writes rolls back board analyses revisions operation and task provenance",
+        "declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies"
+      ]
+    },
+    {
+      "suite": "component",
+      "passed": true,
+      "assertions": [
+        "numeric aggregate metric/table renders exact value, zero and unavailable without a series"
+      ]
+    },
+    {
+      "suite": "executor",
+      "passed": true,
+      "assertions": [
+        "omitted native stats key rejects as missing_metric rather than zero"
+      ]
+    },
+    {
+      "suite": "generic-authority",
+      "passed": true,
+      "assertions": [
+        "generic edit share delete and method aliases cannot dispatch lifecycle writes even with nested approval claims"
+      ]
+    },
+    {
+      "suite": "authority-reusable",
+      "passed": true,
+      "assertions": [
+        "allows only an active task at exact board/analysis revisions with current view rights",
+        "rejects foreign, stale, failed and mismatched envelopes rather than minting receipts",
+        "rechecks authority after execution and rejects unsupported or incomplete widget sets",
+        "native preparation refuses revoked sources before querying",
+        "rejects stale revision, foreign/empty execution, foreign hash and revoked authority",
+        "canvas handler: no session, forged session, or reused capability is denied"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "command": "tsx scripts/test-analyst-api.ts --postgres",
+      "timezone": "-c timezone=America/New_York",
+      "passed": true,
+      "exitCode": 0,
+      "output": "  ok 1 application session is UTC despite inherited non-UTC request (UTC)\n# postgresql: flags off by default\n  ok 2 create is disabled without AI_ANALYST_ENABLED\n  ok 3 preview is disabled without AI_ANALYST_ENABLED\n  ok 4 nothing persisted while disabled\n# postgresql: execution matrix against fixed expected values\n  ok 5 totals pageviews = 5 (start boundary in, end boundary out, foreign site excluded)\n  ok 6 envelope provenance and completeness\n  ok 7 totals sessions = 4\n  ok 8 totals visits = 4\n  ok 9 totals signup events = 3\n  ok 10 totals unknown event is explicit zero\n  ok 11 totals identified users = 2 (u1, u2)\n  ok 12 filtered totals pageviews country=DE = 4\n  ok 13 filtered totals pageviews country!=DE = 1\n  ok 14 filtered totals pageviews path contains /a = 3 (end-boundary /a excluded)\n  ok 15 series pageviews/day UTC = 3,1,1\n  ok 16 series total equals bucket sum\n  ok 17 series pageviews/day America/New_York = 1,2,1,1 local buckets\n  ok 18 series sessions/day = 2,1,1 with bucketSessionSum, no unique total\n  ok 19 series signup/day = 1,1,1\n  ok 20 breakdown sessions by country = DE 3, FR 1, complete\n  ok 21 top-1 breakdown is labeled partial top-N without fabricated remainder\n  ok 22 breakdown sessions by path = /a 3, /b 1, /c 1\n  ok 23 breakdown signup events by country = DE 2, FR 1\n  ok 24 event numeric amount sum = 40\n  ok 25 event numeric amount average = 20\n  ok 26 event numeric amount median = 20\n  ok 27 event numeric amount min = 10\n  ok 28 event numeric amount max = 30\n  ok 29 event numeric amount count = 2\n  ok 30 session numeric age sum = 60 over 2 values\n  ok 31 missing numeric values are null, not zero\n# postgresql: unsupported requests fail before execution\n  ok 32 unknown metric → unsupported_combination\n  ok 33 eq value containing a comma (would split and widen population) → unsupported_filter\n  ok 34 filtered identified users → unsupported_combination\n  ok 35 event property filter on pageviews → unsupported_combination\n  ok 36 property filter on numeric aggregate → unsupported_combination\n  ok 37 unknown filter → unsupported_filter\n  ok 38 schema version 2 → unsupported_schema_version\n  ok 39 raw sql field → invalid_definition\n  ok 40 too many buckets → result_too_large\n  ok 41 preview of another principal’s website is denied\n# postgresql: persistence, idempotency, immutable revisions\n  ok 42 create returns draft revision 1 with normalized hash\n  ok 43 same key + same request replays the original result\n  ok 44 same key + different request conflicts\n  ok 45 concurrent same-key creates yield exactly one analysis\n  ok 46 caller cannot choose the owner principal\n  ok 47 cannot save an analysis over an inaccessible source\n  ok 48 team analyses cannot be private drafts\n  ok 49 non-members cannot create team analyses\n  ok 50 PATCH with expected revision advances to 2\n  ok 51 stale expected revision conflicts\n  ok 52 PATCH requires expectedRevision\n  ok 53 PATCH validates the definition\n  ok 54 concurrent PATCH at same revision: exactly one wins\n  ok 55 revision history is append-only and complete\n  ok 56 definition change creates revision 4 with a new hash; revision 1 is unchanged\n# postgresql: readback and saved execution\n  ok 57 readback returns stored definition whose hash re-derives\n  ok 58 saved execution = DE signups 2 with saved provenance\n  ok 59 preview of the read-back definition equals saved execution data\n  ok 60 execute rejects caller overrides\n# postgresql: authority\n  ok 61 stranger cannot read, execute or patch a private draft\n  ok 62 team member cannot see owner’s private draft\n  ok 63 list is principal-scoped and bounded\n  ok 64 page size above 100 is rejected\n  ok 65 team view-only member can read but not edit a ready team analysis\n  ok 66 execution rechecks source access: viewer lacks website access → denied\n  ok 67 revoked source access denies saved execution (no stale grant)\n  ok 68 restored access executes again\n# postgresql: boards\n  ok 69 board with own analysis widget saves at revision 1\n  ok 70 renderer incompatible with result shape is rejected\n  ok 71 widget config cannot carry SQL/rows/extra props\n  ok 72 cannot reference another principal’s analysis\n  ok 73 team board cannot expose a private draft\n  ok 74 team board may reference a ready team analysis\n  ok 75 board compare-and-set at revision 1 → 2\n  ok 76 stale board revision → 409 without mutation\n  ok 77 legacy save without expectedRevision still works and advances revision\n  ok 78 board update re-validates analysis visibility\n  ok 79 sharing a board with analysis widgets is explicitly unsupported\n  ok 80 refused share leaves widget intact and creates no share\n# postgresql: revoked source denies board save\n  ok 81 revoked source access denies board create and update save\n# postgresql: atomic bundle commits\n  ok 82 bundle commits one board + two analyses with revisions atomically\n  ok 83 bundle-linked signup totals = 3 (all interior timestamps, no boundary rows)\n  ok 84 bundle with ref outside AnalysisWidget props is rejected and writes nothing\n  ok 85 bundle-created series executes with correct UTC buckets on non-UTC session\n  ok 86 principal/task/key replay and concurrent same-key commits return the same board\n  ok 87 cancelled task: fenced bundle commits no board/analysis/operation\n  ok 88 winning commit records provenance in-transaction; cancelled task rejects late writes\n  ok 89 cancel-first cancel/commit round 0 is all-or-nothing; cancel stays terminal\n  ok 90 round 0: pause/resume/ensureTask after cancel do not revive the task\n  ok 91 commit-first cancel/commit round 1 is all-or-nothing; cancel stays terminal\n  ok 92 round 1: pause/resume/ensureTask after cancel do not revive the task\n  ok 93 concurrent cancel/commit round 2 is all-or-nothing; cancel stays terminal\n  ok 94 round 2: pause/resume/ensureTask after cancel do not revive the task\n  ok 95 cancel-first cancel/commit round 3 is all-or-nothing; cancel stays terminal\n  ok 96 round 3: pause/resume/ensureTask after cancel do not revive the task\n  ok 97 commit-first cancel/commit round 4 is all-or-nothing; cancel stays terminal\n  ok 98 round 4: pause/resume/ensureTask after cancel do not revive the task\n  ok 99 concurrent cancel/commit round 5 is all-or-nothing; cancel stays terminal\n  ok 100 round 5: pause/resume/ensureTask after cancel do not revive the task\n  ok 101 both cancel-won and commit-won linearizations observed\n  ok 102 same key is scoped by principal/task; changed request under a key conflicts\n  ok 103 unknown analysisRef is rejected before any write\n# postgresql: scoped confirmation for existing boards\n  ok 104 no public self-service confirmation route; invented grant ids are denied\n  ok 105 existing-board edit without/with wrong-task, wrong-diff, foreign-principal or expired (otherwise matching) grant is denied with no mutation\n  ok 106 authority revoked after grant issuance denies the commit with zero mutation\n  ok 107 confirmation grant is bound to the exact bundle hash\n  ok 108 stale revision conflicts and rolls back analyses, grant claim and idempotency record\n  ok 109 matching grant applies once; identical bundle under a fresh key cannot reuse it; same key replays\n  ok 110 revoked source denies bundle save\n# postgresql: rolling/fixed saved definitions, fresh writes and process restart\n  ok 111 before fresh writes: rolling 24h = 0, fixed = 3\n  ok 112 after fresh writes: rolling 24h = 2 (48h-old excluded), fixed stays 3\n  ok 113 restarted process executes persisted definitions with identical semantics and results\n# postgresql: flag off keeps saved execution available\n  ok 114 flag off: saved execution works, mutation is disabled\nPASS postgresql: 114 checks (namespace analyst_pg_1794922925256 dropped)\n"
+    },
+    {
+      "command": "tsx scripts/ai/analyst-evals/dashboard.ts postgres",
+      "timezone": "-c timezone=UTC",
+      "passed": true,
+      "exitCode": 0,
+      "output": "ASSERTION exact observed labels and daily event occurrences, separate product/ops\nASSERTION identified users stay source-scoped despite repeated identity\nASSERTION staff board persists separate source widgets and observed-only meaning\nASSERTION filtered event/person series survives real child process reopen\nASSERTION numeric zero/null aggregates and unsupported numeric grouping\nASSERTION absent collection coverage differs from covered explicit zero\nASSERTION matching saved analysis reused; different filter/population never substituted\nEVIDENCE {\"suite\":\"postgres-supplement\",\"assertions\":[\"exact observed labels and daily event occurrences, separate product/ops\",\"identified users stay source-scoped despite repeated identity\",\"staff board persists separate source widgets and observed-only meaning\",\"filtered event/person series survives real child process reopen\",\"numeric zero/null aggregates and unsupported numeric grouping\",\"absent collection coverage differs from covered explicit zero\",\"matching saved analysis reused; different filter/population never substituted\"],\"passed\":true}\n"
+    },
+    {
+      "command": "tsx scripts/ai/analyst-evals/dashboard.ts postgres",
+      "timezone": "-c timezone=Asia/Jakarta",
+      "passed": true,
+      "exitCode": 0,
+      "output": "ASSERTION exact observed labels and daily event occurrences, separate product/ops\nASSERTION identified users stay source-scoped despite repeated identity\nASSERTION staff board persists separate source widgets and observed-only meaning\nASSERTION filtered event/person series survives real child process reopen\nASSERTION numeric zero/null aggregates and unsupported numeric grouping\nASSERTION absent collection coverage differs from covered explicit zero\nASSERTION matching saved analysis reused; different filter/population never substituted\nEVIDENCE {\"suite\":\"postgres-supplement\",\"assertions\":[\"exact observed labels and daily event occurrences, separate product/ops\",\"identified users stay source-scoped despite repeated identity\",\"staff board persists separate source widgets and observed-only meaning\",\"filtered event/person series survives real child process reopen\",\"numeric zero/null aggregates and unsupported numeric grouping\",\"absent collection coverage differs from covered explicit zero\",\"matching saved analysis reused; different filter/population never substituted\"],\"passed\":true}\n"
+    },
+    {
+      "command": "tsx scripts/ai/analyst-evals/dashboard.ts postgres",
+      "timezone": "-c timezone=America/New_York",
+      "passed": true,
+      "exitCode": 0,
+      "output": "ASSERTION exact observed labels and daily event occurrences, separate product/ops\nASSERTION identified users stay source-scoped despite repeated identity\nASSERTION staff board persists separate source widgets and observed-only meaning\nASSERTION filtered event/person series survives real child process reopen\nASSERTION numeric zero/null aggregates and unsupported numeric grouping\nASSERTION absent collection coverage differs from covered explicit zero\nASSERTION matching saved analysis reused; different filter/population never substituted\nEVIDENCE {\"suite\":\"postgres-supplement\",\"assertions\":[\"exact observed labels and daily event occurrences, separate product/ops\",\"identified users stay source-scoped despite repeated identity\",\"staff board persists separate source widgets and observed-only meaning\",\"filtered event/person series survives real child process reopen\",\"numeric zero/null aggregates and unsupported numeric grouping\",\"absent collection coverage differs from covered explicit zero\",\"matching saved analysis reused; different filter/population never substituted\"],\"passed\":true}\n"
+    },
+    {
+      "command": "tsx scripts/test-analyst-api.ts --clickhouse",
+      "timezone": "-c timezone=America/New_York",
+      "passed": true,
+      "exitCode": 0,
+      "output": "  ok 1 application session is UTC despite inherited non-UTC request (UTC)\n# clickhouse: flags off by default\n  ok 2 create is disabled without AI_ANALYST_ENABLED\n  ok 3 preview is disabled without AI_ANALYST_ENABLED\n  ok 4 nothing persisted while disabled\n# clickhouse: execution matrix against fixed expected values\n  ok 5 totals pageviews = 5 (start boundary in, end boundary out, foreign site excluded)\n  ok 6 envelope provenance and completeness\n  ok 7 totals sessions = 4\n  ok 8 totals visits = 4\n  ok 9 totals signup events = 3\n  ok 10 totals unknown event is explicit zero\n  ok 11 totals identified users = 2 (u1, u2)\n  ok 12 filtered totals pageviews country=DE = 4\n  ok 13 filtered totals pageviews country!=DE = 1\n  ok 14 filtered totals pageviews path contains /a = 3 (end-boundary /a excluded)\n  ok 15 series pageviews/day UTC = 3,1,1\n  ok 16 series total equals bucket sum\n  ok 17 series pageviews/day America/New_York = 1,2,1,1 local buckets\n  ok 18 series sessions/day = 2,1,1 with bucketSessionSum, no unique total\n  ok 19 series signup/day = 1,1,1\n  ok 20 breakdown sessions by country = DE 3, FR 1, complete\n  ok 21 top-1 breakdown is labeled partial top-N without fabricated remainder\n  ok 22 breakdown sessions by path = /a 3, /b 1, /c 1\n  ok 23 breakdown signup events by country = DE 2, FR 1\n  ok 24 event numeric amount sum = 40\n  ok 25 event numeric amount average = 20\n  ok 26 event numeric amount median = 20\n  ok 27 event numeric amount min = 10\n  ok 28 event numeric amount max = 30\n  ok 29 event numeric amount count = 2\n  ok 30 session numeric age sum = 60 over 2 values\n  ok 31 missing numeric values are null, not zero\n# clickhouse: unsupported requests fail before execution\n  ok 32 unknown metric → unsupported_combination\n  ok 33 eq value containing a comma (would split and widen population) → unsupported_filter\n  ok 34 filtered identified users → unsupported_combination\n  ok 35 event property filter on pageviews → unsupported_combination\n  ok 36 property filter on numeric aggregate → unsupported_combination\n  ok 37 unknown filter → unsupported_filter\n  ok 38 schema version 2 → unsupported_schema_version\n  ok 39 raw sql field → invalid_definition\n  ok 40 too many buckets → result_too_large\n  ok 41 preview of another principal’s website is denied\n# clickhouse: persistence, idempotency, immutable revisions\n  ok 42 create returns draft revision 1 with normalized hash\n  ok 43 same key + same request replays the original result\n  ok 44 same key + different request conflicts\n  ok 45 concurrent same-key creates yield exactly one analysis\n  ok 46 caller cannot choose the owner principal\n  ok 47 cannot save an analysis over an inaccessible source\n  ok 48 team analyses cannot be private drafts\n  ok 49 non-members cannot create team analyses\n  ok 50 PATCH with expected revision advances to 2\n  ok 51 stale expected revision conflicts\n  ok 52 PATCH requires expectedRevision\n  ok 53 PATCH validates the definition\n  ok 54 concurrent PATCH at same revision: exactly one wins\n  ok 55 revision history is append-only and complete\n  ok 56 definition change creates revision 4 with a new hash; revision 1 is unchanged\n# clickhouse: readback and saved execution\n  ok 57 readback returns stored definition whose hash re-derives\n  ok 58 saved execution = DE signups 2 with saved provenance\n  ok 59 preview of the read-back definition equals saved execution data\n  ok 60 execute rejects caller overrides\n# clickhouse: authority\n  ok 61 stranger cannot read, execute or patch a private draft\n  ok 62 team member cannot see owner’s private draft\n  ok 63 list is principal-scoped and bounded\n  ok 64 page size above 100 is rejected\n  ok 65 team view-only member can read but not edit a ready team analysis\n  ok 66 execution rechecks source access: viewer lacks website access → denied\n  ok 67 revoked source access denies saved execution (no stale grant)\n  ok 68 restored access executes again\n# clickhouse: boards\n  ok 69 board with own analysis widget saves at revision 1\n  ok 70 renderer incompatible with result shape is rejected\n  ok 71 widget config cannot carry SQL/rows/extra props\n  ok 72 cannot reference another principal’s analysis\n  ok 73 team board cannot expose a private draft\n  ok 74 team board may reference a ready team analysis\n  ok 75 board compare-and-set at revision 1 → 2\n  ok 76 stale board revision → 409 without mutation\n  ok 77 legacy save without expectedRevision still works and advances revision\n  ok 78 board update re-validates analysis visibility\n  ok 79 sharing a board with analysis widgets is explicitly unsupported\n  ok 80 refused share leaves widget intact and creates no share\n# clickhouse: revoked source denies board save\n  ok 81 revoked source access denies board create and update save\n# clickhouse: atomic bundle commits\n  ok 82 bundle commits one board + two analyses with revisions atomically\n  ok 83 bundle-linked signup totals = 3 (all interior timestamps, no boundary rows)\n  ok 84 bundle with ref outside AnalysisWidget props is rejected and writes nothing\n  ok 85 bundle-created series executes with correct UTC buckets on non-UTC session\n  ok 86 principal/task/key replay and concurrent same-key commits return the same board\n  ok 87 cancelled task: fenced bundle commits no board/analysis/operation\n  ok 88 winning commit records provenance in-transaction; cancelled task rejects late writes\n  ok 89 cancel-first cancel/commit round 0 is all-or-nothing; cancel stays terminal\n  ok 90 round 0: pause/resume/ensureTask after cancel do not revive the task\n  ok 91 commit-first cancel/commit round 1 is all-or-nothing; cancel stays terminal\n  ok 92 round 1: pause/resume/ensureTask after cancel do not revive the task\n  ok 93 concurrent cancel/commit round 2 is all-or-nothing; cancel stays terminal\n  ok 94 round 2: pause/resume/ensureTask after cancel do not revive the task\n  ok 95 cancel-first cancel/commit round 3 is all-or-nothing; cancel stays terminal\n  ok 96 round 3: pause/resume/ensureTask after cancel do not revive the task\n  ok 97 commit-first cancel/commit round 4 is all-or-nothing; cancel stays terminal\n  ok 98 round 4: pause/resume/ensureTask after cancel do not revive the task\n  ok 99 concurrent cancel/commit round 5 is all-or-nothing; cancel stays terminal\n  ok 100 round 5: pause/resume/ensureTask after cancel do not revive the task\n  ok 101 both cancel-won and commit-won linearizations observed\n  ok 102 same key is scoped by principal/task; changed request under a key conflicts\n  ok 103 unknown analysisRef is rejected before any write\n# clickhouse: scoped confirmation for existing boards\n  ok 104 no public self-service confirmation route; invented grant ids are denied\n  ok 105 existing-board edit without/with wrong-task, wrong-diff, foreign-principal or expired (otherwise matching) grant is denied with no mutation\n  ok 106 authority revoked after grant issuance denies the commit with zero mutation\n  ok 107 confirmation grant is bound to the exact bundle hash\n  ok 108 stale revision conflicts and rolls back analyses, grant claim and idempotency record\n  ok 109 matching grant applies once; identical bundle under a fresh key cannot reuse it; same key replays\n  ok 110 revoked source denies bundle save\n# clickhouse: rolling/fixed saved definitions, fresh writes and process restart\n  ok 111 before fresh writes: rolling 24h = 0, fixed = 3\n  ok 112 after fresh writes: rolling 24h = 2 (48h-old excluded), fixed stays 3\n  ok 113 restarted process executes persisted definitions with identical semantics and results\n# clickhouse: flag off keeps saved execution available\n  ok 114 flag off: saved execution works, mutation is disabled\nPASS clickhouse: 114 checks (namespace analyst_ch_1794923085698 dropped)\n"
+    },
+    {
+      "command": "tsx scripts/ai/analyst-evals/dashboard.ts clickhouse",
+      "timezone": "-c timezone=UTC",
+      "passed": true,
+      "exitCode": 0,
+      "output": "ASSERTION exact observed labels and daily event occurrences, separate product/ops\nASSERTION identified users stay source-scoped despite repeated identity\nASSERTION staff board persists separate source widgets and observed-only meaning\nASSERTION filtered event/person series survives real child process reopen\nASSERTION numeric zero/null aggregates and unsupported numeric grouping\nASSERTION absent collection coverage differs from covered explicit zero\nASSERTION matching saved analysis reused; different filter/population never substituted\nEVIDENCE {\"suite\":\"clickhouse-supplement\",\"assertions\":[\"exact observed labels and daily event occurrences, separate product/ops\",\"identified users stay source-scoped despite repeated identity\",\"staff board persists separate source widgets and observed-only meaning\",\"filtered event/person series survives real child process reopen\",\"numeric zero/null aggregates and unsupported numeric grouping\",\"absent collection coverage differs from covered explicit zero\",\"matching saved analysis reused; different filter/population never substituted\"],\"passed\":true}\n"
+    },
+    {
+      "command": "tsx scripts/ai/analyst-evals/dashboard.ts clickhouse",
+      "timezone": "-c timezone=Asia/Jakarta",
+      "passed": true,
+      "exitCode": 0,
+      "output": "ASSERTION exact observed labels and daily event occurrences, separate product/ops\nASSERTION identified users stay source-scoped despite repeated identity\nASSERTION staff board persists separate source widgets and observed-only meaning\nASSERTION filtered event/person series survives real child process reopen\nASSERTION numeric zero/null aggregates and unsupported numeric grouping\nASSERTION absent collection coverage differs from covered explicit zero\nASSERTION matching saved analysis reused; different filter/population never substituted\nEVIDENCE {\"suite\":\"clickhouse-supplement\",\"assertions\":[\"exact observed labels and daily event occurrences, separate product/ops\",\"identified users stay source-scoped despite repeated identity\",\"staff board persists separate source widgets and observed-only meaning\",\"filtered event/person series survives real child process reopen\",\"numeric zero/null aggregates and unsupported numeric grouping\",\"absent collection coverage differs from covered explicit zero\",\"matching saved analysis reused; different filter/population never substituted\"],\"passed\":true}\n"
+    },
+    {
+      "command": "tsx scripts/ai/analyst-evals/dashboard.ts clickhouse",
+      "timezone": "-c timezone=America/New_York",
+      "passed": true,
+      "exitCode": 0,
+      "output": "ASSERTION exact observed labels and daily event occurrences, separate product/ops\nASSERTION identified users stay source-scoped despite repeated identity\nASSERTION staff board persists separate source widgets and observed-only meaning\nASSERTION filtered event/person series survives real child process reopen\nASSERTION numeric zero/null aggregates and unsupported numeric grouping\nASSERTION absent collection coverage differs from covered explicit zero\nASSERTION matching saved analysis reused; different filter/population never substituted\nEVIDENCE {\"suite\":\"clickhouse-supplement\",\"assertions\":[\"exact observed labels and daily event occurrences, separate product/ops\",\"identified users stay source-scoped despite repeated identity\",\"staff board persists separate source widgets and observed-only meaning\",\"filtered event/person series survives real child process reopen\",\"numeric zero/null aggregates and unsupported numeric grouping\",\"absent collection coverage differs from covered explicit zero\",\"matching saved analysis reused; different filter/population never substituted\"],\"passed\":true}\n"
+    },
+    {
+      "command": "tsx scripts/ai/analyst-evals/authority.ts",
+      "timezone": "-c timezone=UTC",
+      "passed": true,
+      "exitCode": 0,
+      "output": "ASSERTION native loopback schema discovery then meaningful clarification with persisted wait and no guessed mutation\nASSERTION declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies\nASSERTION partial failure after metadata writes rolls back board analyses revisions operation and task provenance\nASSERTION source revocation denies render authority and existing artifact release\nASSERTION foreign stale malformed and team-revoked references deny capability and artifact release\nEVIDENCE {\"suite\":\"authority-pg\",\"assertions\":[\"native loopback schema discovery then meaningful clarification with persisted wait and no guessed mutation\",\"declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies\",\"partial failure after metadata writes rolls back board analyses revisions operation and task provenance\",\"source revocation denies render authority and existing artifact release\",\"foreign stale malformed and team-revoked references deny capability and artifact release\"],\"passed\":true}\n"
+    },
+    {
+      "command": "tsx scripts/ai/analyst-evals/authority.ts",
+      "timezone": "-c timezone=Asia/Jakarta",
+      "passed": true,
+      "exitCode": 0,
+      "output": "ASSERTION native loopback schema discovery then meaningful clarification with persisted wait and no guessed mutation\nASSERTION declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies\nASSERTION partial failure after metadata writes rolls back board analyses revisions operation and task provenance\nASSERTION source revocation denies render authority and existing artifact release\nASSERTION foreign stale malformed and team-revoked references deny capability and artifact release\nEVIDENCE {\"suite\":\"authority-pg\",\"assertions\":[\"native loopback schema discovery then meaningful clarification with persisted wait and no guessed mutation\",\"declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies\",\"partial failure after metadata writes rolls back board analyses revisions operation and task provenance\",\"source revocation denies render authority and existing artifact release\",\"foreign stale malformed and team-revoked references deny capability and artifact release\"],\"passed\":true}\n"
+    },
+    {
+      "command": "tsx scripts/ai/analyst-evals/authority.ts",
+      "timezone": "-c timezone=America/New_York",
+      "passed": true,
+      "exitCode": 0,
+      "output": "ASSERTION native loopback schema discovery then meaningful clarification with persisted wait and no guessed mutation\nASSERTION declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies\nASSERTION partial failure after metadata writes rolls back board analyses revisions operation and task provenance\nASSERTION source revocation denies render authority and existing artifact release\nASSERTION foreign stale malformed and team-revoked references deny capability and artifact release\nEVIDENCE {\"suite\":\"authority-pg\",\"assertions\":[\"native loopback schema discovery then meaningful clarification with persisted wait and no guessed mutation\",\"declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies\",\"partial failure after metadata writes rolls back board analyses revisions operation and task provenance\",\"source revocation denies render authority and existing artifact release\",\"foreign stale malformed and team-revoked references deny capability and artifact release\"],\"passed\":true}\n"
+    },
+    {
+      "command": "vitest run -c scripts/ai/analyst-evals/vitest.config.ts --reporter=json --outputFile=/tmp/analyst-eval-SlpBQm/vitest.json",
+      "timezone": "",
+      "passed": true,
+      "exitCode": 0,
+      "output": "JSON report written to /tmp/analyst-eval-SlpBQm/vitest.json\n"
+    },
+    {
+      "command": "vitest run src/lib/analyst-verifier/authority.test.ts src/lib/analyst-verifier/port.test.ts --reporter=json --outputFile=/tmp/analyst-eval-SlpBQm/authority-vitest.json",
+      "timezone": "",
+      "passed": true,
+      "exitCode": 0,
+      "output": "JSON report written to /tmp/analyst-eval-SlpBQm/authority-vitest.json\n"
+    }
+  ],
+  "vitestReport": {
+    "numTotalTestSuites": 10,
+    "numPassedTestSuites": 10,
+    "numFailedTestSuites": 0,
+    "numPendingTestSuites": 0,
+    "numTotalTests": 15,
+    "numPassedTests": 15,
+    "numFailedTests": 0,
+    "numPendingTests": 0,
+    "numTodoTests": 0,
+    "snapshot": {
+      "added": 0,
+      "failure": false,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "filesRemovedList": [],
+      "filesUnmatched": 0,
+      "filesUpdated": 0,
+      "matched": 0,
+      "total": 0,
+      "unchecked": 0,
+      "uncheckedKeysByFile": [],
+      "unmatched": 0,
+      "updated": 0,
+      "didUpdate": false
+    },
+    "startTime": 1794923264529,
+    "success": true,
+    "testResults": [
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "requires API completion marker and matching numbered assertions, not an arbitrary green exit",
+            "status": "passed",
+            "title": "requires API completion marker and matching numbered assertions, not an arbitrary green exit",
+            "duration": 25.29927600000019,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923269475,
+        "endTime": 1794923269500.2993,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/api-evidence.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "reusable authority evidence requires exact source-qualified passed assertions and successful nonempty command",
+            "status": "passed",
+            "title": "reusable authority evidence requires exact source-qualified passed assertions and successful nonempty command",
+            "duration": 26.929239000000052,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923267698,
+        "endTime": 1794923267724.9292,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority-evidence.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "needs_input requires the meaningful bounded question, persisted wait and unchanged semantics",
+            "status": "passed",
+            "title": "needs_input requires the meaningful bounded question, persisted wait and unchanged semantics",
+            "duration": 37.01788899999974,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923267834,
+        "endTime": 1794923267871.0178,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/clarification.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "generic edit share delete and method aliases cannot dispatch lifecycle writes even with nested approval claims",
+            "status": "passed",
+            "title": "generic edit share delete and method aliases cannot dispatch lifecycle writes even with nested approval claims",
+            "duration": 17.90509100000054,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923273828,
+        "endTime": 1794923273845.905,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/generic-authority.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "omitted native stats key rejects as missing_metric rather than zero",
+            "status": "passed",
+            "title": "omitted native stats key rejects as missing_metric rather than zero",
+            "duration": 22.893537000000833,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923272633,
+        "endTime": 1794923272655.8936,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/missing-metric.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "numeric aggregate metric/table renders exact value, zero and unavailable without a series",
+            "status": "passed",
+            "title": "numeric aggregate metric/table renders exact value, zero and unavailable without a series",
+            "duration": 397.3562360000001,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923267882,
+        "endTime": 1794923268279.3562,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/numeric-render.test.tsx"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [
+              "offline acceptance evidence"
+            ],
+            "fullName": "offline acceptance evidence fails strict acceptance when any required scenario lacks executed assertions",
+            "status": "passed",
+            "title": "fails strict acceptance when any required scenario lacks executed assertions",
+            "duration": 28.02352400000018,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "offline acceptance evidence"
+            ],
+            "fullName": "offline acceptance evidence requires every scenario1–9 assertion and keeps scenarios10–12 pending",
+            "status": "passed",
+            "title": "requires every scenario1–9 assertion and keeps scenarios10–12 pending",
+            "duration": 21.37235899999996,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "offline acceptance evidence"
+            ],
+            "fullName": "offline acceptance evidence does not accept exit zero without every coverage-linked assertion",
+            "status": "passed",
+            "title": "does not accept exit zero without every coverage-linked assertion",
+            "duration": 1.6114699999998265,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "historical evaluator-wrapped discovery cannot prove native-loopback scenario6",
+            "status": "passed",
+            "title": "historical evaluator-wrapped discovery cannot prove native-loopback scenario6",
+            "duration": 1.5062849999999344,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923267679,
+        "endTime": 1794923267731.5063,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/offline.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "accepts only the exact four persisted staff bindings with successful matching readback and results",
+            "status": "passed",
+            "title": "accepts only the exact four persisted staff bindings with successful matching readback and results",
+            "duration": 21.667263000000275,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "rejects duplicated/wrong persisted widget binding and non-distinct intended analysis IDs",
+            "status": "passed",
+            "title": "rejects duplicated/wrong persisted widget binding and non-distinct intended analysis IDs",
+            "duration": 11.710721999999805,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "rejects per-widget failed/denied execution, mismatched intent/hash, and incorrect actual results",
+            "status": "passed",
+            "title": "rejects per-widget failed/denied execution, mismatched intent/hash, and incorrect actual results",
+            "duration": 7.19896800000015,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923267799,
+        "endTime": 1794923267840.199,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/staff-dashboard.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "retains all structured assertion results and rejects missing/failed Vitest evidence",
+            "status": "passed",
+            "title": "retains all structured assertion results and rejects missing/failed Vitest evidence",
+            "duration": 24.735603999999967,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "generic authority evidence rejects a matching assertion from the wrong source file",
+            "status": "passed",
+            "title": "generic authority evidence rejects a matching assertion from the wrong source file",
+            "duration": 1.9253499999999804,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923267676,
+        "endTime": 1794923267702.9253,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/vitest-evidence.test.ts"
+      }
+    ]
+  },
+  "authorityVitestReport": {
+    "numTotalTestSuites": 2,
+    "numPassedTestSuites": 2,
+    "numFailedTestSuites": 0,
+    "numPendingTestSuites": 0,
+    "numTotalTests": 14,
+    "numPassedTests": 14,
+    "numFailedTests": 0,
+    "numPendingTests": 0,
+    "numTodoTests": 0,
+    "snapshot": {
+      "added": 0,
+      "failure": false,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "filesRemovedList": [],
+      "filesUnmatched": 0,
+      "filesUpdated": 0,
+      "matched": 0,
+      "total": 0,
+      "unchecked": 0,
+      "uncheckedKeysByFile": [],
+      "unmatched": 0,
+      "updated": 0,
+      "didUpdate": false
+    },
+    "startTime": 1794923274365,
+    "success": true,
+    "testResults": [
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "allows only an active task at exact board/analysis revisions with current view rights",
+            "status": "passed",
+            "title": "allows only an active task at exact board/analysis revisions with current view rights",
+            "duration": 3.8543849999996382,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "prepares a deeply frozen saved board and exact execution envelope",
+            "status": "passed",
+            "title": "prepares a deeply frozen saved board and exact execution envelope",
+            "duration": 2.4276340000001255,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "rejects foreign, stale, failed and mismatched envelopes rather than minting receipts",
+            "status": "passed",
+            "title": "rejects foreign, stale, failed and mismatched envelopes rather than minting receipts",
+            "duration": 4.376087000000098,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "rechecks authority after execution and rejects unsupported or incomplete widget sets",
+            "status": "passed",
+            "title": "rechecks authority after execution and rejects unsupported or incomplete widget sets",
+            "duration": 1.4579060000000936,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "native preparation refuses revoked sources before querying",
+            "status": "passed",
+            "title": "native preparation refuses revoked sources before querying",
+            "duration": 1.076654000000417,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "prepares supported native widgets through the native stats helpers with exact source and hash",
+            "status": "passed",
+            "title": "prepares supported native widgets through the native stats helpers with exact source and hash",
+            "duration": 6.727660000000014,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "verifier flag alone never yields a port without a registered isolated launcher",
+            "status": "passed",
+            "title": "verifier flag alone never yields a port without a registered isolated launcher",
+            "duration": 0.5540439999999762,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923277744,
+        "endTime": 1794923277764.554,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/analyst-verifier/authority.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "fails closed: flag off, missing prepare, or a callback-shaped (non-restricted) launcher",
+            "status": "passed",
+            "title": "fails closed: flag off, missing prepare, or a callback-shaped (non-restricted) launcher",
+            "duration": 4.302981000000045,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "docker argv: no network, non-root, cap-drop ALL, read-only, no-new-privileges, no mounts/env",
+            "status": "passed",
+            "title": "docker argv: no network, non-root, cap-drop ALL, read-only, no-new-privileges, no mounts/env",
+            "duration": 3.818715999999995,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "render: capability exchange over the private channel, canvas from trusted executions, exact binding",
+            "status": "passed",
+            "title": "render: capability exchange over the private channel, canvas from trusted executions, exact binding",
+            "duration": 24.05395800000008,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "canvas is denied without the exchanged session",
+            "status": "passed",
+            "title": "canvas is denied without the exchanged session",
+            "duration": 1.4051449999999477,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "rejects stale revision, foreign/empty execution, foreign hash and revoked authority",
+            "status": "passed",
+            "title": "rejects stale revision, foreign/empty execution, foreign hash and revoked authority",
+            "duration": 9.158300000000054,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "registration accepts only a restricted launcher, once",
+            "status": "passed",
+            "title": "registration accepts only a restricted launcher, once",
+            "duration": 0.6878480000000309,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "canvas handler: no session, forged session, or reused capability is denied",
+            "status": "passed",
+            "title": "canvas handler: no session, forged session, or reused capability is denied",
+            "duration": 1.4917689999999766,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923275479,
+        "endTime": 1794923275524.4917,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/analyst-verifier/port.test.ts"
+      }
+    ]
+  },
+  "pass": false,
+  "proven": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "pending": [
+    10,
+    11,
+    12
+  ],
+  "limitations": [
+    "Pending scenario groups: 10,11,12; strict E1 cannot pass while any remain.",
+    "Scripted choices do not prove live model reasoning or image understanding.",
+    "Component render and injected missing_metric evidence are not DB/browser evidence."
+  ]
+}

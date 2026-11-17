@@ -1,9 +1,13 @@
-# Review correction checkpoint
+# Current review correction result
 
-Independent review REJECT P1/P2. Historical scenario6 claim is withdrawn: the
-evaluator-injected read-only transaction was not the product HTTP discovery path.
-Scenario6 remains pending until the new native-loopback assertion is executed.
-Historical reports below retain failures/provenance but do not establish6.
+Old P1 scenario6 claim remains withdrawn; historical wrapped receipts below do not
+prove6. P2 source qualification corrected in c940d3f16. Operator-approved central
+Prisma sessionUTC policy now makes the actual native-loopback discovery pass in
+UTC/Jakarta/NY, with meaningful question/persisted wait/no guessed mutation.
+Fresh `evidence/utc-clarification-authority.json`:13 commands exit0, proven1–9,
+pending10–12, strict outer exit1. See `utc-session-policy.md` and its validation
+receipt for input/output epoch and connection-policy matrix. Independent re-review
+still required; no live/browser/model understanding claim.
 
 # Slice02 authority defect — bounded red/green
 
