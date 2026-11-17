@@ -5,13 +5,26 @@ import { createHash } from 'node:crypto';
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { apiEvidence, requirements, summarizeCoverage, type Evidence } from './offline';
+import { apiEvidence, requirements, summarizeCoverage, vitestEvidence, type Evidence } from './offline';
 
-export async function runOffline(strict: boolean, outputPath?: string) {
+export async function runOffline(strict: boolean, outputPath?: string, reuseApiPath?: string) {
   const evidence: Evidence[] = [];
-  const commands: { command: string; timezone: string; passed: boolean; output: string }[] = [];
+  const commands: { command: string; timezone: string; passed: boolean; output: string; reusedFrom?: string }[] = [];
+  const hash = (file: string) => createHash('sha256').update(readFileSync(file)).digest('hex');
+  const previous = reuseApiPath ? JSON.parse(readFileSync(reuseApiPath, 'utf8')) : null;
+  if (previous) {
+    assert.equal(previous.complete, true, 'cannot reuse interrupted evidence');
+    for (const file of ['scripts/test-analyst-api.ts', 'src/lib/ai/assistant/analyst/deps.ts', 'src/queries/sql/getWebsiteDateRange.ts'])
+      assert.equal(hash(file), previous.sourceHashes[file], `API source fingerprint ${file}`);
+    const changed = execFileSync('git', ['diff', '--name-only', previous.sourceRevision, '--', 'src', 'prisma', 'db', 'scripts/test-analyst-api.ts'], { encoding: 'utf8' }).trim().split('\n').filter(Boolean);
+    assert.ok(changed.every(file => ['src/lib/ai/assistant/analyst/deps.ts', 'src/queries/sql/getWebsiteDateRange.ts'].includes(file)), 'API dependencies changed since receipt; rerun instead');
+  }
   const checkpoint = () => {
-    if (outputPath) writeFileSync(outputPath, `${JSON.stringify({ complete: false, evidence, commands }, null, 2)}\n`);
+    if (outputPath)
+      writeFileSync(
+        outputPath,
+        `${JSON.stringify({ complete: false, evidence, commands }, null, 2)}\n`,
+      );
   };
   function execute(args: string[], env = process.env) {
     const command = args.join(' ');
@@ -40,7 +53,18 @@ export async function runOffline(strict: boolean, outputPath?: string) {
   // these processes; never mutate the database/role defaults to make a test pass.
   const nonUtc = { ...process.env, PGOPTIONS: '-c timezone=America/New_York' };
   for (const engine of ['postgres', 'clickhouse']) {
-    const output = execute(['tsx', 'scripts/test-analyst-api.ts', `--${engine}`], nonUtc);
+    const args = ['tsx', 'scripts/test-analyst-api.ts', `--${engine}`];
+    let output: string;
+    if (previous) {
+      const command = previous.commands.find((c: any) => c.command === args.join(' '));
+      assert.equal(command?.passed, true);
+      assert.equal(command.timezone, nonUtc.PGOPTIONS);
+      assert.equal(apiEvidence(engine, command.output).passed, true);
+      output = command.output;
+      commands.push({ ...command, reusedFrom: `${reuseApiPath}#sha256=${hash(reuseApiPath!)}` });
+      console.log(`REUSE source-qualified API receipt: ${engine}`);
+      checkpoint();
+    } else output = execute(args, nonUtc);
     evidence.push(apiEvidence(engine, output));
     // Exact epochs and null coverage must hold regardless of connection timezone.
     for (const timezone of ['UTC', 'Asia/Jakarta', 'America/New_York']) {
@@ -68,6 +92,7 @@ export async function runOffline(strict: boolean, outputPath?: string) {
         .filter(a => runs.every(r => r?.assertions.includes(a))),
     });
   }
+  let vitestReport: any = null;
   const temp = mkdtempSync(path.join(os.tmpdir(), 'analyst-eval-'));
   try {
     const jsonPath = path.join(temp, 'vitest.json');
@@ -79,30 +104,23 @@ export async function runOffline(strict: boolean, outputPath?: string) {
       '--reporter=json',
       `--outputFile=${jsonPath}`,
     ]);
-    let assertions: { fullName: string; status: string }[] = [];
-    try {
-      assertions = JSON.parse(readFileSync(jsonPath, 'utf8')).testResults.flatMap(
-        (r: any) => r.assertionResults,
-      );
-    } catch {
-      /* Missing output remains missing evidence, never a pass. */
-    }
-    for (const suite of ['component', 'executor']) {
-      const names = requirements.filter(r => r.suite === suite).map(r => r.assertion);
-      evidence.push({
-        suite,
-        passed: commands.at(-1)!.passed,
-        assertions: names.filter(name =>
-          assertions.some(a => a.fullName === name && a.status === 'passed'),
-        ),
-      });
-    }
+    try { vitestReport = JSON.parse(readFileSync(jsonPath, 'utf8')); }
+    catch { /* Missing output remains missing evidence, never a pass. */ }
+    evidence.push(...vitestEvidence(vitestReport, commands.at(-1)!.passed).evidence);
   } finally {
     rmSync(temp, { recursive: true, force: true });
   }
   const summary = summarizeCoverage(evidence);
-  const hash = (file: string) => createHash('sha256').update(readFileSync(file)).digest('hex');
   const sourceFiles = [
+    'scripts/ai/eval-analyst.ts',
+    'scripts/ai/analyst-evals/run-offline.ts',
+    'scripts/ai/analyst-evals/vitest.config.ts',
+    'src/test/setup.ts',
+    'scripts/ai/analyst-evals/staff-dashboard.ts',
+    'scripts/ai/analyst-evals/staff-dashboard.test.ts',
+    'scripts/ai/analyst-evals/vitest-evidence.test.ts',
+    'scripts/ai/analyst-evals/api-evidence.test.ts',
+    'scripts/ai/analyst-evals/offline.test.ts',
     'scripts/test-analyst-api.ts',
     'scripts/ai/analyst-evals/dashboard.ts',
     'scripts/ai/analyst-evals/offline.ts',
@@ -126,6 +144,7 @@ export async function runOffline(strict: boolean, outputPath?: string) {
     fixtureHash: hash('scripts/ai/analyst-evals/dashboard.ts'),
     evidence,
     commands,
+    vitestReport,
     ...summary,
     limitations: [
       'Scenarios 6–12 pending; strict E1 must fail.',

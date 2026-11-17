@@ -70,8 +70,14 @@ if (outputIndex >= 0 && !process.argv[outputIndex + 1]) {
   console.error('--output requires a path');
   process.exit(2);
 }
+const reuseIndex = process.argv.indexOf('--reuse-api-receipt');
+if (reuseIndex >= 0 && !process.argv[reuseIndex + 1]) {
+  console.error('--reuse-api-receipt requires a source-qualified completed offline receipt');
+  process.exit(2);
+}
 import('./analyst-evals/run-offline').then(({ runOffline }) =>
-  runOffline(strict, outputIndex >= 0 ? process.argv[outputIndex + 1] : undefined),
+  runOffline(strict, outputIndex >= 0 ? process.argv[outputIndex + 1] : undefined,
+    reuseIndex >= 0 ? process.argv[reuseIndex + 1] : undefined),
 ).catch(error => {
   console.error(error);
   process.exitCode = 1;

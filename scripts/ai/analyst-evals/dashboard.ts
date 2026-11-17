@@ -5,6 +5,7 @@ import { execFileSync } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
+import { assertStaffDashboard } from './staff-dashboard';
 
 const engine = process.argv[2];
 assert.ok(['postgres', 'clickhouse'].includes(engine), 'explicit synthetic engine required');
@@ -361,6 +362,15 @@ async function main() {
         const readback = await tool('analyst_readback', { boardId: commit.board.id });
         assert.equal(readback.ok, true, JSON.stringify(readback));
         assert.equal(readback.data.analyses.length, 4);
+        const persisted = await api(boardRoute.GET, 'GET', undefined, { boardId: commit.board.id });
+        assert.equal(persisted.status, 200);
+        const expected = commit.analyses.map((analysis: any, i: number) => ({
+          widgetId: `staff-${i}`, analysisId: analysis.id, revision: analysis.revision,
+          definitionHash: hashDefinition(normalizeDefinition(defs[i])),
+          values: [[3, 2, 0], [1, 0, 0], [2], [1]][i],
+        }));
+        const staffExecutions = await Promise.all(expected.map(e => api(executions.POST, 'POST', {}, { analysisId: e.analysisId })));
+        assertStaffDashboard({ expected, parameters: persisted.body.parameters, readback, executions: staffExecutions });
         for (let i = 0; i < defs.length; i++) {
           const stored = await deps.getAnalysis(commit.analyses[i].id);
           assert.deepEqual(

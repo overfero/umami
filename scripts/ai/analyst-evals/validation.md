@@ -3,7 +3,58 @@
 Observed **17 November 2026, 16:24:39 Asia/Jakarta (WIB)**. Base ancestry:
 `18a63432d` is an ancestor of isolated branch `analyst-slice-01`.
 
-## Durable evidence
+## Review correction receipt (P1 / P2)
+
+Observed **17 November 2026, 16:52:38 Asia/Jakarta (WIB)**. Review refresh is
+[`evidence/dashboard-numeric-review.json`](evidence/dashboard-numeric-review.json).
+The earlier `dashboard-numeric.json` is retained as historical/source-qualified API
+receipt, not current P1/P2 proof. The refresh contains:
+
+- Six freshly executed real supplements (PG/CH × UTC/Jakarta/New_York), all seven
+  named assertions passing each, now including exact persisted staff-widget bindings,
+  per-entry successful readback and authenticated saved-execution values.
+- Fresh Vitest **six files / ten passing tests**. The **entire structured JSON report**
+  is retained in `vitestReport`, including every assertion, status and failure messages;
+  it is not just a reference to a deleted temporary file.
+- Sixteen current source fingerprints, including runner, config, setup, evidence parser,
+  shared staff acceptance assertion and every evaluator test. All16 fingerprints were
+  independently recomputed against executed worktree bytes and matched.
+- Two reused unchanged API commands (114 checks each), validated by API harness/fix
+  fingerprints and production dependency diff guard; `reusedFrom` records the previous
+  receipt path and SHA-256. No claim of a fresh broad API rerun in this refresh.
+- Completed strict output `proven:[1,2,3,4,5]`, `pending:[6,7,8,9,10,11,12]`;
+  **actual shell exit1 retained** in `/tmp/slice01-review-eval.exit`.
+
+Exact refresh command (after activating umami/exporting PG_BIN):
+
+```sh
+node_modules/.bin/tsx scripts/ai/eval-analyst.ts --offline --strict \
+  --reuse-api-receipt scripts/ai/analyst-evals/evidence/dashboard-numeric.json \
+  --output /tmp/slice01-review-evidence.json
+```
+
+Test-first red: new staff-acceptance test initially could not import the missing
+assertion module; Vitest-report test failed before `vitestEvidence` existed. After
+minimal implementation, mutation controls reject duplicate/swapped bindings,
+non-distinct IDs, individual denial/failure, wrong intent/hash and incorrect results.
+The same `assertStaffDashboard` is used by real supplement and negative controls.
+`vitestEvidence` retains full results and cannot accept absent/failed command/report.
+Direct `npx --yes pnpm@12.3.4 exec vitest run -c scripts/ai/analyst-evals/vitest.config.ts`
+also passed all10 tests. Tsc remains exit2 with the same three unrelated diagnostics;
+no new changed-path diagnostics. No production code changed for this review fix.
+
+### Preexisting dirty formatting provenance
+
+Five dirty files were present at recovery before any new edit: `api-evidence.test.ts`,
+`offline.test.ts`, `offline.ts`, `run-offline.ts`, and historical `dashboard-numeric.json`.
+The full diff was saved outside source at `/tmp/slice01-review-inherited-dirty.patch`.
+All five diffs were manually inspected: only formatting/optional trailing commas;
+JSON structural comparison was identical. Source mtimes were **16:28:21 WIB**, after
+previous report; responsible formatter/process is unknown. No semantic inherited edit
+was executed. These verified formatting changes are preserved in the scoped correction
+commit, not silently discarded. The historical receipt's JSON values are unchanged.
+
+## Original durable evidence
 
 [`evidence/dashboard-numeric.json`](evidence/dashboard-numeric.json) is the completed
 fresh recovery run, not the abandoned first run. It contains **nine successful

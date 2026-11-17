@@ -369,9 +369,7 @@
     {
       "suite": "executor",
       "passed": true,
-      "assertions": [
-        "omitted native stats key rejects as missing_metric rather than zero"
-      ]
+      "assertions": ["omitted native stats key rejects as missing_metric rather than zero"]
     }
   ],
   "commands": [
@@ -431,22 +429,8 @@
     }
   ],
   "pass": false,
-  "proven": [
-    1,
-    2,
-    3,
-    4,
-    5
-  ],
-  "pending": [
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12
-  ],
+  "proven": [1, 2, 3, 4, 5],
+  "pending": [6, 7, 8, 9, 10, 11, 12],
   "limitations": [
     "Scenarios 6–12 pending; strict E1 must fail.",
     "Scripted choices do not prove live model reasoning or image understanding.",

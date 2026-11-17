@@ -39,7 +39,16 @@ weaker taxonomy, post-cancel or direct-executor proxies.
 `--output` records command outputs, assertion receipts, source revision, dirty state,
 source/fixture hashes and observation time in **Asia/Jakarta (WIB)**. It checkpoints after
 each subprocess (`complete:false`); an interrupted checkpoint is not completed evidence.
-The final report has `complete:true`, `proven`, and `pending`. It is not an E2 live report.
+The final report has `complete:true`, `proven`, and `pending`. It retains the full
+Vitest structured report (including every file/assertion status and failure messages),
+and fingerprints the runner, config, setup, parsers, acceptance assertions and tests.
+It is not an E2 live report.
+
+For a review-only supplement correction, `--reuse-api-receipt <completed-offline.json>`
+may reuse only the previous PG/CH API commands. It requires the exact API harness and
+approved production-fix fingerprints, checks that other API dependency paths have not
+changed since that receipt, and records the previous receipt SHA-256. All six supplement
+executions and Vitest still run freshly. Omit this option for an entirely fresh E1 run.
 
 The API harness intentionally uses a process-local
 `PGOPTIONS='-c timezone=America/New_York'`; its actual Prisma connection asserts the

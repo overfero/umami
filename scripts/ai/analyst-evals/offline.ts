@@ -40,11 +40,33 @@ export const requirements: Requirement[] = [
 
 export function apiEvidence(engine: string, output: string): Evidence {
   const assertions = [...output.matchAll(/^\s+ok (\d+) (.+)$/gm)];
-  const completion = output.match(new RegExp(`^PASS ${engine === 'postgres' ? 'postgresql' : engine}: (\\d+) checks`, 'm'));
+  const completion = output.match(
+    new RegExp(`^PASS ${engine === 'postgres' ? 'postgresql' : engine}: (\\d+) checks`, 'm'),
+  );
   return {
     suite: `${engine}-api`,
     assertions: assertions.map(m => m[2]),
-    passed: !!completion && Number(completion[1]) >= 60 && Number(completion[1]) === assertions.length && assertions.every((m, i) => Number(m[1]) === i + 1),
+    passed:
+      !!completion &&
+      Number(completion[1]) >= 60 &&
+      Number(completion[1]) === assertions.length &&
+      assertions.every((m, i) => Number(m[1]) === i + 1),
+  };
+}
+
+export function vitestEvidence(report: any, commandPassed: boolean) {
+  const assertions: { fullName: string; status: string }[] = report?.testResults?.flatMap(
+    (r: any) => r.assertionResults ?? [],
+  ) ?? [];
+  const passed = commandPassed && report?.success === true && assertions.length > 0;
+  return {
+    report: report ?? null,
+    evidence: ['component', 'executor'].map(suite => ({
+      suite, passed,
+      assertions: requirements.filter(r => r.suite === suite).map(r => r.assertion).filter(name =>
+        assertions.some(a => a.fullName === name && a.status === 'passed'),
+      ),
+    })),
   };
 }
 
