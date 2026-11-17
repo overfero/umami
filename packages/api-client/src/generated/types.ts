@@ -250,6 +250,237 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/ai/assistant/chats': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get ai assistant chats
+     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+     */
+    get: operations['getAiAssistantChats'];
+    put?: never;
+    /** Create an assistant chat */
+    post: operations['postAiAssistantChats'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/ai/assistant/chats/{chatId}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get ai assistant chats chat id
+     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+     */
+    get: operations['getAiAssistantChatsChatId'];
+    put?: never;
+    post?: never;
+    /**
+     * Delete ai assistant chats chat id
+     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+     */
+    delete: operations['deleteAiAssistantChatsChatId'];
+    options?: never;
+    head?: never;
+    /** Rename an assistant chat */
+    patch: operations['patchAiAssistantChatsChatId'];
+    trace?: never;
+  };
+  '/api/ai/assistant/chats/{chatId}/cancel': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * Create or update ai assistant chats chat id cancel
+     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+     */
+    post: operations['postAiAssistantChatsChatIdCancel'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/ai/assistant/chats/{chatId}/reply': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /** Reply to a pending assistant interaction */
+    post: operations['postAiAssistantChatsChatIdReply'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/ai/assistant/chats/{chatId}/turn': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * Run an assistant turn
+     * @description Streams named server-sent events. The client transport returns text, not a JSON result or parsed event iterator. Message limit is 32768 UTF-8 bytes.
+     */
+    post: operations['postAiAssistantChatsChatIdTurn'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/ai/boards/chat': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * Create or update ai boards chat
+     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+     */
+    post: operations['postAiBoardsChat'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/analyses': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get analyses
+     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+     */
+    get: operations['getAnalyses'];
+    put?: never;
+    /**
+     * Create or update analyses
+     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+     */
+    post: operations['postAnalyses'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/analyses/{analysisId}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get analyses analysis id
+     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+     */
+    get: operations['getAnalysesAnalysisId'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    /**
+     * Update analyses analysis id
+     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+     */
+    patch: operations['patchAnalysesAnalysisId'];
+    trace?: never;
+  };
+  '/api/analyses/{analysisId}/execute': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * Create or update analyses analysis id execute
+     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+     */
+    post: operations['postAnalysesAnalysisIdExecute'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/analyses/preview': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * Create or update analyses preview
+     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+     */
+    post: operations['postAnalysesPreview'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/analyst/tasks/{taskId}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get analyst tasks task id
+     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+     */
+    get: operations['getAnalystTasksTaskId'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/auth/login': {
     parameters: {
       query?: never;
@@ -460,6 +691,26 @@ export interface paths {
      * @description Creates a named share for the specified board with optional parameters.
      */
     post: operations['createBoardShare'];
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/boards/bundle': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * Create or update boards bundle
+     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+     */
+    post: operations['postBoardsBundle'];
     delete?: never;
     options?: never;
     head?: never;
@@ -2032,6 +2283,46 @@ export interface paths {
      * @description Returns pageviews and sessions grouped by the requested time interval and timezone, including a comparison period when requested.
      */
     get: operations['getWebsitePageviews'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/websites/{websiteId}/people': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get websites website id people
+     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+     */
+    get: operations['getWebsitesWebsiteIdPeople'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/websites/{websiteId}/people/count': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get websites website id people count
+     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+     */
+    get: operations['getWebsitesWebsiteIdPeopleCount'];
     put?: never;
     post?: never;
     delete?: never;
@@ -4836,6 +5127,1264 @@ export interface operations {
       };
     };
   };
+  getAiAssistantChats: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. The response shape is inferred as free-form because the handler does not expose a reusable response schema. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
+  postAiAssistantChats: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: {
+      content: {
+        'application/json': {
+          /** @description Title of the page. */
+          title?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Date and time the record was created. */
+            createdAt: string;
+            /** @description Unique identifier of the resource. */
+            id: string;
+            /** @description Title of the page. */
+            title: string;
+            /** @description Date and time the record was last updated. */
+            updatedAt: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+    };
+  };
+  getAiAssistantChatsChatId: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        chatId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. The response shape is inferred as free-form because the handler does not expose a reusable response schema. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
+  deleteAiAssistantChatsChatId: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        chatId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. The response shape is inferred as free-form because the handler does not expose a reusable response schema. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
+  patchAiAssistantChatsChatId: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        chatId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': {
+          /** @description Title of the page. */
+          title: string;
+        };
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Date and time the record was created. */
+            createdAt: string;
+            /** @description Unique identifier of the resource. */
+            id: string;
+            /** @description Title of the page. */
+            title: string;
+            /** @description Date and time the record was last updated. */
+            updatedAt: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+    };
+  };
+  postAiAssistantChatsChatIdCancel: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        chatId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. The response shape is inferred as free-form because the handler does not expose a reusable response schema. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
+  postAiAssistantChatsChatIdReply: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        chatId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json':
+          | {
+              confirmed: boolean;
+              /** @constant */
+              kind: 'confirm';
+              partId: string;
+            }
+          | {
+              answer: string;
+              /** @constant */
+              kind: 'question';
+              partId: string;
+            };
+      };
+    };
+    responses: {
+      /** @description Successful response. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /**
+             * @description Whether the operation succeeded.
+             * @constant
+             */
+            ok: true;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+    };
+  };
+  postAiAssistantChatsChatIdTurn: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        chatId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': {
+          context?: {
+            /** @description ID of the board. */
+            boardId?: string;
+            /** @description End of the date range as a Unix timestamp in milliseconds. */
+            endAt?: number;
+            /** @description Start of the date range as a Unix timestamp in milliseconds. */
+            startAt?: number;
+            /** @description IANA time zone used to interpret dates and group results, for example America/New_York. */
+            timezone?: string;
+            /** @description ID of the website. */
+            websiteId?: string;
+          };
+          /** @description Human-readable explanation of the result. */
+          message: string;
+        };
+      };
+    };
+    responses: {
+      /** @description Named assistant events encoded as SSE frames. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'text/event-stream': string;
+        };
+      };
+      /** @description Request rejected. */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      429: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+    };
+  };
+  postAiBoardsChat: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful response. The response shape is inferred as free-form because the handler does not expose a reusable response schema. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': unknown;
+        };
+      };
+    };
+  };
+  getAnalyses: {
+    parameters: {
+      query?: {
+        /** @description Page number, starting at 1. */
+        page?: number;
+        /** @description Number of results per page. */
+        pageSize?: number;
+      };
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description The operation completed successfully. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Number of matching records. */
+            count: number;
+            /** @description Data returned by the operation. */
+            data: {
+              /**
+               * Format: date-time
+               * @description Date and time the record was created.
+               */
+              createdAt: string;
+              createdByTaskId: string;
+              definition:
+                | string
+                | number
+                | false
+                | true
+                | {
+                    [key: string]:
+                      | string
+                      | number
+                      | false
+                      | true
+                      | unknown
+                      | {
+                          length: number;
+                        };
+                  }
+                | {
+                    length: number;
+                  };
+              definitionHash: string;
+              /** @description Description of the resource. */
+              description: string;
+              /** @description Unique identifier of the resource. */
+              id: string;
+              /** @description Display name of the resource. */
+              name: string;
+              revision: number;
+              schemaVersion: number;
+              status: string;
+              /** @description ID of the associated team. */
+              teamId: string;
+              /**
+               * Format: date-time
+               * @description Date and time the record was last updated.
+               */
+              updatedAt: string;
+              /** @description ID of the associated user. */
+              userId: string;
+            }[];
+            /** @description Page number, starting at 1. */
+            page: number;
+            /** @description Number of results per page. */
+            pageSize: number;
+          };
+        };
+      };
+      /** @description Bad request. */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "bad-request",
+           *         "message": "Bad request.",
+           *         "status": 400
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+      /** @description Unauthorized. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "unauthorized",
+           *         "message": "Unauthorized.",
+           *         "status": 401
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+    };
+  };
+  postAnalyses: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': {
+          definition: unknown;
+          /** @description Description of the resource. */
+          description?: string;
+          /** @description Display name of the resource. */
+          name: unknown;
+          operationKey: string;
+          /** @enum {string} */
+          status?: 'draft' | 'ready';
+          /** Format: uuid */
+          taskId?: string;
+          /**
+           * Format: uuid
+           * @description ID of the associated team.
+           */
+          teamId?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description The operation completed successfully. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            analysis: unknown;
+            replayed: boolean;
+          };
+        };
+      };
+      /** @description Bad request. */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "bad-request",
+           *         "message": "Bad request.",
+           *         "status": 400
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+      /** @description Unauthorized. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "unauthorized",
+           *         "message": "Unauthorized.",
+           *         "status": 401
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+    };
+  };
+  getAnalysesAnalysisId: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        analysisId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description The operation completed successfully. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /**
+             * Format: date-time
+             * @description Date and time the record was created.
+             */
+            createdAt: string;
+            createdByTaskId: string;
+            definition:
+              | string
+              | number
+              | false
+              | true
+              | {
+                  [key: string]:
+                    | string
+                    | number
+                    | false
+                    | true
+                    | unknown
+                    | {
+                        length: number;
+                      };
+                }
+              | {
+                  length: number;
+                };
+            definitionHash: string;
+            /** @description Description of the resource. */
+            description: string;
+            /** @description Unique identifier of the resource. */
+            id: string;
+            /** @description Display name of the resource. */
+            name: string;
+            revision: number;
+            schemaVersion: number;
+            status: string;
+            /** @description ID of the associated team. */
+            teamId: string;
+            /**
+             * Format: date-time
+             * @description Date and time the record was last updated.
+             */
+            updatedAt: string;
+            /** @description ID of the associated user. */
+            userId: string;
+          };
+        };
+      };
+      /** @description Unauthorized. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "unauthorized",
+           *         "message": "Unauthorized.",
+           *         "status": 401
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+    };
+  };
+  patchAnalysesAnalysisId: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        analysisId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': {
+          definition?: unknown;
+          /** @description Description of the resource. */
+          description?: string | null;
+          expectedRevision: number;
+          /** @description Display name of the resource. */
+          name?: unknown;
+          operationKey: string;
+          /** @enum {string} */
+          status?: 'draft' | 'ready';
+          /** Format: uuid */
+          taskId?: string;
+        };
+      };
+    };
+    responses: {
+      /** @description The operation completed successfully. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            analysis: unknown;
+            replayed: boolean;
+          };
+        };
+      };
+      /** @description Bad request. */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "bad-request",
+           *         "message": "Bad request.",
+           *         "status": 400
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+      /** @description Unauthorized. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "unauthorized",
+           *         "message": "Unauthorized.",
+           *         "status": 401
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+    };
+  };
+  postAnalysesAnalysisIdExecute: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        analysisId: string;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': Record<string, never>;
+      };
+    };
+    responses: {
+      /** @description The operation completed successfully. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            appliedFilters: {
+              /** @description Filters applied to the analytics data. */
+              filters: {
+                dimension:
+                  | 'query'
+                  | 'utmSource'
+                  | 'utmMedium'
+                  | 'utmCampaign'
+                  | 'utmContent'
+                  | 'utmTerm'
+                  | 'tag'
+                  | 'hostname'
+                  | 'browser'
+                  | 'os'
+                  | 'device'
+                  | 'language'
+                  | 'country'
+                  | 'region'
+                  | 'city'
+                  | 'distinctId'
+                  | 'title'
+                  | 'path'
+                  | 'referrer';
+                operator: 'eq' | 'neq' | 'c' | 'dnc';
+                values: string[];
+              }[];
+              propertyFilters: {
+                /** @description Data type of the custom property. */
+                dataType?: 1 | 2 | 4;
+                /** @description Display name of the resource. */
+                name: string;
+                operator: 'eq' | 'neq' | 'c' | 'dnc' | 'gt' | 'gte' | 'lt' | 'lte' | 'bf' | 'af';
+                owner: 'session' | 'event';
+                value: string;
+              }[];
+            } & {
+              event?: string;
+            };
+            columns: {
+              key: string;
+              label: string;
+              type: 'string' | 'number' | 'time';
+            }[];
+            completeness: 'unknown' | 'complete' | 'partial';
+            counts: {
+              available: number;
+              returned: number;
+            };
+            definition: {
+              definitionHash: string;
+              /** @description Unique identifier of the resource. */
+              id: string;
+              revision: number;
+            };
+            definitionHash: string;
+            executedAt: number;
+            executionId: string;
+            freshness: {
+              /** @constant */
+              cached: false;
+              engine: 'postgresql' | 'clickhouse';
+            };
+            limits: {
+              /** @constant */
+              maxBuckets: 200;
+              maxBytes: number;
+              /** @constant */
+              maxRows: 200;
+              /** @constant */
+              maxTop: 50;
+              /** @constant */
+              timeoutMs: 10000;
+            };
+            metric: string;
+            operation: 'series' | 'breakdown' | 'totals' | 'numeric_property';
+            range: {
+              /** @description End of the date range as a Unix timestamp in milliseconds. */
+              endAt: number;
+              policy:
+                | {
+                    /** @description End of the date range as a Unix timestamp in milliseconds. */
+                    endAt: number;
+                    /** @description Start of the date range as a Unix timestamp in milliseconds. */
+                    startAt: number;
+                    /** @constant */
+                    type: 'fixed';
+                  }
+                | {
+                    /** @constant */
+                    type: 'rolling';
+                    window: 'today' | '24h' | '7d' | '30d' | '90d';
+                  };
+              /** @description Start of the date range as a Unix timestamp in milliseconds. */
+              startAt: number;
+              /** @description IANA time zone used to interpret dates and group results, for example America/New_York. */
+              timezone: string;
+            };
+            reasons: string[];
+            rows: {
+              [key: string]: string | number;
+            }[];
+            semanticBinding: {
+              label: string;
+              meaningSource: 'user_confirmed' | 'repository_definition' | 'observed_only';
+              population: string;
+              /** @description Time interval used to group results: minute, hour, day, month, or year. */
+              unit: string;
+            };
+            source: {
+              /** @description ID of the website. */
+              websiteId: string;
+            };
+            totals?: {
+              [key: string]: number;
+            };
+            /** @description Time interval used to group results: minute, hour, day, month, or year. */
+            unit: string;
+            warnings: string[];
+          };
+        };
+      };
+      /** @description Bad request. */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "bad-request",
+           *         "message": "Bad request.",
+           *         "status": 400
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+      /** @description Unauthorized. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "unauthorized",
+           *         "message": "Unauthorized.",
+           *         "status": 401
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+    };
+  };
+  postAnalysesPreview: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': {
+          definition: unknown;
+        };
+      };
+    };
+    responses: {
+      /** @description The operation completed successfully. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            appliedFilters: {
+              /** @description Filters applied to the analytics data. */
+              filters: {
+                dimension:
+                  | 'query'
+                  | 'utmSource'
+                  | 'utmMedium'
+                  | 'utmCampaign'
+                  | 'utmContent'
+                  | 'utmTerm'
+                  | 'tag'
+                  | 'hostname'
+                  | 'browser'
+                  | 'os'
+                  | 'device'
+                  | 'language'
+                  | 'country'
+                  | 'region'
+                  | 'city'
+                  | 'distinctId'
+                  | 'title'
+                  | 'path'
+                  | 'referrer';
+                operator: 'eq' | 'neq' | 'c' | 'dnc';
+                values: string[];
+              }[];
+              propertyFilters: {
+                /** @description Data type of the custom property. */
+                dataType?: 1 | 2 | 4;
+                /** @description Display name of the resource. */
+                name: string;
+                operator: 'eq' | 'neq' | 'c' | 'dnc' | 'gt' | 'gte' | 'lt' | 'lte' | 'bf' | 'af';
+                owner: 'session' | 'event';
+                value: string;
+              }[];
+            } & {
+              event?: string;
+            };
+            columns: {
+              key: string;
+              label: string;
+              type: 'string' | 'number' | 'time';
+            }[];
+            completeness: 'unknown' | 'complete' | 'partial';
+            counts: {
+              available: number;
+              returned: number;
+            };
+            definition: {
+              definitionHash: string;
+              /** @description Unique identifier of the resource. */
+              id: string;
+              revision: number;
+            };
+            definitionHash: string;
+            executedAt: number;
+            executionId: string;
+            freshness: {
+              /** @constant */
+              cached: false;
+              engine: 'postgresql' | 'clickhouse';
+            };
+            limits: {
+              /** @constant */
+              maxBuckets: 200;
+              maxBytes: number;
+              /** @constant */
+              maxRows: 200;
+              /** @constant */
+              maxTop: 50;
+              /** @constant */
+              timeoutMs: 10000;
+            };
+            metric: string;
+            operation: 'series' | 'breakdown' | 'totals' | 'numeric_property';
+            range: {
+              /** @description End of the date range as a Unix timestamp in milliseconds. */
+              endAt: number;
+              policy:
+                | {
+                    /** @description End of the date range as a Unix timestamp in milliseconds. */
+                    endAt: number;
+                    /** @description Start of the date range as a Unix timestamp in milliseconds. */
+                    startAt: number;
+                    /** @constant */
+                    type: 'fixed';
+                  }
+                | {
+                    /** @constant */
+                    type: 'rolling';
+                    window: 'today' | '24h' | '7d' | '30d' | '90d';
+                  };
+              /** @description Start of the date range as a Unix timestamp in milliseconds. */
+              startAt: number;
+              /** @description IANA time zone used to interpret dates and group results, for example America/New_York. */
+              timezone: string;
+            };
+            reasons: string[];
+            rows: {
+              [key: string]: string | number;
+            }[];
+            semanticBinding: {
+              label: string;
+              meaningSource: 'user_confirmed' | 'repository_definition' | 'observed_only';
+              population: string;
+              /** @description Time interval used to group results: minute, hour, day, month, or year. */
+              unit: string;
+            };
+            source: {
+              /** @description ID of the website. */
+              websiteId: string;
+            };
+            totals?: {
+              [key: string]: number;
+            };
+            /** @description Time interval used to group results: minute, hour, day, month, or year. */
+            unit: string;
+            warnings: string[];
+          };
+        };
+      };
+      /** @description Bad request. */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "bad-request",
+           *         "message": "Bad request.",
+           *         "status": 400
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+      /** @description Unauthorized. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "unauthorized",
+           *         "message": "Unauthorized.",
+           *         "status": 401
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+    };
+  };
+  getAnalystTasksTaskId: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        taskId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description The operation completed successfully. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            blockedReason:
+              | 'budget:toolCalls'
+              | 'budget:analytics'
+              | 'budget:renders'
+              | 'budget:rerenders'
+              | 'budget:repairs'
+              | 'deadline'
+              | 'repair_limit';
+            chatId: string;
+            consumed: {
+              analytics: number;
+              renders: number;
+              repairs: number;
+              rerenders: number;
+              toolCalls: number;
+            };
+            drafts: {
+              analysisIds: string[];
+              /** @description ID of the board. */
+              boardId: string;
+              revision: number;
+            }[];
+            /** @description Date and time the credential expires. */
+            expiresAt: string;
+            /** @description Unique identifier of the resource. */
+            id: string;
+            limits: {
+              /** @constant */
+              analytics: 20;
+              /** @constant */
+              concurrentQueries: 3;
+              executionMs: number;
+              expiryMs: number;
+              /** @constant */
+              renders: 2;
+              /** @constant */
+              repairs: 2;
+              /** @constant */
+              rerenders: 1;
+              /** @constant */
+              toolCalls: 40;
+              /** @constant */
+              widgets: 12;
+            };
+            receipts: {
+              /** @description ID of the board. */
+              boardId: string;
+              boardRevision: number;
+              /** @description Unique identifier of the resource. */
+              id: string;
+              status: 'rendered_not_inspected' | 'inspected';
+              /** @description Pageview counts for the selected period. */
+              views: {
+                hash: string;
+                height: number;
+                width: number;
+              }[];
+            }[];
+            remainingMs: number;
+            status: 'complete' | 'running' | 'awaiting_user' | 'blocked' | 'cancelled' | 'expired';
+          };
+        };
+      };
+      /** @description Unauthorized. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "unauthorized",
+           *         "message": "Unauthorized.",
+           *         "status": 401
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+      /** @description Not found. */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "not-found",
+           *         "message": "Not found.",
+           *         "status": 404
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+    };
+  };
   login: {
     parameters: {
       query?: never;
@@ -6077,6 +7626,72 @@ export interface operations {
              * @description Date and time the record was last updated.
              */
             updatedAt: string;
+          };
+        };
+      };
+      /** @description Bad request. */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "bad-request",
+           *         "message": "Bad request.",
+           *         "status": 400
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+      /** @description Unauthorized. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "unauthorized",
+           *         "message": "Unauthorized.",
+           *         "status": 401
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+    };
+  };
+  postBoardsBundle: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': {
+          /** Format: uuid */
+          confirmationId?: string;
+          operationKey: string;
+        };
+      };
+    };
+    responses: {
+      /** @description The operation completed successfully. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            replayed: unknown;
           };
         };
       };
@@ -17653,6 +19268,157 @@ export interface operations {
         };
         content: {
           'application/json': components['schemas']['WebsitePageviews'];
+        };
+      };
+      /** @description Bad request. */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "bad-request",
+           *         "message": "Bad request.",
+           *         "status": 400
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+      /** @description Unauthorized. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "unauthorized",
+           *         "message": "Unauthorized.",
+           *         "status": 401
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+    };
+  };
+  getWebsitesWebsiteIdPeople: {
+    parameters: {
+      query: {
+        /** @description End of the date range as a Unix timestamp in milliseconds. */
+        endAt: number;
+        property?: string;
+        /** @description Search text used to filter results. */
+        search: unknown;
+        /** @description Start of the date range as a Unix timestamp in milliseconds. */
+        startAt: number;
+      };
+      header?: never;
+      path: {
+        /** @description ID of the website. */
+        websiteId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description The operation completed successfully. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json':
+            | {
+                candidates?: null;
+                identifiedUsers: number;
+                truncated?: null;
+              }
+            | {
+                candidates: unknown;
+                identifiedUsers?: null;
+                truncated: boolean;
+              };
+        };
+      };
+      /** @description Bad request. */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "bad-request",
+           *         "message": "Bad request.",
+           *         "status": 400
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+      /** @description Unauthorized. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          /**
+           * @example {
+           *       "error": {
+           *         "code": "unauthorized",
+           *         "message": "Unauthorized.",
+           *         "status": 401
+           *       }
+           *     }
+           */
+          'application/json': components['schemas']['ApiError'];
+        };
+      };
+    };
+  };
+  getWebsitesWebsiteIdPeopleCount: {
+    parameters: {
+      query: {
+        /** @description End of the date range as a Unix timestamp in milliseconds. */
+        endAt: number;
+        /** @description Start of the date range as a Unix timestamp in milliseconds. */
+        startAt: number;
+      };
+      header?: never;
+      path: {
+        /** @description ID of the website. */
+        websiteId: string;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description The operation completed successfully. */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json':
+            | {
+                candidates?: null;
+                identifiedUsers: number;
+                truncated?: null;
+              }
+            | {
+                candidates: unknown;
+                identifiedUsers?: null;
+                truncated: boolean;
+              };
         };
       };
       /** @description Bad request. */

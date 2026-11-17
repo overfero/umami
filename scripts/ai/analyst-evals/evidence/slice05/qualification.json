@@ -1,0 +1,34 @@
+{
+  "complete": true,
+  "observedAt": "2026-11-17T20:43:20.385Z",
+  "hashesMatched": 1574,
+  "browserHashesMatched": 1545,
+  "browserCommands": 7,
+  "strictCommands": 14,
+  "allTwelveDeterministic": true,
+  "verifierImage": {
+    "imageId": "sha256:abeba6069b648185ba74850c923feb81f6eac3f6899f9e1ab28bf8c496777d06",
+    "repoDigests": [
+      "umami-analyst-verifier@sha256:abeba6069b648185ba74850c923feb81f6eac3f6899f9e1ab28bf8c496777d06"
+    ],
+    "fileHashes": {
+      "src/lib/analyst-verifier/worker.mjs": "b56520dc10f87ec9998585ec757084aa51ddafd93fde01bd3a81c41f61e9bfc1",
+      "src/lib/analyst-verifier/images.mjs": "a3628a5ae3641464823b588f0121a3e058b9cdea964083cd76796dc03f070935",
+      "scripts/ai/verifier/container-worker.mjs": "65f7e35cb3d274a8cc16642bd1464f8746fbee4bf41264743d9b400d33ba96ec"
+    },
+    "buildDefinitionHashes": {
+      "deploy/analyst-verifier/Dockerfile.verifier": "9c2d874b6c1a4121403f407c4db708d88b53899ddd94f97ba337f2428d9b1e0b",
+      "deploy/analyst-verifier/package.json": "80235ca9cd395d30da8e678ef95e07863b1e88466e5b002890bdc46bf877dd9e",
+      "deploy/analyst-verifier/package-lock.json": "ddf492a2d00b5b1be3e8529c99b129d7923c48c7febab564593efd2a99b947df",
+      "scripts/ai/verifier/build-image.sh": "7128fd1ff34ee46591514560c346a8a8371379f059464ab37991b72d411cce35"
+    },
+    "buildProvenance": "Existing local image: copied worker/entrypoint bytes verified. Original Dockerfile/base build correspondence is not independently established; current build definitions fingerprinted, not retrospectively attested."
+  },
+  "reports": {
+    "e1": "d353999d3d9215b4e28eaf2e12a7024de982fea523f0cb52a0f4191f68bdc153",
+    "browser": "c4260163eba8ddb8f3345d7a07d5b132b73d17bbe064025b6bce9f55522d9837",
+    "standalone": "237ea2a5b6c2c968d30ffa47ad339667bd10c01120a5c0889f8bb92a248df345",
+    "evaluator": "3c91adaa89efac107f8fc0544a800f5e990bbfa6eaff3adb6db435ddbea79261",
+    "product": "5912e6fe5b59b71e26081777b3f5df7687ebbe77d83a56ce5c4031e9e0621387"
+  }
+}

@@ -82,6 +82,69 @@ describe('UmamiClient', () => {
     });
   });
 
+  test('assistant create rename turn and replies send JSON bodies, never query fields', async () => {
+    const { client, calls } = createClient({ ok: true });
+    await client.postAiAssistantChats({ title: 'Observed activity' });
+    await client.patchAiAssistantChatsChatId({ chatId: 'chat-1', title: 'Renamed activity' });
+    await client.postAiAssistantChatsChatIdTurn({
+      chatId: 'chat-1',
+      message: 'Show activity',
+      context: { timezone: 'Asia/Jakarta' },
+    });
+    await client.postAiAssistantChatsChatIdReply({
+      chatId: 'chat-1',
+      partId: 'part-1',
+      kind: 'confirm',
+      confirmed: false,
+    });
+    await client.postAiAssistantChatsChatIdReply({
+      chatId: 'chat-1',
+      partId: 'part-2',
+      kind: 'question',
+      answer: 'Product only',
+    });
+    expect(
+      calls.map(call => [
+        call.method,
+        call.url.pathname,
+        call.url.search,
+        call.body && JSON.parse(call.body),
+      ]),
+    ).toEqual([
+      ['POST', '/api/ai/assistant/chats', '', { title: 'Observed activity' }],
+      ['PATCH', '/api/ai/assistant/chats/chat-1', '', { title: 'Renamed activity' }],
+      [
+        'POST',
+        '/api/ai/assistant/chats/chat-1/turn',
+        '',
+        { message: 'Show activity', context: { timezone: 'Asia/Jakarta' } },
+      ],
+      [
+        'POST',
+        '/api/ai/assistant/chats/chat-1/reply',
+        '',
+        { partId: 'part-1', kind: 'confirm', confirmed: false },
+      ],
+      [
+        'POST',
+        '/api/ai/assistant/chats/chat-1/reply',
+        '',
+        { partId: 'part-2', kind: 'question', answer: 'Product only' },
+      ],
+    ]);
+    for (const call of calls) expect(call.headers['content-type']).toBe('application/json');
+  });
+
+  test('assistant turn preserves the SSE wire text rather than inventing a JSON response', async () => {
+    const wire = 'event: done\ndata: {"type":"done"}\n\n';
+    const client = new UmamiClient({
+      fetch: async () => new Response(wire, { headers: { 'content-type': 'text/event-stream' } }),
+    });
+    await expect(
+      client.postAiAssistantChatsChatIdTurn({ chatId: 'chat-1', message: 'Observed activity' }),
+    ).resolves.toBe(wire);
+  });
+
   test('sends structured funnel criteria through the GET stats API', async () => {
     const { client, calls } = createClient([]);
     const steps = [

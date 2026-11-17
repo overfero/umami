@@ -186,6 +186,14 @@ export const operations = {
     queryParams: [],
     hasBody: true,
   },
+  deleteAiAssistantChatsChatId: {
+    operationId: 'deleteAiAssistantChatsChatId',
+    method: 'delete',
+    path: '/api/ai/assistant/chats/{chatId}',
+    pathParams: ['chatId'],
+    queryParams: [],
+    hasBody: false,
+  },
   deleteBoard: {
     operationId: 'deleteBoard',
     method: 'delete',
@@ -323,6 +331,46 @@ export const operations = {
       'pageSize',
       'maxResults',
     ],
+    hasBody: false,
+  },
+  getAiAssistantChats: {
+    operationId: 'getAiAssistantChats',
+    method: 'get',
+    path: '/api/ai/assistant/chats',
+    pathParams: [],
+    queryParams: [],
+    hasBody: false,
+  },
+  getAiAssistantChatsChatId: {
+    operationId: 'getAiAssistantChatsChatId',
+    method: 'get',
+    path: '/api/ai/assistant/chats/{chatId}',
+    pathParams: ['chatId'],
+    queryParams: [],
+    hasBody: false,
+  },
+  getAnalyses: {
+    operationId: 'getAnalyses',
+    method: 'get',
+    path: '/api/analyses',
+    pathParams: [],
+    queryParams: ['page', 'pageSize'],
+    hasBody: false,
+  },
+  getAnalysesAnalysisId: {
+    operationId: 'getAnalysesAnalysisId',
+    method: 'get',
+    path: '/api/analyses/{analysisId}',
+    pathParams: ['analysisId'],
+    queryParams: [],
+    hasBody: false,
+  },
+  getAnalystTasksTaskId: {
+    operationId: 'getAnalystTasksTaskId',
+    method: 'get',
+    path: '/api/analyst/tasks/{taskId}',
+    pathParams: ['taskId'],
+    queryParams: [],
     hasBody: false,
   },
   getBoard: {
@@ -2834,6 +2882,22 @@ export const operations = {
     ],
     hasBody: false,
   },
+  getWebsitesWebsiteIdPeople: {
+    operationId: 'getWebsitesWebsiteIdPeople',
+    method: 'get',
+    path: '/api/websites/{websiteId}/people',
+    pathParams: ['websiteId'],
+    queryParams: ['startAt', 'endAt', 'search', 'property'],
+    hasBody: false,
+  },
+  getWebsitesWebsiteIdPeopleCount: {
+    operationId: 'getWebsitesWebsiteIdPeopleCount',
+    method: 'get',
+    path: '/api/websites/{websiteId}/people/count',
+    pathParams: ['websiteId'],
+    queryParams: ['startAt', 'endAt'],
+    hasBody: false,
+  },
   getWebsiteUtmMetrics: {
     operationId: 'getWebsiteUtmMetrics',
     method: 'get',
@@ -2938,6 +3002,94 @@ export const operations = {
     pathParams: [],
     queryParams: [],
     hasBody: false,
+  },
+  patchAiAssistantChatsChatId: {
+    operationId: 'patchAiAssistantChatsChatId',
+    method: 'patch',
+    path: '/api/ai/assistant/chats/{chatId}',
+    pathParams: ['chatId'],
+    queryParams: [],
+    hasBody: true,
+  },
+  patchAnalysesAnalysisId: {
+    operationId: 'patchAnalysesAnalysisId',
+    method: 'patch',
+    path: '/api/analyses/{analysisId}',
+    pathParams: ['analysisId'],
+    queryParams: [],
+    hasBody: true,
+  },
+  postAiAssistantChats: {
+    operationId: 'postAiAssistantChats',
+    method: 'post',
+    path: '/api/ai/assistant/chats',
+    pathParams: [],
+    queryParams: [],
+    hasBody: true,
+  },
+  postAiAssistantChatsChatIdCancel: {
+    operationId: 'postAiAssistantChatsChatIdCancel',
+    method: 'post',
+    path: '/api/ai/assistant/chats/{chatId}/cancel',
+    pathParams: ['chatId'],
+    queryParams: [],
+    hasBody: false,
+  },
+  postAiAssistantChatsChatIdReply: {
+    operationId: 'postAiAssistantChatsChatIdReply',
+    method: 'post',
+    path: '/api/ai/assistant/chats/{chatId}/reply',
+    pathParams: ['chatId'],
+    queryParams: [],
+    hasBody: true,
+  },
+  postAiAssistantChatsChatIdTurn: {
+    operationId: 'postAiAssistantChatsChatIdTurn',
+    method: 'post',
+    path: '/api/ai/assistant/chats/{chatId}/turn',
+    pathParams: ['chatId'],
+    queryParams: [],
+    hasBody: true,
+  },
+  postAiBoardsChat: {
+    operationId: 'postAiBoardsChat',
+    method: 'post',
+    path: '/api/ai/boards/chat',
+    pathParams: [],
+    queryParams: [],
+    hasBody: false,
+  },
+  postAnalyses: {
+    operationId: 'postAnalyses',
+    method: 'post',
+    path: '/api/analyses',
+    pathParams: [],
+    queryParams: [],
+    hasBody: true,
+  },
+  postAnalysesAnalysisIdExecute: {
+    operationId: 'postAnalysesAnalysisIdExecute',
+    method: 'post',
+    path: '/api/analyses/{analysisId}/execute',
+    pathParams: ['analysisId'],
+    queryParams: [],
+    hasBody: true,
+  },
+  postAnalysesPreview: {
+    operationId: 'postAnalysesPreview',
+    method: 'post',
+    path: '/api/analyses/preview',
+    pathParams: [],
+    queryParams: [],
+    hasBody: true,
+  },
+  postBoardsBundle: {
+    operationId: 'postBoardsBundle',
+    method: 'post',
+    path: '/api/boards/bundle',
+    pathParams: [],
+    queryParams: [],
+    hasBody: true,
   },
   record: {
     operationId: 'record',
@@ -3400,6 +3552,18 @@ export abstract class GeneratedUmamiClient {
   }
 
   /**
+   * Delete ai assistant chats chat id
+   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * `DELETE /api/ai/assistant/chats/{chatId}`
+   */
+  deleteAiAssistantChatsChatId(
+    input: OperationInput<'deleteAiAssistantChatsChatId'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'deleteAiAssistantChatsChatId'>> {
+    return this.execute('deleteAiAssistantChatsChatId', input, options);
+  }
+
+  /**
    * Delete a board
    * Deletes the specified board after checking the caller's permission to remove it.
    * `DELETE /api/boards/{boardId}`
@@ -3587,6 +3751,66 @@ export abstract class GeneratedUmamiClient {
     options?: RequestOptions,
   ): Promise<OperationOutput<'exportWebsite'>> {
     return this.execute('exportWebsite', input, options);
+  }
+
+  /**
+   * Get ai assistant chats
+   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * `GET /api/ai/assistant/chats`
+   */
+  getAiAssistantChats(
+    input?: OperationInput<'getAiAssistantChats'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'getAiAssistantChats'>> {
+    return this.execute('getAiAssistantChats', input, options);
+  }
+
+  /**
+   * Get ai assistant chats chat id
+   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * `GET /api/ai/assistant/chats/{chatId}`
+   */
+  getAiAssistantChatsChatId(
+    input: OperationInput<'getAiAssistantChatsChatId'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'getAiAssistantChatsChatId'>> {
+    return this.execute('getAiAssistantChatsChatId', input, options);
+  }
+
+  /**
+   * Get analyses
+   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * `GET /api/analyses`
+   */
+  getAnalyses(
+    input?: OperationInput<'getAnalyses'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'getAnalyses'>> {
+    return this.execute('getAnalyses', input, options);
+  }
+
+  /**
+   * Get analyses analysis id
+   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * `GET /api/analyses/{analysisId}`
+   */
+  getAnalysesAnalysisId(
+    input: OperationInput<'getAnalysesAnalysisId'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'getAnalysesAnalysisId'>> {
+    return this.execute('getAnalysesAnalysisId', input, options);
+  }
+
+  /**
+   * Get analyst tasks task id
+   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * `GET /api/analyst/tasks/{taskId}`
+   */
+  getAnalystTasksTaskId(
+    input: OperationInput<'getAnalystTasksTaskId'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'getAnalystTasksTaskId'>> {
+    return this.execute('getAnalystTasksTaskId', input, options);
   }
 
   /**
@@ -4786,6 +5010,30 @@ export abstract class GeneratedUmamiClient {
   }
 
   /**
+   * Get websites website id people
+   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * `GET /api/websites/{websiteId}/people`
+   */
+  getWebsitesWebsiteIdPeople(
+    input: OperationInput<'getWebsitesWebsiteIdPeople'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'getWebsitesWebsiteIdPeople'>> {
+    return this.execute('getWebsitesWebsiteIdPeople', input, options);
+  }
+
+  /**
+   * Get websites website id people count
+   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * `GET /api/websites/{websiteId}/people/count`
+   */
+  getWebsitesWebsiteIdPeopleCount(
+    input: OperationInput<'getWebsitesWebsiteIdPeopleCount'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'getWebsitesWebsiteIdPeopleCount'>> {
+    return this.execute('getWebsitesWebsiteIdPeopleCount', input, options);
+  }
+
+  /**
    * Get website utm metrics
    * `GET /api/websites/{websiteId}/utm/metrics`
    */
@@ -4866,6 +5114,135 @@ export abstract class GeneratedUmamiClient {
     options?: RequestOptions,
   ): Promise<OperationOutput<'logout'>> {
     return this.execute('logout', input, options);
+  }
+
+  /**
+   * Rename an assistant chat
+   * `PATCH /api/ai/assistant/chats/{chatId}`
+   */
+  patchAiAssistantChatsChatId(
+    input: OperationInput<'patchAiAssistantChatsChatId'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'patchAiAssistantChatsChatId'>> {
+    return this.execute('patchAiAssistantChatsChatId', input, options);
+  }
+
+  /**
+   * Update analyses analysis id
+   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * `PATCH /api/analyses/{analysisId}`
+   */
+  patchAnalysesAnalysisId(
+    input: OperationInput<'patchAnalysesAnalysisId'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'patchAnalysesAnalysisId'>> {
+    return this.execute('patchAnalysesAnalysisId', input, options);
+  }
+
+  /**
+   * Create an assistant chat
+   * `POST /api/ai/assistant/chats`
+   */
+  postAiAssistantChats(
+    input?: OperationInput<'postAiAssistantChats'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'postAiAssistantChats'>> {
+    return this.execute('postAiAssistantChats', input, options);
+  }
+
+  /**
+   * Create or update ai assistant chats chat id cancel
+   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * `POST /api/ai/assistant/chats/{chatId}/cancel`
+   */
+  postAiAssistantChatsChatIdCancel(
+    input: OperationInput<'postAiAssistantChatsChatIdCancel'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'postAiAssistantChatsChatIdCancel'>> {
+    return this.execute('postAiAssistantChatsChatIdCancel', input, options);
+  }
+
+  /**
+   * Reply to a pending assistant interaction
+   * `POST /api/ai/assistant/chats/{chatId}/reply`
+   */
+  postAiAssistantChatsChatIdReply(
+    input: OperationInput<'postAiAssistantChatsChatIdReply'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'postAiAssistantChatsChatIdReply'>> {
+    return this.execute('postAiAssistantChatsChatIdReply', input, options);
+  }
+
+  /**
+   * Run an assistant turn
+   * Streams named server-sent events. The client transport returns text, not a JSON result or parsed event iterator. Message limit is 32768 UTF-8 bytes.
+   * `POST /api/ai/assistant/chats/{chatId}/turn`
+   */
+  postAiAssistantChatsChatIdTurn(
+    input: OperationInput<'postAiAssistantChatsChatIdTurn'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'postAiAssistantChatsChatIdTurn'>> {
+    return this.execute('postAiAssistantChatsChatIdTurn', input, options);
+  }
+
+  /**
+   * Create or update ai boards chat
+   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * `POST /api/ai/boards/chat`
+   */
+  postAiBoardsChat(
+    input?: OperationInput<'postAiBoardsChat'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'postAiBoardsChat'>> {
+    return this.execute('postAiBoardsChat', input, options);
+  }
+
+  /**
+   * Create or update analyses
+   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * `POST /api/analyses`
+   */
+  postAnalyses(
+    input: OperationInput<'postAnalyses'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'postAnalyses'>> {
+    return this.execute('postAnalyses', input, options);
+  }
+
+  /**
+   * Create or update analyses analysis id execute
+   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * `POST /api/analyses/{analysisId}/execute`
+   */
+  postAnalysesAnalysisIdExecute(
+    input: OperationInput<'postAnalysesAnalysisIdExecute'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'postAnalysesAnalysisIdExecute'>> {
+    return this.execute('postAnalysesAnalysisIdExecute', input, options);
+  }
+
+  /**
+   * Create or update analyses preview
+   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * `POST /api/analyses/preview`
+   */
+  postAnalysesPreview(
+    input: OperationInput<'postAnalysesPreview'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'postAnalysesPreview'>> {
+    return this.execute('postAnalysesPreview', input, options);
+  }
+
+  /**
+   * Create or update boards bundle
+   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * `POST /api/boards/bundle`
+   */
+  postBoardsBundle(
+    input: OperationInput<'postBoardsBundle'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'postBoardsBundle'>> {
+    return this.execute('postBoardsBundle', input, options);
   }
 
   /**

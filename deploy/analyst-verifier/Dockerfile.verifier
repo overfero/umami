@@ -1,8 +1,9 @@
 # Restricted verifier worker image (src/lib/analyst-verifier/launcher.mjs runs it with
 # --network none, uid 10001, cap-drop ALL, read-only root, no-new-privileges, no mounts/env).
-FROM mcr.microsoft.com/playwright:v1.63.0-noble
+FROM mcr.microsoft.com/playwright:v1.63.0-noble@sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27
 WORKDIR /verifier
-RUN npm init -y >/dev/null && npm install --ignore-scripts --no-audit --no-fund playwright-core@1.63.0
+COPY deploy/analyst-verifier/package.json deploy/analyst-verifier/package-lock.json ./
+RUN npm ci --ignore-scripts --no-audit --no-fund
 COPY src/lib/analyst-verifier/worker.mjs src/lib/analyst-verifier/images.mjs ./src/lib/analyst-verifier/
 COPY scripts/ai/verifier/container-worker.mjs ./scripts/ai/verifier/
 USER 10001:10001

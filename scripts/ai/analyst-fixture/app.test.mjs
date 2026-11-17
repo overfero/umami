@@ -16,7 +16,15 @@ import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join, resolve } from 'node:path';
 import test from 'node:test';
-import { fixtureEnv, sanitizedProject, systemTemp, writeReceipt } from './app.mjs';
+import {
+  cleanupFixtureProject,
+  fixtureEnv,
+  installFixtureDependencies,
+  sanitizedProject,
+  systemTemp,
+  writeReceipt,
+} from './app.mjs';
+import { withOwnedFixtureStartup } from './startup.mjs';
 
 const require = createRequire(import.meta.url);
 const nextEnv = require(
@@ -181,6 +189,90 @@ test('launcher receipt binds root, nonce hash, provider hash and BUILD_ID; never
   } finally {
     rmSync(project, { recursive: true, force: true });
     rmSync(checkout, { recursive: true, force: true });
+  }
+});
+
+test('built fixture resolves Next and workspace artifacts within its own project', () => {
+  const nonce = 'ef'.repeat(32);
+  const project = sanitizedProject(resolve('.'), nonce, { localDependencies: true });
+  try {
+    installFixtureDependencies(project);
+    const localRequire = createRequire(join(project, 'package.json'));
+    for (const dependency of ['next/package.json', '@umami/api-client', '@umami/mcp']) {
+      assert.ok(
+        realpathSync(localRequire.resolve(dependency)).startsWith(`${project}/`),
+        dependency,
+      );
+    }
+    const mcpRequire = createRequire(join(project, 'packages/mcp/package.json'));
+    assert.equal(
+      mcpRequire.resolve('@umami/api-client'),
+      localRequire.resolve('@umami/api-client'),
+    );
+  } finally {
+    rmSync(project, { recursive: true, force: true });
+  }
+});
+
+test('clean success removes only its owned project after database cleanup', async () => {
+  const checkout = fakeCheckout();
+  const nonce = 'ab'.repeat(32);
+  const project = sanitizedProject(checkout, nonce);
+  const unrelated = sanitizedProject(checkout, 'cd'.repeat(32));
+  try {
+    let databaseCleaned = false;
+    await withOwnedFixtureStartup({
+      ports: ['3363'],
+      provision: () => ({ databaseUrl: fixtureEnv({ dir: project }).DATABASE_URL }),
+      run: async () => {},
+      cleanup: () => {
+        databaseCleaned = true;
+      },
+      success: ({ databaseUrl }) => {
+        assert.equal(databaseCleaned, true);
+        cleanupFixtureProject(project, nonce, databaseUrl);
+      },
+    });
+    assert.equal(existsSync(project), false);
+    assert.equal(existsSync(unrelated), true);
+  } finally {
+    for (const dir of [project, unrelated, checkout]) rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test('failed run or database cleanup retains compiler traces; foreign ownership refuses removal', async () => {
+  const checkout = fakeCheckout();
+  const nonce = 'ab'.repeat(32);
+  const project = sanitizedProject(checkout, nonce);
+  const databaseUrl = fixtureEnv({ dir: project }).DATABASE_URL;
+  try {
+    writeFileSync(join(project, 'compiler.log'), 'failed compiler trace');
+    for (const failure of ['run', 'database']) {
+      await assert.rejects(
+        withOwnedFixtureStartup({
+          ports: ['3363'],
+          provision: () => ({ databaseUrl }),
+          run: () => {
+            if (failure === 'run') throw Error('compiler failed');
+          },
+          cleanup: () => {
+            if (failure === 'database') throw Error('database ownership failed');
+          },
+          success: () => cleanupFixtureProject(project, nonce, databaseUrl),
+        }),
+        /failed/,
+      );
+      assert.equal(readFileSync(join(project, 'compiler.log'), 'utf8'), 'failed compiler trace');
+    }
+    assert.throws(() => cleanupFixtureProject(project, 'cd'.repeat(32), databaseUrl), /ownership/);
+    assert.equal(existsSync(project), true);
+    const receiptPath = join(project, '.analyst-fixture-receipt.json');
+    const receipt = JSON.parse(readFileSync(receiptPath, 'utf8'));
+    writeFileSync(receiptPath, JSON.stringify({ ...receipt, root: checkout }));
+    assert.throws(() => cleanupFixtureProject(project, nonce, databaseUrl), /ownership/);
+    assert.equal(existsSync(project), true);
+  } finally {
+    for (const dir of [project, checkout]) rmSync(dir, { recursive: true, force: true });
   }
 });
 

@@ -23,7 +23,7 @@ import { basename, dirname, isAbsolute, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { provisionFixtureDatabase, cleanupFixtureDatabase } from './database.mjs';
 import { fixtureSchema } from '../../../src/lib/ai/fixture-database.mjs';
-import { withOwnedFixtureStartup,validateFixturePorts } from './startup.mjs';
+import { withOwnedFixtureStartup, validateFixturePorts } from './startup.mjs';
 
 export const FIXTURE_DATABASE =
   'postgresql://ai_synthetic@127.0.0.1:25432/ai_synthetic?schema=analyst_fixture';
@@ -68,7 +68,7 @@ function darwinUserTemp() {
 }
 
 /** Builds the sanitized project; refuses if any .env* file would be copied. */
-export function sanitizedProject(checkout, nonce) {
+export function sanitizedProject(checkout, nonce, { localDependencies = false } = {}) {
   const dir = mkdtempSync(join(systemTemp(), 'umami-analyst-fixture-'));
   for (const entry of ENTRIES)
     cpSync(join(checkout, entry), join(dir, entry), {
@@ -88,9 +88,19 @@ export function sanitizedProject(checkout, nonce) {
       'reactStrictMode: false,\n  webpack: (config) => { config.cache = false; config.parallelism = 1; return config; },',
     ),
   );
-  // Dependencies are shared read-only (symlink); nothing is written through it.
-  // Real path: workspace links (@umami/* -> ../../packages) must resolve to the built packages.
-  symlinkSync(realpathSync(join(checkout, 'node_modules')), join(dir, 'node_modules'));
+  if (localDependencies) {
+    // A real workspace install keeps all trace inputs under the Next project root. Never
+    // repair standalone output by copying arbitrary dependencies from the build host.
+    for (const entry of ['packages', 'pnpm-lock.yaml', 'pnpm-workspace.yaml'])
+      cpSync(join(checkout, entry), join(dir, entry), {
+        recursive: true,
+        filter: source =>
+          !isEnvFile(basename(source)) && !['node_modules', 'dist'].includes(basename(source)),
+      });
+  } else {
+    // Development-only shortcut, explicitly not release packaging evidence.
+    symlinkSync(realpathSync(join(checkout, 'node_modules')), join(dir, 'node_modules'));
+  }
   mkdirSync(join(dir, '.home'));
   writeReceipt(dir, nonce);
   const leaked = readdirSync(dir, { recursive: true }).filter(
@@ -101,6 +111,18 @@ export function sanitizedProject(checkout, nonce) {
     throw new Error(`Refusing: env files in fixture project: ${leaked}`);
   }
   return dir;
+}
+
+export function installFixtureDependencies(dir) {
+  for (const args of [['install', '--offline', '--frozen-lockfile'], ['build:packages']]) {
+    const result = spawnSync('npx', ['--yes', 'pnpm@12.3.4', ...args], {
+      cwd: dir,
+      stdio: 'inherit',
+      timeout: 180_000,
+      env: { PATH: process.env.PATH, HOME: process.env.HOME, NEXT_TELEMETRY_DISABLED: '1' },
+    });
+    if (result.status !== 0) throw new Error(`Fixture pnpm ${args[0]} failed (${result.status})`);
+  }
 }
 
 const sha256 = value => createHash('sha256').update(value).digest('hex');
@@ -126,6 +148,23 @@ export function writeReceipt(dir, nonce, buildId, databaseUrl = FIXTURE_DATABASE
     }),
     { mode: 0o600 },
   );
+}
+
+/** Removes only the invocation's real, receipt-bound temp root; callers first clean its DB. */
+export function cleanupFixtureProject(dir, nonce, databaseUrl) {
+  const root = realpathSync(dir);
+  const receipt = JSON.parse(readFileSync(join(root, '.analyst-fixture-receipt.json'), 'utf8'));
+  if (
+    root !== dir ||
+    dirname(root) !== systemTemp() ||
+    !basename(root).startsWith('umami-analyst-fixture-') ||
+    statSync(root).uid !== process.getuid() ||
+    receipt.root !== root ||
+    receipt.nonceSha256 !== sha256(nonce) ||
+    receipt.databaseUrl !== databaseUrl
+  )
+    throw new Error('Fixture project ownership mismatch');
+  rmSync(root, { recursive: true });
 }
 
 /**
@@ -167,8 +206,11 @@ export function fixtureEnv({
           AI_PI_ROOT: piRoot,
         }),
     ...(verifier && !flagsOff
-      ? { AI_ANALYST_VERIFIER_ENABLED: 'true', AI_ANALYST_VERIFIER_LAUNCHER: 'docker',
-          ...(verifierImage ? { AI_ANALYST_VERIFIER_IMAGE: verifierImage } : {}) }
+      ? {
+          AI_ANALYST_VERIFIER_ENABLED: 'true',
+          AI_ANALYST_VERIFIER_LAUNCHER: 'docker',
+          ...(verifierImage ? { AI_ANALYST_VERIFIER_IMAGE: verifierImage } : {}),
+        }
       : {}),
   };
 }
@@ -176,7 +218,7 @@ export function fixtureEnv({
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const port = process.env.ANALYST_FIXTURE_PORT ?? '3327';
   const offPort = process.env.ANALYST_FIXTURE_FLAGS_OFF_PORT;
-  validateFixturePorts([port,offPort]);
+  validateFixturePorts([port, offPort]);
   const flagsOff = process.env.ANALYST_FIXTURE_FLAGS === 'off';
   const built = process.env.ANALYST_FIXTURE_BUILT === '1';
   const piRoot = process.env.AI_PI_ROOT;
@@ -186,7 +228,8 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     spawnSync('docker', ['image', 'inspect', 'umami-analyst-verifier:local'], { stdio: 'ignore' })
       .status === 0;
   const nonce = randomBytes(32).toString('hex');
-  const dir = sanitizedProject(resolve('.'), nonce);
+  const dir = sanitizedProject(resolve('.'), nonce, { localDependencies: built });
+  if (built) installFixtureDependencies(dir);
   // The generated Prisma client is gitignored; generate it inside the sanitized project.
   const generated = spawnSync(join(dir, 'node_modules/.bin/prisma'), ['generate'], {
     cwd: dir,
@@ -195,82 +238,116 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   });
   if (generated.status !== 0) throw new Error('prisma generate failed');
   await withOwnedFixtureStartup({
-    ports:[port,offPort],
-    provision:()=>({databaseUrl:provisionFixtureDatabase(dir,nonce.slice(0,24))}),
-    cleanup:({databaseUrl})=>{
-      const receipt=JSON.parse(readFileSync(join(dir,'.analyst-fixture-receipt.json'),'utf8'));
-      if(receipt.root!==realpathSync(dir)||receipt.databaseUrl!==databaseUrl||receipt.nonceSha256!==sha256(nonce))throw new Error('Fixture cleanup receipt mismatch');
-      cleanupFixtureDatabase(databaseUrl,receipt);
+    ports: [port, offPort],
+    provision: () => ({ databaseUrl: provisionFixtureDatabase(dir, nonce.slice(0, 24)) }),
+    cleanup: ({ databaseUrl }) => {
+      const receipt = JSON.parse(readFileSync(join(dir, '.analyst-fixture-receipt.json'), 'utf8'));
+      if (
+        receipt.root !== realpathSync(dir) ||
+        receipt.databaseUrl !== databaseUrl ||
+        receipt.nonceSha256 !== sha256(nonce)
+      )
+        throw new Error('Fixture cleanup receipt mismatch');
+      cleanupFixtureDatabase(databaseUrl, receipt);
     },
-    run:async({databaseUrl})=>{
-  writeReceipt(dir, nonce, undefined, databaseUrl);
-  console.log(
-    JSON.stringify({
-      fixtureProject: dir,
-      verifier,
-      flagsOff,
-      built,
-      schema: fixtureSchema(databaseUrl),
-    }),
-  );
-  const env = { dir, port, nonce, piRoot, verifier, built, databaseUrl };
-  const next = join(dir, 'node_modules/.bin/next');
-  const children = [];
-  if (built) {
-    // next.config validateSourceUrl requires a source pointer in production (build AND start).
-    const head = spawnSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).stdout.trim();
-    const sourceUrl = `https://github.com/giovannirandykusuma/umami/tree/${head}`;
-    // Build once, synthetic-only env (no host secrets); then start flags-on and, when asked,
-    // a flags-off server from the SAME build. Production servers stay small, unlike dev.
-    const build = spawnSync(next, ['build', '--webpack'], {
-      cwd: dir,
-      stdio: 'inherit',
-      env: {
-        ...fixtureEnv({ ...env, flagsOff: true }),
-        NODE_OPTIONS: '--max-old-space-size=4096',
-        BUILD_WORKERS: '1',
-        NEXT_PUBLIC_SOURCE_URL: sourceUrl,
-      },
-    });
-    if (build.status !== 0) throw new Error('next build failed');
-    writeReceipt(dir, nonce, readFileSync(join(dir, '.next/BUILD_ID'), 'utf8').trim(), databaseUrl);
-    for (const [p, off] of [[port, flagsOff], ...(offPort ? [[offPort, true]] : [])])
-      children.push(
-        spawn(next, ['start', '--hostname', '127.0.0.1', '--port', p], {
+    success: ({ databaseUrl }) => cleanupFixtureProject(dir, nonce, databaseUrl),
+    run: async ({ databaseUrl }) => {
+      writeReceipt(dir, nonce, undefined, databaseUrl);
+      console.log(
+        JSON.stringify({
+          fixtureProject: dir,
+          verifier,
+          flagsOff,
+          built,
+          schema: fixtureSchema(databaseUrl),
+        }),
+      );
+      const env = { dir, port, nonce, piRoot, verifier, built, databaseUrl };
+      const next = join(dir, 'node_modules/.bin/next');
+      const children = [];
+      if (built) {
+        // next.config validateSourceUrl requires a source pointer in production (build AND start).
+        const head = spawnSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).stdout.trim();
+        const sourceUrl = `https://github.com/giovannirandykusuma/umami/tree/${head}`;
+        // Build once, synthetic-only env (no host secrets); then start flags-on and, when asked,
+        // a flags-off server from the SAME build. Production servers stay small, unlike dev.
+        const build = spawnSync(next, ['build', '--webpack'], {
           cwd: dir,
           stdio: 'inherit',
           env: {
-            ...fixtureEnv({ ...env, port: p, flagsOff: off }),
+            ...fixtureEnv({ ...env, flagsOff: true }),
+            NODE_OPTIONS: '--max-old-space-size=4096',
+            BUILD_WORKERS: '1',
             NEXT_PUBLIC_SOURCE_URL: sourceUrl,
           },
-        }),
-      );
-  } else
-    children.push(
-      spawn(next, ['dev', '--webpack', '--hostname', '127.0.0.1', '--port', port], {
-        cwd: dir,
-        stdio: 'inherit',
-        env: fixtureEnv({ ...env, flagsOff }),
-      }),
-    );
-  const stop=signal=>{for(const child of children)child.kill(signal);};
-  const onInterrupt=()=>stop('SIGTERM');
-  process.on('SIGINT',onInterrupt);process.on('SIGTERM',onInterrupt);
-  try {
-    if(!children.length)throw new Error('Missing fixture child');
-    const outcome=await Promise.race(children.map(child=>new Promise((resolve,reject)=>{
-      child.once('error',reject);child.once('exit',(code,signal)=>resolve({code,signal}));
-    })));
-    process.exitCode=outcome.code??1;
-  } finally {
-    stop('SIGTERM');
-    await Promise.all(children.map(child=>new Promise(resolve=>{
-      if(child.exitCode!==null||child.signalCode!==null)return resolve();
-      const timer=setTimeout(()=>{child.kill('SIGKILL');resolve();},5000);
-      child.once('exit',()=>{clearTimeout(timer);resolve();});
-    })));
-    process.removeListener('SIGINT',onInterrupt);process.removeListener('SIGTERM',onInterrupt);
-  }
+        });
+        if (build.status !== 0) throw new Error('next build failed');
+        writeReceipt(
+          dir,
+          nonce,
+          readFileSync(join(dir, '.next/BUILD_ID'), 'utf8').trim(),
+          databaseUrl,
+        );
+        for (const [p, off] of [[port, flagsOff], ...(offPort ? [[offPort, true]] : [])])
+          children.push(
+            spawn(next, ['start', '--hostname', '127.0.0.1', '--port', p], {
+              cwd: dir,
+              stdio: 'inherit',
+              env: {
+                ...fixtureEnv({ ...env, port: p, flagsOff: off }),
+                NEXT_PUBLIC_SOURCE_URL: sourceUrl,
+              },
+            }),
+          );
+      } else
+        children.push(
+          spawn(next, ['dev', '--webpack', '--hostname', '127.0.0.1', '--port', port], {
+            cwd: dir,
+            stdio: 'inherit',
+            env: fixtureEnv({ ...env, flagsOff }),
+          }),
+        );
+      const stop = signal => {
+        for (const child of children) child.kill(signal);
+      };
+      const onInterrupt = () => stop('SIGTERM');
+      process.on('SIGINT', onInterrupt);
+      process.on('SIGTERM', onInterrupt);
+      try {
+        if (!children.length) throw new Error('Missing fixture child');
+        const outcome = await Promise.race(
+          children.map(
+            child =>
+              new Promise((resolve, reject) => {
+                child.once('error', reject);
+                child.once('exit', (code, signal) => resolve({ code, signal }));
+              }),
+          ),
+        );
+        process.exitCode = outcome.code ?? 1;
+        if (process.exitCode !== 0)
+          throw new Error(`Fixture child failed (${outcome.code ?? outcome.signal})`);
+      } finally {
+        stop('SIGTERM');
+        await Promise.all(
+          children.map(
+            child =>
+              new Promise(resolve => {
+                if (child.exitCode !== null || child.signalCode !== null) return resolve();
+                const timer = setTimeout(() => {
+                  child.kill('SIGKILL');
+                  resolve();
+                }, 5000);
+                child.once('exit', () => {
+                  clearTimeout(timer);
+                  resolve();
+                });
+              }),
+          ),
+        );
+        process.removeListener('SIGINT', onInterrupt);
+        process.removeListener('SIGTERM', onInterrupt);
+      }
     },
   });
 }
