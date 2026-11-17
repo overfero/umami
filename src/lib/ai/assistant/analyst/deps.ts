@@ -16,6 +16,7 @@ import { getBoard, getUserBoards } from '@/queries/prisma/board';
 import { commitBundle, getAnalysis, getUserAnalyses, hashBundle } from '@/queries/prisma/analysis';
 import { getAllUserWebsitesIncludingTeamAccess } from '@/queries/prisma/website';
 import { getWebsiteDateRange } from '@/queries/sql/getWebsiteDateRange';
+import { getAiQueryScope, withAiRead } from '@/lib/ai/query';
 import { getUser } from '@/queries/prisma/user';
 import { isAnalystVerifierEnabled } from '@/lib/analyst/flags';
 import {
@@ -297,7 +298,12 @@ export function analystDeps(): AnalystDeps {
     },
     async dateRange(auth, websiteId) {
       if (!(await canViewWebsite(auth, websiteId))) return { startAt: null, endAt: null };
-      const range = await getWebsiteDateRange(websiteId);
+      // As in the executor, normalize the scoped PostgreSQL read before the native driver
+      // decodes timestamps. Never let the connection timezone shift discovery provenance.
+      const range = await withAiRead(async () => {
+        await getAiQueryScope()?.tx.$executeRawUnsafe("SET LOCAL TimeZone = 'UTC'");
+        return getWebsiteDateRange(websiteId);
+      }, new AbortController().signal);
       return {
         startAt: range?.startDate ? new Date(range.startDate).getTime() : null,
         endAt: range?.endDate ? new Date(range.endDate).getTime() : null,

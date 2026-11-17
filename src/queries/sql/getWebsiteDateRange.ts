@@ -45,8 +45,8 @@ async function clickhouseQuery(websiteId: string) {
   const result = await rawQuery(
     `
     select
-      min(created_at) as startDate,
-      max(created_at) as endDate
+      minOrNull(created_at) as startDate,
+      maxOrNull(created_at) as endDate
     from website_event_stats_hourly
     where website_id = {websiteId:UUID}
       and created_at >= {startDate:DateTime64}
