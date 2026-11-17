@@ -1,5 +1,7 @@
 # Slice 05 candidate — reproducible integration evidence
 
+**Superseding review status:** candidate8d33f3e3e was rejected; corrections and fresh targeted supplement are in [slice05-review-corrections.md](slice05-review-corrections.md). The full execution receipts below remain historical at their original source revision, not a new post-correction E1 run. Independent rereview remains required.
+
 Recorded **2026-11-18 03:44 WIB (Asia/Jakarta)**. Implementation commits `82980c4e6`, `4a8d2e45f`; based on integration `a285a1806`. Independent review is required; this is a **candidate**, not a release/merge approval. `git merge-base --is-ancestor a285a1806 HEAD` and `git merge analyst-completion --no-edit` exit 0 (already up to date).
 
 ## Scope / fixes
@@ -37,7 +39,7 @@ The long browser/E1 invocations used bounded background `timeout` wrappers and i
 
 Final standalone receipt `standalone.json`: observed **2026-11-18 03:27:36 WIB**, immutable package image `sha256:0496b2d3ec0e52c0d58f09a0bfa2ef038a962ce46d9ade36edfb1992dc263022`. Base `node:22.23.4-alpine@sha256:0e1754758c2df4cfa3e68d59e2e1b7374bb7fd9ea6328eaaacf15cc934af8202`.
 
-Container build context contains only assembled Next standalone output, declared scripts/public/static copies, and smoke script. No checkout, host node_modules, or dependency mounts. Nonroot container traverses package symlinks and fails on dangling/escaping targets; actual login, SSR dashboard HTML, saved analysis creation and real PG execution **42**, default-off assistant turn with no images/completion all pass. Disposable uniquely owned PG namespace is removed after success. This demonstrates the intended standalone release package operating independently of build-host dependencies; it does **not** claim the entire main Dockerfile's migration/startup/release target was exercised.
+Container build context contains only assembled Next standalone output, declared scripts/public/static copies, and smoke script. No checkout, host node_modules, or dependency mounts. Nonroot container traverses package symlinks and fails on dangling/escaping targets; actual API login, dashboard application-shell HTML response (not authenticated user-content rendering), saved analysis creation and real PG execution **42**, default-off assistant turn with no images/completion all pass. Disposable uniquely owned PG namespace is removed after success. This demonstrates the intended standalone release package operating independently of build-host dependencies; it does **not** claim the entire main Dockerfile's migration/startup/release target was exercised.
 
 First smoke failed because Node `cpSync` without `verbatimSymlinks:true` changed relative pnpm links to absolute host paths. `logs/package.log` and failed context `/tmp/umami-package-proof-bFKjOP` retain that failure. One authorized bounded correction preserved relative links and passed (`logs/package-corrected.log`), followed by the final-source package smoke in the browser harness. No dependency copying was used as a repair. Successful package context was removed only after DB cleanup; failed context remains.
 

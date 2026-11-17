@@ -3009,7 +3009,7 @@ export const operations = {
     path: '/api/ai/assistant/chats/{chatId}',
     pathParams: ['chatId'],
     queryParams: [],
-    hasBody: false,
+    hasBody: true,
   },
   patchAnalysesAnalysisId: {
     operationId: 'patchAnalysesAnalysisId',
@@ -3025,7 +3025,7 @@ export const operations = {
     path: '/api/ai/assistant/chats',
     pathParams: [],
     queryParams: [],
-    hasBody: false,
+    hasBody: true,
   },
   postAiAssistantChatsChatIdCancel: {
     operationId: 'postAiAssistantChatsChatIdCancel',
@@ -3041,7 +3041,7 @@ export const operations = {
     path: '/api/ai/assistant/chats/{chatId}/reply',
     pathParams: ['chatId'],
     queryParams: [],
-    hasBody: false,
+    hasBody: true,
   },
   postAiAssistantChatsChatIdTurn: {
     operationId: 'postAiAssistantChatsChatIdTurn',
@@ -3049,7 +3049,7 @@ export const operations = {
     path: '/api/ai/assistant/chats/{chatId}/turn',
     pathParams: ['chatId'],
     queryParams: [],
-    hasBody: false,
+    hasBody: true,
   },
   postAiBoardsChat: {
     operationId: 'postAiBoardsChat',
@@ -5117,8 +5117,7 @@ export abstract class GeneratedUmamiClient {
   }
 
   /**
-   * Update ai assistant chats chat id
-   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * Rename an assistant chat
    * `PATCH /api/ai/assistant/chats/{chatId}`
    */
   patchAiAssistantChatsChatId(
@@ -5141,8 +5140,7 @@ export abstract class GeneratedUmamiClient {
   }
 
   /**
-   * Create or update ai assistant chats
-   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * Create an assistant chat
    * `POST /api/ai/assistant/chats`
    */
   postAiAssistantChats(
@@ -5165,8 +5163,7 @@ export abstract class GeneratedUmamiClient {
   }
 
   /**
-   * Create or update ai assistant chats chat id reply
-   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * Reply to a pending assistant interaction
    * `POST /api/ai/assistant/chats/{chatId}/reply`
    */
   postAiAssistantChatsChatIdReply(
@@ -5177,8 +5174,8 @@ export abstract class GeneratedUmamiClient {
   }
 
   /**
-   * Create or update ai assistant chats chat id turn
-   * Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+   * Run an assistant turn
+   * Streams named server-sent events. The client transport returns text, not a JSON result or parsed event iterator. Message limit is 32768 UTF-8 bytes.
    * `POST /api/ai/assistant/chats/{chatId}/turn`
    */
   postAiAssistantChatsChatIdTurn(

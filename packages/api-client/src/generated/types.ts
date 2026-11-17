@@ -263,10 +263,7 @@ export interface paths {
      */
     get: operations['getAiAssistantChats'];
     put?: never;
-    /**
-     * Create or update ai assistant chats
-     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
-     */
+    /** Create an assistant chat */
     post: operations['postAiAssistantChats'];
     delete?: never;
     options?: never;
@@ -295,10 +292,7 @@ export interface paths {
     delete: operations['deleteAiAssistantChatsChatId'];
     options?: never;
     head?: never;
-    /**
-     * Update ai assistant chats chat id
-     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
-     */
+    /** Rename an assistant chat */
     patch: operations['patchAiAssistantChatsChatId'];
     trace?: never;
   };
@@ -331,10 +325,7 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    /**
-     * Create or update ai assistant chats chat id reply
-     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
-     */
+    /** Reply to a pending assistant interaction */
     post: operations['postAiAssistantChatsChatIdReply'];
     delete?: never;
     options?: never;
@@ -352,8 +343,8 @@ export interface paths {
     get?: never;
     put?: never;
     /**
-     * Create or update ai assistant chats chat id turn
-     * @description Generated from the App Router handler and its request-validation source. Add a colocated contract.ts to supply exact response models and curated documentation.
+     * Run an assistant turn
+     * @description Streams named server-sent events. The client transport returns text, not a JSON result or parsed event iterator. Message limit is 32768 UTF-8 bytes.
      */
     post: operations['postAiAssistantChatsChatIdTurn'];
     delete?: never;
@@ -5163,15 +5154,55 @@ export interface operations {
       path?: never;
       cookie?: never;
     };
-    requestBody?: never;
+    requestBody?: {
+      content: {
+        'application/json': {
+          /** @description Title of the page. */
+          title?: string;
+        };
+      };
+    };
     responses: {
-      /** @description Successful response. The response shape is inferred as free-form because the handler does not expose a reusable response schema. */
+      /** @description Successful response. */
       200: {
         headers: {
           [name: string]: unknown;
         };
         content: {
-          'application/json': unknown;
+          'application/json': {
+            /** @description Date and time the record was created. */
+            createdAt: string;
+            /** @description Unique identifier of the resource. */
+            id: string;
+            /** @description Title of the page. */
+            title: string;
+            /** @description Date and time the record was last updated. */
+            updatedAt: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
         };
       };
     };
@@ -5229,15 +5260,67 @@ export interface operations {
       };
       cookie?: never;
     };
-    requestBody?: never;
+    requestBody: {
+      content: {
+        'application/json': {
+          /** @description Title of the page. */
+          title: string;
+        };
+      };
+    };
     responses: {
-      /** @description Successful response. The response shape is inferred as free-form because the handler does not expose a reusable response schema. */
+      /** @description Successful response. */
       200: {
         headers: {
           [name: string]: unknown;
         };
         content: {
-          'application/json': unknown;
+          'application/json': {
+            /** @description Date and time the record was created. */
+            createdAt: string;
+            /** @description Unique identifier of the resource. */
+            id: string;
+            /** @description Title of the page. */
+            title: string;
+            /** @description Date and time the record was last updated. */
+            updatedAt: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
         };
       };
     };
@@ -5273,15 +5356,73 @@ export interface operations {
       };
       cookie?: never;
     };
-    requestBody?: never;
+    requestBody: {
+      content: {
+        'application/json':
+          | {
+              confirmed: boolean;
+              /** @constant */
+              kind: 'confirm';
+              partId: string;
+            }
+          | {
+              answer: string;
+              /** @constant */
+              kind: 'question';
+              partId: string;
+            };
+      };
+    };
     responses: {
-      /** @description Successful response. The response shape is inferred as free-form because the handler does not expose a reusable response schema. */
+      /** @description Successful response. */
       200: {
         headers: {
           [name: string]: unknown;
         };
         content: {
-          'application/json': unknown;
+          'application/json': {
+            /**
+             * @description Whether the operation succeeded.
+             * @constant
+             */
+            ok: true;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
         };
       };
     };
@@ -5295,15 +5436,94 @@ export interface operations {
       };
       cookie?: never;
     };
-    requestBody?: never;
+    requestBody: {
+      content: {
+        'application/json': {
+          context?: {
+            /** @description ID of the board. */
+            boardId?: string;
+            /** @description End of the date range as a Unix timestamp in milliseconds. */
+            endAt?: number;
+            /** @description Start of the date range as a Unix timestamp in milliseconds. */
+            startAt?: number;
+            /** @description IANA time zone used to interpret dates and group results, for example America/New_York. */
+            timezone?: string;
+            /** @description ID of the website. */
+            websiteId?: string;
+          };
+          /** @description Human-readable explanation of the result. */
+          message: string;
+        };
+      };
+    };
     responses: {
-      /** @description Successful response. The response shape is inferred as free-form because the handler does not expose a reusable response schema. */
+      /** @description Named assistant events encoded as SSE frames. */
       200: {
         headers: {
           [name: string]: unknown;
         };
         content: {
-          'application/json': unknown;
+          'text/event-stream': string;
+        };
+      };
+      /** @description Request rejected. */
+      400: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      401: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      409: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
+        };
+      };
+      /** @description Request rejected. */
+      429: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          'application/json': {
+            /** @description Error details returned when the operation fails. */
+            error: string;
+          };
         };
       };
     };
