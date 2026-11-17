@@ -1,55 +1,79 @@
 # Analyst lifecycle evaluation (E1/E2)
 
-`scripts/ai/eval-analyst.ts` is the analyst-lifecycle counterpart to the spec's required
-12-scenario acceptance set (`wiki/specs/analyst-dashboard-lifecycle.md` §"Acceptance scenarios
-and evaluation"). It has two independent modes.
+The originating contract is `wiki/specs/analyst-dashboard-lifecycle.md` §7. Offline
+assertions are **not** live reasoning, image understanding or a release approval.
 
-## E1 — offline (no network, no model, no native Pi process)
-
-```sh
-npx --yes pnpm@12.3.4 exec tsx scripts/ai/eval-analyst.ts --offline --strict
-```
-
-Requires a disposable Postgres fixture (`scripts/ai/synthetic-engines/setup.sh`, or the
-equivalent manual `ai_synthetic_owner` marker + `ai_synthetic` role/db on 127.0.0.1:25432 used by
-`scripts/test-analyst-api.ts`). Set `PG_BIN` if `psql` is not on `PATH`.
-
-This drives the 12 required scenario groups by calling the real production
-`executeAnalystTool`/`ensureTask` lifecycle (`src/lib/ai/assistant/analyst/{task,tools,deps}.ts`)
-and the real board/analysis persistence directly, in-process. The tool-call sequence for each
-scenario is **scripted in this file**, not decided by an LLM or routed through the native Pi CLI:
-this proves the lifecycle/authority/repair/verifier contracts a natural-language agent turn would
-exercise, not that a live model reliably chooses the same tool calls on its own. That is a
-materially narrower claim than D2 (which does drive the real native Pi RPC loop) — it is the
-tradeoff made explicitly to keep this harness affordable to build and run; see the inline comment
-at the top of `eval-analyst.ts`.
-
-Two scenario groups are honestly narrower than the spec's full description, noted inline where
-they occur:
-
-- **Material ambiguity** (#6): without Pi there is no "ask the user a clarifying question" step
-  to exercise. The harness instead asserts the *tool-evidence* precondition for that UX step:
-  discovery returns raw, unresolved taxonomy, and a definition claiming a stronger meaning
-  (`repository_definition`) is never silently substituted for `observed_only`.
-- **Flags-off compatibility** (#12): this script never sets `AI_ANALYST_ENABLED=false` itself
-  (the direct-tool-call path it drives doesn't go through that flag check at all). It instead
-  exercises the narrower, still-real guarantee: a saved analysis keeps executing read-only through
-  the exact same executor boards use, independent of the create/commit path the flag gates.
-
-`--strict` exits non-zero if any of the 12 groups is missing or fails to reach its required final
-state (`verified`, `data_verified_visual_pending`, `needs_input`, `blocked`, or `cancelled` per
-the spec's final-state vocabulary). A scenario whose evidence is incomplete is reported as that
-scenario's own failure, never silently reported as `verified`.
-
-## E2 — check a recorded live evaluation report
+## E1: deterministic, assertion-linked evidence
 
 ```sh
-npx --yes pnpm@12.3.4 exec tsx scripts/ai/eval-analyst.ts --check-report docs/ai-analyst-eval.json
+source /home/overfero/miniconda3/etc/profile.d/conda.sh
+conda activate umami
+export PG_BIN="$CONDA_PREFIX/bin"
+# Generate into this checkout's src/generated/prisma, not a shared dependency directory.
+DATABASE_URL=postgresql://ai_synthetic@127.0.0.1:25432/ai_synthetic \
+  npx --yes pnpm@12.3.4 exec prisma generate
+npx --yes pnpm@12.3.4 exec tsx scripts/ai/eval-analyst.ts \
+  --offline --strict --output /tmp/analyst-offline.json
 ```
 
-Validates the shape and scenario/run/safety thresholds of a previously recorded **live**
-evaluation report (same configured model/settings, baseline vs. candidate, ≥3 runs per scenario,
-every safety-relevant group's runs all required to pass). It runs nothing itself and makes no
-network or model call; a missing report file is `NOT PASS`, not a silent skip. Producing that
-report is a separately approved, spend-ceilinged release gate — not part of this repository's
-offline test suite.
+Requires the owned disposable PostgreSQL/ClickHouse pair on **127.0.0.1:25432/28123**,
+role/database `ai_synthetic`, and PostgreSQL `public.ai_synthetic_owner` marker
+`umami-ai-synthetic-r3`. No application `.env` or live credentials are needed. The
+harness creates/drops only its unique namespaces; it never modifies `public` or
+`analyst_fixture`. Database loopback calls occur; there are **no model/provider calls**.
+Do not describe this as having no network traffic.
+
+The runner executes real authenticated route handlers and task-bound tools, existing
+PostgreSQL/ClickHouse API acceptance, real child-process reopen, and the separately
+classified component/fault-injection tests. The exact assertion manifest is
+[`scripts/ai/analyst-evals/coverage.md`](../scripts/ai/analyst-evals/coverage.md), backed
+by executable `requirements` in `offline.ts`. Missing executed assertions fail closed.
+A successful process exit without assertion names and completion markers is insufficient.
+
+**Current scope: scenarios 1–5. Scenarios 6–12 remain pending. Consequently full
+`--offline --strict` must exit 1, even when every implemented assertion passes.**
+Non-strict output also says `NOT PASS` for pending coverage; it never claims all twelve
+are verified. Existing requirements for scenarios 6–12 are unchanged, not replaced by
+weaker taxonomy, post-cancel or direct-executor proxies.
+
+`--output` records command outputs, assertion receipts, source revision, dirty state,
+source/fixture hashes and observation time in **Asia/Jakarta (WIB)**. It checkpoints after
+each subprocess (`complete:false`); an interrupted checkpoint is not completed evidence.
+The final report has `complete:true`, `proven`, and `pending`. It is not an E2 live report.
+
+The API harness intentionally uses a process-local
+`PGOPTIONS='-c timezone=America/New_York'`; its actual Prisma connection asserts the
+non-UTC setting. The supplement runs under UTC, Asia/Jakarta and America/New_York and
+requires identical epoch provenance in all three. Fixed spec bounds remain canonical
+UTC instants. For example epoch `1790812800000` is **1 October 2026 07:00 WIB**;
+displaying it in Jakarta must not change that number.
+
+### Evidence boundaries
+
+- Tool choices, matching/rejection of semantic candidates and the board plan are scripted.
+  Their persisted effects and real query results are asserted; reliable model selection is E2.
+- Numeric correctness is measured against real PG/CH rows including zero and absent values.
+  `numeric-render.test.tsx` separately imports the real AnalysisWidget but injects its query
+  envelope and component wrappers. It proves DOM rendering, not a real browser, Docker
+  renderer, screenshot inspection or the DB-to-browser transport.
+- `missing-metric.test.ts` injects an omitted native stats key into the real executor.
+  It proves the failure contract, not that an empty database omits that key. Empty native
+  queries normally return an explicit zero.
+- Absent collection coverage is discovery `{startAt:null,endAt:null}`, independently of a
+  covered source's complete zero result. The executor does not itself emit a
+  `missing_collection_coverage` code. No activity conclusion follows from absent coverage.
+- Filtered session series means native pageview-active session buckets; it does not promise
+  an event-filtered distinct-person series or whole-range unique users. The API rejects
+  unsupported filtered identified-user totals instead of substituting sessions.
+
+## E2: separately approved live report
+
+```sh
+npx --yes pnpm@12.3.4 exec tsx scripts/ai/eval-analyst.ts \
+  --check-report docs/ai-analyst-eval.json
+```
+
+The check-report implementation is separately owned. A missing approved live report is
+NOT PASS. No model spend, live baseline/candidate run, image-capability preflight or
+release execution is authorized by offline success. All originating live thresholds
+and the separate target-bound release gate remain required.
