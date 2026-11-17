@@ -1,0 +1,51 @@
+TAP version 13
+# NOTICE:  drop cascades to 34 other objects
+# DETAIL:  drop cascades to table analyst_fixture_4d792140c6968c3e133d7220._prisma_migrations
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220."user"
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.session
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.website
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.website_event
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.event_data
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.team
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.team_user
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.session_data
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.report
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.segment
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.revenue
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.link
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.pixel
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.share
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.board
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.session_replay
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.session_replay_saved
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.heatmap_event
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.session_link
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.two_factor_auth
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.two_factor_backup_code
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.two_factor_otp_used
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.two_factor_rate_limit
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.app_setting
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.annotation
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.api_key
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.ai_chat
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.ai_chat_message
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.saved_analysis
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.saved_analysis_revision
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.analysis_operation
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.analysis_confirmation
+# drop cascades to table analyst_fixture_4d792140c6968c3e133d7220.analyst_task
+# Subtest: CLI against disposable real Next handlers + unique owned PostgreSQL proves HTTP ingestion AND stored events, not deployment/image/vision
+ok 1 - CLI against disposable real Next handlers + unique owned PostgreSQL proves HTTP ingestion AND stored events, not deployment/image/vision
+  ---
+  duration_ms: 27759.901894
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 32734.232624

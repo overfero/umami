@@ -1,0 +1,4 @@
+$ tsx scripts/check-openapi.ts
+198/198 API operations are included in the generated spec (183 explicit, 15 source-inferred).
+$ tsx scripts/generate-api-client.ts --check
+API client is up to date (185 operations).

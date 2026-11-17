@@ -1,0 +1,42 @@
+scripts/ai/analyst-evals/schema-bind-diagnostic.ts(39,41): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+scripts/seed/index.ts(4,43): error TS2307: Cannot find module '../../src/generated/prisma/client.js' or its corresponding type declarations.
+src/app/(collect)/p/[slug]/route.ts(5,28): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/app/(collect)/q/[slug]/route.ts(5,27): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/app/(main)/admin/users/[userId]/UserProvider.tsx(4,27): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/app/(main)/links/LinkProvider.tsx(5,27): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/app/(main)/pixels/PixelProvider.tsx(5,28): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/app/(main)/teams/TeamProvider.tsx(5,27): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/app/(main)/websites/WebsiteProvider.tsx(5,30): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/app/api/boards/[boardId]/clone/route.ts(1,29): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/app/api/share/[slug]/route.ts(91,72): error TS2345: Argument of type 'Set<unknown>' is not assignable to parameter of type 'Set<string>'.
+  Type 'unknown' is not assignable to type 'string'.
+src/app/api/share/[slug]/route.ts(95,70): error TS2345: Argument of type 'Set<unknown>' is not assignable to parameter of type 'Set<string>'.
+  Type 'unknown' is not assignable to type 'string'.
+src/app/api/share/[slug]/route.ts(99,69): error TS2345: Argument of type 'Set<unknown>' is not assignable to parameter of type 'Set<string>'.
+  Type 'unknown' is not assignable to type 'string'.
+src/app/api/websites/[websiteId]/route.ts(1,29): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/components/hooks/queries/useSavedDefinitionsQuery.ts(1,29): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/lib/ai/assistant/store.ts(4,29): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/lib/ai/query.ts(2,29): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/lib/entity.ts(1,50): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/lib/load.ts(1,39): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/lib/prisma.ts(6,30): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/lib/two-factor/rate-limit.ts(1,24): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/lib/two-factor/replay-prevention.ts(2,24): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/lib/types.ts(2,43): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/permissions/report.ts(1,29): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/queries/prisma/analysis.ts(2,29): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/queries/prisma/annotation.ts(1,41): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/queries/prisma/board.ts(1,36): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/queries/prisma/link.ts(1,35): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/queries/prisma/pixel.ts(1,36): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/queries/prisma/report.ts(1,37): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/queries/prisma/segment.ts(1,38): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/queries/prisma/sessionReplay.ts(1,41): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/queries/prisma/share.ts(1,36): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/queries/prisma/team.ts(1,50): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/queries/prisma/teamUser.ts(1,39): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/queries/prisma/user.ts(1,24): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/queries/prisma/website.ts(2,38): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/queries/sql/events/getEventDataById.ts(1,32): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.
+src/queries/sql/sessions/createSession.ts(1,29): error TS2307: Cannot find module '@/generated/prisma/client' or its corresponding type declarations.

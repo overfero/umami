@@ -1,0 +1,409 @@
+TAP version 13
+# Subtest: public CLI rejects stale approval after each tracked root build input changes in a disposable source checkout
+    # Subtest: Dockerfile
+    ok 1 - Dockerfile
+      ---
+      duration_ms: 402.349338
+      type: 'test'
+      ...
+    # Subtest: .dockerignore
+    ok 2 - .dockerignore
+      ---
+      duration_ms: 409.458341
+      type: 'test'
+      ...
+    # Subtest: package.json
+    ok 3 - package.json
+      ---
+      duration_ms: 464.193391
+      type: 'test'
+      ...
+    # Subtest: pnpm-lock.yaml
+    ok 4 - pnpm-lock.yaml
+      ---
+      duration_ms: 378.993797
+      type: 'test'
+      ...
+    # Subtest: pnpm-workspace.yaml
+    ok 5 - pnpm-workspace.yaml
+      ---
+      duration_ms: 380.361429
+      type: 'test'
+      ...
+    # Subtest: next.config.ts
+    ok 6 - next.config.ts
+      ---
+      duration_ms: 412.016224
+      type: 'test'
+      ...
+    # Subtest: postcss.config.js
+    ok 7 - postcss.config.js
+      ---
+      duration_ms: 397.151429
+      type: 'test'
+      ...
+    # Subtest: prisma.config.ts
+    ok 8 - prisma.config.ts
+      ---
+      duration_ms: 389.327705
+      type: 'test'
+      ...
+    # Subtest: biome.json
+    ok 9 - biome.json
+      ---
+      duration_ms: 370.045776
+      type: 'test'
+      ...
+    # Subtest: rollup.tracker.config.js
+    ok 10 - rollup.tracker.config.js
+      ---
+      duration_ms: 376.980171
+      type: 'test'
+      ...
+    # Subtest: rollup.recorder.config.js
+    ok 11 - rollup.recorder.config.js
+      ---
+      duration_ms: 375.26783
+      type: 'test'
+      ...
+    # Subtest: tsup.config.js
+    ok 12 - tsup.config.js
+      ---
+      duration_ms: 391.252868
+      type: 'test'
+      ...
+    # Subtest: package.components.json
+    ok 13 - package.components.json
+      ---
+      duration_ms: 385.521266
+      type: 'test'
+      ...
+    # Subtest: tsconfig.json
+    ok 14 - tsconfig.json
+      ---
+      duration_ms: 365.420051
+      type: 'test'
+      ...
+    # Subtest: tsconfig.prisma.json
+    ok 15 - tsconfig.prisma.json
+      ---
+      duration_ms: 392.192034
+      type: 'test'
+      ...
+    # Subtest: tsconfig.tracker.json
+    ok 16 - tsconfig.tracker.json
+      ---
+      duration_ms: 383.522756
+      type: 'test'
+      ...
+    # Subtest: tsconfig.tracker.types.json
+    ok 17 - tsconfig.tracker.types.json
+      ---
+      duration_ms: 411.963538
+      type: 'test'
+      ...
+    # Subtest: netlify.toml
+    ok 18 - netlify.toml
+      ---
+      duration_ms: 378.603354
+      type: 'test'
+      ...
+    # Subtest: vercel.json
+    ok 19 - vercel.json
+      ---
+      duration_ms: 380.466453
+      type: 'test'
+      ...
+    # Subtest: app.json
+    ok 20 - app.json
+      ---
+      duration_ms: 362.431564
+      type: 'test'
+      ...
+    # Subtest: docker-compose.yml
+    ok 21 - docker-compose.yml
+      ---
+      duration_ms: 382.000761
+      type: 'test'
+      ...
+    # Subtest: source-directory
+    ok 22 - source-directory
+      ---
+      duration_ms: 351.401889
+      type: 'test'
+      ...
+    # Subtest: source-symlink
+    ok 23 - source-symlink
+      ---
+      duration_ms: 334.400035
+      type: 'test'
+      ...
+    1..23
+ok 1 - public CLI rejects stale approval after each tracked root build input changes in a disposable source checkout
+  ---
+  duration_ms: 10091.695489
+  type: 'test'
+  ...
+# Subtest: public CLI refuses absent recorded approval without contacting an environment-suggested target or exposing credentials
+ok 2 - public CLI refuses absent recorded approval without contacting an environment-suggested target or exposing credentials
+  ---
+  duration_ms: 313.604191
+  type: 'test'
+  ...
+# Subtest: runtime failures retain uncertain resources and never follow redirect or schema URLs (protocol-only)
+    # Subtest: redirect
+    ok 1 - redirect
+      ---
+      duration_ms: 494.690121
+      type: 'test'
+      ...
+    # Subtest: missing-heartbeat
+    ok 2 - missing-heartbeat
+      ---
+      duration_ms: 511.393078
+      type: 'test'
+      ...
+    # Subtest: auth-allowed
+    ok 3 - auth-allowed
+      ---
+      duration_ms: 516.371054
+      type: 'test'
+      ...
+    # Subtest: storage-empty
+    ok 4 - storage-empty
+      ---
+      duration_ms: 652.822302
+      type: 'test'
+      ...
+    # Subtest: foreign-owner
+    ok 5 - foreign-owner
+      ---
+      duration_ms: 583.007251
+      type: 'test'
+      ...
+    # Subtest: cleanup-foreign
+    ok 6 - cleanup-foreign
+      ---
+      duration_ms: 561.636379
+      type: 'test'
+      ...
+    # Subtest: cleanup-error
+    ok 7 - cleanup-error
+      ---
+      duration_ms: 549.42557
+      type: 'test'
+      ...
+    # Subtest: create-response-lost
+    ok 8 - create-response-lost
+      ---
+      duration_ms: 549.432266
+      type: 'test'
+      ...
+    # Subtest: ingest-secret-error
+    ok 9 - ingest-secret-error
+      ---
+      duration_ms: 542.693889
+      type: 'test'
+      ...
+    # Subtest: schema-url
+    ok 10 - schema-url
+      ---
+      duration_ms: 540.437717
+      type: 'test'
+      ...
+    1..10
+ok 3 - runtime failures retain uncertain resources and never follow redirect or schema URLs (protocol-only)
+  ---
+  duration_ms: 5504.655411
+  type: 'test'
+  ...
+# Subtest: public CLI observes readiness and denials, persists both markers and deletes only its created website (protocol-only disposable server)
+ok 4 - public CLI observes readiness and denials, persists both markers and deletes only its created website (protocol-only disposable server)
+  ---
+  duration_ms: 1081.356705
+  type: 'test'
+  ...
+# Subtest: approval and evidence negative controls emit no request, even when rebound by the test operator
+    # Subtest: missing-verifier-evidence
+    ok 1 - missing-verifier-evidence
+      ---
+      duration_ms: 421.483308
+      type: 'test'
+      ...
+    # Subtest: missing-readiness
+    ok 2 - missing-readiness
+      ---
+      duration_ms: 405.522833
+      type: 'test'
+      ...
+    # Subtest: duplicate-switch
+    ok 3 - duplicate-switch
+      ---
+      duration_ms: 337.813753
+      type: 'test'
+      ...
+    # Subtest: expired
+    ok 4 - expired
+      ---
+      duration_ms: 351.339533
+      type: 'test'
+      ...
+    # Subtest: future
+    ok 5 - future
+      ---
+      duration_ms: 360.283268
+      type: 'test'
+      ...
+    # Subtest: non-synthetic
+    ok 6 - non-synthetic
+      ---
+      duration_ms: 371.475182
+      type: 'test'
+      ...
+    # Subtest: target-mismatch
+    ok 7 - target-mismatch
+      ---
+      duration_ms: 396.290494
+      type: 'test'
+      ...
+    # Subtest: cross-origin
+    ok 8 - cross-origin
+      ---
+      duration_ms: 351.195029
+      type: 'test'
+      ...
+    # Subtest: credentials-in-url
+    ok 9 - credentials-in-url
+      ---
+      duration_ms: 350.340756
+      type: 'test'
+      ...
+    # Subtest: encoded-path
+    ok 10 - encoded-path
+      ---
+      duration_ms: 332.003431
+      type: 'test'
+      ...
+    # Subtest: schema-url
+    ok 11 - schema-url
+      ---
+      duration_ms: 315.672356
+      type: 'test'
+      ...
+    # Subtest: image-mismatch
+    ok 12 - image-mismatch
+      ---
+      duration_ms: 351.693975
+      type: 'test'
+      ...
+    # Subtest: flag-unknown
+    ok 13 - flag-unknown
+      ---
+      duration_ms: 339.184273
+      type: 'test'
+      ...
+    # Subtest: source-incomplete
+    ok 14 - source-incomplete
+      ---
+      duration_ms: 386.641684
+      type: 'test'
+      ...
+    # Subtest: verifier-unknown
+    ok 15 - verifier-unknown
+      ---
+      duration_ms: 336.962199
+      type: 'test'
+      ...
+    # Subtest: verifier-evidence-mismatch
+    ok 16 - verifier-evidence-mismatch
+      ---
+      duration_ms: 381.928569
+      type: 'test'
+      ...
+    # Subtest: duplicate-approval-field
+    ok 17 - duplicate-approval-field
+      ---
+      duration_ms: 315.677899
+      type: 'test'
+      ...
+    # Subtest: source-file-mismatch
+    ok 18 - source-file-mismatch
+      ---
+      duration_ms: 410.837548
+      type: 'test'
+      ...
+    # Subtest: hash-mismatch
+    ok 19 - hash-mismatch
+      ---
+      duration_ms: 348.705614
+      type: 'test'
+      ...
+    # Subtest: unsafe-file-mode
+    ok 20 - unsafe-file-mode
+      ---
+      duration_ms: 327.989283
+      type: 'test'
+      ...
+    # Subtest: symlink
+    ok 21 - symlink
+      ---
+      duration_ms: 317.404168
+      type: 'test'
+      ...
+    # Subtest: ambiguous-auth
+    ok 22 - ambiguous-auth
+      ---
+      duration_ms: 383.991369
+      type: 'test'
+      ...
+    # Subtest: mismatched-auth
+    ok 23 - mismatched-auth
+      ---
+      duration_ms: 389.980084
+      type: 'test'
+      ...
+    # Subtest: missing-vision
+    ok 24 - missing-vision
+      ---
+      duration_ms: 381.728293
+      type: 'test'
+      ...
+    # Subtest: policy-needs-vision
+    ok 25 - policy-needs-vision
+      ---
+      duration_ms: 375.050546
+      type: 'test'
+      ...
+    # Subtest: synthetic-transport-is-not-vision
+    ok 26 - synthetic-transport-is-not-vision
+      ---
+      duration_ms: 395.896984
+      type: 'test'
+      ...
+    # Subtest: unknown-argument
+    ok 27 - unknown-argument
+      ---
+      duration_ms: 321.63791
+      type: 'test'
+      ...
+    # Subtest: missing-synthetic-flag
+    ok 28 - missing-synthetic-flag
+      ---
+      duration_ms: 306.619098
+      type: 'test'
+      ...
+    1..28
+ok 5 - approval and evidence negative controls emit no request, even when rebound by the test operator
+  ---
+  duration_ms: 10070.274728
+  type: 'test'
+  ...
+1..5
+# tests 66
+# suites 0
+# pass 66
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 17412.473179
