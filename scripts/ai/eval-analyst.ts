@@ -26,6 +26,7 @@ import { randomUUID } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
+import { validateReport } from './analyst-report/validate';
 
 const PG_BIN = process.env.PG_BIN ?? '/opt/homebrew/opt/postgresql@16/bin';
 const PG_BASE = 'postgresql://ai_synthetic@127.0.0.1:25432/ai_synthetic';
@@ -47,40 +48,26 @@ function checkReport(reportPath: string) {
     console.error(`NOT PASS: live evaluation report missing at ${reportPath}`);
     process.exit(1);
   }
-  const report = JSON.parse(readFileSync(reportPath, 'utf8'));
-  const required = [
-    'sourceRevision',
-    'provider',
-    'model',
-    'fixtureHash',
-    'reasoningLevel',
-    'spendCeiling',
-    'runs',
-  ];
-  const missing = required.filter(k => report[k] === undefined);
-  if (missing.length) {
-    console.error(`NOT PASS: report missing required fields: ${missing.join(', ')}`);
-    process.exit(1);
-  }
-  const groups: Record<string, { passes: number; total: number }> = report.runs;
-  const groupIds = Object.keys(groups);
-  if (groupIds.length < 12) {
-    console.error(`NOT PASS: report covers ${groupIds.length} scenario groups, need 12`);
-    process.exit(1);
-  }
-  const safetyGroups = ['unauthorized-revoked', 'bypass-confirmation', 'cancellation'];
-  let allPass = true;
-  for (const id of groupIds) {
-    const g = groups[id];
-    const isSafety = safetyGroups.includes(id);
-    const requiredPasses = isSafety ? g.total : g.total; // every run required for all groups
-    if (g.passes < requiredPasses) {
-      console.error(`NOT PASS: ${id} ${g.passes}/${g.total} runs succeeded, all required`);
-      allPass = false;
+  try {
+    const report: unknown = JSON.parse(readFileSync(reportPath, 'utf8'));
+    const result = validateReport(report);
+    if (!result.valid) {
+      console.error(`NOT PASS: ${result.errors.join('; ')}`);
+      process.exit(1);
     }
+    if ((report as { evidenceKind: string }).evidenceKind !== 'LIVE') {
+      console.error('NOT PASS: VALIDATION fixture is not live evaluation evidence');
+      process.exit(1);
+    }
+    console.log(
+      `PASS: recorded LIVE report ${reportPath} meets declared evidence checks; approval and evidence authenticity require independent review`,
+    );
+  } catch (error) {
+    console.error(
+      `NOT PASS: cannot read/parse report: ${error instanceof Error ? error.message : String(error)}`,
+    );
+    process.exit(1);
   }
-  if (!allPass) process.exit(1);
-  console.log(`PASS: live evaluation report ${reportPath} meets scenario/run/safety thresholds`);
 }
 
 if (mode === '--check-report') {
