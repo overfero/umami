@@ -5,8 +5,17 @@
  * Trusted SQL must not SET a nonUTC session/transaction timezone: startup settings are
  * not a security boundary against SQL or database administrators changing a live session.
  */
-export function prismaSessionConfig(connectionString: string, inheritedOptions = process.env.PGOPTIONS ?? '') {
-  const url = new URL(connectionString);
+export function prismaSessionConfig(
+  connectionString: string,
+  inheritedOptions = process.env.PGOPTIONS ?? '',
+) {
+  let url: URL;
+  try {
+    url = new URL(connectionString);
+  } catch {
+    // Node's URL error retains credential-bearing input. Do not propagate it or its cause.
+    throw new Error('Invalid PostgreSQL connection configuration');
+  }
   const urlOptions = url.searchParams.getAll('options');
   if (urlOptions.length > 1) throw new Error('Ambiguous PostgreSQL startup options');
   const parts = [inheritedOptions, urlOptions[0] ?? ''].filter(Boolean);

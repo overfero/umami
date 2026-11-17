@@ -37,7 +37,9 @@ try {
   // This raw nonUTC client is diagnostic-only and never used by product discovery.
   const { PrismaPg } = await import('@prisma/adapter-pg');
   const { PrismaClient } = await import('@/generated/prisma/client');
-  client = new PrismaClient({ adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }, { schema: namespace }) });
+  client = new PrismaClient({
+    adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL }, { schema: namespace }),
+  });
   const probe = async (parameter: Date | string) => {
     const [result] = await client.$queryRawUnsafe(
       `select current_setting('TimeZone') as timezone,
@@ -62,7 +64,14 @@ try {
   assert.equal(iso.seed_in_bound_range, true);
   console.log(
     JSON.stringify(
-      { mode: 'raw-upstream-adapter-without-application-policy', tableType: 'timestamptz(6)', expectedStartEpoch: 1790812800000, literal, date, iso },
+      {
+        mode: 'raw-upstream-adapter-without-application-policy',
+        tableType: 'timestamptz(6)',
+        expectedStartEpoch: 1790812800000,
+        literal,
+        date,
+        iso,
+      },
       (_key, value) => (typeof value === 'bigint' ? value.toString() : value),
     ),
   );

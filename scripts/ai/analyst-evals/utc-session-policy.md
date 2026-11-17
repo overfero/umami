@@ -36,7 +36,10 @@ PGOPTIONS, URL options, then `-c TimeZone=UTC`. Other options/search_path are re
 PostgreSQL applies repeated startup assignments in order (verified against actual
 physical sessions with conflicting inheritedNY/URLJakarta and replicaURLNY). Odd
 trailing backslash/NUL rejected because it could swallow the appended startup flag.
-No credentials/options are logged by helper errors. No role/server/global setting.
+Malformed URL construction now throws only a generic configuration error, without
+retaining Node's credential-bearing input error or cause. Synthetic regression
+checks message/stack/JSON/own properties; this assurance concerns the helper only,
+not every preexisting URL parser in the application. No role/server/global setting.
 Every fresh socket/reconnect receives startup config; no single pooled SET, NodeTZ,
 or evaluator transaction is responsible for application UTC.
 

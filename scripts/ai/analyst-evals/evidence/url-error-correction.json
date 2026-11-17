@@ -1,0 +1,367 @@
+{
+  "mode": "offline-supplemental-url-error-correction",
+  "observedAtJakarta": "2026-11-17T21:10:17.099813+07:00",
+  "sourceRevision": "939967ba5e12fd8949d4f475b8c2b63b4e47fcdf",
+  "sourceDirty": true,
+  "sourceHashes": {
+    "src/lib/prisma-session.ts": "d65ec4c72dce103095b11aedf90204628e128383bcf6e18fe451deb9ad1756ed",
+    "src/lib/prisma-session.test.ts": "97e1dcbfa9588fcac160a197d46d3a1567d263a97c8921cbadc53b6768a0db36",
+    "src/lib/prisma.ts": "14c57096a627a75a816f0536161314c50690777a0ba76ab793a39c84a8c8ba8f",
+    "src/lib/prisma.test.ts": "149f6519c200be717eb608ce1d006b0a706f14c1c614dac5bd5660d068783068",
+    "scripts/ai/analyst-evals/session-policy.ts": "96413e1b16301bcab9588470b31bfa9228b11a912a8cb6c958ff5ca117edb04e",
+    "scripts/ai/analyst-evals/utc-session-policy.md": "1ae92042b7f25fe998f35c9e6509c25a94854cf6879d875b6c0767b9a729e655",
+    "scripts/ai/analyst-evals/url-error-correction.md": "22380c60b8cbd7b3108172e1c038f8a22ad477b40f24a6fe95e9fdcbfb442c34",
+    "scripts/ai/analyst-evals/run-offline.ts": "adc3cd6a078e5c5bb9ea9c8bf51b9dc49d730c0e79da3c69d932dce29c5fabe0",
+    "scripts/ai/analyst-evals/schema-bind-diagnostic.ts": "706f935c2c2b1c509cb5d9d0690d422abf624045dfddd346478355dc13c7eee8"
+  },
+  "commands": [
+    {
+      "command": "npx --yes pnpm@12.3.4 exec vitest run src/lib/prisma-session.test.ts --reporter=json --outputFile=/tmp/slice02-url-red.json",
+      "exitCode": 1,
+      "output": "JSON report written to /tmp/slice02-url-red.json\n"
+    },
+    {
+      "command": "npx --yes pnpm@12.3.4 exec vitest run src/lib/prisma-session.test.ts src/lib/prisma.test.ts --reporter=json --outputFile=/tmp/slice02-url-green.json",
+      "exitCode": 0,
+      "output": "JSON report written to /tmp/slice02-url-green.json\n"
+    },
+    {
+      "command": "TZ=Asia/Jakarta PGOPTIONS='-c timezone=America/New_York' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/session-policy.ts",
+      "exitCode": 0,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\nASSERTION base replica and AI physical pools start UTC preserving owned schema and options; reconnect stays UTC\nASSERTION raw Date and ORM create update filter preserve independent stored epochs; preseeded scalar array reads preserve instants\n(node:105547) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\nASSERTION Jakarta midnight half-open grouping and New York DST boundaries remain explicit under UTC sessions\nASSERTION trusted SET LOCAL nonUTC is unsupported inside transaction and restores UTC on commit and rollback\nEVIDENCE {\"suite\":\"session-policy-pg\",\"assertions\":[\"base replica and AI physical pools start UTC preserving owned schema and options; reconnect stays UTC\",\"raw Date and ORM create update filter preserve independent stored epochs; preseeded scalar array reads preserve instants\",\"Jakarta midnight half-open grouping and New York DST boundaries remain explicit under UTC sessions\",\"trusted SET LOCAL nonUTC is unsupported inside transaction and restores UTC on commit and rollback\"],\"passed\":true}\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table _prisma_migrations\ndrop cascades to table \"user\"\ndrop cascades to table session\ndrop cascades to table website\ndrop cascades to table website_event\ndrop cascades to table event_data\ndrop cascades to table team\ndrop cascades to table team_user\ndrop cascades to table session_data\ndrop cascades to table report\ndrop cascades to table segment\ndrop cascades to table revenue\ndrop cascades to table link\ndrop cascades to table pixel\ndrop cascades to table share\ndrop cascades to table board\ndrop cascades to table session_replay\ndrop cascades to table session_replay_saved\ndrop cascades to table heatmap_event\ndrop cascades to table session_link\ndrop cascades to table two_factor_auth\ndrop cascades to table two_factor_backup_code\ndrop cascades to table two_factor_otp_used\ndrop cascades to table two_factor_rate_limit\ndrop cascades to table app_setting\ndrop cascades to table annotation\ndrop cascades to table api_key\ndrop cascades to table ai_chat\ndrop cascades to table ai_chat_message\ndrop cascades to table saved_analysis\ndrop cascades to table saved_analysis_revision\ndrop cascades to table analysis_operation\ndrop cascades to table analysis_confirmation\ndrop cascades to table analyst_task\n"
+    }
+  ],
+  "redReport": {
+    "numTotalTestSuites": 1,
+    "numPassedTestSuites": 0,
+    "numFailedTestSuites": 1,
+    "numPendingTestSuites": 0,
+    "numTotalTests": 3,
+    "numPassedTests": 2,
+    "numFailedTests": 1,
+    "numPendingTests": 0,
+    "numTodoTests": 0,
+    "snapshot": {
+      "added": 0,
+      "failure": false,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "filesRemovedList": [],
+      "filesUnmatched": 0,
+      "filesUpdated": 0,
+      "matched": 0,
+      "total": 0,
+      "unchecked": 0,
+      "uncheckedKeysByFile": [],
+      "unmatched": 0,
+      "updated": 0,
+      "didUpdate": false
+    },
+    "startTime": 1794924461152,
+    "success": false,
+    "testResults": [
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "applies UTC last after inherited and URL startup options while preserving schema and other options",
+            "status": "passed",
+            "title": "applies UTC last after inherited and URL startup options while preserving schema and other options",
+            "duration": 9.339525999999978,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "malformed credential-bearing URLs throw only sanitized configuration errors",
+            "status": "failed",
+            "title": "malformed credential-bearing URLs throw only sanitized configuration errors",
+            "duration": 7.914854000000105,
+            "failureMessages": [
+              "AssertionError: expected 'Invalid URL' to be 'Invalid PostgreSQL connection configu\u2026' // Object.is equality\n    at /home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/prisma-session.test.ts:19:25\n    at file:///home/overfero/Project/ocbc/umami/node_modules/.pnpm/@vitest+runner@4.1.11/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\n    at file:///home/overfero/Project/ocbc/umami/node_modules/.pnpm/@vitest+runner@4.1.11/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\n    at file:///home/overfero/Project/ocbc/umami/node_modules/.pnpm/@vitest+runner@4.1.11/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///home/overfero/Project/ocbc/umami/node_modules/.pnpm/@vitest+runner@4.1.11/node_modules/@vitest/runner/dist/chunk-artifact.js:2323:10)\n    at file:///home/overfero/Project/ocbc/umami/node_modules/.pnpm/@vitest+runner@4.1.11/node_modules/@vitest/runner/dist/chunk-artifact.js:2305:20\n    at new Promise (<anonymous>)\n    at runWithTimeout (file:///home/overfero/Project/ocbc/umami/node_modules/.pnpm/@vitest+runner@4.1.11/node_modules/@vitest/runner/dist/chunk-artifact.js:2272:10)\n    at file:///home/overfero/Project/ocbc/umami/node_modules/.pnpm/@vitest+runner@4.1.11/node_modules/@vitest/runner/dist/chunk-artifact.js:2956:64"
+            ],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "fails closed on duplicate URL options or trailing escapes rather than guessing precedence",
+            "status": "passed",
+            "title": "fails closed on duplicate URL options or trailing escapes rather than guessing precedence",
+            "duration": 1.1352010000000519,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794924462363,
+        "endTime": 1794924462381.1353,
+        "status": "failed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/prisma-session.test.ts"
+      }
+    ]
+  },
+  "greenReport": {
+    "numTotalTestSuites": 7,
+    "numPassedTestSuites": 7,
+    "numFailedTestSuites": 0,
+    "numPendingTestSuites": 0,
+    "numTotalTests": 16,
+    "numPassedTests": 16,
+    "numFailedTests": 0,
+    "numPendingTests": 0,
+    "numTodoTests": 0,
+    "snapshot": {
+      "added": 0,
+      "failure": false,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "filesRemovedList": [],
+      "filesUnmatched": 0,
+      "filesUpdated": 0,
+      "matched": 0,
+      "total": 0,
+      "unchecked": 0,
+      "uncheckedKeysByFile": [],
+      "unmatched": 0,
+      "updated": 0,
+      "didUpdate": false
+    },
+    "startTime": 1794924486113,
+    "success": true,
+    "testResults": [
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "applies UTC last after inherited and URL startup options while preserving schema and other options",
+            "status": "passed",
+            "title": "applies UTC last after inherited and URL startup options while preserving schema and other options",
+            "duration": 14.019824000000199,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "malformed credential-bearing URLs throw only sanitized configuration errors",
+            "status": "passed",
+            "title": "malformed credential-bearing URLs throw only sanitized configuration errors",
+            "duration": 5.6851500000000215,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "fails closed on duplicate URL options or trailing escapes rather than guessing precedence",
+            "status": "passed",
+            "title": "fails closed on duplicate URL options or trailing escapes rather than guessing precedence",
+            "duration": 1.807452000000012,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794924487546,
+        "endTime": 1794924487567.8074,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/prisma-session.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [
+              "getRawQueryClient"
+            ],
+            "fullName": "getRawQueryClient uses a replica client for read queries when replicas are enabled",
+            "status": "passed",
+            "title": "uses a replica client for read queries when replicas are enabled",
+            "duration": 11.884886000000051,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getRawQueryClient"
+            ],
+            "fullName": "getRawQueryClient keeps read queries on the primary client when replicas are disabled",
+            "status": "passed",
+            "title": "keeps read queries on the primary client when replicas are disabled",
+            "duration": 0.5933709999999337,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getRawQueryClient"
+            ],
+            "fullName": "getRawQueryClient uses the primary client for raw writes when available",
+            "status": "passed",
+            "title": "uses the primary client for raw writes when available",
+            "duration": 0.48766299999988405,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getRawQueryClient"
+            ],
+            "fullName": "getRawQueryClient falls back to the current client for raw writes without a primary helper",
+            "status": "passed",
+            "title": "falls back to the current client for raw writes without a primary helper",
+            "duration": 0.33856300000002193,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getDateSQL timezone formatting"
+            ],
+            "fullName": "getDateSQL timezone formatting formats UTC (default) buckets with an explicit zone and a Z marker",
+            "status": "passed",
+            "title": "formats UTC (default) buckets with an explicit zone and a Z marker",
+            "duration": 0.3794869999999264,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getDateSQL timezone formatting"
+            ],
+            "fullName": "getDateSQL timezone formatting formats non-UTC buckets with the same explicit Z marker, not a bare timestamp",
+            "status": "passed",
+            "title": "formats non-UTC buckets with the same explicit Z marker, not a bare timestamp",
+            "duration": 0.28990300000009483,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getDateStringSQL timezone formatting"
+            ],
+            "fullName": "getDateStringSQL timezone formatting formats non-UTC second-precision values with an explicit Z marker",
+            "status": "passed",
+            "title": "formats non-UTC second-precision values with an explicit Z marker",
+            "duration": 0.32156899999995403,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getDateStringSQL timezone formatting"
+            ],
+            "fullName": "getDateStringSQL timezone formatting defaults to explicit UTC formatting regardless of unit when no timezone is given",
+            "status": "passed",
+            "title": "defaults to explicit UTC formatting regardless of unit when no timezone is given",
+            "duration": 0.28239000000007763,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getDateWeeklySQL timezone formatting"
+            ],
+            "fullName": "getDateWeeklySQL timezone formatting falls back to UTC instead of producing invalid SQL when no timezone is given",
+            "status": "passed",
+            "title": "falls back to UTC instead of producing invalid SQL when no timezone is given",
+            "duration": 0.3424959999999828,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getDateWeeklySQL timezone formatting"
+            ],
+            "fullName": "getDateWeeklySQL timezone formatting uses the given timezone when one is provided",
+            "status": "passed",
+            "title": "uses the given timezone when one is provided",
+            "duration": 0.38040799999998853,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "pagedRawQuery default ordering"
+            ],
+            "fullName": "pagedRawQuery default ordering applies trusted default order only to the page query with cap undefined",
+            "status": "passed",
+            "title": "applies trusted default order only to the page query with cap undefined",
+            "duration": 1.7444359999999506,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "pagedRawQuery default ordering"
+            ],
+            "fullName": "pagedRawQuery default ordering applies trusted default order only to the page query with cap 5",
+            "status": "passed",
+            "title": "applies trusted default order only to the page query with cap 5",
+            "duration": 1.0305630000000292,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "pagedRawQuery default ordering"
+            ],
+            "fullName": "pagedRawQuery default ordering keeps explicit ordering and legacy no-order behavior",
+            "status": "passed",
+            "title": "keeps explicit ordering and legacy no-order behavior",
+            "duration": 1.3392690000000584,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794924487586,
+        "endTime": 1794924487605.3394,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/prisma.test.ts"
+      }
+    ]
+  },
+  "priorReceipts": [
+    {
+      "path": "scripts/ai/analyst-evals/evidence/utc-clarification-authority.json",
+      "sha256": "46cf9d3dc0a767e44c0a3829653b1c6cfb94d3020df8f77cfb152c0a78580cb6",
+      "unchangedSince": "939967ba5",
+      "qualification": "Historical execution only; original sourceHashes preserved, not refreshed to new helper."
+    },
+    {
+      "path": "scripts/ai/analyst-evals/evidence/utc-session-validation.json",
+      "sha256": "ddfbdcf444b0079b87e3ccc2e7d7e4eb0cba641cc3a76243e2d296136ed0deef",
+      "unchangedSince": "939967ba5",
+      "qualification": "Historical execution only; original sourceHashes preserved, not refreshed to new helper."
+    }
+  ],
+  "postflight": {
+    "marker": "umami-ai-synthetic-r3",
+    "analystSchemas": [
+      "analyst_fixture"
+    ]
+  },
+  "limitations": [
+    "No new fullE1 or whole matrix run; earlier receipts retained source-bound",
+    "Preexisting getSchema URL parser exposure not fixed",
+    "Independent re-review required",
+    "No live/provider calls despite separately approved live budget"
+  ]
+}
