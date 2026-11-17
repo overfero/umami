@@ -12,6 +12,7 @@ test('visible update notice never obstructs New chat mouse or keyboard actions o
     await expect(alert).toBeVisible();
     await newChat.click({timeout:5000});
     await expect(alert).toBeVisible();
+    if (width === 390) await page.getByRole('button', { name: 'Chat history', exact: true }).click();
     await newChat.focus();await newChat.press('Enter');
     await expect(alert.getByRole('button',{name:'Dismiss',exact:true})).toBeVisible();
     await expect(alert.getByRole('button',{name:'View details',exact:true})).toBeVisible();
