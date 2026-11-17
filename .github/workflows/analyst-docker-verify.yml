@@ -56,7 +56,11 @@ jobs:
       - run: pnpm install --frozen-lockfile
 
       - name: Install pinned Pi 1.4.0
-        run: npm install -g --prefix "$HOME/.local" @earendil-works/pi-coding-agent@1.4.0
+        run: |
+          npm install -g --prefix "$HOME/.local" @earendil-works/pi-coding-agent@1.4.0
+          pi_root="$(npm root -g --prefix "$HOME/.local")/@earendil-works/pi-coding-agent"
+          AI_PI_ROOT="$pi_root" node scripts/ai/native.mjs --version
+          echo "AI_PI_ROOT=$pi_root" >> "$GITHUB_ENV"
 
       - run: pnpm exec playwright install --with-deps chromium
 
@@ -93,7 +97,6 @@ jobs:
 
       - name: D2 full analyst lifecycle
         env:
-          AI_PI_ROOT: "${{ github.workspace }}/../.local/lib/node_modules/@earendil-works/pi-coding-agent"
           # The runner's default 2048 MiB heap trips Next dev's memory-threshold restart
           # mid-compile on this 7 GiB runner shared with the Postgres/ClickHouse services.
           ANALYST_FIXTURE_NODE_OPTIONS: "--max-old-space-size=3072"
@@ -108,7 +111,6 @@ jobs:
 
       - name: B3 built actual-renderer integration
         env:
-          AI_PI_ROOT: "${{ github.workspace }}/../.local/lib/node_modules/@earendil-works/pi-coding-agent"
           DATABASE_URL: "postgresql://ai_synthetic@127.0.0.1:25432/ai_synthetic?schema=analyst_b3"
           APP_SECRET: "synthetic-analyst-b3-only"
           AI_ANALYST_ENABLED: "true"
