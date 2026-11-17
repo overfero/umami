@@ -72,6 +72,7 @@ export function App({ children }) {
         <SideNav />
       </Column>
       <Column overflowX="hidden" minHeight="0" position="relative">
+        <UpdateNotice user={user} config={config} />
         <TopNav />
         <Column
           alignItems="center"
@@ -82,7 +83,6 @@ export function App({ children }) {
         </Column>
       </Column>
       {needsTwoFactorSetup && <TwoFactorSetupModal required={true} />}
-      <UpdateNotice user={user} config={config} />
       {process.env.NODE_ENV === 'production' && !pathname.includes('/share/') && (
         <Script src={`${process.env.basePath || ''}/telemetry.js`} />
       )}
