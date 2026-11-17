@@ -19,7 +19,7 @@ import { randomUUID } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
-const PG_BIN = '/opt/homebrew/opt/postgresql@16/bin';
+const PG_BIN = process.env.PG_BIN ?? '/opt/homebrew/opt/postgresql@16/bin';
 const PG_BASE = 'postgresql://ai_synthetic@127.0.0.1:25432/ai_synthetic';
 const CH_HTTP = 'http://127.0.0.1:28123';
 const CH_AUTH = { username: 'ai_synthetic', password: 'synthetic-only' };

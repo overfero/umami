@@ -145,7 +145,7 @@ export function fixtureEnv({
     HOME: join(dir, '.home'),
     TMPDIR: join(dir, '.home'),
     NODE_ENV: built ? 'production' : 'development',
-    NODE_OPTIONS: '--max-old-space-size=2048',
+    NODE_OPTIONS: process.env.ANALYST_FIXTURE_NODE_OPTIONS ?? '--max-old-space-size=2048',
     PORT: port,
     NEXT_TELEMETRY_DISABLED: '1',
     DATABASE_URL: FIXTURE_DATABASE,

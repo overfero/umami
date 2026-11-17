@@ -1,0 +1,127 @@
+name: Analyst Docker verification (D2 + B3)
+
+# Ad-hoc verification workflow: GitHub-hosted runners have real Docker (unlike a
+# nested-container-restricted sandbox), so this exercises the analyst lifecycle
+# acceptance targets that need an actual Docker-built verifier image:
+#   D2 full lifecycle e2e, B3 built-renderer integration e2e.
+# Not part of normal CI; runs only on pushes to this dedicated branch.
+
+on:
+  push:
+    branches:
+      - analyst-ci-verify
+
+env:
+  DATABASE_URL: "postgresql://ai_synthetic@127.0.0.1:25432/ai_synthetic?schema=public"
+  PG_BIN: "/usr/lib/postgresql/16/bin"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: ai_synthetic
+          POSTGRES_DB: ai_synthetic
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 25432:5432
+        options: >-
+          --health-cmd "pg_isready -U ai_synthetic"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+      clickhouse:
+        image: clickhouse/clickhouse-server:24.8
+        env:
+          CLICKHOUSE_USER: ai_synthetic
+          CLICKHOUSE_PASSWORD: synthetic-only
+          CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+        ports:
+          - 28123:8123
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.3.4
+          run_install: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Install pinned Pi 1.4.0
+        run: npm install -g --prefix "$HOME/.local" @earendil-works/pi-coding-agent@1.4.0
+
+      - run: pnpm exec playwright install --with-deps chromium
+
+      - name: Fixture ownership markers (postgres + clickhouse)
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq postgresql-client
+          psql -h 127.0.0.1 -p 25432 -U ai_synthetic -d ai_synthetic -v ON_ERROR_STOP=1 -c \
+            "create table ai_synthetic_owner (owner text); insert into ai_synthetic_owner values ('umami-ai-synthetic-r3');"
+          psql -h 127.0.0.1 -p 25432 -U ai_synthetic -d ai_synthetic -v ON_ERROR_STOP=1 -c \
+            "create schema analyst_fixture; comment on schema analyst_fixture is 'umami-analyst-fixture-r1';"
+          curl --retry 10 --retry-delay 2 --retry-connrefused --silent --fail \
+            --user ai_synthetic:synthetic-only http://127.0.0.1:28123/ping
+
+      - name: A1-A3 foundation acceptance (sanity re-check)
+        run: |
+          pnpm exec prisma generate
+          pnpm exec vitest run src/lib/analyst src/permissions/analysis.test.ts src/queries/prisma/analysis.test.ts src/lib/boards.test.ts
+          pnpm exec tsx scripts/test-analyst-api.ts --postgres
+          pnpm exec tsx scripts/test-analyst-api.ts --clickhouse
+
+      - name: Migrate analyst_fixture schema
+        env:
+          DATABASE_URL: "postgresql://ai_synthetic@127.0.0.1:25432/ai_synthetic?schema=analyst_fixture"
+        run: pnpm exec prisma migrate deploy
+
+      - name: Build restricted verifier Docker image
+        run: sh scripts/ai/verifier/build-image.sh
+
+      - name: B1-B2 verifier acceptance (sanity re-check)
+        run: |
+          node --test scripts/ai/verifier/*.test.mjs
+          PLAYWRIGHT_SKIP_WEB_SERVER=1 pnpm exec playwright test -c playwright.config.ts tests/e2e/analyst-verifier.spec.ts
+
+      - name: D2 full analyst lifecycle
+        env:
+          AI_PI_ROOT: "${{ github.workspace }}/../.local/lib/node_modules/@earendil-works/pi-coding-agent"
+        run: |
+          ANALYST_FIXTURE_PORT=3341 node scripts/ai/analyst-fixture/app.mjs &
+          echo $! > /tmp/fixture.pid
+          npx --yes wait-on http://127.0.0.1:3341 --timeout 120000
+          PLAYWRIGHT_SKIP_WEB_SERVER=1 PLAYWRIGHT_BASE_URL=http://127.0.0.1:3341 \
+            pnpm exec playwright test -c playwright.config.ts tests/e2e/analyst-lifecycle.spec.ts
+          kill "$(cat /tmp/fixture.pid)" || true
+
+      - name: B3 built actual-renderer integration
+        env:
+          AI_PI_ROOT: "${{ github.workspace }}/../.local/lib/node_modules/@earendil-works/pi-coding-agent"
+          DATABASE_URL: "postgresql://ai_synthetic@127.0.0.1:25432/ai_synthetic?schema=analyst_b3"
+          APP_SECRET: "synthetic-analyst-b3-only"
+          AI_ANALYST_ENABLED: "true"
+          AI_ANALYST_VERIFIER_ENABLED: "true"
+          AI_ANALYST_VERIFIER_LAUNCHER: "docker"
+          NEXT_PUBLIC_SOURCE_URL: "https://github.com/${{ github.repository }}/tree/${{ github.sha }}"
+        run: |
+          pnpm exec prisma migrate deploy
+          pnpm exec next build --webpack
+          ANALYST_VERIFIER_BUILD="${{ github.workspace }}" \
+            pnpm exec playwright test -c playwright.config.ts tests/e2e/analyst-verifier-integration.spec.ts
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
