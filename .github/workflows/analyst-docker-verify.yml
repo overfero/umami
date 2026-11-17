@@ -94,7 +94,11 @@ jobs:
       - name: D2 full analyst lifecycle
         env:
           AI_PI_ROOT: "${{ github.workspace }}/../.local/lib/node_modules/@earendil-works/pi-coding-agent"
+          # The runner's default 2048 MiB heap trips Next dev's memory-threshold restart
+          # mid-compile on this 7 GiB runner shared with the Postgres/ClickHouse services.
+          ANALYST_FIXTURE_NODE_OPTIONS: "--max-old-space-size=3072"
         run: |
+          free -h
           ANALYST_FIXTURE_PORT=3341 node scripts/ai/analyst-fixture/app.mjs &
           echo $! > /tmp/fixture.pid
           npx --yes wait-on http://127.0.0.1:3341 --timeout 120000
