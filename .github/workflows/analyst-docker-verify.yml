@@ -83,11 +83,14 @@ jobs:
         run: |
           pnpm exec prisma generate
           pnpm exec vitest run src/lib/analyst src/permissions/analysis.test.ts src/queries/prisma/analysis.test.ts src/lib/boards.test.ts
-          pnpm exec tsx scripts/test-analyst-api.ts --postgres
-          pnpm exec tsx scripts/test-analyst-api.ts --clickhouse
+          PGOPTIONS='-c timezone=America/New_York' \
+            pnpm exec tsx scripts/test-analyst-api.ts --postgres
+          PGOPTIONS='-c timezone=America/New_York' \
+            pnpm exec tsx scripts/test-analyst-api.ts --clickhouse
 
       - name: Build own workspace artifacts and check integration contracts
         run: |
+          pnpm build:openapi
           pnpm build:packages
           pnpm exec tsc --noEmit
           pnpm openapi:check
