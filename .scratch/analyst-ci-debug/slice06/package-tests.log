@@ -1,0 +1,22 @@
+$ pnpm --filter "./packages/**" -r test
+Scope: 2 of 3 workspace projects
+$ vitest run
+
+ RUN  v4.1.11 /home/overfero/Project/ocbc/umami-analyst-slice-06/packages/api-client
+
+
+ Test Files  2 passed (2)
+      Tests  25 passed (25)
+   Start at  05:10:02
+   Duration  525ms (transform 311ms, setup 0ms, import 358ms, tests 113ms, environment 0ms)
+
+$ vitest run
+
+ RUN  v4.1.11 /home/overfero/Project/ocbc/umami-analyst-slice-06/packages/mcp
+
+
+ Test Files  2 passed (2)
+      Tests  27 passed (27)
+   Start at  05:10:03
+   Duration  780ms (transform 314ms, setup 0ms, import 724ms, tests 175ms, environment 0ms)
+

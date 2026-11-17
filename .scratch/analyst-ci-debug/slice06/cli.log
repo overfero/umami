@@ -1,0 +1,264 @@
+TAP version 13
+# Subtest: public CLI refuses absent recorded approval without contacting an environment-suggested target or exposing credentials
+ok 1 - public CLI refuses absent recorded approval without contacting an environment-suggested target or exposing credentials
+  ---
+  duration_ms: 293.418497
+  type: 'test'
+  ...
+# Subtest: runtime failures retain uncertain resources and never follow redirect or schema URLs (protocol-only)
+    # Subtest: redirect
+    ok 1 - redirect
+      ---
+      duration_ms: 442.228791
+      type: 'test'
+      ...
+    # Subtest: missing-heartbeat
+    ok 2 - missing-heartbeat
+      ---
+      duration_ms: 440.201818
+      type: 'test'
+      ...
+    # Subtest: auth-allowed
+    ok 3 - auth-allowed
+      ---
+      duration_ms: 433.961871
+      type: 'test'
+      ...
+    # Subtest: storage-empty
+    ok 4 - storage-empty
+      ---
+      duration_ms: 485.611723
+      type: 'test'
+      ...
+    # Subtest: foreign-owner
+    ok 5 - foreign-owner
+      ---
+      duration_ms: 489.109613
+      type: 'test'
+      ...
+    # Subtest: cleanup-foreign
+    ok 6 - cleanup-foreign
+      ---
+      duration_ms: 489.713289
+      type: 'test'
+      ...
+    # Subtest: cleanup-error
+    ok 7 - cleanup-error
+      ---
+      duration_ms: 576.617258
+      type: 'test'
+      ...
+    # Subtest: create-response-lost
+    ok 8 - create-response-lost
+      ---
+      duration_ms: 488.837289
+      type: 'test'
+      ...
+    # Subtest: ingest-secret-error
+    ok 9 - ingest-secret-error
+      ---
+      duration_ms: 513.672289
+      type: 'test'
+      ...
+    # Subtest: schema-url
+    ok 10 - schema-url
+      ---
+      duration_ms: 518.297845
+      type: 'test'
+      ...
+    1..10
+ok 2 - runtime failures retain uncertain resources and never follow redirect or schema URLs (protocol-only)
+  ---
+  duration_ms: 4880.969531
+  type: 'test'
+  ...
+# Subtest: public CLI observes readiness and denials, persists both markers and deletes only its created website (protocol-only disposable server)
+ok 3 - public CLI observes readiness and denials, persists both markers and deletes only its created website (protocol-only disposable server)
+  ---
+  duration_ms: 927.621457
+  type: 'test'
+  ...
+# Subtest: approval and evidence negative controls emit no request, even when rebound by the test operator
+    # Subtest: missing-verifier-evidence
+    ok 1 - missing-verifier-evidence
+      ---
+      duration_ms: 364.719858
+      type: 'test'
+      ...
+    # Subtest: missing-readiness
+    ok 2 - missing-readiness
+      ---
+      duration_ms: 342.568938
+      type: 'test'
+      ...
+    # Subtest: duplicate-switch
+    ok 3 - duplicate-switch
+      ---
+      duration_ms: 303.724236
+      type: 'test'
+      ...
+    # Subtest: expired
+    ok 4 - expired
+      ---
+      duration_ms: 306.440145
+      type: 'test'
+      ...
+    # Subtest: future
+    ok 5 - future
+      ---
+      duration_ms: 348.192489
+      type: 'test'
+      ...
+    # Subtest: non-synthetic
+    ok 6 - non-synthetic
+      ---
+      duration_ms: 356.575265
+      type: 'test'
+      ...
+    # Subtest: target-mismatch
+    ok 7 - target-mismatch
+      ---
+      duration_ms: 351.297556
+      type: 'test'
+      ...
+    # Subtest: cross-origin
+    ok 8 - cross-origin
+      ---
+      duration_ms: 330.435347
+      type: 'test'
+      ...
+    # Subtest: credentials-in-url
+    ok 9 - credentials-in-url
+      ---
+      duration_ms: 323.075621
+      type: 'test'
+      ...
+    # Subtest: encoded-path
+    ok 10 - encoded-path
+      ---
+      duration_ms: 324.822185
+      type: 'test'
+      ...
+    # Subtest: schema-url
+    ok 11 - schema-url
+      ---
+      duration_ms: 324.627826
+      type: 'test'
+      ...
+    # Subtest: image-mismatch
+    ok 12 - image-mismatch
+      ---
+      duration_ms: 332.857864
+      type: 'test'
+      ...
+    # Subtest: flag-unknown
+    ok 13 - flag-unknown
+      ---
+      duration_ms: 330.165818
+      type: 'test'
+      ...
+    # Subtest: source-incomplete
+    ok 14 - source-incomplete
+      ---
+      duration_ms: 393.435123
+      type: 'test'
+      ...
+    # Subtest: verifier-unknown
+    ok 15 - verifier-unknown
+      ---
+      duration_ms: 331.620835
+      type: 'test'
+      ...
+    # Subtest: verifier-evidence-mismatch
+    ok 16 - verifier-evidence-mismatch
+      ---
+      duration_ms: 404.944541
+      type: 'test'
+      ...
+    # Subtest: duplicate-approval-field
+    ok 17 - duplicate-approval-field
+      ---
+      duration_ms: 324.685746
+      type: 'test'
+      ...
+    # Subtest: source-file-mismatch
+    ok 18 - source-file-mismatch
+      ---
+      duration_ms: 382.861445
+      type: 'test'
+      ...
+    # Subtest: hash-mismatch
+    ok 19 - hash-mismatch
+      ---
+      duration_ms: 352.002051
+      type: 'test'
+      ...
+    # Subtest: unsafe-file-mode
+    ok 20 - unsafe-file-mode
+      ---
+      duration_ms: 325.749474
+      type: 'test'
+      ...
+    # Subtest: symlink
+    ok 21 - symlink
+      ---
+      duration_ms: 310.034136
+      type: 'test'
+      ...
+    # Subtest: ambiguous-auth
+    ok 22 - ambiguous-auth
+      ---
+      duration_ms: 374.381763
+      type: 'test'
+      ...
+    # Subtest: mismatched-auth
+    ok 23 - mismatched-auth
+      ---
+      duration_ms: 388.603753
+      type: 'test'
+      ...
+    # Subtest: missing-vision
+    ok 24 - missing-vision
+      ---
+      duration_ms: 368.243644
+      type: 'test'
+      ...
+    # Subtest: policy-needs-vision
+    ok 25 - policy-needs-vision
+      ---
+      duration_ms: 397.588293
+      type: 'test'
+      ...
+    # Subtest: synthetic-transport-is-not-vision
+    ok 26 - synthetic-transport-is-not-vision
+      ---
+      duration_ms: 388.885554
+      type: 'test'
+      ...
+    # Subtest: unknown-argument
+    ok 27 - unknown-argument
+      ---
+      duration_ms: 319.288505
+      type: 'test'
+      ...
+    # Subtest: missing-synthetic-flag
+    ok 28 - missing-synthetic-flag
+      ---
+      duration_ms: 333.661283
+      type: 'test'
+      ...
+    1..28
+ok 4 - approval and evidence negative controls emit no request, even when rebound by the test operator
+  ---
+  duration_ms: 9739.962876
+  type: 'test'
+  ...
+1..4
+# tests 42
+# suites 0
+# pass 42
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 16187.921729

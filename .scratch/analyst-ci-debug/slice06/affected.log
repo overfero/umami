@@ -1,0 +1,278 @@
+TAP version 13
+# Scope: all 3 workspace projects
+# ✓ Lockfile passes supply-chain policies (verified 2h ago)
+# Lockfile is up to date, resolution step is skipped
+# Packages are hard linked from the content-addressable store to the virtual store.
+#   Content-addressable store is at: /home/overfero/.local/share/pnpm/store/v11
+#   Virtual store is at:             node_modules/.pnpm
+# Packages: +1120
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Progress: resolved 1120, reused 1120, downloaded 0, added 1120, done
+# dependencies:
+# + @clickhouse/client 1.23.1
+# + @dicebear/collection 9.4.3
+# + @dicebear/core 9.4.3
+# + @playwright/test 1.63.0
+# + @prisma/adapter-pg 7.10.0
+# + @prisma/client 7.10.0
+# + @prisma/extension-read-replicas 0.5.0
+# + @svgr/cli 8.1.0
+# + @tanstack/react-query 5.102.8
+# + @umami/api-client link:packages/api-client
+# + @umami/mcp link:packages/mcp
+# + @umami/react-zen 0.254.0
+# + bcryptjs 3.0.3
+# + chalk 5.6.2
+# + chart.js 4.5.1
+# + chartjs-adapter-date-fns 3.0.0
+# + colord 2.10.0
+# + date-fns 4.4.0
+# + date-fns-tz 3.2.0
+# + debug 4.4.3
+# + detect-browser 5.3.0
+# + dotenv 17.4.2
+# + esbuild 0.28.2
+# + immer 11.1.18
+# + ipaddr.js 2.5.0
+# + is-ci 4.1.0
+# + is-docker 4.0.0
+# + is-localhost-ip 3.0.1
+# + isbot 5.2.2
+# + jsonwebtoken 9.0.3
+# + jszip 3.10.2
+# + kafkajs 2.2.4
+# + lucide-react 1.44.0
+# + maxmind 5.0.7
+# + motion 12.43.0
+# + next 16.4.2
+# + next-intl 4.13.4
+# + node-fetch 3.3.2
+# + npm-run-all 4.1.5
+# + otplib 13.5.0
+# + papaparse 5.7.0
+# + prisma 7.10.0
+# + prop-types 15.8.1
+# + punycode 2.3.1
+# + qrcode 1.5.4
+# + react 19.3.1
+# + react-dom 19.3.1
+# + react-error-boundary 6.1.5
+# + react-markdown 10.1.0
+# + react-resizable-panels 4.12.4
+# + react-simple-maps 3.0.0
+# + react-window 2.3.1
+# + redis 5.12.1
+# + remark-gfm 4.0.1
+# + rrweb 2.0.1
+# + rrweb-player 2.0.0-alpha.20
+# + semver 7.8.5
+# + serialize-error 13.0.1
+# + thenby 1.4.1
+# + ua-parser-js 2.0.10
+# + uuid 14.0.2
+# + zod 4.6.2
+# + zustand 5.0.15
+# devDependencies:
+# + @biomejs/biome 2.5.13
+# + @netlify/plugin-nextjs 5.15.13
+# + @rollup/plugin-commonjs 29.0.3
+# + @rollup/plugin-node-resolve 16.0.3
+# + @rollup/plugin-replace 6.0.3
+# + @rollup/plugin-terser 1.0.0
+# + @rollup/plugin-typescript 12.3.0
+# + @testing-library/jest-dom 7.0.1
+# + @testing-library/react 16.3.3
+# + @testing-library/user-event 14.6.7
+# + @types/jest 30.0.0
+# + @types/node 26.5.1
+# + @types/qrcode 1.5.6
+# + @types/react 19.3.0
+# + @types/react-dom 19.3.0
+# + babel-plugin-react-compiler 19.1.0-rc.2
+# + dotenv-cli 11.0.0
+# + jsdom 30.0.1
+# + msw 2.15.0
+# + openapi-typescript 7.13.0
+# + postcss 8.5.28
+# + postcss-flexbugs-fixes 5.0.2
+# + postcss-preset-env 11.3.2
+# + rollup 4.63.1
+# + tar 7.5.22
+# + tsup 8.5.1
+# + tsx 4.23.13
+# + typescript 6.0.3
+# + vitest 4.1.11
+# + zod-openapi 6.0.2
+# Done in 1.2s using pnpm v12.3.4
+# $ pnpm --filter "./packages/**" -r build
+# $ tsup
+# CLI Building entry: {"index":"src/index.ts"}
+# CLI Using tsconfig: tsconfig.json
+# CLI tsup v8.5.1
+# CLI Using tsup config: /tmp/umami-analyst-fixture-Iv9Ejj/packages/api-client/tsup.config.ts
+# CLI Target: es2022
+# CLI Cleaning output folder
+# ESM Build start
+# CJS Build start
+# ESM dist/index.js     129.73 KB
+# ESM dist/index.js.map 239.61 KB
+# ESM ⚡️ Build success in 34ms
+# CJS dist/index.cjs     130.96 KB
+# CJS dist/index.cjs.map 240.26 KB
+# CJS ⚡️ Build success in 34ms
+# DTS Build start
+# DTS ⚡️ Build success in 2154ms
+# DTS dist/index.d.ts  1.04 MB
+# DTS dist/index.d.cts 1.04 MB
+# $ tsup
+# CLI Building entry: {"index":"src/index.ts","cli":"src/cli.ts"}
+# CLI Using tsconfig: tsconfig.json
+# CLI tsup v8.5.1
+# CLI Using tsup config: /tmp/umami-analyst-fixture-Iv9Ejj/packages/mcp/tsup.config.ts
+# CLI Target: es2022
+# CLI Cleaning output folder
+# ESM Build start
+# CJS Build start
+# CJS dist/cli.cjs       62.52 KB
+# CJS dist/index.cjs     64.91 KB
+# CJS dist/cli.cjs.map   118.39 KB
+# CJS dist/index.cjs.map 121.17 KB
+# CJS ⚡️ Build success in 40ms
+# ESM dist/index.js     62.15 KB
+# ESM dist/cli.js       61.28 KB
+# ESM dist/index.js.map 120.38 KB
+# ESM dist/cli.js.map   118.46 KB
+# ESM ⚡️ Build success in 41ms
+# DTS Build start
+# DTS ⚡️ Build success in 2164ms
+# DTS dist/index.d.ts  6.70 KB
+# DTS dist/index.d.cts 6.70 KB
+# Subtest: control: Next auto-loads the canary from the checkout itself
+ok 1 - control: Next auto-loads the canary from the checkout itself
+  ---
+  duration_ms: 11.35126
+  type: 'test'
+  ...
+# Subtest: sanitized fixture project: no .env file copied, Next loads nothing
+ok 2 - sanitized fixture project: no .env file copied, Next loads nothing
+  ---
+  duration_ms: 1749.347411
+  type: 'test'
+  ...
+# Subtest: child env is an explicit allowlist with no live provider keys
+ok 3 - child env is an explicit allowlist with no live provider keys
+  ---
+  duration_ms: 0.403899
+  type: 'test'
+  ...
+# Subtest: systemTemp ignores $TMPDIR (e.g. repo scratch) and refuses discovery ancestors
+ok 4 - systemTemp ignores $TMPDIR (e.g. repo scratch) and refuses discovery ancestors
+  ---
+  duration_ms: 1.026164
+  type: 'test'
+  ...
+# Subtest: flags-off mode leaves analyst, offline runtime and verifier flags unset
+ok 5 - flags-off mode leaves analyst, offline runtime and verifier flags unset
+  ---
+  duration_ms: 0.250896
+  type: 'test'
+  ...
+# Subtest: launcher receipt binds root, nonce hash, provider hash and BUILD_ID; never the nonce
+ok 6 - launcher receipt binds root, nonce hash, provider hash and BUILD_ID; never the nonce
+  ---
+  duration_ms: 1686.315015
+  type: 'test'
+  ...
+# Subtest: built fixture resolves Next and workspace artifacts within its own project
+ok 7 - built fixture resolves Next and workspace artifacts within its own project
+  ---
+  duration_ms: 12509.882388
+  type: 'test'
+  ...
+# Subtest: clean success removes only its owned project after database cleanup
+ok 8 - clean success removes only its owned project after database cleanup
+  ---
+  duration_ms: 3469.152567
+  type: 'test'
+  ...
+# Subtest: failed run or database cleanup retains compiler traces; foreign ownership refuses removal
+ok 9 - failed run or database cleanup retains compiler traces; foreign ownership refuses removal
+  ---
+  duration_ms: 1702.730569
+  type: 'test'
+  ...
+# Subtest: built mode runs NODE_ENV=production with the same allowlist
+ok 10 - built mode runs NODE_ENV=production with the same allowlist
+  ---
+  duration_ms: 0.575562
+  type: 'test'
+  ...
+# Subtest: cleanup invalidates pending artifact puts and does not resurrect pixels
+ok 11 - cleanup invalidates pending artifact puts and does not resurrect pixels
+  ---
+  duration_ms: 3.223445
+  type: 'test'
+  ...
+# Subtest: pending artifact reads recheck membership and both expiry bounds
+ok 12 - pending artifact reads recheck membership and both expiry bounds
+  ---
+  duration_ms: 2.447382
+  type: 'test'
+  ...
+# Subtest: capability exchange rechecks original expiry after authority await
+ok 13 - capability exchange rechecks original expiry after authority await
+  ---
+  duration_ms: 0.713293
+  type: 'test'
+  ...
+# Subtest: session resolve rechecks expiry and revocation after authority await
+ok 14 - session resolve rechecks expiry and revocation after authority await
+  ---
+  duration_ms: 2.544085
+  type: 'test'
+  ...
+# Subtest: large worker result flushes completely before clean exit
+ok 15 - large worker result flushes completely before clean exit
+  ---
+  duration_ms: 105.780434
+  type: 'test'
+  ...
+# Subtest: capability one use, audience, expiry, scope and revocation
+ok 16 - capability one use, audience, expiry, scope and revocation
+  ---
+  duration_ms: 3.898658
+  type: 'test'
+  ...
+# Subtest: image signatures, MIME, byte/count limits, release authority and retention
+ok 17 - image signatures, MIME, byte/count limits, release authority and retention
+  ---
+  duration_ms: 2.840057
+  type: 'test'
+  ...
+# Subtest: revocation during asynchronous exchange cannot resurrect a session
+ok 18 - revocation during asynchronous exchange cannot resurrect a session
+  ---
+  duration_ms: 0.476013
+  type: 'test'
+  ...
+# Subtest: exact origin and endpoint allowlist rejects metadata, redirects and credentials
+ok 19 - exact origin and endpoint allowlist rejects metadata, redirects and credentials
+  ---
+  duration_ms: 0.574886
+  type: 'test'
+  ...
+# Subtest: queue enforces per-user/global concurrency and queued cancellation/deadline
+ok 20 - queue enforces per-user/global concurrency and queued cancellation/deadline
+  ---
+  duration_ms: 25.797658
+  type: 'test'
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 20
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 21301.862132

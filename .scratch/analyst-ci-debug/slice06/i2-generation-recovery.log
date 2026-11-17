@@ -1,0 +1,10 @@
+$ npm-run-all openapi:generate generate:api:client
+$ tsx scripts/generate-openapi.ts
+Generated public/openapi.json.
+198/198 API operations are included in the generated spec (183 explicit, 15 source-inferred).
+$ tsx scripts/generate-api-client.ts
+Generated 185 operations into packages/api-client/src/generated.
+$ tsx scripts/check-openapi.ts
+198/198 API operations are included in the generated spec (183 explicit, 15 source-inferred).
+$ tsx scripts/generate-api-client.ts --check
+API client is up to date (185 operations).
