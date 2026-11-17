@@ -14,7 +14,7 @@ Recorded **2026-11-18 03:44 WIB (Asia/Jakarta)**. Implementation commits `82980c
 
 ## Executed evidence (conda umami; Node22, Python3.12, PG16; pnpm12.3.4)
 
-Durable receipts and logs: [`evidence/slice05/`](evidence/slice05/). Expensive gates are not repeated after timeout recovery: exact source fingerprints were checked instead.
+Durable receipts and logs: [`evidence/slice05/`](evidence/slice05/). Named `.log` outputs below are retained as exact raw string values keyed by filename in `logs/command-outputs.json` (rather than whitespace-normalized text files, keeping diff hygiene and original stdout). Expensive gates are not repeated after timeout recovery: exact source fingerprints were checked instead.
 
 | Gate / exact command suffix | Observed result |
 | --- | --- |
