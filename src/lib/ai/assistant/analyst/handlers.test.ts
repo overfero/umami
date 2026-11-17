@@ -268,7 +268,9 @@ it('cancel resolves only after the cancelled task and message are persisted', as
 const BOARD = '55555555-5555-4555-8555-555555555555';
 const ANALYSIS = '66666666-6666-4666-8666-666666666666';
 // Persisted saved draft + data deps; the host, not the model, decides what counts as evidence.
-const savedDraft = (opts: { view?: boolean; exec?: boolean; verifier?: any; completeness?: string } = {}) => {
+const savedDraft = (
+  opts: { view?: boolean; exec?: boolean; verifier?: any; completeness?: string } = {},
+) => {
   const { view = true, exec = true } = opts;
   mocks.deps = {
     ...(opts.verifier ? { verifier: opts.verifier } : {}),
@@ -309,7 +311,11 @@ const savedDraft = (opts: { view?: boolean; exec?: boolean; verifier?: any; comp
     canViewAnalysis: async () => true,
     execute: async () => {
       if (!exec) throw new Error('query failed');
-      return { executionId: 'e', completeness: opts.completeness ?? 'complete', counts: { returned: 1 } };
+      return {
+        executionId: 'e',
+        completeness: opts.completeness ?? 'complete',
+        counts: { returned: 1 },
+      };
     },
   };
   return async (input: any) => {
@@ -514,23 +520,27 @@ it('missing image preflight with a configured verifier preserves successful data
   expect(mocks.db.tasks[0].receipts).toEqual([]);
 });
 
-it.each(['partial', 'unknown'])('missing image capability cannot complete %s saved execution with a configured verifier', async completeness => {
-  capability.resolve.mockReturnValue(undefined);
-  const render = vi.fn();
-  const setup = savedDraft({ completeness, verifier: { cleanup: mocks.cleanup, render } });
-  mocks.run.mockImplementation(async (input: any) => {
-    await setup(input);
-    await input.tool('analyst_readback', { boardId: BOARD });
-    expect(await input.tool('analyst_verify_render', { boardId: BOARD })).toMatchObject({
-      code: 'image_capability_unavailable', visualStatus: 'visual_pending',
+it.each(['partial', 'unknown'])(
+  'missing image capability cannot complete %s saved execution with a configured verifier',
+  async completeness => {
+    capability.resolve.mockReturnValue(undefined);
+    const render = vi.fn();
+    const setup = savedDraft({ completeness, verifier: { cleanup: mocks.cleanup, render } });
+    mocks.run.mockImplementation(async (input: any) => {
+      await setup(input);
+      await input.tool('analyst_readback', { boardId: BOARD });
+      expect(await input.tool('analyst_verify_render', { boardId: BOARD })).toMatchObject({
+        code: 'image_capability_unavailable',
+        visualStatus: 'visual_pending',
+      });
+      return { session: null };
     });
-    return { session: null };
-  });
-  await drain(await runTurn(request(), context));
-  expect(mocks.db.tasks[0].status).toBe('running');
-  expect(mocks.db.tasks[0].receipts).toEqual([]);
-  expect(render).not.toHaveBeenCalled();
-});
+    await drain(await runTurn(request(), context));
+    expect(mocks.db.tasks[0].status).toBe('running');
+    expect(mocks.db.tasks[0].receipts).toEqual([]);
+    expect(render).not.toHaveBeenCalled();
+  },
+);
 
 it('missing image capability cannot complete failed data readback or a different board', async () => {
   for (const failure of ['query', 'different-board']) {

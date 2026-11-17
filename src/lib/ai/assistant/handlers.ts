@@ -345,8 +345,10 @@ export async function runTurn(request: Request, context: Context): Promise<Respo
                       result.data.analyses.length > 0 &&
                       result.data.analyses.every(
                         (a: any) =>
-                          a.execution && a.execution.ok !== false &&
-                          a.execution.completeness === 'complete' && a.matchesIntent !== false,
+                          a.execution &&
+                          a.execution.ok !== false &&
+                          a.execution.completeness === 'complete' &&
+                          a.matchesIntent !== false,
                       )
                         ? String(result.data.board?.id)
                         : null;

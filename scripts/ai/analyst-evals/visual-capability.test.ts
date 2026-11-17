@@ -80,5 +80,9 @@ it('absent image capability keeps screenshots out of the tool result and inspect
     },
     input,
   );
-  expect(inspection.json).toMatchObject({ ok: false, code: 'image_capability_unavailable', visualStatus: 'visual_pending' });
+  expect(inspection.json).toMatchObject({
+    ok: false,
+    code: 'image_capability_unavailable',
+    visualStatus: 'visual_pending',
+  });
 });

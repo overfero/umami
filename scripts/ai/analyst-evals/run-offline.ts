@@ -1,6 +1,9 @@
 /* eslint-disable no-console */
 import { authorityEvidence, authorityPgRequirements } from './authority-evidence';
 import assert from 'node:assert/strict';
+import { lifecycleAssertions, qualifiedVitestEvidence } from './lifecycle-evidence';
+import { browserReceiptEvidence } from './browser-receipt';
+import { runBrowserProof } from './browser-proof';
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -14,7 +17,7 @@ import {
   type Evidence,
 } from './offline';
 
-export async function runOffline(strict: boolean, outputPath?: string, reuseApiPath?: string) {
+export async function runOffline(strict: boolean, outputPath?: string, reuseApiPath?: string, browserReceiptPath?: string) {
   const evidence: Evidence[] = [];
   const commands: {
     command: string;
@@ -171,6 +174,7 @@ export async function runOffline(strict: boolean, outputPath?: string, reuseApiP
   });
   let authorityVitestReport: any = null;
   let vitestReport: any = null;
+  let lifecycleProductReport: any = null;
   const temp = mkdtempSync(path.join(os.tmpdir(), 'analyst-eval-'));
   try {
     const jsonPath = path.join(temp, 'vitest.json');
@@ -188,6 +192,11 @@ export async function runOffline(strict: boolean, outputPath?: string, reuseApiP
       /* Missing output remains missing evidence, never a pass. */
     }
     evidence.push(...vitestEvidence(vitestReport, commands.at(-1)!.passed).evidence);
+    evidence.push(...qualifiedVitestEvidence(vitestReport, commands.at(-1)!.passed, lifecycleAssertions.filter(r=>r.suite==='lifecycle-evaluator')));
+    const productPath = path.join(temp, 'lifecycle-product.json');
+    execute(['vitest','run','src/lib/ai/assistant/analyst/analyst.test.ts','src/lib/ai/assistant/analyst/handlers.test.ts','src/lib/ai/assistant/runtime.test.ts','--reporter=json',`--outputFile=${productPath}`]);
+    lifecycleProductReport = JSON.parse(readFileSync(productPath,'utf8'));
+    evidence.push(...qualifiedVitestEvidence(lifecycleProductReport,commands.at(-1)!.passed,lifecycleAssertions.filter(r=>r.suite==='lifecycle-product')));
     const authorityJsonPath = path.join(temp, 'authority-vitest.json');
     execute([
       'vitest',
@@ -206,8 +215,20 @@ export async function runOffline(strict: boolean, outputPath?: string, reuseApiP
   } finally {
     rmSync(temp, { recursive: true, force: true });
   }
+  const browserReport = browserReceiptPath
+    ? JSON.parse(readFileSync(browserReceiptPath,'utf8'))
+    : await runBrowserProof(`${outputPath ?? path.join(os.tmpdir(),'analyst-eval')}.browser.json`);
+  evidence.push(browserReceiptEvidence(browserReport,hash));
+  checkpoint();
   const summary = summarizeCoverage(evidence);
-  const sourceFiles = [
+  const sourceFiles = [...new Set([
+    ...lifecycleAssertions.map(a=>a.file),
+    ...Object.keys(browserReport.sourceHashes),
+    'scripts/ai/analyst-evals/lifecycle-evidence.ts',
+    'scripts/ai/analyst-evals/lifecycle-evidence.test.ts',
+    'scripts/ai/analyst-evals/browser-receipt.ts',
+    'scripts/ai/analyst-evals/browser-proof.ts',
+    'scripts/ai/analyst-evals/fixture-ownership.test.ts',
     'wiki/specs/analyst-dashboard-lifecycle.md',
     'src/lib/prisma.ts',
     'src/lib/prisma-session.ts',
@@ -248,10 +269,10 @@ export async function runOffline(strict: boolean, outputPath?: string, reuseApiP
     'scripts/ai/analyst-evals/missing-metric.test.ts',
     'src/lib/ai/assistant/analyst/deps.ts',
     'src/queries/sql/getWebsiteDateRange.ts',
-  ];
+  ])];
   const report = {
     complete: true,
-    mode: 'offline-scripted-no-model-no-browser',
+    mode: 'offline-scripted-real-browser-no-live-model',
     sourceRevision: execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
     sourceDirty:
       execFileSync('git', ['status', '--porcelain'], { encoding: 'utf8' }).trim().length > 0,
@@ -266,6 +287,8 @@ export async function runOffline(strict: boolean, outputPath?: string, reuseApiP
     commands,
     vitestReport,
     authorityVitestReport,
+    lifecycleProductReport,
+    browserReport,
     ...summary,
     limitations: [
       `Pending scenario groups: ${summary.pending.join(',')}; strict E1 cannot pass while any remain.`,

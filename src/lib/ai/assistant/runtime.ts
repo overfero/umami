@@ -7,7 +7,11 @@ import { basename, isAbsolute, join, resolve } from 'node:path';
 import { StringDecoder } from 'node:string_decoder';
 import { isAnalystEnabled } from '@/lib/analyst/flags';
 import { canInspectImages, capabilityMatchesConfiguration } from '../image-capability.mjs';
-import { fixtureSchema, LEGACY_FIXTURE_DATABASE, FIXTURE_SCHEMA_OWNER } from '../fixture-database.mjs';
+import {
+  fixtureSchema,
+  LEGACY_FIXTURE_DATABASE,
+  FIXTURE_SCHEMA_OWNER,
+} from '../fixture-database.mjs';
 import prisma from '@/lib/prisma';
 import { gatewayConfig, permissionArgs, reasoningLevel } from '../rpc/confinement.mjs';
 import { sanitize, sanitizeSession } from './analyst/sanitize';
@@ -133,8 +137,11 @@ export function offlineFixtureRuntime(
     now - receipt.issuedAt > OFFLINE_FIXTURE_RECEIPT_MS
   )
     fail();
-  if (env.DATABASE_URL !== LEGACY_FIXTURE_DATABASE &&
-      (receipt.databaseUrl !== env.DATABASE_URL || receipt.schema !== schema)) fail();
+  if (
+    env.DATABASE_URL !== LEGACY_FIXTURE_DATABASE &&
+    (receipt.databaseUrl !== env.DATABASE_URL || receipt.schema !== schema)
+  )
+    fail();
   if (env.NODE_ENV === 'production' && (!buildId || receipt.buildId !== buildId)) fail();
   return {
     provider,
@@ -497,9 +504,13 @@ export async function runAssistantProcess(input: RuntimeInput, options: RuntimeO
                       id: value.id,
                       value: truncate(
                         result instanceof ImageToolResult
-                          ? { ok: false, code: 'image_capability_unavailable',
+                          ? {
+                              ok: false,
+                              code: 'image_capability_unavailable',
                               visualStatus: 'visual_pending',
-                              message: 'Image delivery unavailable; visual inspection remains pending' }
+                              message:
+                                'Image delivery unavailable; visual inspection remains pending',
+                            }
                           : result,
                         32768,
                       ),

@@ -9,16 +9,16 @@ describe('offline acceptance evidence', () => {
     expect(summary.proven).toEqual([]);
   });
 
-  it('requires every scenario1–9 assertion and keeps scenarios10–12 pending', () => {
+  it('requires every exact assertion in all twelve scenario groups', () => {
     const evidence = [...new Set(requirements.map(r => r.suite))].map(suite => ({
       suite,
       passed: true,
       assertions: requirements.filter(r => r.suite === suite).map(r => r.assertion),
     }));
     expect(summarizeCoverage(evidence)).toEqual({
-      pass: false,
-      proven: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      pending: [10, 11, 12],
+      pass: true,
+      proven: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      pending: [],
     });
     for (const requirement of requirements) {
       const missing = evidence.map(e => ({
@@ -45,5 +45,5 @@ it('historical evaluator-wrapped discovery cannot prove native-loopback scenario
     suite, passed: true, assertions: requirements.filter(r => r.suite === suite && !r.id.startsWith('6.')).map(r => r.assertion),
   }));
   evidence.find(e => e.suite === 'authority-pg')!.assertions.push('discover IDs and schema then ask meaningful ambiguity with needs_input and no guessed mutation');
-  expect(summarizeCoverage(evidence)).toEqual({ pass: false, proven: [1, 2, 3, 4, 5, 7, 8, 9], pending: [6, 10, 11, 12] });
+  expect(summarizeCoverage(evidence)).toEqual({ pass: false, proven: [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12], pending: [6] });
 });

@@ -753,43 +753,49 @@ it('discover exposes the exact nested definition, widget and repair contracts', 
 });
 
 it.each([
-  ['throws', 'both'], ['returns-success', 'both'], ['returns-success', 'task-only'], ['returns-success', 'signal-only'],
-])('query cancellation propagates abort and late query %s under %s cannot revive or mutate the task', async (outcome, cancellation) => {
-  const controller = new AbortController();
-  let release!: () => void;
-  let entered!: () => void;
-  const started = new Promise<void>(resolve => {
-    entered = resolve;
-  });
-  let querySignal: AbortSignal | undefined;
-  const s = await setup(
-    {
-      execute: async (_auth, _definition, options) => {
-        querySignal = options.signal;
-        entered();
-        await new Promise<void>(resolve => {
-          release = resolve;
-        });
-        if (outcome === 'throws') throw new DOMException('Cancelled', 'AbortError');
-        return { executionId: 'late', completeness: 'complete', rows: [{ value: 42 }] };
+  ['throws', 'both'],
+  ['returns-success', 'both'],
+  ['returns-success', 'task-only'],
+  ['returns-success', 'signal-only'],
+])(
+  'query cancellation propagates abort and late query %s under %s cannot revive or mutate the task',
+  async (outcome, cancellation) => {
+    const controller = new AbortController();
+    let release!: () => void;
+    let entered!: () => void;
+    const started = new Promise<void>(resolve => {
+      entered = resolve;
+    });
+    let querySignal: AbortSignal | undefined;
+    const s = await setup(
+      {
+        execute: async (_auth, _definition, options) => {
+          querySignal = options.signal;
+          entered();
+          await new Promise<void>(resolve => {
+            release = resolve;
+          });
+          if (outcome === 'throws') throw new DOMException('Cancelled', 'AbortError');
+          return { executionId: 'late', completeness: 'complete', rows: [{ value: 42 }] };
+        },
       },
-    },
-    controller,
-  );
-  const pending = s.run('analyst_preview', { definition: definition() });
-  await started;
-  if (cancellation !== 'task-only') controller.abort();
-  if (cancellation !== 'signal-only') await cancelTask(s.scope);
-  const cancelled = structuredClone((await getTask(s.scope))!);
-  expect(querySignal!.aborted).toBe(cancellation !== 'task-only');
-  release();
-  const result = await pending;
-  expect((result.json as any).ok).toBe(false);
-  expect(result.json).not.toHaveProperty('data');
-  expect(result.images).toBeUndefined();
-  expect(await getTask(s.scope)).toEqual(cancelled);
-  expect(s.boards.size).toBe(0);
-});
+      controller,
+    );
+    const pending = s.run('analyst_preview', { definition: definition() });
+    await started;
+    if (cancellation !== 'task-only') controller.abort();
+    if (cancellation !== 'signal-only') await cancelTask(s.scope);
+    const cancelled = structuredClone((await getTask(s.scope))!);
+    expect(querySignal!.aborted).toBe(cancellation !== 'task-only');
+    release();
+    const result = await pending;
+    expect((result.json as any).ok).toBe(false);
+    expect(result.json).not.toHaveProperty('data');
+    expect(result.images).toBeUndefined();
+    expect(await getTask(s.scope)).toEqual(cancelled);
+    expect(s.boards.size).toBe(0);
+  },
+);
 
 it('repair cancellation after validation preserves the committed private draft without late provenance', async () => {
   const controller = new AbortController();

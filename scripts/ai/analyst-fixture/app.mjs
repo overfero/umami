@@ -193,7 +193,15 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   if (generated.status !== 0) throw new Error('prisma generate failed');
   const databaseUrl = provisionFixtureDatabase(dir, nonce.slice(0, 24));
   writeReceipt(dir, nonce, undefined, databaseUrl);
-  console.log(JSON.stringify({ fixtureProject: dir, verifier, flagsOff, built, schema: fixtureSchema(databaseUrl) }));
+  console.log(
+    JSON.stringify({
+      fixtureProject: dir,
+      verifier,
+      flagsOff,
+      built,
+      schema: fixtureSchema(databaseUrl),
+    }),
+  );
   const env = { dir, port, nonce, piRoot, verifier, built, databaseUrl };
   const next = join(dir, 'node_modules/.bin/next');
   const children = [];
@@ -244,7 +252,11 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => stop(signal));
   child.on('exit', (code, signal) => {
     const receipt = JSON.parse(readFileSync(join(dir, '.analyst-fixture-receipt.json'), 'utf8'));
-    if (receipt.root !== realpathSync(dir) || receipt.databaseUrl !== databaseUrl || receipt.nonceSha256 !== sha256(nonce))
+    if (
+      receipt.root !== realpathSync(dir) ||
+      receipt.databaseUrl !== databaseUrl ||
+      receipt.nonceSha256 !== sha256(nonce)
+    )
       throw new Error('Fixture cleanup receipt mismatch');
     cleanupFixtureDatabase(databaseUrl, receipt);
     if (code === 0) {
