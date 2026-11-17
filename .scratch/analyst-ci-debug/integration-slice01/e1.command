@@ -1,0 +1,1 @@
+conda activate umami; export PG_BIN=$CONDA_PREFIX/bin; npx --yes pnpm@12.3.4 exec tsx scripts/ai/eval-analyst.ts --offline --strict --output .scratch/analyst-ci-debug/integration-slice01/e1-receipt.json

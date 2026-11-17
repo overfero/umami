@@ -1,0 +1,5 @@
+?? .scratch/analyst-ci-debug/
+?? AGENTS.md
+?? docs/agents/
+?? scripts/ai/kaggle-synthetic-setup.sh
+?? skills-lock.json
