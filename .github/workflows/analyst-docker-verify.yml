@@ -57,8 +57,14 @@ jobs:
 
       - name: Install pinned Pi 1.4.0
         run: |
-          npm install -g --prefix "$HOME/.local" @earendil-works/pi-coding-agent@1.4.0
-          pi_root="$(npm root -g --prefix "$HOME/.local")/@earendil-works/pi-coding-agent"
+          npm ci --prefix scripts/ai/install \
+            --install-strategy=nested --ignore-scripts
+          scope=scripts/ai/install/node_modules/@earendil-works
+          pi_root="$(realpath "$scope/pi-coding-agent")"
+          version="$(node -p \
+            "JSON.parse(require('fs').readFileSync(\
+            '$pi_root/package.json')).version")"
+          test "$version" = 1.4.0
           AI_PI_ROOT="$pi_root" node scripts/ai/native.mjs --version
           echo "AI_PI_ROOT=$pi_root" >> "$GITHUB_ENV"
 
@@ -70,8 +76,6 @@ jobs:
           echo "PG_BIN=$(dirname "$(command -v psql)")" >> "$GITHUB_ENV"
           psql -h 127.0.0.1 -p 25432 -U ai_synthetic -d ai_synthetic -v ON_ERROR_STOP=1 -c \
             "create table ai_synthetic_owner (owner text); insert into ai_synthetic_owner values ('umami-ai-synthetic-r3');"
-          psql -h 127.0.0.1 -p 25432 -U ai_synthetic -d ai_synthetic -v ON_ERROR_STOP=1 -c \
-            "create schema analyst_fixture; comment on schema analyst_fixture is 'umami-analyst-fixture-r1';"
           curl --retry 10 --retry-delay 2 --retry-connrefused --silent --fail \
             --user ai_synthetic:synthetic-only http://127.0.0.1:28123/ping
 
@@ -82,10 +86,13 @@ jobs:
           pnpm exec tsx scripts/test-analyst-api.ts --postgres
           pnpm exec tsx scripts/test-analyst-api.ts --clickhouse
 
-      - name: Migrate analyst_fixture schema
-        env:
-          DATABASE_URL: "postgresql://ai_synthetic@127.0.0.1:25432/ai_synthetic?schema=analyst_fixture"
-        run: pnpm exec prisma migrate deploy
+      - name: Build own workspace artifacts and check integration contracts
+        run: |
+          pnpm build:packages
+          pnpm exec tsc --noEmit
+          pnpm openapi:check
+          pnpm check:api:client
+          git diff --exit-code
 
       - name: Build restricted verifier Docker image
         run: sh scripts/ai/verifier/build-image.sh
@@ -95,33 +102,12 @@ jobs:
           node --test scripts/ai/verifier/*.test.mjs
           PLAYWRIGHT_SKIP_WEB_SERVER=1 pnpm exec playwright test -c playwright.config.ts tests/e2e/analyst-verifier.spec.ts
 
-      - name: D2 full analyst lifecycle
-        env:
-          # The runner's default 2048 MiB heap trips Next dev's memory-threshold restart
-          # mid-compile on this 7 GiB runner shared with the Postgres/ClickHouse services.
-          ANALYST_FIXTURE_NODE_OPTIONS: "--max-old-space-size=3072"
+      - name: Sequential D2 flags-on/off and B3 with source-paired receipts
+        timeout-minutes: 30
         run: |
-          free -h
-          ANALYST_FIXTURE_PORT=3341 node scripts/ai/analyst-fixture/app.mjs &
-          echo $! > /tmp/fixture.pid
-          npx --yes wait-on http://127.0.0.1:3341 --timeout 120000
-          PLAYWRIGHT_SKIP_WEB_SERVER=1 PLAYWRIGHT_BASE_URL=http://127.0.0.1:3341 \
-            pnpm exec playwright test -c playwright.config.ts tests/e2e/analyst-lifecycle.spec.ts
-          kill "$(cat /tmp/fixture.pid)" || true
-
-      - name: B3 built actual-renderer integration
-        env:
-          DATABASE_URL: "postgresql://ai_synthetic@127.0.0.1:25432/ai_synthetic?schema=analyst_b3"
-          APP_SECRET: "synthetic-analyst-b3-only"
-          AI_ANALYST_ENABLED: "true"
-          AI_ANALYST_VERIFIER_ENABLED: "true"
-          AI_ANALYST_VERIFIER_LAUNCHER: "docker"
-          NEXT_PUBLIC_SOURCE_URL: "https://github.com/${{ github.repository }}/tree/${{ github.sha }}"
-        run: |
-          pnpm exec prisma migrate deploy
-          pnpm exec next build --webpack
-          ANALYST_VERIFIER_BUILD="${{ github.workspace }}" \
-            pnpm exec playwright test -c playwright.config.ts tests/e2e/analyst-verifier-integration.spec.ts
+          mkdir -p analyst-evidence
+          pnpm exec tsx scripts/ai/analyst-evals/browser-proof.ts \
+            analyst-evidence/browser.json
 
       - name: Upload Playwright report
         if: always()
@@ -131,4 +117,5 @@ jobs:
           path: |
             playwright-report/
             test-results/
+            analyst-evidence/
           retention-days: 7

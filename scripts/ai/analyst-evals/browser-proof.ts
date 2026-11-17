@@ -5,12 +5,18 @@ import { spawn, execFileSync } from 'node:child_process';
 import { createHash, randomBytes } from 'node:crypto';
 import { readFileSync, writeFileSync, createWriteStream, cpSync, mkdirSync } from 'node:fs';
 import path from 'node:path';
-import { sanitizedProject, fixtureEnv, writeReceipt } from '../analyst-fixture/app.mjs';
+import {
+  sanitizedProject,
+  fixtureEnv,
+  installFixtureDependencies,
+  writeReceipt,
+} from '../analyst-fixture/app.mjs';
 import { provisionFixtureDatabase, cleanupFixtureDatabase } from '../analyst-fixture/database.mjs';
 import { browserFingerprintedFiles } from './browser-receipt';
 import { qualifyVerifierImage } from './verifier-image';
 import { pairedBrowserReports } from './browser-commands';
 import { qualifiedBrowserEvidence, lifecycleBrowserAssertions } from './lifecycle-evidence';
+import { runPackageProof } from './package-proof';
 
 export async function runBrowserProof(outputPath: string) {
   const root = process.cwd();
@@ -67,16 +73,21 @@ export async function runBrowserProof(outputPath: string) {
     assert.equal(code, 0, `${name} failed; see incremental logs`);
     return stdoutPath;
   }
-  const verifierImage = qualifyVerifierImage('umami-analyst-verifier:local',digest);
+  const verifierImage = qualifyVerifierImage('umami-analyst-verifier:local', digest);
   const nonce = randomBytes(32).toString('hex');
-  const dir = sanitizedProject(root, nonce);
+  const dir = sanitizedProject(root, nonce, { localDependencies: true });
+  installFixtureDependencies(dir);
   let databaseUrl: string | undefined;
   let active: ReturnType<typeof spawn> | undefined;
   let cleanupCompleted = false;
   const head = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
   const source = `https://github.com/giovannirandykusuma/umami/tree/${head}`;
-  const piRoot =
-    '/home/overfero/Project/ocbc/umami/.scratch/analyst-ci-debug/pi-global/lib/node_modules/@earendil-works/pi-coding-agent';
+  const piRoot = process.env.AI_PI_ROOT;
+  assert.ok(piRoot && path.isAbsolute(piRoot), 'AI_PI_ROOT must identify the installed pinned Pi');
+  assert.equal(
+    JSON.parse(readFileSync(path.join(piRoot, 'package.json'), 'utf8')).version,
+    '1.4.0',
+  );
   const sourceHashes = Object.fromEntries(browserFingerprintedFiles().map(f => [f, digest(f)]));
   const stop = async () => {
     if (active) {
@@ -106,7 +117,7 @@ export async function runBrowserProof(outputPath: string) {
     env.NEXT_PUBLIC_SOURCE_URL = source;
     env.AI_ANALYST_VERIFIER_IMAGE = verifierImage.imageId;
     await command(
-      path.join(root, 'node_modules/.bin/prisma'),
+      path.join(dir, 'node_modules/.bin/prisma'),
       ['generate'],
       dir,
       env,
@@ -114,7 +125,7 @@ export async function runBrowserProof(outputPath: string) {
       60000,
     );
     await command(
-      path.join(root, 'node_modules/.bin/next'),
+      path.join(dir, 'node_modules/.bin/next'),
       ['build', '--webpack'],
       dir,
       { ...env, NODE_OPTIONS: '--max-old-space-size=4096', BUILD_WORKERS: '1' },
@@ -133,8 +144,7 @@ export async function runBrowserProof(outputPath: string) {
         .buildId,
       buildId,
     );
-    // Docker's production image copies scripts/public/static separately. Reproduce ONLY those
-    // declared copies in this worktree-owned artifact. Shared node_modules stays explicit.
+    // Next's documented standalone deployment copies plus declared runtime scripts.
     cpSync(path.join(dir, 'scripts'), path.join(standalone, 'scripts'), { recursive: true });
     cpSync(path.join(dir, 'public'), path.join(standalone, 'public'), { recursive: true });
     cpSync(path.join(dir, '.next/static'), path.join(standalone, '.next/static'), {
@@ -167,7 +177,7 @@ export async function runBrowserProof(outputPath: string) {
         ),
       );
       active = spawn(
-        standaloneMode ? process.execPath : path.join(root, 'node_modules/.bin/next'),
+        standaloneMode ? process.execPath : path.join(dir, 'node_modules/.bin/next'),
         standaloneMode ? ['server.js'] : ['start', '--hostname', '127.0.0.1', '--port', '3363'],
         {
           cwd: standaloneMode ? standalone : dir,
@@ -184,7 +194,7 @@ export async function runBrowserProof(outputPath: string) {
       PATH: process.env.PATH,
       HOME: process.env.HOME,
       PG_BIN: process.env.PG_BIN,
-      PLAYWRIGHT_BROWSERS_PATH: '/home/overfero/.cache/ms-playwright',
+      PLAYWRIGHT_BROWSERS_PATH: process.env.PLAYWRIGHT_BROWSERS_PATH,
       PLAYWRIGHT_SKIP_WEB_SERVER: '1',
       PLAYWRIGHT_BASE_URL: 'http://127.0.0.1:3363',
       ANALYST_PHASE_FILE: path.join(directory, 'browser-phase.json'),
@@ -276,12 +286,19 @@ export async function runBrowserProof(outputPath: string) {
     assert.ok(!text.includes('"type":"image"') && !text.includes('umamiImageEnvelope'));
     assert.ok(!text.includes('rendered_not_inspected') && !text.includes('"status":"complete"'));
     await stop();
+    runPackageProof(dir, path.join(directory, 'package.json'));
     const missingTraces =
       commands
         .find(c => c.name === 'browser-build')
         ?.stderr.split('\n')
         .filter((line: string) => line.startsWith('  - ')) ?? [];
-    const evidence = pairedBrowserReports({checkoutRoot:root,commands,browserReports}).flatMap(({report,commandPassed})=>qualifiedBrowserEvidence(report,commandPassed));
+    assert.deepEqual(missingTraces, [], 'standalone build has omitted traces');
+    const evidence = pairedBrowserReports({
+      checkoutRoot: root,
+      buildRoot: dir,
+      commands,
+      browserReports,
+    }).flatMap(({ report, commandPassed }) => qualifiedBrowserEvidence(report, commandPassed));
     const assertions = lifecycleBrowserAssertions
       .filter(b => evidence.some(e => e.suite === b.suite && e.assertions.includes(b.assertion)))
       .map(b => b.assertion);
@@ -299,6 +316,7 @@ export async function runBrowserProof(outputPath: string) {
       complete: true,
       sourceRevision: head,
       checkoutRoot: root,
+      buildRoot: dir,
       verifierImage,
       sourceHashes,
       buildId,
@@ -315,7 +333,7 @@ export async function runBrowserProof(outputPath: string) {
       missingTraces,
       cleanupCompleted,
       limitations: [
-        'Shared dependency links and excluded external traces: not hermetic deployment proof.',
+        'Package-only disposable Node22 container proves login, SSR and exact PG analysis=42 without checkout/host dependencies; not deployed release or configured-provider acceptance.',
         'Standalone default-off turn has AI disabled; proves authenticated route/no release, not configured-provider capability or successful data execution.',
         'Synthetic native Pi/provider and real Docker/browser; no live reasoning or image understanding.',
       ],

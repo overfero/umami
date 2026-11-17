@@ -3,6 +3,7 @@ packages:
   - '!dist'
   - '!**/dist/**'
   - '!scripts/ai/install'
+  - '!deploy/analyst-verifier'
 allowBuilds:
   '@parcel/watcher': false
   '@prisma/engines': true

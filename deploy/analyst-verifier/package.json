@@ -1,0 +1,7 @@
+{
+  "name": "umami-analyst-verifier",
+  "private": true,
+  "dependencies": {
+    "playwright-core": "1.63.0"
+  }
+}
