@@ -430,8 +430,8 @@ async function main() {
   verifyFixtures();
   if (!child) await setupNamespaces();
   // Never inherit application connection settings; exact loopback synthetic endpoints only.
-  // No session TimeZone override: the owned fixture server runs non-UTC (asserted below), so
-  // product execution must normalize it itself.
+  // The harness requests nonUTC startup; central application policy must override it on
+  // actual physical sessions. No evaluator-side transaction timezone supplies this proof.
   process.env.DATABASE_URL = `${PG_BASE}?schema=${namespace}`;
   if (engine === 'clickhouse')
     process.env.CLICKHOUSE_URL = `http://${CH_AUTH.username}:${CH_AUTH.password}@127.0.0.1:28123/${namespace}`;
@@ -451,9 +451,12 @@ async function main() {
   const client = prisma.client as any;
   const [{ tz }] = await client.$queryRawUnsafe("select current_setting('TimeZone') tz");
   try {
-    check(`product database session is non-UTC (${tz})`, () => assert.notEqual(tz, 'UTC'));
-    // Fixture rows must hold their true instants; only this seeding transaction is pinned (the
-    // pg driver sends Dates without an offset). Product reads are never pinned by the harness.
+    check(`application session is UTC despite inherited non-UTC request (${tz})`, () => {
+      assert.match(process.env.PGOPTIONS ?? '', /timezone=(America\/New_York|Asia\/Jakarta)/i);
+      assert.equal(tz, 'UTC');
+    });
+    // Seeding's existing explicitUTC remains harmless; product sessions independently
+    // demonstrated UTC above, before any harness transaction.
     await withUtcWrites(client, seed);
     await run(client);
   } finally {

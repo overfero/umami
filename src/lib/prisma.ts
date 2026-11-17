@@ -1,4 +1,5 @@
 import { PrismaPg } from '@prisma/adapter-pg';
+import { prismaSessionConfig } from './prisma-session';
 import { aiReads, getAiQueryScope, type AiQueryScope } from './ai/query';
 import { readReplicas } from '@prisma/extension-read-replicas';
 import debug from 'debug';
@@ -875,7 +876,7 @@ function getClient() {
 
   const schema = getSchema();
 
-  const baseAdapter = new PrismaPg({ connectionString: url }, { schema });
+  const baseAdapter = new PrismaPg(prismaSessionConfig(url), { schema });
 
   const baseClient = new PrismaClient({
     adapter: baseAdapter,
@@ -893,7 +894,7 @@ function getClient() {
     return baseClient;
   }
 
-  const replicaAdapter = new PrismaPg({ connectionString: replicaUrl }, { schema });
+  const replicaAdapter = new PrismaPg(prismaSessionConfig(replicaUrl), { schema });
 
   const replicaClient = new PrismaClient({
     adapter: replicaAdapter,
@@ -926,7 +927,7 @@ function getAiClient() {
   aiClient ??= new PrismaClient({
     adapter: new PrismaPg(
       {
-        connectionString: process.env.DATABASE_URL,
+        ...prismaSessionConfig(process.env.DATABASE_URL!),
         max: 4,
         connectionTimeoutMillis: 1000,
         statement_timeout: 1000,
