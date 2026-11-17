@@ -21,6 +21,8 @@ Two offline pnpm attempts failed only missing metadata: nonfrozen postcss-preset
 
 Initial isolated package relocation failed because Node cpSync default rewrote relative links into absolute build-host paths. Single authorized correction verbatimSymlinks:true passed; no dependency added/copied to repair traces. Failed context /tmp/umami-package-proof-bFKjOP retained, successful context removed after ownership-checked DB cleanup.
 
-## Pending acceptance
+## Final candidate checkpoint — 2026-11-18 03:44 WIB
 
-Fresh final-source browser+package, strict E1/API-PG/CH, final I1/I2, exact fingerprints/WIB/exit receipts; independent required review. No paid evaluation/provider vision/target release claim. Historical accepted E1 cannot be reused as current because fingerprints changed. No acceptance until required review.
+Final-source browser/package and strict E1 completed: all7 browser commands, D2on5/off1/compatibility1/B3 1/notice1, all14 E1 commands, PG114/CH114, proven1–12/pendingnone. Package-only final image0496b2d3...63022 executes actual42, no external/dangling symlinks or host dependency mounts. I1/I2 clean. Recovery requalification confirms1,574 strict/1,545 browser exact source hashes and command/stdout pairings; only copied JSON whitespace changed, original execution timestamps/revisions preserved. Durable evidence and detailed boundaries: `scripts/ai/analyst-evals/slice05-validation.md`, `scripts/ai/analyst-evals/evidence/slice05/`.
+
+Required independent review remains pending before merge. CI remote run, paid evaluation/provider vision/target release are not claimed. Historical accepted E1 was not reused as fresh source evidence. No acceptance until review; no later slice started.
