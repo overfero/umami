@@ -42,7 +42,11 @@ markers, source fingerprints and sanitized status. Store private input records s
 The authoritative strict schemas are `analyst-contract.ts` and `analyst-input.ts`. Unknown
 fields are rejected. To prepare a record offline, import `currentSource()` (read-only git
 revision and exact runtime/build tracked file hash map); serialize a manifest conforming to
-`manifestSchema`. This is not an approval writer. The recorded explicit operator approval
+`manifestSchema`. Source qualification explicitly includes root PostCSS/Prisma, Rollup,
+Biome, tsup/components, Docker context and deployment descriptors as well as Next, package,
+lock/workspace and TypeScript configuration. Only tracked allowlisted inputs are read;
+`.env` discovery is not performed. A selected source input that is a directory or final
+symlink is rejected. This is not an approval writer. The recorded explicit operator approval
 must independently bind manifest, readiness, token/principal, optional vision receipt, exact
 target, timestamps, synthetic operations and limits. Approval/readiness last at most one hour,
 are nonfuture and must leave room for the complete bounded run. Missing facts never default
@@ -100,6 +104,7 @@ Deletion acknowledges the application's API, not independent physical byte erasu
 
 ```sh
 node --import tsx --test scripts/ai/release-smoke/release-analyst-smoke.test.ts
+node --import tsx --test scripts/ai/release-smoke/release-analyst-smoke.source.test.ts
 PG_BIN="$CONDA_PREFIX/bin" node --import tsx --test scripts/ai/release-smoke/release-analyst-smoke.app.test.ts
 ```
 

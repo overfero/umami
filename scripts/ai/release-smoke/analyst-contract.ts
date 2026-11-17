@@ -113,7 +113,7 @@ export function parseRecord(bytes: Buffer): Record<string, z.infer<ReturnType<ty
   const text = bytes.toString('utf8');
   JSON.parse(text);
   const stack: (Set<string> | null)[] = [];
-  const tokens = /"(?:[^"\\]|\\.)*"|[{}\[\]:,]|true|false|null|-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/g;
+  const tokens = /"(?:[^"\\]|\\.)*"|[{}[\]:,]|true|false|null|-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/g;
   for (const token of text.matchAll(tokens)) {
     if (token[0] === '{') stack.push(new Set());
     else if (token[0] === '[') stack.push(null);
@@ -157,6 +157,28 @@ export function canonicalTarget(target: z.infer<typeof targetSchema>) {
   return target;
 }
 
+// Root build/package/deployment inputs are explicit: never discover or fingerprint .env files.
+// Rollup builds tracker/recorder; Biome formats generated build output; tsup/packages build components.
+const rootBuildInputs = new Set([
+  'Dockerfile',
+  '.dockerignore',
+  'package.json',
+  'pnpm-lock.yaml',
+  'pnpm-workspace.yaml',
+  'next.config.ts',
+  'postcss.config.js',
+  'prisma.config.ts',
+  'biome.json',
+  'rollup.tracker.config.js',
+  'rollup.recorder.config.js',
+  'tsup.config.js',
+  'package.components.json',
+  'netlify.toml',
+  'vercel.json',
+  'app.json',
+  'docker-compose.yml',
+]);
+
 // Exact tracked runtime/build inputs; tests/docs/evidence do not qualify a deployed build.
 export function sourceFiles() {
   return execFileSync('git', ['ls-files', '-z'], {
@@ -174,11 +196,20 @@ export function sourceFiles() {
             !/^scripts\/ai\/(analyst-evals|analyst-report|evals)\//.test(file) &&
             !/\.(test|spec)\./.test(file) &&
             !file.endsWith('/analyst-test-input.ts')) ||
-          /^(Dockerfile|package.json|pnpm-lock.yaml|pnpm-workspace.yaml|next.config.ts|tsconfig.*\.json)$/.test(
-            file,
-          )),
+          rootBuildInputs.has(file) ||
+          /^tsconfig(?:\.[a-z]+)*\.json$/.test(file)),
     )
     .sort();
+}
+
+function sourceFileHash(file: string) {
+  const fd = openSync(file, constants.O_RDONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK);
+  try {
+    if (!fstatSync(fd).isFile()) throw new Error('source-file');
+    return sha256(readFileSync(fd));
+  } finally {
+    closeSync(fd);
+  }
 }
 
 export function currentSource() {
@@ -187,6 +218,6 @@ export function currentSource() {
       encoding: 'utf8',
       timeout: 5000,
     }).trim(),
-    sourceFiles: Object.fromEntries(sourceFiles().map(file => [file, sha256(readFileSync(file))])),
+    sourceFiles: Object.fromEntries(sourceFiles().map(file => [file, sourceFileHash(file)])),
   };
 }
