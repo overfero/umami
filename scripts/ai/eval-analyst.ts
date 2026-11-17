@@ -62,10 +62,21 @@ if (reuseIndex >= 0 && !process.argv[reuseIndex + 1]) {
   console.error('--reuse-api-receipt requires a source-qualified completed offline receipt');
   process.exit(2);
 }
-import('./analyst-evals/run-offline').then(({ runOffline }) =>
-  runOffline(strict, outputIndex >= 0 ? process.argv[outputIndex + 1] : undefined,
-    reuseIndex >= 0 ? process.argv[reuseIndex + 1] : undefined),
-).catch(error => {
-  console.error(error);
-  process.exitCode = 1;
-});
+const browserIndex = process.argv.indexOf('--browser-receipt');
+if (browserIndex >= 0 && !process.argv[browserIndex + 1]) {
+  console.error('--browser-receipt requires a completed exact-source browser receipt');
+  process.exit(2);
+}
+import('./analyst-evals/run-offline')
+  .then(({ runOffline }) =>
+    runOffline(
+      strict,
+      outputIndex >= 0 ? process.argv[outputIndex + 1] : undefined,
+      reuseIndex >= 0 ? process.argv[reuseIndex + 1] : undefined,
+      browserIndex >= 0 ? process.argv[browserIndex + 1] : undefined,
+    ),
+  )
+  .catch(error => {
+    console.error(error);
+    process.exitCode = 1;
+  });

@@ -191,7 +191,8 @@ export default function (pi) {
         id: OFFLINE_MODEL,
         name: 'Offline analyst script',
         reasoning: false,
-        input: ['text'],
+        // Synthetic fixture transport only, not an assertion of configured-provider vision.
+        input: ['text', 'image'],
         cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
         contextWindow: 128000,
         maxTokens: 4096,

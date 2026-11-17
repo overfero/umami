@@ -1,0 +1,989 @@
+{
+  "complete": false,
+  "status": "implementation-paused-by-supervisor-investigate-mode",
+  "observedAtJakarta": "2026-11-17T22:39:05.327675+07:00",
+  "sourceRevision": "217a56e0f00b859daae65738b025f1eb1986546a",
+  "integrationRevision": "217a56e0f00b859daae65738b025f1eb1986546a",
+  "sourceDirty": true,
+  "sourceHashes": {
+    "next.config.ts": "95a6c0b3f73fc12d35e637892893fc77edd756a5e0c9ad03cabeb31e31ee6269",
+    "scripts/ai/analyst-evals/compatibility.test.tsx": "24f03bc640751e71a2911e9675638c6c73ef880effb9547877e2d144096f126f",
+    "scripts/ai/analyst-evals/docker-visual.test.ts": "63bb00fd459637f9b7478cca3ddaf9665a15f0f889c6970ec377305f523e33f4",
+    "scripts/ai/analyst-evals/image-capability.test.ts": "3a793897ebd8de430d3fd17d7d7b4172eeaf2a608f680ce10570e21fc825a4e4",
+    "scripts/ai/analyst-evals/offline.ts": "a19901b0855dd9c2e104d88431feb165fd2134542be020d9df8a07ea3cf8ca3b",
+    "scripts/ai/analyst-evals/preflight-interface.test.ts": "90e1c4220d728df64dcd77c2ed102dec68e527280c37478fa9efc849760cdc97",
+    "scripts/ai/analyst-evals/run-offline.ts": "adc3cd6a078e5c5bb9ea9c8bf51b9dc49d730c0e79da3c69d932dce29c5fabe0",
+    "scripts/ai/analyst-evals/visual-cancel-compat-investigation.md": "9bb7c824071a3f0021a3ed686eaaab54e697c8022ce7eac5a087b97ad587c6b3",
+    "scripts/ai/analyst-evals/visual-capability.test.ts": "bba11ed977b09e4ca63264bce61f0ce5a0bf141143dff83100856ef0007d2cdf",
+    "scripts/ai/analyst-evals/vitest.config.ts": "ef180650eba93c7f5064ce423e7110c3b57a4c08cd30cdd3ffebdf7fd6ccc3a2",
+    "scripts/ai/package-image-policy.mjs": "a13c08e46ef16782e97ff00a55ec20c2bb6a4f9610ba736a713da0c387af6dd4",
+    "scripts/ai/vision-preflight.mjs": "8d15f8cf526ac7f46966023ffda02b54987b1b75bd22945c29186ea1d1a4849e",
+    "src/lib/ai/assistant/analyst/analyst.test.ts": "5b3dfba81ef47d59854f9c97b3421afb986e713c477183618f17ccb9bf9c52f7",
+    "src/lib/ai/assistant/analyst/handlers.test.ts": "2d4fce975522759d9e092f8f66f1866386aa6087d7b8de6565bb9b1f8fb3c314",
+    "src/lib/ai/assistant/analyst/tools.ts": "c54712f73c9f96310f3f716b13cdf50e1d4e336f72a6bf54de553c8b89a76d29",
+    "src/lib/ai/assistant/handlers.ts": "90a1ef86731ca57c407e7547c9bcd652b8b602a97769f4fc49d429524f18d409",
+    "src/lib/ai/assistant/runtime.test.ts": "71be3629c186f5605e912883d35df96816c61bd0925d94f4a70792e0c79dcb06",
+    "src/lib/ai/assistant/runtime.ts": "c651bf07dfa5dc3835e334018cd8d0856f5f0da8a4b67e120e637502d72e16dc",
+    "src/lib/ai/image-capability.mjs": "7436c9206a6d1c50970dceb328852487f5a2b95a3c662809a849a987dd12166f",
+    "src/lib/ai/rpc/confinement.mjs": "ce59d2d6f595f4be03828b5ef7f2a28ea1abfb1733827cd0a3c02e1dc5f98670",
+    "src/lib/analyst-verifier/capability.mjs": "673e0073c04877577249cc18765093d1bd6f6f93664a5bb6a2d2a05775b66d0a",
+    "src/lib/analyst-verifier/port.mjs": "f4687b72808dac220d452c0af83f7ea189c17e597bc41ac02e30c2a02b01564f",
+    "src/test/setup.ts": "074a8edf8244ceeb01af9619dd689a087b0ac003e5ab2be93c0858a40de68d1b",
+    "vitest.config.ts": "0e97b7a56a7f67ffa6cefb9afa106dc4d448bd924d9d7efd91634e45cc114391"
+  },
+  "reports": {
+    "resolver-red": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-resolver-red.json",
+      "sha256": "b526d0e6f37e870d34e7f67d1b595e5c9840c663a8830a9a9797cd982d3d224a",
+      "success": false,
+      "total": 0,
+      "passed": 0,
+      "failed": 0,
+      "shellExit": 1
+    },
+    "gate-green": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-gate-green.json",
+      "sha256": "98c81e1f09689d34d9b1e89b0babea5e28366c3abd97d471929628bb3a891cdc",
+      "success": true,
+      "total": 4,
+      "passed": 4,
+      "failed": 0,
+      "shellExit": 0
+    },
+    "product-gate": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-product-gate.json",
+      "sha256": "2b8b9312d512e631385614f3f06568a1660da3b62e591b7e164e500bd36bda77",
+      "success": true,
+      "total": 91,
+      "passed": 90,
+      "failed": 0,
+      "shellExit": 0
+    },
+    "cancellation": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-cancellation.json",
+      "sha256": "42ba40204d84a1141019a04095650ff36494f419fd23e74f53513eecbf713b4c",
+      "success": true,
+      "total": 29,
+      "passed": 29,
+      "failed": 0,
+      "shellExit": 0
+    },
+    "evaluator-gate": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-evaluator-gate.json",
+      "sha256": "c3b6567e193459f71603fd4210f40fcffa3ba264302d56fcfbb281a686160feb",
+      "success": true,
+      "total": 23,
+      "passed": 23,
+      "failed": 0,
+      "shellExit": 0
+    },
+    "docker-visual": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-docker-visual.json",
+      "sha256": "02b7aa5f4ed515089d57ca7a382afac4f97b415660f17b9dbb260e2427142d2b",
+      "success": false,
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "shellExit": 1
+    }
+  },
+  "executedAssertions": [
+    {
+      "report": "gate-green",
+      "sourcePath": "scripts/ai/analyst-evals/image-capability.test.ts",
+      "assertion": "capability defaults unavailable and only exact host-attested preflight enables gateway images",
+      "status": "passed"
+    },
+    {
+      "report": "gate-green",
+      "sourcePath": "scripts/ai/analyst-evals/image-capability.test.ts",
+      "assertion": "preflight denies missing forged failed stale future model endpoint reasoning settings policy and build mismatches",
+      "status": "passed"
+    },
+    {
+      "report": "gate-green",
+      "sourcePath": "scripts/ai/analyst-evals/image-capability.test.ts",
+      "assertion": "preflight rejects symlink oversized and nonregular receipt or policy files without details",
+      "status": "passed"
+    },
+    {
+      "report": "gate-green",
+      "sourcePath": "scripts/ai/analyst-evals/visual-capability.test.ts",
+      "assertion": "absent image capability keeps screenshots out of the tool result and inspection unavailable",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "streams ordered deltas and saves/restores native session JSONL",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "reports bounded safe startup diagnostics without exposing arbitrary stderr",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "bridges tool calls and forwards start/end",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "bridges only approved analytics names (analytics_schema)",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "bridges only approved analytics names (find_people)",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "bridges only approved analytics names (query_series)",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "bridges only approved analytics names (query_breakdown)",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "bridges only approved analytics names (query_totals)",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "bridges only approved analytics names (unknown_tool)",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "denies an unknown bridge name even after an allowed execution start",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "aborts a running child and returns its saved session",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "enforces the wall-clock deadline",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "round-trips maximal 6\u00d71 MiB images and keeps them out of session, parts and diagnostics",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "aborts cleanly when repeated image events exhaust the 32 MiB transport budget",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "legacy turns keep the 8 MiB ceiling: image-bearing output without a host grant fails",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "sanitizes a restored session with image blocks before the child sees it",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "does not bridge analyst tools for legacy (flag-off) turns",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector built production app: accepted only with the receipt-bound BUILD_ID",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector refuses forged receipt: stale receipt",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector refuses forged receipt: future receipt",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector refuses forged receipt: forged nonce hash",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector refuses forged receipt: plaintext nonce (legacy receipt)",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector refuses forged receipt: wrong root",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector refuses forged receipt: tampered provider",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector writable-attacker forgeries: a fully self-consistent receipt without the env nonce fails",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector refuses a receipt outside a launcher-owned root",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector database marker: requires both the synthetic engine and fixture schema receipts",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector is absent unless requested and accepts only the verified fixture context",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector refuses (no live fallback): production without build binding",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector refuses (no live fallback): non-fixture database",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector refuses (no live fallback): wrong mode",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector refuses (no live fallback): missing nonce",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector refuses (no live fallback): foreign nonce",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector refuses (no live fallback): live provider configured",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector refuses (no live fallback): live provider key present",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector refuses (no live fallback): live AI enabled",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector refuses (no live fallback): ambient vendor credential",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector refuses without the launcher receipt (e.g. a normal checkout)",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector the provider module has no network-capable import or call",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/runtime.test.ts",
+      "assertion": "offline fixture runtime selector drives a create/readback/repair/verify turn through native Pi RPC under --permission",
+      "status": "skipped"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "binds tasks to the chat owner; a foreign principal cannot open or read the task",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "persists consumed budgets: exhaustion blocks and a resumed task does not reset limits",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "user-wait pauses do not consume the execution window; 24h expiry starts a new task",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "rejects JSON that could carry images or unbounded data into task records",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "tool calls are budgeted per task and model-supplied taskId/principal fields are rejected",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "creates private drafts automatically but never edits a pre-existing board via commit",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "existing-board change needs human confirmation bound to exact revision; rejection mutates nothing",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "a stale revision after confirmation returns conflict without issuing a grant",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "repair policy: provenance required, semantics preserved, at most two repairs",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "renamed analysis refs cannot bypass semantic-change or repair policy on a stable widget",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "abort during awaited validation/authorization prevents grants and writes",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "a task cancelled while a tool awaits is not overwritten by the late tool completion",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "cancellation that wins at the commit boundary leaves no board and no late task record",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "terminal tasks are absorbing: pause/resume/block/late updates never revive them",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "openTask never revives a task cancelled between its read and its write",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "terminal task data is immutable: late callbacks cannot append provenance or context",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "a commit that wins records provenance atomically; a later cancel needs no late write",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "without an isolated verifier, render reports visual_pending and never claims verification",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "verified render yields images only on the transient path; receipts hold hashes and are inspectable",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "render expectations include every saved native and analysis widget and reject unsupported widgets",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "sanitizes image blocks, data URLs and capabilities while keeping session structure",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "adds analyst lifecycle prompt rules only for analyst turns",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "stable widget repair: keeping a committed widget by analysisId is repairable by widget id",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "a stable-widget repair never edits a board the task did not create",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "discover exposes the exact nested definition, widget and repair contracts",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "completeTask closes only a plain running task; paused and blocked tasks keep their state",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "flag on: binds a persisted task, runs analyst tools and keeps image bytes out of chat/SSE",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "flag off: no task is created and analyst tools are not executed by the host",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "a foreign chat cannot start or select a task",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "outer handler deadline excludes user wait and blocks the task when execution time runs out",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "a blocked task is not silently restarted with a fresh budget",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "chat deletion cleans up artifacts for every task of the chat",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "an opening turn that loses to cancellation fails without a new task or any model/tool run",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "a later independent turn after cancellation starts a fresh task",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "flag on: SSE task events carry the host task id, persisted status and tool-derived phase",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "flag on: a tool that exhausts the budget emits the persisted blocked status after it",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "flag on: cancellation emits the persisted cancelled status",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "flag off (legacy): no task events are emitted",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "cancel resolves only after the cancelled task and message are persisted",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "judge: invalid render arguments returning ok:false do not complete the task",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "authorization denied on readback/render does not complete",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "failed data execution on readback does not complete",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "render failure with a configured verifier does not complete",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "inspection failure after a readback does not complete",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "an intervening write after readback invalidates the evidence",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "a draft revised after readback (stale revision) does not complete",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "verification for a different board cannot complete the saved draft",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "a later readback requires fresh verification",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "a saved draft with a current rendered receipt settles without inventing inspection",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "a saved draft with valid readback and visual_pending settles complete",
+      "status": "passed"
+    },
+    {
+      "report": "product-gate",
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "turns that did not reach render, or end paused/blocked/cancelled, are not completed",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "binds tasks to the chat owner; a foreign principal cannot open or read the task",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "persists consumed budgets: exhaustion blocks and a resumed task does not reset limits",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "user-wait pauses do not consume the execution window; 24h expiry starts a new task",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "rejects JSON that could carry images or unbounded data into task records",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "tool calls are budgeted per task and model-supplied taskId/principal fields are rejected",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "creates private drafts automatically but never edits a pre-existing board via commit",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "existing-board change needs human confirmation bound to exact revision; rejection mutates nothing",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "a stale revision after confirmation returns conflict without issuing a grant",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "repair policy: provenance required, semantics preserved, at most two repairs",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "renamed analysis refs cannot bypass semantic-change or repair policy on a stable widget",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "abort during awaited validation/authorization prevents grants and writes",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "a task cancelled while a tool awaits is not overwritten by the late tool completion",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "cancellation that wins at the commit boundary leaves no board and no late task record",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "terminal tasks are absorbing: pause/resume/block/late updates never revive them",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "openTask never revives a task cancelled between its read and its write",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "terminal task data is immutable: late callbacks cannot append provenance or context",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "a commit that wins records provenance atomically; a later cancel needs no late write",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "without an isolated verifier, render reports visual_pending and never claims verification",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "verified render yields images only on the transient path; receipts hold hashes and are inspectable",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "render expectations include every saved native and analysis widget and reject unsupported widgets",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "sanitizes image blocks, data URLs and capabilities while keeping session structure",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "adds analyst lifecycle prompt rules only for analyst turns",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "stable widget repair: keeping a committed widget by analysisId is repairable by widget id",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "a stable-widget repair never edits a board the task did not create",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "discover exposes the exact nested definition, widget and repair contracts",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "query cancellation propagates abort and late query completion cannot revive or mutate the task",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "repair cancellation after validation preserves the committed private draft without late provenance",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "render cancellation during artifact fetch discards pixels and cannot append a receipt or images",
+      "status": "passed"
+    },
+    {
+      "report": "cancellation",
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "completeTask closes only a plain running task; paused and blocked tasks keep their state",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/api-evidence.test.ts",
+      "assertion": "requires API completion marker and matching numbered assertions, not an arbitrary green exit",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/authority-evidence.test.ts",
+      "assertion": "reusable authority evidence requires exact source-qualified passed assertions and successful nonempty command",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/clarification.test.ts",
+      "assertion": "needs_input requires the meaningful bounded question, persisted wait and unchanged semantics",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/compatibility.test.tsx",
+      "assertion": "flags off preserves native board configuration reference source and renderer props",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/compatibility.test.tsx",
+      "assertion": "flags off historical snapshot keeps fixed Jakarta buckets filters and numbers without live execution",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/generic-authority.test.ts",
+      "assertion": "generic edit share delete and method aliases cannot dispatch lifecycle writes even with nested approval claims",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/image-capability.test.ts",
+      "assertion": "capability defaults unavailable and only exact host-attested preflight enables gateway images",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/image-capability.test.ts",
+      "assertion": "preflight denies missing forged failed stale future model endpoint reasoning settings policy and build mismatches",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/image-capability.test.ts",
+      "assertion": "preflight rejects symlink oversized and nonregular receipt or policy files without details",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/missing-metric.test.ts",
+      "assertion": "omitted native stats key rejects as missing_metric rather than zero",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/numeric-render.test.tsx",
+      "assertion": "numeric aggregate metric/table renders exact value, zero and unavailable without a series",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/offline.test.ts",
+      "assertion": "offline acceptance evidence fails strict acceptance when any required scenario lacks executed assertions",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/offline.test.ts",
+      "assertion": "offline acceptance evidence requires every scenario1\u20139 assertion and keeps scenarios10\u201312 pending",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/offline.test.ts",
+      "assertion": "offline acceptance evidence does not accept exit zero without every coverage-linked assertion",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/offline.test.ts",
+      "assertion": "historical evaluator-wrapped discovery cannot prove native-loopback scenario6",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/preflight-interface.test.ts",
+      "assertion": "preflight executes an image challenge via an explicit adapter and retains failed outcomes without issuing grants",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/preflight-interface.test.ts",
+      "assertion": "preflight refuses missing cost and unknown answers rather than fabricating a successful receipt",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/staff-dashboard.test.ts",
+      "assertion": "accepts only the exact four persisted staff bindings with successful matching readback and results",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/staff-dashboard.test.ts",
+      "assertion": "rejects duplicated/wrong persisted widget binding and non-distinct intended analysis IDs",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/staff-dashboard.test.ts",
+      "assertion": "rejects per-widget failed/denied execution, mismatched intent/hash, and incorrect actual results",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/visual-capability.test.ts",
+      "assertion": "absent image capability keeps screenshots out of the tool result and inspection unavailable",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/vitest-evidence.test.ts",
+      "assertion": "retains all structured assertion results and rejects missing/failed Vitest evidence",
+      "status": "passed"
+    },
+    {
+      "report": "evaluator-gate",
+      "sourcePath": "scripts/ai/analyst-evals/vitest-evidence.test.ts",
+      "assertion": "generic authority evidence rejects a matching assertion from the wrong source file",
+      "status": "passed"
+    },
+    {
+      "report": "docker-visual",
+      "sourcePath": "scripts/ai/analyst-evals/docker-visual.test.ts",
+      "assertion": "Docker Chromium fixture rejects render errors stale revisions desktop clipping and narrow-only clipping without artifacts",
+      "status": "failed"
+    }
+  ],
+  "limitations": [
+    "Gate green/product-gate ran before later handler-negative tests and cancellation additions; do not treat all current sources as tested together.",
+    "Evaluator23passed ran before docker-visual.test.ts was added; current full evaluator suite has a known setup failure.",
+    "Docker invalid_scope occurs before launcher; not actual browser/Docker renderer evidence.",
+    "Resolver-red is missing-module red with zero assertions, distinct from preserved original image-release assertion red.",
+    "No strict E1, build/standalone validation, TypeScript integration or configured-provider preflight performed."
+  ],
+  "noStagedFiles": true,
+  "commits": []
+}

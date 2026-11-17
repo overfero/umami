@@ -227,10 +227,11 @@ async function freshBoard(page: Page) {
 async function requestChange(page: Page, boardId: string) {
   // A persisted conversation may itself be titled "New chat". Target the action,
   // not a history-row title; repeated serial runs intentionally retain prior chats.
-  await page
+  const newChat = page
     .getByRole('button', { name: 'New chat', exact: true })
-    .and(page.locator('[data-slot="button"]'))
-    .click();
+    .and(page.locator('[data-slot="button"]'));
+  await newChat.focus();
+  await newChat.press('Enter');
   const input = page.getByPlaceholder('Ask anything about your analytics…');
   await input.fill(`Change board ${boardId}`);
   await input.press('Enter');

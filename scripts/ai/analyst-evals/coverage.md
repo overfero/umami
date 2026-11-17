@@ -1,4 +1,15 @@
-# Review correction — native scenario6 now executed, independent review pending
+# Current frontier — all12 deterministic groups executed; independent review required
+
+Slice03 corrected `evidence/slice03-review2-e1.json` records actual strict exit0 and
+`proven:[1,2,3,4,5,6,7,8,9,10,11,12]`. Exact source-qualified bindings for10–12 are
+`lifecycle-evidence.ts`; corrected `slice03-review2-browser.json` binds immutable
+executing verifier image/source equality and exact command/stdout/report pairs.
+Prior frontier receipt was rejected for qualificationP1s; retained historically.
+See `review2-validation.md` for fixes and still-explicit provenance limits.
+No live model reasoning, configured-provider vision, hermetic deployment or release
+acceptance follows. The slice01/02 sections below retain historical evidence boundaries.
+
+## Historical review correction — native scenario6
 
 P1 rejected the old evaluator-only withAiRead/UTC wrapper. The historical
 clarification-authority.json receipt does NOT prove6. Fresh
@@ -8,15 +19,15 @@ Real executeTool -> loopbackHTTP -> native handlers discovers login taxonomy and
 property schemas without an evaluator read scope, followed by meaningful ask_user,
 persisted awaiting_user and no guessed mutation. `utc-session-policy.md` documents
 the independently executed input/output/pool/calendar matrix and policy limitations.
-Proven1–9; pending10–12; strictE1 remains exit1. Independent re-review required.
+At that slice02 checkpoint: proven1–9, pending10–12, strictE1 exit1. Superseded by
+fresh frontier execution above, not by relabeling the historical receipt.
 
 # Offline assertion coverage manifest
 
 Contract: originating `wiki/specs/analyst-dashboard-lifecycle.md` §7 scenarios 1–12.
-Integrated slices implement **1–9**, not twelve-scenario acceptance. The machine-readable
-binding is `offline.ts:requirements`; `summarizeCoverage` requires every bound assertion
-from a successfully executed suite. Later slices must add assertions for 10–12, not reuse
-the former weak proxies. `offline.test.ts` removes each required assertion in turn and
+The machine-readable binding is `offline.ts:requirements`, including10–12 from
+`lifecycle-evidence.ts`. `summarizeCoverage` requires every bound assertion from
+successful exact-source extraction; file/title existence cannot qualify. `offline.test.ts` removes each required assertion in turn and
 checks that the corresponding scenario becomes pending. An empty selection fails.
 
 ## Commands / evidence classes
@@ -40,7 +51,7 @@ All commands run from the checkout root after the setup in `docs/ai-analyst-eval
 - **E1**:
   `npx --yes pnpm@12.3.4 exec tsx scripts/ai/eval-analyst.ts --offline --strict --output /tmp/analyst-offline.json`.
   Executes the commands above, checks names against their outputs, records source
-  hashes and raw command outputs. **Expected exit 1 while scenarios 10–12 are pending.**
+  hashes and raw command outputs. **Exit0 only when all12 complete; missing evidence exits1.**
   `complete:false` is an interrupted checkpoint, never finished evidence.
 
 ## Exact assertions (source references are symbol/string anchors, not titles alone)
@@ -77,17 +88,30 @@ The existing API assertion `filtered identified users → unsupported_combinatio
 rejection describes the scripted orchestrator's persisted choice, not server-side
 rejection of every semantically mismatched authorized analysis ID.
 
-## Pending scenarios (strict acceptance remains blocked)
+## Scenarios10–12 exact assertion map
 
-10. Browser/image/verifier/clipping/narrow/stale evidence cannot yield verified.
-11. In-flight cancellation at query/commit/queue/render/repair, no late mutations/images.
-12. Native boards and historical snapshots unchanged with flags off.
+All rows resolve by exact file+assertion literal in `lifecycle-evidence.ts`, not name-only.
+Vitest/browser parsers reject failed/skipped/empty/wrong-source/missing evidence;
+browser retries cannot cherry-pick a later pass. Browser reuse requires exact hashes
+of src/packages/prisma/db, fixture, parser, runner/config and tests.
 
-Scenarios6–9 now bind the complete assertion sets in `authority-evidence.ts`,
-`offline.ts` and the map below. Scenarios10–12 remain unproven as groups even when
-some reused tests overlap them. Later slices must bind and execute every missing
-subrequirement. E2 live selection/visual understanding,
-Docker/browser integration and release-target smoke are separately gated, not inferred.
+| Requirement | Binding IDs / highest useful seam | Independently asserted outcome |
+| --- | --- | --- |
+|10 absent image capability and inspection refusal|10.image,10.preflight / real public tool+opaque host resolver, synthetic artifact|No render/fetch invocation, no returned images/receipts, inspection unavailable; missing/failed/stale/config/build mismatch default deny. Not configured-provider vision proof.|
+|10 browser render failure/clipped desktop/narrow-only/stale|10.render-clipping / real network-less Docker Chromium fixture|Normal1440/390 captures first, all4negative modes reject. Synthetic adapter, not B3 native renderer.|
+|10 inaccessible verifier, stale receipt or failed render cannot complete|10.verifier,10.failure,10.stale / host tool+turn contracts|visual_pending/no receipt; configured failure and revision mismatch never complete.|
+|10 expiry at final image bridge release|10.expired-release / real child RPC|No pixels/envelope, honest image_capability_unavailable/visual_pending, no misleading successful receipt.|
+|10 complete data pending only|10.partial,10.unknown / turn contracts|Partial/unknown saved execution cannot complete when image unavailable. Complete-data pending separately passes.|
+|10 actual native+AnalysisWidget stale/failed paths|10.actual-render / fresh B3 build+Docker|Exact revision/execution/hash receipts, desktop+narrow, rendered_not_inspected; stale/failed/directHTTP denied.|
+|11 query cancellation including ignored abort and late successful executor|11.query-* / real public tool, injected executor|Both/signal-only/task-only cancellation fences data before return; task immutable, no data/images/board.|
+|11 commit boundary and no task revival|11.commit,11.terminal,11.provenance / host contracts;11.cancelled,11.commit-provenance,11.race-0..5,11.no-revival-0..5,11.linearizations / API-PG+CH|Real metadata commit/cancel serial/concurrent outcomes all-or-nothing; both winners observed, committed partial draft retained, cancelled tasks reject late provenance/revival.|
+|11 queue/render cancellation and late worker/artifact completion|11.queue-render,11.artifact / dispatcher public boundary+actual artifact store, simulated child|Cancelled queued work never launches; active child killed, late result/put cannot release artifact or receipt. Contract only, not OS worker success.|
+|11 image-fetch cancellation and repair|11.fetch,11.repair / public task tools|Discard pending pixels, no receipt/images/late provenance; committed private draft unchanged after cancelled repair.|
+|11 transport/persistence and UI Stop|11.transport / real child image RPC;11.browser-cancel / fresh D2 native offline Pi|Pixels absent from saved session/parts/diagnostics; actual Stop ends turn, no completion/task revival.|
+|12 flags-off native and historical snapshots|12.native,12.snapshot / DOM contracts;12.browser-native-snapshot / actual browser+persisted rows|Native Views42/Visits42 and boardJSON unchanged; historical Jakarta fixed bucket timestamps/filters/total5 preserved, no analysis execute.|
+|12 flags-off host and saved widgets|12.host / turn contract;12.flags-widget / sequential D2 persisted phase|No new task/tool dispatch; creation disabled, previously committed AnalysisWidget still executes.|
+
+Live E2 selection/visual understanding and release-target smoke remain separate gates.
 
 ## Discovered defects and authorized minimal fixes
 
@@ -163,4 +187,5 @@ It is not a product task-status enum. Code validates question/interaction/persis
 scripted fixture does **not** prove a live model notices ambiguity or selects the
 right question. Definition/artifact hashes prove provenance, never model judgment.
 No native Pi, paid provider, image inspection, browser render or deployment claimed.
-Full scenario10–12 group proof and strictE1 PASS remain later slice03 work.
+This slice02 receipt alone still cannot prove10–12. The current fresh slice03 evidence
+and exact map above provide their deterministic coverage; live/release remains separate.

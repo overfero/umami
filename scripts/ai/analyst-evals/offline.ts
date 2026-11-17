@@ -3,11 +3,22 @@ import {
   authorityPgRequirements,
   reusableAuthorityAssertions,
 } from './authority-evidence';
+import {
+  lifecycleAssertions,
+  lifecycleBrowserAssertions,
+  lifecycleApiAssertions,
+  qualifiedVitestEvidence,
+} from './lifecycle-evidence';
 export type Evidence = { suite: string; assertions: string[]; passed: boolean };
 export type Requirement = { id: string; suite: string; assertion: string };
 
 // Every entry is an executed assertion name, not a test-file-exists check.
 export const requirements: Requirement[] = [
+  ...lifecycleAssertions,
+  ...lifecycleBrowserAssertions,
+  ...['postgres', 'clickhouse'].flatMap(engine =>
+    lifecycleApiAssertions.map(r => ({ ...r, suite: `${engine}-api` })),
+  ),
   ...authorityPgRequirements.map(r => ({ ...r, suite: 'authority-pg' })),
   ...reusableAuthorityAssertions.map(r => ({
     id: r.id,
@@ -75,30 +86,28 @@ export function apiEvidence(engine: string, output: string): Evidence {
 }
 
 export function vitestEvidence(report: any, commandPassed: boolean) {
-  const assertions: { fullName: string; status: string }[] =
-    report?.testResults?.flatMap((r: any) => r.assertionResults ?? []) ?? [];
-  const passed = commandPassed && report?.success === true && assertions.length > 0;
   return {
     report: report ?? null,
-    evidence: ['component', 'executor', 'generic-authority'].map(suite => ({
-      suite,
-      passed,
-      assertions: requirements
-        .filter(r => r.suite === suite)
-        .map(r => r.assertion)
-        .filter(name =>
-          suite === 'generic-authority'
-            ? report?.testResults?.some(
-                (file: any) =>
-                  typeof file.name === 'string' &&
-                  file.name.endsWith('/scripts/ai/analyst-evals/generic-authority.test.ts') &&
-                  file.assertionResults?.some(
-                    (a: any) => a.fullName === name && a.status === 'passed',
-                  ),
-              )
-            : assertions.some(a => a.fullName === name && a.status === 'passed'),
-        ),
-    })),
+    evidence: qualifiedVitestEvidence(report, commandPassed, [
+      {
+        id: '3.render',
+        suite: 'component',
+        file: 'scripts/ai/analyst-evals/numeric-render.test.tsx',
+        assertion: requirements.find(r => r.id === '3.render')!.assertion,
+      },
+      {
+        id: '4.missing',
+        suite: 'executor',
+        file: 'scripts/ai/analyst-evals/missing-metric.test.ts',
+        assertion: requirements.find(r => r.id === '4.missing')!.assertion,
+      },
+      {
+        id: '9.generic',
+        suite: 'generic-authority',
+        file: 'scripts/ai/analyst-evals/generic-authority.test.ts',
+        assertion: requirements.find(r => r.id === '9.generic')!.assertion,
+      },
+    ]),
   };
 }
 

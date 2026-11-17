@@ -47,8 +47,8 @@ export function UpdateNotice({ user, config }) {
   }
 
   return (
-    <Column justifyContent="center" alignItems="center" position="fixed" top="10px" width="100%">
-      <Row width="600px">
+    <Column alignItems="center" padding="3" width="100%">
+      <Row width="100%" style={{ maxWidth: '600px' }}>
         <Alert style={{ width: '100%' }}>
           <AlertTitle>{t(messages.newVersionAvailable, { version: `v${latest}` })}</AlertTitle>
           <Row gap="3" paddingTop="2">

@@ -1,0 +1,15 @@
+{
+  "scripts/ai/analyst-evals/dispatcher-cancel.test.ts": true,
+  "scripts/ai/analyst-evals/image-context.test.ts": true,
+  "scripts/ai/analyst-evals/visual-capability.test.ts": true,
+  "scripts/ai/analyst-fixture/app.mjs": true,
+  "scripts/ai/analyst-fixture/database.mjs": true,
+  "src/lib/ai/assistant/analyst/analyst.test.ts": true,
+  "src/lib/ai/assistant/analyst/handlers.test.ts": true,
+  "src/lib/ai/assistant/handlers.ts": true,
+  "src/lib/ai/assistant/runtime.test.ts": true,
+  "src/lib/ai/assistant/runtime.ts": true,
+  "src/lib/ai/fixture-database.mjs": true,
+  "tests/e2e/analyst-compatibility.spec.ts": true,
+  "tests/e2e/analyst-update-notice.spec.ts": true
+}

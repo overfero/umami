@@ -1,0 +1,50 @@
+{
+  "complete": false,
+  "observedAtJakarta": "2026-11-18T00:23:09.692358+07:00",
+  "sourceRevision": "55baab52904d801cbb8a202f099a4521db7d858e",
+  "reports": {
+    "notice-browser-red": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-notice-browser-red.json",
+      "sha256": "b2d83030f8430973e2958abe053159d56aacc5c31db800fd18edc0ef13ece9dd",
+      "exit": 1
+    },
+    "notice-browser-hidden-drawer-failure": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-notice-browser-hidden-drawer-failure.json",
+      "sha256": "0045ee94ca0e8e0a820048c3eb4601efa7d43716eff7dbad4521c8c964d778cb",
+      "exit": 1
+    },
+    "notice-browser": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-notice-browser.json",
+      "sha256": "69685933181631418df1ef3ae63c20e19da2cb4d3c1bc590f24d66e532ad78d6",
+      "exit": 0
+    }
+  },
+  "sourceHashes": {
+    "src/app/(main)/App.tsx": "3d1641bc5d14c27862ce06a7ba4a90c40af3e80351920278bfa4d6d5a92c54bb",
+    "src/app/(main)/UpdateNotice.tsx": "f7afea07c8f2afcd85088c0c7d3de4b3a4652e68a67c6dff3b632a88cea42a12",
+    "tests/e2e/analyst-update-notice.spec.ts": "957c0a5946e44f418a021749e945c7f97a95642835d25635c9ed9b52f0dfe093",
+    "tests/e2e/analyst-compatibility.spec.ts": "f6e9d81549b75faa6c03f0693f5c49afc49829b0cdcaf09566ea4ac978b23133",
+    "tests/e2e/analyst-lifecycle.spec.ts": "64bc692f6cc01b027b47803e3cc937ec0210389882fc528706a867f1a7b9c4e9",
+    "scripts/ai/analyst-evals/run-offline.ts": "adc3cd6a078e5c5bb9ea9c8bf51b9dc49d730c0e79da3c69d932dce29c5fabe0",
+    "scripts/ai/analyst-evals/offline.ts": "a19901b0855dd9c2e104d88431feb165fd2134542be020d9df8a07ea3cf8ca3b",
+    "playwright.config.ts": "b39f7e9f1d0d0dbbcdf5385fd3a62a92ca1b06e39b258590a92f3c9c63d291f4"
+  },
+  "build": {
+    "exit": 0,
+    "policy": "scripts/ai/analyst-evals/evidence/slice03-notice-built-policy.json",
+    "buildId": "e86da0ad-cc6f-4eae-ad32-2813256c58a8",
+    "source": "https://github.com/giovannirandykusuma/umami/tree/55baab52904d801cbb8a202f099a4521db7d858e"
+  },
+  "cleanup": {
+    "exit": 0,
+    "uniqueNamespaceDropped": true,
+    "legacyFixtureUntouched": true
+  },
+  "limitations": [
+    "Slice03 incomplete; offline manifest10-12 missing and strict E1 not executed.",
+    "Notification focused desktop+narrow mouse/keyboard with visible banner passed; independent review required.",
+    "No hermetic standalone acceptance:27 external traces excluded in earlier build.",
+    "No paid model/preflight, deployment, tsc or final integration check.",
+    "Unique fixture bootstrap cleanup collision/nonowned negative tests not complete; guard runtime negatives executed."
+  ]
+}

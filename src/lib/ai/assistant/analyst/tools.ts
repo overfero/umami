@@ -1,4 +1,5 @@
 import { createHash, randomUUID } from 'node:crypto';
+import { canInspectImages } from '../../image-capability.mjs';
 import { getResolvedComponentEntity } from '@/lib/boards';
 import { z } from 'zod';
 import {
@@ -140,6 +141,8 @@ export interface AnalystInput {
   /** Host-side query concurrency counter shared across one task's tool calls. */
   running?: { queries: number };
   now?: () => number;
+  /** Opaque host-resolved preflight grant, never tool/request arguments. */
+  imageCapability?: object;
 }
 
 /** Images are never part of the JSON result; the runtime transports them separately. */
@@ -285,6 +288,8 @@ async function runQuery(input: AnalystInput, definition: AnalysisDefinition, sav
         ...(saved ? { saved } : {}),
       }),
     );
+    const stopped = await interrupted(input);
+    if (stopped) return stopped;
     return { ok: true, data: boundedJson(envelope) };
   } finally {
     running.queries--;
@@ -646,6 +651,16 @@ async function verifyRender(
         visualStatus: 'visual_pending',
       }),
     };
+  if (!canInspectImages(input.imageCapability))
+    return {
+      json: fail(
+        'image_capability_unavailable',
+        'Image inspection is unavailable; data checks only',
+        {
+          visualStatus: 'visual_pending',
+        },
+      ),
+    };
   const board = await input.deps.getBoard(args.boardId);
   if (!board) return { json: fail('not_found', 'Board not found') };
   const analysisRevisions: Record<string, number> = {};
@@ -655,9 +670,16 @@ async function verifyRender(
       const { entityType, entityId } = getResolvedComponentEntity(board as any, w.component);
       if (entityType !== 'website' || !entityId)
         return { json: fail('unsupported_combination', 'Native source is unsupported') };
-      const definitionHash = createHash('sha256').update(JSON.stringify({
-        type: w.component.type, entityId, datePolicy: 'default-UTC', props: w.component.props ?? {},
-      })).digest('hex');
+      const definitionHash = createHash('sha256')
+        .update(
+          JSON.stringify({
+            type: w.component.type,
+            entityId,
+            datePolicy: 'default-UTC',
+            props: w.component.props ?? {},
+          }),
+        )
+        .digest('hex');
       expectedWidgets.push({ id: w.id, executionId: '', definitionHash });
       continue;
     }
@@ -696,6 +718,16 @@ async function verifyRender(
       userId: input.scope.userId,
       taskId: task.id,
     });
+    if (!canInspectImages(input.imageCapability))
+      return {
+        json: fail(
+          'image_capability_unavailable',
+          'Image inspection is unavailable; data checks only',
+          {
+            visualStatus: 'visual_pending',
+          },
+        ),
+      };
     const total = images.reduce((n, i) => n + i.bytes.length, 0);
     if (
       images.length > 6 ||
@@ -737,6 +769,14 @@ async function verifyRender(
 }
 
 async function recordInspection(input: AnalystInput, args: any) {
+  if (!canInspectImages(input.imageCapability))
+    return fail(
+      'image_capability_unavailable',
+      'Image inspection is unavailable; data checks only',
+      {
+        visualStatus: 'visual_pending',
+      },
+    );
   let error: string | undefined;
   await updateTask(input.scope, task => {
     const receipt = task.receipts.find(r => r.id === args.receiptId);

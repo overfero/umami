@@ -12,7 +12,9 @@ export const VERIFIER_IMAGE = 'umami-analyst-verifier:local';
 export const VERIFIER_ORIGIN = 'http://verifier-canvas.internal';
 const LINE_LIMIT = 16 * 1024 * 1024;
 
-export function dockerArgs(name) {
+export function dockerArgs(name, image = VERIFIER_IMAGE) {
+  if (image !== VERIFIER_IMAGE && !/^sha256:[a-f0-9]{64}$/.test(image))
+    throw new Error('Invalid verifier image identity');
   return [
     'run',
     '-i',
@@ -36,7 +38,7 @@ export function dockerArgs(name) {
     '128m',
     '--tmpfs',
     '/tmp:rw,nosuid,nodev,size=128m',
-    VERIFIER_IMAGE,
+    image,
     'node',
     'scripts/ai/verifier/container-worker.mjs',
   ];
@@ -46,11 +48,14 @@ const launchers = new WeakSet();
 /** True only for launchers built here (the dispatcher's isolation precondition). */
 export const isRestrictedLauncher = launcher => launchers.has(launcher);
 
-/** @param {{ spawn?: typeof nodeSpawn }} [options] `spawn` is an exec seam for argv tests. */
-export function createDockerLauncher({ spawn = nodeSpawn } = {}) {
+/** @param {{ spawn?: typeof nodeSpawn, image?: string }} [options]
+ * Host-only immutable image injection; never a request/model tool argument.
+ */
+export function createDockerLauncher({ spawn = nodeSpawn, image = VERIFIER_IMAGE } = {}) {
+  dockerArgs('validate', image);
   const launch = () => {
     const name = `umami-verifier-${randomBytes(8).toString('hex')}`;
-    const proc = spawn('docker', dockerArgs(name), {
+    const proc = spawn('docker', dockerArgs(name, image), {
       stdio: ['pipe', 'pipe', 'ignore'],
       env: { PATH: process.env.PATH, HOME: process.env.HOME },
       shell: false,

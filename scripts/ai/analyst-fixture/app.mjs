@@ -21,6 +21,9 @@ import {
 } from 'node:fs';
 import { basename, dirname, isAbsolute, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { provisionFixtureDatabase, cleanupFixtureDatabase } from './database.mjs';
+import { fixtureSchema } from '../../../src/lib/ai/fixture-database.mjs';
+import { withOwnedFixtureStartup,validateFixturePorts } from './startup.mjs';
 
 export const FIXTURE_DATABASE =
   'postgresql://ai_synthetic@127.0.0.1:25432/ai_synthetic?schema=analyst_fixture';
@@ -106,7 +109,7 @@ const sha256 = value => createHash('sha256').update(value).digest('hex');
  * the nonce by hash, this exact root, the packaged provider file and its issue time; in built
  * mode also the BUILD_ID of the Next build made here. Only this launcher writes it.
  */
-export function writeReceipt(dir, nonce, buildId) {
+export function writeReceipt(dir, nonce, buildId, databaseUrl = FIXTURE_DATABASE) {
   writeFileSync(
     join(dir, '.analyst-fixture-receipt.json'),
     JSON.stringify({
@@ -117,6 +120,8 @@ export function writeReceipt(dir, nonce, buildId) {
         readFileSync(join(dir, 'scripts/ai/analyst-fixture/offline-provider.mjs')),
       ),
       issuedAt: Date.now(),
+      databaseUrl,
+      schema: fixtureSchema(databaseUrl),
       ...(buildId ? { buildId } : {}),
     }),
     { mode: 0o600 },
@@ -138,6 +143,8 @@ export function fixtureEnv({
   verifier,
   flagsOff = false,
   built = false,
+  databaseUrl = FIXTURE_DATABASE,
+  verifierImage = undefined,
 }) {
   return {
     PATH: process.env.PATH,
@@ -148,7 +155,8 @@ export function fixtureEnv({
     NODE_OPTIONS: process.env.ANALYST_FIXTURE_NODE_OPTIONS ?? '--max-old-space-size=2048',
     PORT: port,
     NEXT_TELEMETRY_DISABLED: '1',
-    DATABASE_URL: FIXTURE_DATABASE,
+    DATABASE_URL: databaseUrl,
+    PGOPTIONS: `-c search_path=${fixtureSchema(databaseUrl)}`,
     APP_SECRET: 'synthetic-analyst-fixture-only',
     ...(flagsOff
       ? {}
@@ -159,15 +167,16 @@ export function fixtureEnv({
           AI_PI_ROOT: piRoot,
         }),
     ...(verifier && !flagsOff
-      ? { AI_ANALYST_VERIFIER_ENABLED: 'true', AI_ANALYST_VERIFIER_LAUNCHER: 'docker' }
+      ? { AI_ANALYST_VERIFIER_ENABLED: 'true', AI_ANALYST_VERIFIER_LAUNCHER: 'docker',
+          ...(verifierImage ? { AI_ANALYST_VERIFIER_IMAGE: verifierImage } : {}) }
       : {}),
   };
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const port = process.env.ANALYST_FIXTURE_PORT ?? '3327';
-  if (!/^\d+$/.test(port) || ['3000', '3317'].includes(port))
-    throw new Error('Refusing shared port');
+  const offPort = process.env.ANALYST_FIXTURE_FLAGS_OFF_PORT;
+  validateFixturePorts([port,offPort]);
   const flagsOff = process.env.ANALYST_FIXTURE_FLAGS === 'off';
   const built = process.env.ANALYST_FIXTURE_BUILT === '1';
   const piRoot = process.env.AI_PI_ROOT;
@@ -185,8 +194,26 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     env: { PATH: process.env.PATH, HOME: '/tmp', DATABASE_URL: FIXTURE_DATABASE },
   });
   if (generated.status !== 0) throw new Error('prisma generate failed');
-  console.log(JSON.stringify({ fixtureProject: dir, verifier, flagsOff, built }));
-  const env = { dir, port, nonce, piRoot, verifier, built };
+  await withOwnedFixtureStartup({
+    ports:[port,offPort],
+    provision:()=>({databaseUrl:provisionFixtureDatabase(dir,nonce.slice(0,24))}),
+    cleanup:({databaseUrl})=>{
+      const receipt=JSON.parse(readFileSync(join(dir,'.analyst-fixture-receipt.json'),'utf8'));
+      if(receipt.root!==realpathSync(dir)||receipt.databaseUrl!==databaseUrl||receipt.nonceSha256!==sha256(nonce))throw new Error('Fixture cleanup receipt mismatch');
+      cleanupFixtureDatabase(databaseUrl,receipt);
+    },
+    run:async({databaseUrl})=>{
+  writeReceipt(dir, nonce, undefined, databaseUrl);
+  console.log(
+    JSON.stringify({
+      fixtureProject: dir,
+      verifier,
+      flagsOff,
+      built,
+      schema: fixtureSchema(databaseUrl),
+    }),
+  );
+  const env = { dir, port, nonce, piRoot, verifier, built, databaseUrl };
   const next = join(dir, 'node_modules/.bin/next');
   const children = [];
   if (built) {
@@ -206,10 +233,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
       },
     });
     if (build.status !== 0) throw new Error('next build failed');
-    writeReceipt(dir, nonce, readFileSync(join(dir, '.next/BUILD_ID'), 'utf8').trim());
-    const offPort = process.env.ANALYST_FIXTURE_FLAGS_OFF_PORT;
-    if (offPort && (!/^\d+$/.test(offPort) || ['3000', '3317', port].includes(offPort)))
-      throw new Error('Refusing shared port');
+    writeReceipt(dir, nonce, readFileSync(join(dir, '.next/BUILD_ID'), 'utf8').trim(), databaseUrl);
     for (const [p, off] of [[port, flagsOff], ...(offPort ? [[offPort, true]] : [])])
       children.push(
         spawn(next, ['start', '--hostname', '127.0.0.1', '--port', p], {
@@ -229,19 +253,24 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
         env: fixtureEnv({ ...env, flagsOff }),
       }),
     );
-  const [child] = children;
-  const stop = signal => {
-    for (const c of children) c.kill(signal);
-  };
-  for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => stop(signal));
-  child.on('exit', (code, signal) => {
-    if (code === 0) {
-      rmSync(dir, { recursive: true, force: true });
-    } else {
-      // Retain synthetic-only compiler traces on failure; never print the nonce,
-      // auth tokens or request bodies. MAIN can inspect and remove this owned temp.
-      console.error(JSON.stringify({ fixtureFailure: { code, signal, project: dir } }));
-    }
-    process.exit(code ?? 1);
+  const stop=signal=>{for(const child of children)child.kill(signal);};
+  const onInterrupt=()=>stop('SIGTERM');
+  process.on('SIGINT',onInterrupt);process.on('SIGTERM',onInterrupt);
+  try {
+    if(!children.length)throw new Error('Missing fixture child');
+    const outcome=await Promise.race(children.map(child=>new Promise((resolve,reject)=>{
+      child.once('error',reject);child.once('exit',(code,signal)=>resolve({code,signal}));
+    })));
+    process.exitCode=outcome.code??1;
+  } finally {
+    stop('SIGTERM');
+    await Promise.all(children.map(child=>new Promise(resolve=>{
+      if(child.exitCode!==null||child.signalCode!==null)return resolve();
+      const timer=setTimeout(()=>{child.kill('SIGKILL');resolve();},5000);
+      child.once('exit',()=>{clearTimeout(timer);resolve();});
+    })));
+    process.removeListener('SIGINT',onInterrupt);process.removeListener('SIGTERM',onInterrupt);
+  }
+    },
   });
 }

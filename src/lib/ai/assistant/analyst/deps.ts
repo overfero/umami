@@ -251,7 +251,7 @@ function verifier(): VerifierPort | null {
   if (!isAnalystVerifierEnabled()) return null;
   // Trusted bootstrap: only the explicit server setting selects the restricted Docker launcher.
   if (!isolatedLauncher() && process.env.AI_ANALYST_VERIFIER_LAUNCHER === 'docker')
-    registerIsolatedLauncher(createDockerLauncher());
+    registerIsolatedLauncher(createDockerLauncher({ image: process.env.AI_ANALYST_VERIFIER_IMAGE }));
   const launcher = isolatedLauncher();
   if (!launcher) return null;
   port ??= createVerifierPort({
