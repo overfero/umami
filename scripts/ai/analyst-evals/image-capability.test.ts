@@ -29,7 +29,10 @@ function fixture() {
   };
   const bytes = JSON.stringify(policy);
   writeFileSync(join(root, 'generated/analyst-image-policy.json'), bytes);
-  const env: NodeJS.ProcessEnv & { AI_IMAGE_PREFLIGHT_PATH: string; AI_IMAGE_PREFLIGHT_SHA256: string } = {
+  const env: NodeJS.ProcessEnv & {
+    AI_IMAGE_PREFLIGHT_PATH: string;
+    AI_IMAGE_PREFLIGHT_SHA256: string;
+  } = {
     NODE_ENV: 'test',
     AI_PROVIDER: 'synthetic',
     AI_MODEL: 'synthetic-model',

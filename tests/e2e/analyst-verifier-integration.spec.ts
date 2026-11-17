@@ -140,7 +140,7 @@ test('built actual native + AnalysisWidget path: exact receipts; stale/failed/di
     const renderer = await createBuiltRenderer({ root: build, port: 3351 });
     port = createVerifierPort({
       enabled: true,
-      launcher: createDockerLauncher(),
+      launcher: createDockerLauncher({ image: process.env.AI_ANALYST_VERIFIER_IMAGE }),
       authorize,
       prepare: async () => {
         const copy = structuredClone(prepared);

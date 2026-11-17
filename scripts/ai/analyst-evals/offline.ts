@@ -3,7 +3,12 @@ import {
   authorityPgRequirements,
   reusableAuthorityAssertions,
 } from './authority-evidence';
-import { lifecycleAssertions, lifecycleBrowserAssertions, lifecycleApiAssertions, qualifiedVitestEvidence } from './lifecycle-evidence';
+import {
+  lifecycleAssertions,
+  lifecycleBrowserAssertions,
+  lifecycleApiAssertions,
+  qualifiedVitestEvidence,
+} from './lifecycle-evidence';
 export type Evidence = { suite: string; assertions: string[]; passed: boolean };
 export type Requirement = { id: string; suite: string; assertion: string };
 
@@ -11,7 +16,9 @@ export type Requirement = { id: string; suite: string; assertion: string };
 export const requirements: Requirement[] = [
   ...lifecycleAssertions,
   ...lifecycleBrowserAssertions,
-  ...['postgres','clickhouse'].flatMap(engine => lifecycleApiAssertions.map(r=>({...r,suite:`${engine}-api` }))),
+  ...['postgres', 'clickhouse'].flatMap(engine =>
+    lifecycleApiAssertions.map(r => ({ ...r, suite: `${engine}-api` })),
+  ),
   ...authorityPgRequirements.map(r => ({ ...r, suite: 'authority-pg' })),
   ...reusableAuthorityAssertions.map(r => ({
     id: r.id,
@@ -82,9 +89,24 @@ export function vitestEvidence(report: any, commandPassed: boolean) {
   return {
     report: report ?? null,
     evidence: qualifiedVitestEvidence(report, commandPassed, [
-      { id:'3.render', suite:'component', file:'scripts/ai/analyst-evals/numeric-render.test.tsx', assertion: requirements.find(r=>r.id==='3.render')!.assertion },
-      { id:'4.missing', suite:'executor', file:'scripts/ai/analyst-evals/missing-metric.test.ts', assertion: requirements.find(r=>r.id==='4.missing')!.assertion },
-      { id:'9.generic', suite:'generic-authority', file:'scripts/ai/analyst-evals/generic-authority.test.ts', assertion: requirements.find(r=>r.id==='9.generic')!.assertion },
+      {
+        id: '3.render',
+        suite: 'component',
+        file: 'scripts/ai/analyst-evals/numeric-render.test.tsx',
+        assertion: requirements.find(r => r.id === '3.render')!.assertion,
+      },
+      {
+        id: '4.missing',
+        suite: 'executor',
+        file: 'scripts/ai/analyst-evals/missing-metric.test.ts',
+        assertion: requirements.find(r => r.id === '4.missing')!.assertion,
+      },
+      {
+        id: '9.generic',
+        suite: 'generic-authority',
+        file: 'scripts/ai/analyst-evals/generic-authority.test.ts',
+        assertion: requirements.find(r => r.id === '9.generic')!.assertion,
+      },
     ]),
   };
 }

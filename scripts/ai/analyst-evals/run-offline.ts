@@ -17,7 +17,12 @@ import {
   type Evidence,
 } from './offline';
 
-export async function runOffline(strict: boolean, outputPath?: string, reuseApiPath?: string, browserReceiptPath?: string) {
+export async function runOffline(
+  strict: boolean,
+  outputPath?: string,
+  reuseApiPath?: string,
+  browserReceiptPath?: string,
+) {
   const evidence: Evidence[] = [];
   const commands: {
     command: string;
@@ -192,11 +197,31 @@ export async function runOffline(strict: boolean, outputPath?: string, reuseApiP
       /* Missing output remains missing evidence, never a pass. */
     }
     evidence.push(...vitestEvidence(vitestReport, commands.at(-1)!.passed).evidence);
-    evidence.push(...qualifiedVitestEvidence(vitestReport, commands.at(-1)!.passed, lifecycleAssertions.filter(r=>r.suite==='lifecycle-evaluator')));
+    evidence.push(
+      ...qualifiedVitestEvidence(
+        vitestReport,
+        commands.at(-1)!.passed,
+        lifecycleAssertions.filter(r => r.suite === 'lifecycle-evaluator'),
+      ),
+    );
     const productPath = path.join(temp, 'lifecycle-product.json');
-    execute(['vitest','run','src/lib/ai/assistant/analyst/analyst.test.ts','src/lib/ai/assistant/analyst/handlers.test.ts','src/lib/ai/assistant/runtime.test.ts','--reporter=json',`--outputFile=${productPath}`]);
-    lifecycleProductReport = JSON.parse(readFileSync(productPath,'utf8'));
-    evidence.push(...qualifiedVitestEvidence(lifecycleProductReport,commands.at(-1)!.passed,lifecycleAssertions.filter(r=>r.suite==='lifecycle-product')));
+    execute([
+      'vitest',
+      'run',
+      'src/lib/ai/assistant/analyst/analyst.test.ts',
+      'src/lib/ai/assistant/analyst/handlers.test.ts',
+      'src/lib/ai/assistant/runtime.test.ts',
+      '--reporter=json',
+      `--outputFile=${productPath}`,
+    ]);
+    lifecycleProductReport = JSON.parse(readFileSync(productPath, 'utf8'));
+    evidence.push(
+      ...qualifiedVitestEvidence(
+        lifecycleProductReport,
+        commands.at(-1)!.passed,
+        lifecycleAssertions.filter(r => r.suite === 'lifecycle-product'),
+      ),
+    );
     const authorityJsonPath = path.join(temp, 'authority-vitest.json');
     execute([
       'vitest',
@@ -216,60 +241,62 @@ export async function runOffline(strict: boolean, outputPath?: string, reuseApiP
     rmSync(temp, { recursive: true, force: true });
   }
   const browserReport = browserReceiptPath
-    ? JSON.parse(readFileSync(browserReceiptPath,'utf8'))
-    : await runBrowserProof(`${outputPath ?? path.join(os.tmpdir(),'analyst-eval')}.browser.json`);
-  evidence.push(browserReceiptEvidence(browserReport,hash));
+    ? JSON.parse(readFileSync(browserReceiptPath, 'utf8'))
+    : await runBrowserProof(`${outputPath ?? path.join(os.tmpdir(), 'analyst-eval')}.browser.json`);
+  evidence.push(browserReceiptEvidence(browserReport, hash));
   checkpoint();
   const summary = summarizeCoverage(evidence);
-  const sourceFiles = [...new Set([
-    ...lifecycleAssertions.map(a=>a.file),
-    ...Object.keys(browserReport.sourceHashes),
-    'scripts/ai/analyst-evals/lifecycle-evidence.ts',
-    'scripts/ai/analyst-evals/lifecycle-evidence.test.ts',
-    'scripts/ai/analyst-evals/browser-receipt.ts',
-    'scripts/ai/analyst-evals/browser-proof.ts',
-    'scripts/ai/analyst-evals/fixture-ownership.test.ts',
-    'wiki/specs/analyst-dashboard-lifecycle.md',
-    'src/lib/prisma.ts',
-    'src/lib/prisma-session.ts',
-    'src/lib/prisma-session.test.ts',
-    'scripts/ai/analyst-evals/session-policy.ts',
-    'scripts/ai/analyst-evals/authority.ts',
-    'scripts/ai/analyst-evals/schema-server.ts',
-    'scripts/ai/analyst-evals/authority-evidence.ts',
-    'scripts/ai/analyst-evals/authority-evidence.test.ts',
-    'scripts/ai/analyst-evals/clarification.ts',
-    'scripts/ai/analyst-evals/clarification.test.ts',
-    'scripts/ai/analyst-evals/generic-authority.test.ts',
-    'src/lib/analyst-verifier/authority.test.ts',
-    'src/lib/analyst-verifier/port.test.ts',
-    'src/lib/analyst-verifier/port.mjs',
-    'src/lib/analyst-verifier/images.mjs',
-    'src/lib/analyst-verifier/capability.mjs',
-    'src/lib/ai/assistant/analyst/tools.ts',
-    'src/lib/ai/assistant/analyst/task.ts',
-    'src/lib/ai/assistant/tools.ts',
-    'src/queries/prisma/analysis.ts',
-    'src/permissions/analysis.ts',
-    'src/permissions/website.ts',
-    'src/permissions/share.ts',
-    'scripts/ai/eval-analyst.ts',
-    'scripts/ai/analyst-evals/run-offline.ts',
-    'scripts/ai/analyst-evals/vitest.config.ts',
-    'src/test/setup.ts',
-    'scripts/ai/analyst-evals/staff-dashboard.ts',
-    'scripts/ai/analyst-evals/staff-dashboard.test.ts',
-    'scripts/ai/analyst-evals/vitest-evidence.test.ts',
-    'scripts/ai/analyst-evals/api-evidence.test.ts',
-    'scripts/ai/analyst-evals/offline.test.ts',
-    'scripts/test-analyst-api.ts',
-    'scripts/ai/analyst-evals/dashboard.ts',
-    'scripts/ai/analyst-evals/offline.ts',
-    'scripts/ai/analyst-evals/numeric-render.test.tsx',
-    'scripts/ai/analyst-evals/missing-metric.test.ts',
-    'src/lib/ai/assistant/analyst/deps.ts',
-    'src/queries/sql/getWebsiteDateRange.ts',
-  ])];
+  const sourceFiles = [
+    ...new Set([
+      ...lifecycleAssertions.map(a => a.file),
+      ...Object.keys(browserReport.sourceHashes),
+      'scripts/ai/analyst-evals/lifecycle-evidence.ts',
+      'scripts/ai/analyst-evals/lifecycle-evidence.test.ts',
+      'scripts/ai/analyst-evals/browser-receipt.ts',
+      'scripts/ai/analyst-evals/browser-proof.ts',
+      'scripts/ai/analyst-evals/fixture-ownership.test.ts',
+      'wiki/specs/analyst-dashboard-lifecycle.md',
+      'src/lib/prisma.ts',
+      'src/lib/prisma-session.ts',
+      'src/lib/prisma-session.test.ts',
+      'scripts/ai/analyst-evals/session-policy.ts',
+      'scripts/ai/analyst-evals/authority.ts',
+      'scripts/ai/analyst-evals/schema-server.ts',
+      'scripts/ai/analyst-evals/authority-evidence.ts',
+      'scripts/ai/analyst-evals/authority-evidence.test.ts',
+      'scripts/ai/analyst-evals/clarification.ts',
+      'scripts/ai/analyst-evals/clarification.test.ts',
+      'scripts/ai/analyst-evals/generic-authority.test.ts',
+      'src/lib/analyst-verifier/authority.test.ts',
+      'src/lib/analyst-verifier/port.test.ts',
+      'src/lib/analyst-verifier/port.mjs',
+      'src/lib/analyst-verifier/images.mjs',
+      'src/lib/analyst-verifier/capability.mjs',
+      'src/lib/ai/assistant/analyst/tools.ts',
+      'src/lib/ai/assistant/analyst/task.ts',
+      'src/lib/ai/assistant/tools.ts',
+      'src/queries/prisma/analysis.ts',
+      'src/permissions/analysis.ts',
+      'src/permissions/website.ts',
+      'src/permissions/share.ts',
+      'scripts/ai/eval-analyst.ts',
+      'scripts/ai/analyst-evals/run-offline.ts',
+      'scripts/ai/analyst-evals/vitest.config.ts',
+      'src/test/setup.ts',
+      'scripts/ai/analyst-evals/staff-dashboard.ts',
+      'scripts/ai/analyst-evals/staff-dashboard.test.ts',
+      'scripts/ai/analyst-evals/vitest-evidence.test.ts',
+      'scripts/ai/analyst-evals/api-evidence.test.ts',
+      'scripts/ai/analyst-evals/offline.test.ts',
+      'scripts/test-analyst-api.ts',
+      'scripts/ai/analyst-evals/dashboard.ts',
+      'scripts/ai/analyst-evals/offline.ts',
+      'scripts/ai/analyst-evals/numeric-render.test.tsx',
+      'scripts/ai/analyst-evals/missing-metric.test.ts',
+      'src/lib/ai/assistant/analyst/deps.ts',
+      'src/queries/sql/getWebsiteDateRange.ts',
+    ]),
+  ];
   const report = {
     complete: true,
     mode: 'offline-scripted-real-browser-no-live-model',

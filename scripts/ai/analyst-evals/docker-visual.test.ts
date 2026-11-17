@@ -5,6 +5,8 @@ import {
   resolvePrivateRender,
 } from '../../../src/lib/analyst-verifier/port.mjs';
 import { createDockerLauncher } from '../../../src/lib/analyst-verifier/launcher.mjs';
+import { qualifyVerifierImage } from './verifier-image';
+import { fileSha256 } from './browser-receipt';
 
 // Real network-less Docker Chromium, SYNTHETIC fixture adapter (not AnalysisWidget/B3).
 // No model call or visual understanding is claimed by automated receipt checks.
@@ -22,7 +24,7 @@ it('Docker Chromium fixture rejects render errors stale revisions desktop clippi
   ];
   const port = createVerifierPort({
     enabled: true,
-    launcher: createDockerLauncher(),
+    launcher: createDockerLauncher({ image: qualifyVerifierImage('umami-analyst-verifier:local', fileSha256).imageId }),
     authorize: async () => true,
     prepare: async () => expectedWidgets,
     renderer: async ({ credential, path }: any) => {
