@@ -1,6 +1,6 @@
 # Slice 06: guarded synthetic release smoke
 
-Implementation complete locally; **independent review required before merge**. Not actual release acceptance. No production/key/.env/SSH/deployment/provider inspection or calls.
+Initial candidate d8544e402 was independently **REJECTED** for omitted root build inputs. Correction and fresh source-qualified validation: [review correction](slice06-review-correction.md). **Fresh independent review required before merge**. Not actual release acceptance. No production/key/.env/SSH/deployment/provider inspection or calls.
 
 ## Contract and scope
 

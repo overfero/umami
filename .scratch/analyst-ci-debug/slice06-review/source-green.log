@@ -1,0 +1,155 @@
+TAP version 13
+# Subtest: public CLI rejects stale approval after each tracked root build input changes in a disposable source checkout
+    # Subtest: Dockerfile
+    ok 1 - Dockerfile
+      ---
+      duration_ms: 361.530219
+      type: 'test'
+      ...
+    # Subtest: .dockerignore
+    ok 2 - .dockerignore
+      ---
+      duration_ms: 368.264706
+      type: 'test'
+      ...
+    # Subtest: package.json
+    ok 3 - package.json
+      ---
+      duration_ms: 370.218057
+      type: 'test'
+      ...
+    # Subtest: pnpm-lock.yaml
+    ok 4 - pnpm-lock.yaml
+      ---
+      duration_ms: 346.721546
+      type: 'test'
+      ...
+    # Subtest: pnpm-workspace.yaml
+    ok 5 - pnpm-workspace.yaml
+      ---
+      duration_ms: 345.414036
+      type: 'test'
+      ...
+    # Subtest: next.config.ts
+    ok 6 - next.config.ts
+      ---
+      duration_ms: 388.44065
+      type: 'test'
+      ...
+    # Subtest: postcss.config.js
+    ok 7 - postcss.config.js
+      ---
+      duration_ms: 390.030268
+      type: 'test'
+      ...
+    # Subtest: prisma.config.ts
+    ok 8 - prisma.config.ts
+      ---
+      duration_ms: 360.273218
+      type: 'test'
+      ...
+    # Subtest: biome.json
+    ok 9 - biome.json
+      ---
+      duration_ms: 371.616403
+      type: 'test'
+      ...
+    # Subtest: rollup.tracker.config.js
+    ok 10 - rollup.tracker.config.js
+      ---
+      duration_ms: 381.134353
+      type: 'test'
+      ...
+    # Subtest: rollup.recorder.config.js
+    ok 11 - rollup.recorder.config.js
+      ---
+      duration_ms: 355.205861
+      type: 'test'
+      ...
+    # Subtest: tsup.config.js
+    ok 12 - tsup.config.js
+      ---
+      duration_ms: 365.471235
+      type: 'test'
+      ...
+    # Subtest: package.components.json
+    ok 13 - package.components.json
+      ---
+      duration_ms: 370.126535
+      type: 'test'
+      ...
+    # Subtest: tsconfig.json
+    ok 14 - tsconfig.json
+      ---
+      duration_ms: 362.957287
+      type: 'test'
+      ...
+    # Subtest: tsconfig.prisma.json
+    ok 15 - tsconfig.prisma.json
+      ---
+      duration_ms: 362.888005
+      type: 'test'
+      ...
+    # Subtest: tsconfig.tracker.json
+    ok 16 - tsconfig.tracker.json
+      ---
+      duration_ms: 357.480513
+      type: 'test'
+      ...
+    # Subtest: tsconfig.tracker.types.json
+    ok 17 - tsconfig.tracker.types.json
+      ---
+      duration_ms: 367.929453
+      type: 'test'
+      ...
+    # Subtest: netlify.toml
+    ok 18 - netlify.toml
+      ---
+      duration_ms: 364.046963
+      type: 'test'
+      ...
+    # Subtest: vercel.json
+    ok 19 - vercel.json
+      ---
+      duration_ms: 388.16856
+      type: 'test'
+      ...
+    # Subtest: app.json
+    ok 20 - app.json
+      ---
+      duration_ms: 352.822274
+      type: 'test'
+      ...
+    # Subtest: docker-compose.yml
+    ok 21 - docker-compose.yml
+      ---
+      duration_ms: 337.274401
+      type: 'test'
+      ...
+    # Subtest: source-directory
+    ok 22 - source-directory
+      ---
+      duration_ms: 328.121649
+      type: 'test'
+      ...
+    # Subtest: source-symlink
+    ok 23 - source-symlink
+      ---
+      duration_ms: 324.750248
+      type: 'test'
+      ...
+    1..23
+ok 1 - public CLI rejects stale approval after each tracked root build input changes in a disposable source checkout
+  ---
+  duration_ms: 9494.130486
+  type: 'test'
+  ...
+1..1
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9918.425647
