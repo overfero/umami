@@ -112,7 +112,26 @@ export function createValidationFixture(): AnalystReport {
             }
           : {
               status: 'captured',
+              jobs: [
+                {
+                  id: `job-${entry.id}`,
+                  attemptId: `attempt-${entry.id}`,
+                  ...qualification,
+                  fixtureHash: hash,
+                  boardRevision: 1,
+                  widgetRevision: 'VALIDATION-widget-revision-1',
+                  startedAt: '2026-01-01T01:00:00Z',
+                  finishedAt: '2026-01-01T01:00:01Z',
+                  receipt: evidence,
+                  viewports: [
+                    { viewport: 'desktop', width: 1280, height: 900 },
+                    { viewport: 'narrow', width: 390, height: 900 },
+                  ],
+                },
+              ],
               captures: (['desktop', 'narrow'] as const).map(viewport => ({
+                id: `capture-${entry.id}-${viewport}`,
+                jobId: `job-${entry.id}`,
                 viewport,
                 width: viewport === 'desktop' ? 1280 : 390,
                 height: 900,

@@ -76,6 +76,8 @@ function outcomeAndCostErrors(report: AnalystReport): string[] {
 function screenshotErrors(report: AnalystReport): string[] {
   const errors: string[] = [];
   const plans = new Map(report.plan.map(entry => [entry.id, entry]));
+  const jobIds = new Set<string>();
+  const captureIds = new Set<string>();
   const noReleaseReasons: Partial<Record<(typeof scenarioIds)[number], string>> = {
     'material-ambiguity': 'question-without-render',
     'unauthorized-revoked': 'denied-before-render',
@@ -107,12 +109,63 @@ function screenshotErrors(report: AnalystReport): string[] {
       }
     }
     if (screenshots.status !== 'captured') continue;
-    if (
-      screenshots.captures.length !== 2 ||
-      new Set(screenshots.captures.map(capture => capture.viewport)).size !== 2
-    )
-      fail('requires one desktop and one narrow capture');
+    if (new Set(screenshots.captures.map(capture => capture.viewport)).size !== 2)
+      fail('requires desktop and narrow capture coverage');
+    const jobs = new Map(screenshots.jobs.map(job => [job.id, job]));
+    for (const job of screenshots.jobs) {
+      if (jobIds.has(job.id)) fail('duplicate verification job ID');
+      jobIds.add(job.id);
+      if (
+        job.attemptId !== attempt.id ||
+        job.sourceRevision !== attempt.qualification.sourceRevision ||
+        job.imageDigest !== attempt.qualification.imageDigest ||
+        job.fixtureHash !== attempt.fixtureHash
+      )
+        fail('job attempt/source/image/fixture mismatch');
+      const start = Date.parse(job.startedAt);
+      const end = Date.parse(job.finishedAt);
+      if (
+        start < Date.parse(attempt.startedAt) ||
+        end > Date.parse(attempt.finishedAt) ||
+        end < start
+      )
+        fail('job timestamps outside attempt or reversed');
+      const panels = screenshots.captures.filter(capture => capture.jobId === job.id);
+      // Spec §4.2: the six-image budget is shared by all viewports in ONE job.
+      if (panels.length === 0 || panels.length > 6) fail('job requires one to six images');
+      if (new Set(job.viewports.map(view => view.viewport)).size !== job.viewports.length)
+        fail('duplicate job viewport');
+      for (const view of job.viewports) {
+        if (!panels.some(capture => capture.viewport === view.viewport))
+          fail('job viewport missing capture coverage');
+      }
+    }
     for (const capture of screenshots.captures) {
+      if (captureIds.has(capture.id)) fail('duplicate capture ID');
+      captureIds.add(capture.id);
+      const job = jobs.get(capture.jobId);
+      if (!job) fail('orphan capture job ID');
+      else {
+        if (
+          capture.boardRevision !== job.boardRevision ||
+          capture.widgetRevision !== job.widgetRevision
+        )
+          fail('capture/job revision mismatch');
+        if (
+          !job.viewports.some(
+            view =>
+              view.viewport === capture.viewport &&
+              view.width === capture.width &&
+              view.height === capture.height,
+          )
+        )
+          fail('capture/job viewport mismatch');
+        if (
+          Date.parse(capture.capturedAt) < Date.parse(job.startedAt) ||
+          Date.parse(capture.capturedAt) > Date.parse(job.finishedAt)
+        )
+          fail('capture timestamp outside job');
+      }
       if (
         (capture.viewport === 'desktop' && capture.width < 1024) ||
         (capture.viewport === 'narrow' && capture.width > 480)

@@ -33,7 +33,31 @@ const config = z.strictObject({
 const qualification = z.strictObject({ sourceRevision: revision, imageDigest: sha256 });
 const evidence = z.strictObject({ reference: text, sha256 });
 const score = z.strictObject({ outcome: z.enum(['pass', 'fail', 'unknown']), evidence: text });
+const verificationJob = z.strictObject({
+  id: text,
+  attemptId: text,
+  sourceRevision: revision,
+  imageDigest: sha256,
+  fixtureHash: sha256,
+  boardRevision: z.number().int().nonnegative(),
+  widgetRevision: text,
+  startedAt: timestamp,
+  finishedAt: timestamp,
+  receipt: evidence,
+  viewports: z
+    .array(
+      z.strictObject({
+        viewport: z.enum(['desktop', 'narrow']),
+        width: z.number().int().positive(),
+        height: z.number().int().positive(),
+      }),
+    )
+    .min(1)
+    .max(2),
+});
 const capture = z.strictObject({
+  id: text,
+  jobId: text,
   viewport: z.enum(['desktop', 'narrow']),
   width: z.number().int().positive(),
   height: z.number().int().positive(),
@@ -118,7 +142,11 @@ export const reportSchema = z.strictObject({
         }),
         failures: z.array(text),
         screenshots: z.discriminatedUnion('status', [
-          z.strictObject({ status: z.literal('captured'), captures: z.array(capture).min(2) }),
+          z.strictObject({
+            status: z.literal('captured'),
+            jobs: z.array(verificationJob).min(1),
+            captures: z.array(capture).min(2),
+          }),
           z.strictObject({
             status: z.literal('not-applicable'),
             reason: z.enum([

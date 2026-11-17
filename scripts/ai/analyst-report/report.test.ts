@@ -14,13 +14,115 @@ function checkCli(contents: unknown) {
     writeFileSync(file, typeof contents === 'string' ? contents : JSON.stringify(contents));
     return spawnSync(
       process.execPath,
-      ['--import', 'tsx', 'scripts/ai/eval-analyst.ts', '--check-report', file],
+      [
+        '--import',
+        'tsx',
+        process.env.ANALYST_REPORT_TEST_CLI ?? 'scripts/ai/eval-analyst.ts',
+        '--check-report',
+        file,
+      ],
       { encoding: 'utf8' },
     );
   } finally {
     rmSync(directory, { recursive: true, force: true });
   }
 }
+
+test('paginated captures permit three through six panels within one job', () => {
+  for (const count of [3, 4, 5, 6]) {
+    const report = createValidationFixture();
+    const screenshots = report.attempts[0].screenshots;
+    assert.equal(screenshots.status, 'captured');
+    if (screenshots.status !== 'captured') return;
+    for (let i = 2; i < count; i++)
+      screenshots.captures.push({
+        ...structuredClone(screenshots.captures[1]),
+        id: `panel-${i}`,
+      });
+    assert.deepEqual(validateReport(report), { valid: true, errors: [] }, `${count} panels`);
+    screenshots.captures[count - 1].widgetRevision = 'stale-paginated-panel';
+    assert.equal(validateReport(report).valid, false, 'every added panel must remain current');
+  }
+});
+
+test('multiple qualified jobs may exceed six captures in aggregate, never per job', () => {
+  const report = createValidationFixture();
+  const screenshots = report.attempts[0].screenshots;
+  if (screenshots.status !== 'captured') return assert.fail('fixture must capture');
+  const desktop = screenshots.captures[0];
+  const narrow = screenshots.captures[1];
+  const job = screenshots.jobs[0];
+  job.viewports = [{ viewport: 'desktop', width: desktop.width, height: desktop.height }];
+  const narrowJob: typeof job = {
+    ...structuredClone(job),
+    id: 'narrow-job',
+    viewports: [{ viewport: 'narrow', width: narrow.width, height: narrow.height }],
+  };
+  screenshots.jobs.push(narrowJob);
+  screenshots.captures = [desktop, narrow].flatMap((capture, viewportIndex) =>
+    Array.from({ length: 6 }, (_, panel) => ({
+      ...structuredClone(capture),
+      id: `capture-${viewportIndex}-${panel}`,
+      jobId: viewportIndex === 0 ? job.id : narrowJob.id,
+    })),
+  );
+  assert.deepEqual(validateReport(report), { valid: true, errors: [] });
+  screenshots.captures.push({ ...structuredClone(desktop), id: 'seventh-desktop-panel' });
+  assert.equal(validateReport(report).valid, false);
+});
+
+test('capture/job provenance rejects missing viewport, orphan/duplicate/inconsistent records and excess images', () => {
+  const mutations = [
+    (s: any) => {
+      s.captures = Array.from({ length: 7 }, (_, i) => ({
+        ...s.captures[i % 2],
+        id: `capture-${i}`,
+      }));
+    },
+    (s: any) => {
+      s.captures[1].viewport = 'desktop';
+      s.captures[1].width = 1280;
+    },
+    (s: any) => {
+      s.captures[0].jobId = 'orphan';
+    },
+    (s: any) => {
+      s.jobs.push(structuredClone(s.jobs[0]));
+    },
+    (s: any) => {
+      s.jobs.push({ ...structuredClone(s.jobs[0]), id: 'unused-job' });
+    },
+    (s: any) => {
+      s.captures[1].id = s.captures[0].id;
+    },
+    (s: any) => {
+      s.jobs[0].attemptId = 'other-attempt';
+    },
+    (s: any) => {
+      s.jobs[0].sourceRevision = 'c'.repeat(40);
+    },
+    (s: any) => {
+      s.jobs[0].fixtureHash = `sha256:${'c'.repeat(64)}`;
+    },
+    (s: any) => {
+      s.jobs[0].boardRevision = 2;
+    },
+    (s: any) => {
+      s.jobs[0].widgetRevision = 'other';
+    },
+    (s: any) => {
+      s.jobs[0].viewports[0].width = 1440;
+    },
+    (s: any) => {
+      s.jobs[0].finishedAt = '2026-01-01T02:00:00Z';
+    },
+  ];
+  mutations.forEach((mutate, i) => {
+    const report = createValidationFixture();
+    mutate(report.attempts[0].screenshots);
+    assert.equal(validateReport(report).valid, false, `job mutation ${i}`);
+  });
+});
 
 test('pure validator accepts a complete VALIDATION fixture without claiming live evidence', () => {
   assert.deepEqual(validateReport(createValidationFixture()), { valid: true, errors: [] });
@@ -54,6 +156,7 @@ test('qualification permits different candidate sources and equivalent setting k
     attempt.qualification = candidate;
     if (attempt.screenshots.status === 'captured') {
       for (const capture of attempt.screenshots.captures) Object.assign(capture, candidate);
+      for (const job of attempt.screenshots.jobs) Object.assign(job, candidate);
     }
   }
   assert.deepEqual(validateReport(report), { valid: true, errors: [] });
@@ -360,7 +463,7 @@ test('CLI accepts only LIVE-shaped test input, refuses VALIDATION/malformed/miss
     [
       '--import',
       'tsx',
-      'scripts/ai/eval-analyst.ts',
+      process.env.ANALYST_REPORT_TEST_CLI ?? 'scripts/ai/eval-analyst.ts',
       '--check-report',
       '/nonexistent/VALIDATION-report.json',
     ],
