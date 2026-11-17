@@ -1,0 +1,76 @@
+{
+  "kind": "partial-integration-command-evidence-not-completed-E1",
+  "observedAtJakarta": "Tuesday, 17 November 2026 at 17:20:08 GMT+7",
+  "sourceRevision": "f8d89cd3fde389a482e53bccf9bdb06bf0b74feb",
+  "sourceHashes": {
+    "scripts/ai/eval-analyst.ts": "0892ee067ffa0ba773374b77a2b25d49ccad1d84eaf5d5e54a365716a77c248a",
+    "scripts/ai/analyst-evals/run-offline.ts": "8a3f8bf08fd925c9611a13eaac0209abfeda049d088a4fda817c3b8433b5de59",
+    "scripts/ai/analyst-evals/vitest.config.ts": "ef180650eba93c7f5064ce423e7110c3b57a4c08cd30cdd3ffebdf7fd6ccc3a2",
+    "src/test/setup.ts": "074a8edf8244ceeb01af9619dd689a087b0ac003e5ab2be93c0858a40de68d1b",
+    "scripts/ai/analyst-evals/staff-dashboard.ts": "234561a3f280bc7fabd531c99fc41d64925e5a43cde424011fe6d53c90482c31",
+    "scripts/ai/analyst-evals/staff-dashboard.test.ts": "7da27d4939f751cd148b74f33ac5f0d70ce3d35c43523b5994e5ee1855427de5",
+    "scripts/ai/analyst-evals/vitest-evidence.test.ts": "f2ff557b1bfccd7ae5776fb20ae7967e678f81ce527102446f337737be1efe83",
+    "scripts/ai/analyst-evals/api-evidence.test.ts": "9654740432fb3837707511050478c275a6ebd66f5c84feba873e05b65d2c9e3c",
+    "scripts/ai/analyst-evals/offline.test.ts": "a4ef291ae3f4d99580d3d9167a821cb8bdf27ba04a1008fdc2e269a731e1c986",
+    "scripts/test-analyst-api.ts": "58a8a848e0125fe3cea26143d360b4ad1af8a02e5175931d86090621717e4486",
+    "scripts/ai/analyst-evals/dashboard.ts": "7c41e62ed31bee1e1e1e843821771c91e839e7b51f42e9056f0efbd25fd741cd",
+    "scripts/ai/analyst-evals/offline.ts": "43e7e5f421fe86903acff0e7ee1cc6b2e55d923fb4d2a8611e3ef241ce572db1",
+    "scripts/ai/analyst-evals/numeric-render.test.tsx": "d214e472921949d4eb94c87ca6f2294802c667b54ab8b3d58504f3c8c0cd1a56",
+    "scripts/ai/analyst-evals/missing-metric.test.ts": "618ce55777ffb19c1ccc7110573209c857a480a86715c4b4ad53eeb8e1a6b4ac",
+    "src/lib/ai/assistant/analyst/deps.ts": "6bc0d8c14ca34b77f10aa7dc1a48cb075e721dde8914170446e82e5c6e1a7efc",
+    "src/queries/sql/getWebsiteDateRange.ts": "8dafe559be2d524ba65af19a2f005656db45737c92adfe53fc90ea6e8bf27aa4"
+  },
+  "hashScope": "Post-run bytes verified against committed merge. Interrupted checkpoint does not contain hashes or final strict exit; do not retrofit these as a completed runner receipt.",
+  "interruptedRun": {
+    "checkpoint": "e1-receipt.json",
+    "complete": false,
+    "successfulCommands": 7,
+    "exitStatus": null,
+    "interruptedDuring": "ClickHouse supplement America/New_York"
+  },
+  "targetedContinuation": {
+    "commandFile": "ch-ny.command",
+    "log": "ch-ny.log",
+    "exitStatus": 0,
+    "assertions": 7,
+    "receipt": {
+      "suite": "clickhouse-supplement",
+      "assertions": [
+        "exact observed labels and daily event occurrences, separate product/ops",
+        "identified users stay source-scoped despite repeated identity",
+        "staff board persists separate source widgets and observed-only meaning",
+        "filtered event/person series survives real child process reopen",
+        "numeric zero/null aggregates and unsupported numeric grouping",
+        "absent collection coverage differs from covered explicit zero",
+        "matching saved analysis reused; different filter/population never substituted"
+      ],
+      "passed": true
+    }
+  },
+  "mergedTests": {
+    "report": {
+      "tests": 13,
+      "exit": 0
+    },
+    "evaluator": {
+      "files": 6,
+      "tests": 10,
+      "exit": 0,
+      "structuredReport": null
+    },
+    "analyst": {
+      "tests": 26,
+      "exit": 0
+    },
+    "definition": {
+      "tests": 39,
+      "exit": 0
+    }
+  },
+  "limitations": [
+    "No completed integration strict E1 CLI receipt or exit status.",
+    "Fresh evaluator log retains aggregate pass counts, not structured per-assertion JSON. Historical structured receipt is accepted slice-local evidence only; its eval-analyst hash does not match merged CLI.",
+    "Affected integration commands succeeded; full E1 remains NOT PASS with scenarios 6–12 pending.",
+    "TypeScript exit 2: four unrelated diagnostics; no scope expansion."
+  ]
+}
