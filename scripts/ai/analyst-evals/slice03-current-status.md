@@ -1,4 +1,11 @@
-# Slice03 current checkpoint — implementation partial, not accepted
+# Current: strict deterministic E1 all12 executed; independent review pending
+
+See [frontier-validation.md](frontier-validation.md) for current actual exit0,
+complete fresh API/browser/Vitest evidence, exact source fingerprints and residual
+packaging/TypeScript/live-release limits. The checkpoint below is historical and
+preserved for failure/progress provenance; its pending list is superseded, not erased.
+
+## Historical slice03 checkpoint — implementation partial, not accepted
 
 Commits:7d4bb9ffc gate/preflight+cancellation checkpoint;0e99dfc74 qualified browser
 compatibility checkpoint;55baab529 notification pointer-obstruction fix. Later focused

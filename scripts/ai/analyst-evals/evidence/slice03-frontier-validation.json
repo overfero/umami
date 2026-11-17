@@ -1,0 +1,157 @@
+{
+  "complete": true,
+  "observedAtJakarta": "2026-11-18T01:08:28.735080+07:00",
+  "implementationRevision": "bdeadf2e6aa59a433c718c2cb7dce4cde78d11b5",
+  "integrationRevision": "217a56e0f00b859daae65738b025f1eb1986546a",
+  "strictE1": {
+    "command": "conda run -n umami npx --yes pnpm@12.3.4 exec tsx scripts/ai/eval-analyst.ts --offline --strict --browser-receipt /tmp/analyst-slice03/frontier-browser.json --output /tmp/analyst-slice03/frontier-final-e1.json",
+    "exitCode": 0,
+    "proven": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "pending": [],
+    "freshSubprocesses": 14,
+    "api": [
+      {
+        "command": "tsx scripts/test-analyst-api.ts --postgres",
+        "exitCode": 0,
+        "completion": [
+          "PASS postgresql: 114 checks (namespace analyst_pg_1794938449515 dropped)"
+        ]
+      },
+      {
+        "command": "tsx scripts/test-analyst-api.ts --clickhouse",
+        "exitCode": 0,
+        "completion": [
+          "PASS clickhouse: 114 checks (namespace analyst_ch_1794938606018 dropped)"
+        ]
+      }
+    ],
+    "vitest": [
+      {
+        "report": "vitestReport",
+        "passed": 32,
+        "skipped": 0
+      },
+      {
+        "report": "lifecycleProductReport",
+        "passed": 102,
+        "skipped": 1
+      },
+      {
+        "report": "authorityVitestReport",
+        "passed": 14,
+        "skipped": 0
+      }
+    ]
+  },
+  "browser": [
+    {
+      "name": "browser-on",
+      "stats": {
+        "startTime": "2026-11-17T17:45:33.487Z",
+        "duration": 43007.234,
+        "expected": 5,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "name": "browser-off",
+      "stats": {
+        "startTime": "2026-11-17T17:46:20.806Z",
+        "duration": 4979.017,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "name": "browser-compat",
+      "stats": {
+        "startTime": "2026-11-17T17:46:26.556Z",
+        "duration": 5595.364,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "name": "browser-b3",
+      "stats": {
+        "startTime": "2026-11-17T17:46:33.068Z",
+        "duration": 67307.903,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    {
+      "name": "browser-notice",
+      "stats": {
+        "startTime": "2026-11-17T17:47:44.610Z",
+        "duration": 5134.066,
+        "expected": 1,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    }
+  ],
+  "browserBuild": {
+    "sourceRevision": "bdeadf2e6aa59a433c718c2cb7dce4cde78d11b5",
+    "buildId": "ca62403d-dfec-4608-afd3-bb6f54a684ae",
+    "policySha256": "3377bff74e2d077ceb5ec29a4bf56e853efd8eb67f8f252efd6fe91e1a6b8360",
+    "sourceHashCount": 1532,
+    "standalone": {
+      "manifestEqual": true,
+      "buildIdEqual": true,
+      "authenticatedChatAndTurn": true,
+      "missingPreflightNoImages": true
+    },
+    "cleanupCompleted": true,
+    "excludedTraces": {
+      "next": 25,
+      "styled-jsx": 2,
+      "exactPathsInReceipt": true
+    }
+  },
+  "tsc": {
+    "beforeTestTypeFixExit": 2,
+    "afterExit": 2,
+    "remainingDiagnostics": "ERROR conda.cli.main_run:execute(142): `conda run npx --yes pnpm@12.3.4 exec tsc --noEmit` failed. (See above for error)\nsrc/app/(main)/websites/[websiteId]/events/EventsTable.tsx(46,46): error TS2322: Type '{ children: Element[]; alignItems: \"center\"; gap: \"2\"; flexWrap: string; style: { minWidth: number; }; }' is not assignable to type 'IntrinsicAttributes & RowProps'.\n  Property 'flexWrap' does not exist on type 'IntrinsicAttributes & RowProps'.\nsrc/app/(main)/websites/[websiteId]/events/EventsTable.tsx(54,44): error TS2322: Type '{ children: Element[]; alignItems: \"center\"; gap: true; flexWrap: string; style: { minWidth: number; }; }' is not assignable to type 'IntrinsicAttributes & RowProps'.\n  Property 'flexWrap' does not exist on type 'IntrinsicAttributes & RowProps'.\nsrc/app/api/admin/users/[userId]/2fa/route.test.ts(61,3): error TS2589: Type instantiation is excessively deep and possibly infinite.\n"
+  },
+  "nodeVerifier": {
+    "command": "conda run -n umami node --test scripts/ai/assistant-tools.test.mjs scripts/ai/verifier/*.test.mjs",
+    "exitCode": 0,
+    "passed": 16
+  },
+  "sourceHashesRechecked": true,
+  "receiptHashes": {
+    "slice03-frontier-e1.json": "745acb9578bf0ccf0a1babd60a765c7c1f46c036753453db238de5add3aafd0b",
+    "slice03-frontier-browser.json": "aa75bf74f49def1f55bfb256039d351115f91a7b1e95932e6b5ee85c9db740e3"
+  },
+  "limitations": [
+    "Independent review required; no release/merge acceptance inferred from strict E1.",
+    "One native Pi Vitest skipped; fresh D2 executes native Pi separately.",
+    "Shared-dependency standalone,25Next+2styled-jsx external traces; no hermetic deployment claim.",
+    "Standalone no-preflight route runs AI disabled, not real configured-provider capability/vision. Invalid receipt unit coverage only.",
+    "No paid calls, key/.env reads, deployment, or global DB defaults/public/legacy fixture mutation.",
+    "Tsc still3preexisting unrelated diagnostics for integration05."
+  ]
+}
