@@ -13,3 +13,11 @@ it('retains all structured assertion results and rejects missing/failed Vitest e
   expect(vitestEvidence({ ...report, success: false }, true).evidence.every(e => !e.passed)).toBe(true);
   expect(vitestEvidence({ ...report, testResults: [{ ...report.testResults[0], assertionResults: [{ ...assertion, status: 'failed', failureMessages: ['failure'] }] }] }, true).evidence.find(e => e.suite === 'executor')?.assertions).toEqual([]);
 });
+
+it('generic authority evidence rejects a matching assertion from the wrong source file', () => {
+  const name = 'generic edit share delete and method aliases cannot dispatch lifecycle writes even with nested approval claims';
+  const report = { success: true, testResults: [{ name: '/wrong/path.test.ts', assertionResults: [{ fullName: name, status: 'passed' }] }] };
+  expect(vitestEvidence(report, true).evidence.find(e => e.suite === 'generic-authority')?.assertions).toEqual([]);
+  report.testResults[0].name = '/checkout/scripts/ai/analyst-evals/generic-authority.test.ts';
+  expect(vitestEvidence(report, true).evidence.find(e => e.suite === 'generic-authority')?.assertions).toEqual([name]);
+});

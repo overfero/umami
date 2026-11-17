@@ -38,3 +38,12 @@ describe('offline acceptance evidence', () => {
     expect(summary.proven).toEqual([]);
   });
 });
+
+
+it('historical evaluator-wrapped discovery cannot prove native-loopback scenario6', () => {
+  const evidence = [...new Set(requirements.map(r => r.suite))].map(suite => ({
+    suite, passed: true, assertions: requirements.filter(r => r.suite === suite && !r.id.startsWith('6.')).map(r => r.assertion),
+  }));
+  evidence.find(e => e.suite === 'authority-pg')!.assertions.push('discover IDs and schema then ask meaningful ambiguity with needs_input and no guessed mutation');
+  expect(summarizeCoverage(evidence)).toEqual({ pass: false, proven: [1, 2, 3, 4, 5, 7, 8, 9], pending: [6, 10, 11, 12] });
+});

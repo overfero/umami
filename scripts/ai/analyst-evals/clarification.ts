@@ -3,8 +3,13 @@ import assert from 'node:assert/strict';
 // Acceptance fixture, scripted independently of assistant/model output. Taxonomy alone
 // cannot distinguish success from an attempt; no discoverable identifiers are requested.
 export const clarification = {
-  question: 'Does the observed login event mean a successful staff sign-in, or only a sign-in attempt?',
-  options: ['Successful staff sign-in', 'Sign-in attempt', 'Unknown: keep the observed login label'],
+  question:
+    'Does the observed login event mean a successful staff sign-in, or only a sign-in attempt?',
+  options: [
+    'Successful staff sign-in',
+    'Sign-in attempt',
+    'Unknown: keep the observed login label',
+  ],
 } as const;
 
 type Counts = { boards: number; analyses: number; revisions: number; operations: number };

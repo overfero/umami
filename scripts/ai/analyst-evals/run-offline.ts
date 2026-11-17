@@ -138,6 +138,7 @@ export async function runOffline(strict: boolean, outputPath?: string, reuseApiP
   const sourceFiles = [
     'wiki/specs/analyst-dashboard-lifecycle.md',
     'scripts/ai/analyst-evals/authority.ts',
+    'scripts/ai/analyst-evals/schema-server.ts',
     'scripts/ai/analyst-evals/authority-evidence.ts',
     'scripts/ai/analyst-evals/authority-evidence.test.ts',
     'scripts/ai/analyst-evals/clarification.ts',
@@ -191,7 +192,7 @@ export async function runOffline(strict: boolean, outputPath?: string, reuseApiP
     authorityVitestReport,
     ...summary,
     limitations: [
-      'Scenarios 10–12 pending; strict E1 must fail.',
+      `Pending scenario groups: ${summary.pending.join(',')}; strict E1 cannot pass while any remain.`,
       'Scripted choices do not prove live model reasoning or image understanding.',
       'Component render and injected missing_metric evidence are not DB/browser evidence.',
     ],

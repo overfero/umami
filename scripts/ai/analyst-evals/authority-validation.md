@@ -1,3 +1,10 @@
+# Review correction checkpoint
+
+Independent review REJECT P1/P2. Historical scenario6 claim is withdrawn: the
+evaluator-injected read-only transaction was not the product HTTP discovery path.
+Scenario6 remains pending until the new native-loopback assertion is executed.
+Historical reports below retain failures/provenance but do not establish6.
+
 # Slice02 authority defect — bounded red/green
 
 Observed 17 November 2026, 19:32 WIB (Asia/Jakarta). Base f8d89cd3f.

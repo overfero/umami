@@ -1,3 +1,11 @@
+# Review correction checkpoint — scenario6 pending
+
+P1 review rejected the historical evaluator-only withAiRead/UTC schema wrapper.
+Scenario6 is NOT proven by the old clarification-authority.json receipt. The
+manifest now requires a newly named native loopback discovery assertion; no
+receipt supplies it yet. Historical1–9 claims below are superseded for6 until
+a corrected real request-path regression executes. No product defect inferred.
+
 # Offline assertion coverage manifest
 
 Contract: originating `wiki/specs/analyst-dashboard-lifecycle.md` §7 scenarios 1–12.

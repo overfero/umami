@@ -1,0 +1,854 @@
+{
+  "observedAtJakarta": "2026-11-17T20:14:40.216120+07:00",
+  "baseRevision": "9a23be11e",
+  "sourceRevision": "9a23be11ee19ceeaa78a0cca1fbaa905027cdbfe",
+  "sourceHashes": {
+    "scripts/ai/analyst-evals/authority-evidence.test.ts": "169d57a9b816e84ef4b0b9ba2709617a85d862c437af64cf22e3814ec1222c33",
+    "scripts/ai/analyst-evals/authority-evidence.ts": "fc1fcd6c7fa9c6cd6767b5d54994618cedc695cec78571c1a899a5e53a607b75",
+    "scripts/ai/analyst-evals/authority-validation.md": "f0c4cc57126802f02391aab9efda3bb4fa189145bbc304982cdc485fa62c0060",
+    "scripts/ai/analyst-evals/authority.ts": "f6b17afffbe8bc9da611ebecef4ddb757adce5d9c00e71d46277f613c2ed19cf",
+    "scripts/ai/analyst-evals/clarification.test.ts": "0fc4ff700544490f927c7b6bba78a171f8cff41c7ad2a1d9b054fd7b0a08ec03",
+    "scripts/ai/analyst-evals/clarification.ts": "6a5bc6ab7e259103b559197afa469678f6195c0af2e4659f688f358895f40767",
+    "scripts/ai/analyst-evals/coverage.md": "114ebd2f9f4d9e74effe53c51ed0d16d6db03462b7abb80c0b82495bc252792a",
+    "scripts/ai/analyst-evals/generic-authority.test.ts": "a27b3412c9d99f7277a68e4c651e4ce62af562a8f22d346b2da711ad9eb3c98a",
+    "scripts/ai/analyst-evals/offline.test.ts": "da629375735c8b8f590d72e56e9d7639f9afe718424e337d216daa2565dd4940",
+    "scripts/ai/analyst-evals/offline.ts": "56f77004fd0c2d8708f71f1c28dec50d71b2071c26fca94f447769fa35061bcc",
+    "scripts/ai/analyst-evals/review-corrections.md": "1db1b73b687960a47796c7fff3721b405d680cde1ee0b0ac91791e7e72c96be4",
+    "scripts/ai/analyst-evals/run-offline.ts": "70ea6faae7e3facbbe58097afbb23afc315a539fe37a87a45cc891c1ebbfc10e",
+    "scripts/ai/analyst-evals/schema-bind-diagnostic.ts": "51e7e1466885169549a0d70c21c3ef0c899f7afb5d4518ce6a778d2318bf766a",
+    "scripts/ai/analyst-evals/schema-server.ts": "7bc03f770fc80b6099405979698a9f6a1af2d37fa306c2712da886a4252e94c3",
+    "scripts/ai/analyst-evals/vitest-evidence.test.ts": "d666c0736a0297537fb7490d3b787bf3858587ca5e684a3c3aa4bdc0b366a0ed",
+    "wiki/specs/analyst-dashboard-lifecycle.md": "a418013ff461110daa77ff6007f1b527d106bd9eb2c6b45cf91b1c405de8b638",
+    "src/lib/analyst-verifier/authority.test.ts": "9f8c826f4cccb7b2d11ebf70f6c073e68ca247a4428141e7640618aff5332d11",
+    "src/lib/analyst-verifier/port.test.ts": "27aa659254e454cb970012531fa0f4b7412dc3141debade9fa4eef9687700963",
+    "src/lib/analyst-verifier/port.mjs": "a65dbc012432bfcd281f6c6aeb1859f65618e3cf1c12345fbf08e3d4cad1737a",
+    "src/lib/analyst-verifier/images.mjs": "a3628a5ae3641464823b588f0121a3e058b9cdea964083cd76796dc03f070935",
+    "src/lib/analyst-verifier/capability.mjs": "673e0073c04877577249cc18765093d1bd6f6f93664a5bb6a2d2a05775b66d0a",
+    "src/lib/ai/assistant/analyst/tools.ts": "123c6aae737180d1f6363a92bda0370dd908b4474264b15be0236f17c0dd5a7b",
+    "src/lib/ai/assistant/analyst/task.ts": "adef3d22f3c52067eaf62a63c39e46b9176fb45901a67e9a9a1119db056b51c2",
+    "src/lib/ai/assistant/tools.ts": "76dddfe2aaa0b81cd75b7301cc73b039ad2d65768f1351550542476e5519928b",
+    "src/queries/prisma/analysis.ts": "aee6b8f2069422be73246073f6626fed3f28d9bc59bd6989c16b159c5bb9b079",
+    "src/permissions/analysis.ts": "ab6e7d4416493f2847359e5c075b5ac366faae1d65dcf1266e6c1516b62986f1",
+    "src/permissions/website.ts": "34effa98ed8050bdbd33e2310b7b63ccc4c0a9d452440dd06baa281d9fd67fd8",
+    "src/permissions/share.ts": "85b5cdb46e05b55b266407b3d5a5da9688f884322c33bee6ed9fa8c9bef4d7aa",
+    "src/test/setup.ts": "074a8edf8244ceeb01af9619dd689a087b0ac003e5ab2be93c0858a40de68d1b",
+    "scripts/ai/analyst-evals/staff-dashboard.ts": "234561a3f280bc7fabd531c99fc41d64925e5a43cde424011fe6d53c90482c31",
+    "scripts/test-analyst-api.ts": "58a8a848e0125fe3cea26143d360b4ad1af8a02e5175931d86090621717e4486",
+    "scripts/ai/analyst-evals/dashboard.ts": "7c41e62ed31bee1e1e1e843821771c91e839e7b51f42e9056f0efbd25fd741cd",
+    "src/lib/ai/assistant/analyst/deps.ts": "6b0660b30484b8822e64c20729a08dfdb08c29c11781474f3e8bd1310292ffb0",
+    "src/queries/sql/getWebsiteDateRange.ts": "8dafe559be2d524ba65af19a2f005656db45737c92adfe53fc90ea6e8bf27aa4"
+  },
+  "commands": [
+    {
+      "command": "npx --yes pnpm@12.3.4 exec vitest run -c scripts/ai/analyst-evals/vitest.config.ts scripts/ai/analyst-evals/vitest-evidence.test.ts",
+      "exitCode": 1,
+      "output": "\n RUN  v4.1.11 /home/overfero/Project/ocbc/umami-analyst-slice-02\n\n \u276f scripts/ai/analyst-evals/vitest-evidence.test.ts (2 tests | 1 failed) 18ms\n   \u00d7 generic authority evidence rejects a matching assertion from the wrong source file 6ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  scripts/ai/analyst-evals/vitest-evidence.test.ts > generic authority evidence rejects a matching assertion from the wrong source file\nAssertionError: expected [ Array(1) ] to deeply equal []\n\n- Expected\n+ Received\n\n- []\n+ [\n+   \"generic edit share delete and method aliases cannot dispatch lifecycle writes even with nested approval claims\",\n+ ]\n\n \u276f scripts/ai/analyst-evals/vitest-evidence.test.ts:20:104\n     18|   const name = 'generic edit share delete and method aliases cannot di\u2026\n     19|   const report = { success: true, testResults: [{ name: '/wrong/path.t\u2026\n     20|   expect(vitestEvidence(report, true).evidence.find(e => e.suite === '\u2026\n       |                                                                                                        ^\n     21|   report.testResults[0].name = '/checkout/scripts/ai/analyst-evals/gen\u2026\n     22|   expect(vitestEvidence(report, true).evidence.find(e => e.suite === '\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  1 failed | 1 passed (2)\n   Start at  20:06:24\n   Duration  1.10s (transform 57ms, setup 182ms, import 28ms, tests 18ms, environment 731ms)\n\n",
+      "step": "p2-red"
+    },
+    {
+      "command": "PGOPTIONS='-c timezone=America/New_York' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/authority.ts",
+      "exitCode": 1,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n(node:65277) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table analyst_authority_1794920850780_65277._prisma_migrations\ndrop cascades to table analyst_authority_1794920850780_65277.\"user\"\ndrop cascades to table analyst_authority_1794920850780_65277.session\ndrop cascades to table analyst_authority_1794920850780_65277.website\ndrop cascades to table analyst_authority_1794920850780_65277.website_event\ndrop cascades to table analyst_authority_1794920850780_65277.event_data\ndrop cascades to table analyst_authority_1794920850780_65277.team\ndrop cascades to table analyst_authority_1794920850780_65277.team_user\ndrop cascades to table analyst_authority_1794920850780_65277.session_data\ndrop cascades to table analyst_authority_1794920850780_65277.report\ndrop cascades to table analyst_authority_1794920850780_65277.segment\ndrop cascades to table analyst_authority_1794920850780_65277.revenue\ndrop cascades to table analyst_authority_1794920850780_65277.link\ndrop cascades to table analyst_authority_1794920850780_65277.pixel\ndrop cascades to table analyst_authority_1794920850780_65277.share\ndrop cascades to table analyst_authority_1794920850780_65277.board\ndrop cascades to table analyst_authority_1794920850780_65277.session_replay\ndrop cascades to table analyst_authority_1794920850780_65277.session_replay_saved\ndrop cascades to table analyst_authority_1794920850780_65277.heatmap_event\ndrop cascades to table analyst_authority_1794920850780_65277.session_link\ndrop cascades to table analyst_authority_1794920850780_65277.two_factor_auth\ndrop cascades to table analyst_authority_1794920850780_65277.two_factor_backup_code\ndrop cascades to table analyst_authority_1794920850780_65277.two_factor_otp_used\ndrop cascades to table analyst_authority_1794920850780_65277.two_factor_rate_limit\ndrop cascades to table analyst_authority_1794920850780_65277.app_setting\ndrop cascades to table analyst_authority_1794920850780_65277.annotation\ndrop cascades to table analyst_authority_1794920850780_65277.api_key\ndrop cascades to table analyst_authority_1794920850780_65277.ai_chat\ndrop cascades to table analyst_authority_1794920850780_65277.ai_chat_message\ndrop cascades to table analyst_authority_1794920850780_65277.saved_analysis\ndrop cascades to table analyst_authority_1794920850780_65277.saved_analysis_revision\ndrop cascades to table analyst_authority_1794920850780_65277.analysis_operation\ndrop cascades to table analyst_authority_1794920850780_65277.analysis_confirmation\ndrop cascades to table analyst_authority_1794920850780_65277.analyst_task\nAssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   'login'\n- ]\n\n    at <anonymous> (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:245:18)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async check (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:64:3)\n    at async main (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:196:5) {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: [],\n  expected: [Array],\n  operator: 'deepStrictEqual',\n  diff: 'simple'\n}\n",
+      "step": "p1-http-red"
+    },
+    {
+      "command": "ANALYST_SCHEMA_DIAG=true PGOPTIONS='-c timezone=America/New_York' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/authority.ts (temporary read-only probe variant, documented in review-corrections.md)",
+      "exitCode": 1,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n(node:66029) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\nSCHEMA_DIAG {\"ownedRows\":\"login|2|1790816400000.000000\",\"pool\":[{\"schema\":\"public\",\"path\":\"\\\"$user\\\", public\",\"timezone\":\"America/New_York\"}],\"filters\":{\"startDate\":\"2026-10-01T00:00:00.000Z\",\"endDate\":\"2026-10-04T00:00:00.000Z\",\"unit\":\"hour\",\"eventPropertyFilters\":[],\"sessionPropertyFilters\":[]},\"native\":[]}\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table analyst_authority_1794920886370_66029._prisma_migrations\ndrop cascades to table analyst_authority_1794920886370_66029.\"user\"\ndrop cascades to table analyst_authority_1794920886370_66029.session\ndrop cascades to table analyst_authority_1794920886370_66029.website\ndrop cascades to table analyst_authority_1794920886370_66029.website_event\ndrop cascades to table analyst_authority_1794920886370_66029.event_data\ndrop cascades to table analyst_authority_1794920886370_66029.team\ndrop cascades to table analyst_authority_1794920886370_66029.team_user\ndrop cascades to table analyst_authority_1794920886370_66029.session_data\ndrop cascades to table analyst_authority_1794920886370_66029.report\ndrop cascades to table analyst_authority_1794920886370_66029.segment\ndrop cascades to table analyst_authority_1794920886370_66029.revenue\ndrop cascades to table analyst_authority_1794920886370_66029.link\ndrop cascades to table analyst_authority_1794920886370_66029.pixel\ndrop cascades to table analyst_authority_1794920886370_66029.share\ndrop cascades to table analyst_authority_1794920886370_66029.board\ndrop cascades to table analyst_authority_1794920886370_66029.session_replay\ndrop cascades to table analyst_authority_1794920886370_66029.session_replay_saved\ndrop cascades to table analyst_authority_1794920886370_66029.heatmap_event\ndrop cascades to table analyst_authority_1794920886370_66029.session_link\ndrop cascades to table analyst_authority_1794920886370_66029.two_factor_auth\ndrop cascades to table analyst_authority_1794920886370_66029.two_factor_backup_code\ndrop cascades to table analyst_authority_1794920886370_66029.two_factor_otp_used\ndrop cascades to table analyst_authority_1794920886370_66029.two_factor_rate_limit\ndrop cascades to table analyst_authority_1794920886370_66029.app_setting\ndrop cascades to table analyst_authority_1794920886370_66029.annotation\ndrop cascades to table analyst_authority_1794920886370_66029.api_key\ndrop cascades to table analyst_authority_1794920886370_66029.ai_chat\ndrop cascades to table analyst_authority_1794920886370_66029.ai_chat_message\ndrop cascades to table analyst_authority_1794920886370_66029.saved_analysis\ndrop cascades to table analyst_authority_1794920886370_66029.saved_analysis_revision\ndrop cascades to table analyst_authority_1794920886370_66029.analysis_operation\ndrop cascades to table analyst_authority_1794920886370_66029.analysis_confirmation\ndrop cascades to table analyst_authority_1794920886370_66029.analyst_task\nAssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   'login'\n- ]\n\n    at <anonymous> (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:257:18)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async check (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:64:3)\n    at async main (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:196:5) {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: [],\n  expected: [Array],\n  operator: 'deepStrictEqual',\n  diff: 'simple'\n}\n",
+      "step": "p1-diagnostic"
+    },
+    {
+      "command": "ANALYST_SCHEMA_DIAG=true PGOPTIONS='-c timezone=America/New_York' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/authority.ts (temporary read-only probe variant, documented in review-corrections.md)",
+      "exitCode": 1,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n(node:66554) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\nSCHEMA_DIAG {\"ownedRows\":\"login|2|1790816400000.000000\",\"pool\":[{\"schema\":\"analyst_authority_1794920913872_66554\",\"path\":\"analyst_authority_1794920913872_66554\",\"timezone\":\"America/New_York\"}],\"filters\":{\"startDate\":\"2026-10-01T00:00:00.000Z\",\"endDate\":\"2026-10-04T00:00:00.000Z\",\"unit\":\"hour\",\"eventPropertyFilters\":[],\"sessionPropertyFilters\":[]},\"native\":[]}\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table _prisma_migrations\ndrop cascades to table \"user\"\ndrop cascades to table session\ndrop cascades to table website\ndrop cascades to table website_event\ndrop cascades to table event_data\ndrop cascades to table team\ndrop cascades to table team_user\ndrop cascades to table session_data\ndrop cascades to table report\ndrop cascades to table segment\ndrop cascades to table revenue\ndrop cascades to table link\ndrop cascades to table pixel\ndrop cascades to table share\ndrop cascades to table board\ndrop cascades to table session_replay\ndrop cascades to table session_replay_saved\ndrop cascades to table heatmap_event\ndrop cascades to table session_link\ndrop cascades to table two_factor_auth\ndrop cascades to table two_factor_backup_code\ndrop cascades to table two_factor_otp_used\ndrop cascades to table two_factor_rate_limit\ndrop cascades to table app_setting\ndrop cascades to table annotation\ndrop cascades to table api_key\ndrop cascades to table ai_chat\ndrop cascades to table ai_chat_message\ndrop cascades to table saved_analysis\ndrop cascades to table saved_analysis_revision\ndrop cascades to table analysis_operation\ndrop cascades to table analysis_confirmation\ndrop cascades to table analyst_task\nAssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   'login'\n- ]\n\n    at <anonymous> (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:260:18)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async check (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:67:3)\n    at async main (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:199:5) {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: [],\n  expected: [Array],\n  operator: 'deepStrictEqual',\n  diff: 'simple'\n}\n",
+      "step": "p1-bootstrap-green"
+    },
+    {
+      "command": "ANALYST_SCHEMA_DIAG=true PGOPTIONS='-c timezone=America/New_York' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/authority.ts (temporary read-only probe variant, documented in review-corrections.md)",
+      "exitCode": 1,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n(node:67085) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\nSCHEMA_DIAG {\"ownedRows\":\"login|2|1790816400000.000000\",\"pool\":[{\"schema\":\"analyst_authority_1794920947451_67085\",\"path\":\"analyst_authority_1794920947451_67085\",\"timezone\":\"America/New_York\"}],\"filters\":{\"startDate\":\"2026-10-01T00:00:00.000Z\",\"endDate\":\"2026-10-04T00:00:00.000Z\",\"unit\":\"hour\",\"eventPropertyFilters\":[],\"sessionPropertyFilters\":[]},\"boundDates\":[{\"start\":\"2026-10-01T00:00:00.000Z\",\"finish\":\"2026-10-04T00:00:00.000Z\",\"start_epoch\":\"1790827200000\"}],\"parsed\":{\"joinSessionQuery\":\"\",\"dateQuery\":\"and website_event.created_at between {{startDate}} and {{endDate}}\",\"filterQuery\":\"and website_event.event_type = ANY({{eventType}})\",\"queryParams\":{\"startDate\":\"2026-10-01T00:00:00.000Z\",\"endDate\":\"2026-10-04T00:00:00.000Z\",\"unit\":\"hour\",\"eventPropertyFilters\":[],\"sessionPropertyFilters\":[],\"websiteId\":\"d2f6668f-25e1-43c3-928c-4c6578b2d32f\",\"eventType\":[2]},\"cohortQuery\":\"\",\"excludeBounceQuery\":\"\"},\"native\":[]}\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table _prisma_migrations\ndrop cascades to table \"user\"\ndrop cascades to table session\ndrop cascades to table website\ndrop cascades to table website_event\ndrop cascades to table event_data\ndrop cascades to table team\ndrop cascades to table team_user\ndrop cascades to table session_data\ndrop cascades to table report\ndrop cascades to table segment\ndrop cascades to table revenue\ndrop cascades to table link\ndrop cascades to table pixel\ndrop cascades to table share\ndrop cascades to table board\ndrop cascades to table session_replay\ndrop cascades to table session_replay_saved\ndrop cascades to table heatmap_event\ndrop cascades to table session_link\ndrop cascades to table two_factor_auth\ndrop cascades to table two_factor_backup_code\ndrop cascades to table two_factor_otp_used\ndrop cascades to table two_factor_rate_limit\ndrop cascades to table app_setting\ndrop cascades to table annotation\ndrop cascades to table api_key\ndrop cascades to table ai_chat\ndrop cascades to table ai_chat_message\ndrop cascades to table saved_analysis\ndrop cascades to table saved_analysis_revision\ndrop cascades to table analysis_operation\ndrop cascades to table analysis_confirmation\ndrop cascades to table analyst_task\nAssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   'login'\n- ]\n\n    at <anonymous> (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:262:18)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async check (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:67:3)\n    at async main (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:199:5) {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: [],\n  expected: [Array],\n  operator: 'deepStrictEqual',\n  diff: 'simple'\n}\n",
+      "step": "p1-bind-diagnostic"
+    },
+    {
+      "command": "PGOPTIONS='-c timezone=America/New_York' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/schema-bind-diagnostic.ts",
+      "exitCode": 0,
+      "output": "{\"tableType\":\"timestamptz(6)\",\"expectedStartEpoch\":1790812800000,\"literal\":\"1|1790816400000.000000\",\"date\":{\"parameterType\":\"Date\",\"input\":\"2026-10-01T00:00:00.000Z\",\"timezone\":\"America/New_York\",\"timestamptz_epoch\":\"1790827200000\",\"timestamp_wall\":\"2026-10-01 00:00:00\",\"seed_in_bound_range\":false},\"iso\":{\"parameterType\":\"offset-aware ISO string\",\"input\":\"2026-10-01T00:00:00.000Z\",\"timezone\":\"America/New_York\",\"timestamptz_epoch\":\"1790812800000\",\"timestamp_wall\":\"2026-09-30 20:00:00\",\"seed_in_bound_range\":true}}\nNOTICE:  drop cascades to table analyst_bind_1794921055019_67782.website_event\n",
+      "step": "bind-America-New_York"
+    },
+    {
+      "command": "PGOPTIONS='-c timezone=Asia/Jakarta' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/schema-bind-diagnostic.ts",
+      "exitCode": 0,
+      "output": "{\"tableType\":\"timestamptz(6)\",\"expectedStartEpoch\":1790812800000,\"literal\":\"1|1790816400000.000000\",\"date\":{\"parameterType\":\"Date\",\"input\":\"2026-10-01T00:00:00.000Z\",\"timezone\":\"Asia/Jakarta\",\"timestamptz_epoch\":\"1790787600000\",\"timestamp_wall\":\"2026-10-01 00:00:00\",\"seed_in_bound_range\":true},\"iso\":{\"parameterType\":\"offset-aware ISO string\",\"input\":\"2026-10-01T00:00:00.000Z\",\"timezone\":\"Asia/Jakarta\",\"timestamptz_epoch\":\"1790812800000\",\"timestamp_wall\":\"2026-10-01 07:00:00\",\"seed_in_bound_range\":true}}\nNOTICE:  drop cascades to table analyst_bind_1794921059738_67871.website_event\n",
+      "step": "bind-Asia-Jakarta"
+    },
+    {
+      "command": "PGOPTIONS='-c timezone=UTC' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/schema-bind-diagnostic.ts",
+      "exitCode": 0,
+      "output": "{\"tableType\":\"timestamptz(6)\",\"expectedStartEpoch\":1790812800000,\"literal\":\"1|1790816400000.000000\",\"date\":{\"parameterType\":\"Date\",\"input\":\"2026-10-01T00:00:00.000Z\",\"timezone\":\"UTC\",\"timestamptz_epoch\":\"1790812800000\",\"timestamp_wall\":\"2026-10-01 00:00:00\",\"seed_in_bound_range\":true},\"iso\":{\"parameterType\":\"offset-aware ISO string\",\"input\":\"2026-10-01T00:00:00.000Z\",\"timezone\":\"UTC\",\"timestamptz_epoch\":\"1790812800000\",\"timestamp_wall\":\"2026-10-01 00:00:00\",\"seed_in_bound_range\":true}}\nNOTICE:  drop cascades to table analyst_bind_1794921064309_67951.website_event\n",
+      "step": "bind-UTC"
+    },
+    {
+      "command": "npx --yes pnpm@12.3.4 exec vitest run -c scripts/ai/analyst-evals/vitest.config.ts --reporter=json --outputFile=/tmp/slice02-review-vitest.json",
+      "exitCode": 0,
+      "output": "JSON report written to /tmp/slice02-review-vitest.json\n",
+      "step": "review-vitest"
+    },
+    {
+      "command": "npx --yes pnpm@12.3.4 exec tsx --eval <requalify prior source-qualified receipt with current summarizeCoverage and fresh Vitest report>",
+      "exitCode": 0,
+      "output": "{\"pass\":false,\"proven\":[1,2,3,4,5,7,8,9],\"pending\":[6,10,11,12]}\n",
+      "step": "review-summary"
+    },
+    {
+      "command": "npx --yes pnpm@12.3.4 exec tsc --noEmit",
+      "exitCode": 2,
+      "output": "src/app/(main)/websites/[websiteId]/events/EventsTable.tsx(46,46): error TS2322: Type '{ children: Element[]; alignItems: \"center\"; gap: \"2\"; flexWrap: string; style: { minWidth: number; }; }' is not assignable to type 'IntrinsicAttributes & RowProps'.\n  Property 'flexWrap' does not exist on type 'IntrinsicAttributes & RowProps'.\nsrc/app/(main)/websites/[websiteId]/events/EventsTable.tsx(54,44): error TS2322: Type '{ children: Element[]; alignItems: \"center\"; gap: true; flexWrap: string; style: { minWidth: number; }; }' is not assignable to type 'IntrinsicAttributes & RowProps'.\n  Property 'flexWrap' does not exist on type 'IntrinsicAttributes & RowProps'.\nsrc/app/api/admin/users/[userId]/2fa/route.test.ts(61,3): error TS2589: Type instantiation is excessively deep and possibly infinite.\n",
+      "step": "review-tsc"
+    }
+  ],
+  "requalifiedCoverage": {
+    "sourceReceipt": "scripts/ai/analyst-evals/evidence/clarification-authority.json",
+    "sourceReceiptHash": "e33701c22b6f630a5900ca35e138579f32a84f2ea32f1d388d85bbf408fbc215",
+    "pass": false,
+    "proven": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9
+    ],
+    "pending": [
+      6,
+      10,
+      11,
+      12
+    ],
+    "evidence": [
+      {
+        "suite": "postgres-api",
+        "assertions": [
+          "product database session is non-UTC (America/New_York)",
+          "create is disabled without AI_ANALYST_ENABLED",
+          "preview is disabled without AI_ANALYST_ENABLED",
+          "nothing persisted while disabled",
+          "totals pageviews = 5 (start boundary in, end boundary out, foreign site excluded)",
+          "envelope provenance and completeness",
+          "totals sessions = 4",
+          "totals visits = 4",
+          "totals signup events = 3",
+          "totals unknown event is explicit zero",
+          "totals identified users = 2 (u1, u2)",
+          "filtered totals pageviews country=DE = 4",
+          "filtered totals pageviews country!=DE = 1",
+          "filtered totals pageviews path contains /a = 3 (end-boundary /a excluded)",
+          "series pageviews/day UTC = 3,1,1",
+          "series total equals bucket sum",
+          "series pageviews/day America/New_York = 1,2,1,1 local buckets",
+          "series sessions/day = 2,1,1 with bucketSessionSum, no unique total",
+          "series signup/day = 1,1,1",
+          "breakdown sessions by country = DE 3, FR 1, complete",
+          "top-1 breakdown is labeled partial top-N without fabricated remainder",
+          "breakdown sessions by path = /a 3, /b 1, /c 1",
+          "breakdown signup events by country = DE 2, FR 1",
+          "event numeric amount sum = 40",
+          "event numeric amount average = 20",
+          "event numeric amount median = 20",
+          "event numeric amount min = 10",
+          "event numeric amount max = 30",
+          "event numeric amount count = 2",
+          "session numeric age sum = 60 over 2 values",
+          "missing numeric values are null, not zero",
+          "unknown metric \u2192 unsupported_combination",
+          "eq value containing a comma (would split and widen population) \u2192 unsupported_filter",
+          "filtered identified users \u2192 unsupported_combination",
+          "event property filter on pageviews \u2192 unsupported_combination",
+          "property filter on numeric aggregate \u2192 unsupported_combination",
+          "unknown filter \u2192 unsupported_filter",
+          "schema version 2 \u2192 unsupported_schema_version",
+          "raw sql field \u2192 invalid_definition",
+          "too many buckets \u2192 result_too_large",
+          "preview of another principal\u2019s website is denied",
+          "create returns draft revision 1 with normalized hash",
+          "same key + same request replays the original result",
+          "same key + different request conflicts",
+          "concurrent same-key creates yield exactly one analysis",
+          "caller cannot choose the owner principal",
+          "cannot save an analysis over an inaccessible source",
+          "team analyses cannot be private drafts",
+          "non-members cannot create team analyses",
+          "PATCH with expected revision advances to 2",
+          "stale expected revision conflicts",
+          "PATCH requires expectedRevision",
+          "PATCH validates the definition",
+          "concurrent PATCH at same revision: exactly one wins",
+          "revision history is append-only and complete",
+          "definition change creates revision 4 with a new hash; revision 1 is unchanged",
+          "readback returns stored definition whose hash re-derives",
+          "saved execution = DE signups 2 with saved provenance",
+          "preview of the read-back definition equals saved execution data",
+          "execute rejects caller overrides",
+          "stranger cannot read, execute or patch a private draft",
+          "team member cannot see owner\u2019s private draft",
+          "list is principal-scoped and bounded",
+          "page size above 100 is rejected",
+          "team view-only member can read but not edit a ready team analysis",
+          "execution rechecks source access: viewer lacks website access \u2192 denied",
+          "revoked source access denies saved execution (no stale grant)",
+          "restored access executes again",
+          "board with own analysis widget saves at revision 1",
+          "renderer incompatible with result shape is rejected",
+          "widget config cannot carry SQL/rows/extra props",
+          "cannot reference another principal\u2019s analysis",
+          "team board cannot expose a private draft",
+          "team board may reference a ready team analysis",
+          "board compare-and-set at revision 1 \u2192 2",
+          "stale board revision \u2192 409 without mutation",
+          "legacy save without expectedRevision still works and advances revision",
+          "board update re-validates analysis visibility",
+          "sharing a board with analysis widgets is explicitly unsupported",
+          "refused share leaves widget intact and creates no share",
+          "revoked source access denies board create and update save",
+          "bundle commits one board + two analyses with revisions atomically",
+          "bundle-linked signup totals = 3 (all interior timestamps, no boundary rows)",
+          "bundle with ref outside AnalysisWidget props is rejected and writes nothing",
+          "bundle-created series executes with correct UTC buckets on non-UTC session",
+          "principal/task/key replay and concurrent same-key commits return the same board",
+          "cancelled task: fenced bundle commits no board/analysis/operation",
+          "winning commit records provenance in-transaction; cancelled task rejects late writes",
+          "cancel-first cancel/commit round 0 is all-or-nothing; cancel stays terminal",
+          "round 0: pause/resume/ensureTask after cancel do not revive the task",
+          "commit-first cancel/commit round 1 is all-or-nothing; cancel stays terminal",
+          "round 1: pause/resume/ensureTask after cancel do not revive the task",
+          "concurrent cancel/commit round 2 is all-or-nothing; cancel stays terminal",
+          "round 2: pause/resume/ensureTask after cancel do not revive the task",
+          "cancel-first cancel/commit round 3 is all-or-nothing; cancel stays terminal",
+          "round 3: pause/resume/ensureTask after cancel do not revive the task",
+          "commit-first cancel/commit round 4 is all-or-nothing; cancel stays terminal",
+          "round 4: pause/resume/ensureTask after cancel do not revive the task",
+          "concurrent cancel/commit round 5 is all-or-nothing; cancel stays terminal",
+          "round 5: pause/resume/ensureTask after cancel do not revive the task",
+          "both cancel-won and commit-won linearizations observed",
+          "same key is scoped by principal/task; changed request under a key conflicts",
+          "unknown analysisRef is rejected before any write",
+          "no public self-service confirmation route; invented grant ids are denied",
+          "existing-board edit without/with wrong-task, wrong-diff, foreign-principal or expired (otherwise matching) grant is denied with no mutation",
+          "authority revoked after grant issuance denies the commit with zero mutation",
+          "confirmation grant is bound to the exact bundle hash",
+          "stale revision conflicts and rolls back analyses, grant claim and idempotency record",
+          "matching grant applies once; identical bundle under a fresh key cannot reuse it; same key replays",
+          "revoked source denies bundle save",
+          "before fresh writes: rolling 24h = 0, fixed = 3",
+          "after fresh writes: rolling 24h = 2 (48h-old excluded), fixed stays 3",
+          "restarted process executes persisted definitions with identical semantics and results",
+          "flag off: saved execution works, mutation is disabled"
+        ],
+        "passed": true
+      },
+      {
+        "suite": "postgres-supplement-UTC",
+        "assertions": [
+          "exact observed labels and daily event occurrences, separate product/ops",
+          "identified users stay source-scoped despite repeated identity",
+          "staff board persists separate source widgets and observed-only meaning",
+          "filtered event/person series survives real child process reopen",
+          "numeric zero/null aggregates and unsupported numeric grouping",
+          "absent collection coverage differs from covered explicit zero",
+          "matching saved analysis reused; different filter/population never substituted"
+        ],
+        "passed": true
+      },
+      {
+        "suite": "postgres-supplement-Asia/Jakarta",
+        "assertions": [
+          "exact observed labels and daily event occurrences, separate product/ops",
+          "identified users stay source-scoped despite repeated identity",
+          "staff board persists separate source widgets and observed-only meaning",
+          "filtered event/person series survives real child process reopen",
+          "numeric zero/null aggregates and unsupported numeric grouping",
+          "absent collection coverage differs from covered explicit zero",
+          "matching saved analysis reused; different filter/population never substituted"
+        ],
+        "passed": true
+      },
+      {
+        "suite": "postgres-supplement-America/New_York",
+        "assertions": [
+          "exact observed labels and daily event occurrences, separate product/ops",
+          "identified users stay source-scoped despite repeated identity",
+          "staff board persists separate source widgets and observed-only meaning",
+          "filtered event/person series survives real child process reopen",
+          "numeric zero/null aggregates and unsupported numeric grouping",
+          "absent collection coverage differs from covered explicit zero",
+          "matching saved analysis reused; different filter/population never substituted"
+        ],
+        "passed": true
+      },
+      {
+        "suite": "postgres-supplement",
+        "passed": true,
+        "assertions": [
+          "exact observed labels and daily event occurrences, separate product/ops",
+          "identified users stay source-scoped despite repeated identity",
+          "staff board persists separate source widgets and observed-only meaning",
+          "filtered event/person series survives real child process reopen",
+          "numeric zero/null aggregates and unsupported numeric grouping",
+          "absent collection coverage differs from covered explicit zero",
+          "matching saved analysis reused; different filter/population never substituted"
+        ]
+      },
+      {
+        "suite": "clickhouse-api",
+        "assertions": [
+          "product database session is non-UTC (America/New_York)",
+          "create is disabled without AI_ANALYST_ENABLED",
+          "preview is disabled without AI_ANALYST_ENABLED",
+          "nothing persisted while disabled",
+          "totals pageviews = 5 (start boundary in, end boundary out, foreign site excluded)",
+          "envelope provenance and completeness",
+          "totals sessions = 4",
+          "totals visits = 4",
+          "totals signup events = 3",
+          "totals unknown event is explicit zero",
+          "totals identified users = 2 (u1, u2)",
+          "filtered totals pageviews country=DE = 4",
+          "filtered totals pageviews country!=DE = 1",
+          "filtered totals pageviews path contains /a = 3 (end-boundary /a excluded)",
+          "series pageviews/day UTC = 3,1,1",
+          "series total equals bucket sum",
+          "series pageviews/day America/New_York = 1,2,1,1 local buckets",
+          "series sessions/day = 2,1,1 with bucketSessionSum, no unique total",
+          "series signup/day = 1,1,1",
+          "breakdown sessions by country = DE 3, FR 1, complete",
+          "top-1 breakdown is labeled partial top-N without fabricated remainder",
+          "breakdown sessions by path = /a 3, /b 1, /c 1",
+          "breakdown signup events by country = DE 2, FR 1",
+          "event numeric amount sum = 40",
+          "event numeric amount average = 20",
+          "event numeric amount median = 20",
+          "event numeric amount min = 10",
+          "event numeric amount max = 30",
+          "event numeric amount count = 2",
+          "session numeric age sum = 60 over 2 values",
+          "missing numeric values are null, not zero",
+          "unknown metric \u2192 unsupported_combination",
+          "eq value containing a comma (would split and widen population) \u2192 unsupported_filter",
+          "filtered identified users \u2192 unsupported_combination",
+          "event property filter on pageviews \u2192 unsupported_combination",
+          "property filter on numeric aggregate \u2192 unsupported_combination",
+          "unknown filter \u2192 unsupported_filter",
+          "schema version 2 \u2192 unsupported_schema_version",
+          "raw sql field \u2192 invalid_definition",
+          "too many buckets \u2192 result_too_large",
+          "preview of another principal\u2019s website is denied",
+          "create returns draft revision 1 with normalized hash",
+          "same key + same request replays the original result",
+          "same key + different request conflicts",
+          "concurrent same-key creates yield exactly one analysis",
+          "caller cannot choose the owner principal",
+          "cannot save an analysis over an inaccessible source",
+          "team analyses cannot be private drafts",
+          "non-members cannot create team analyses",
+          "PATCH with expected revision advances to 2",
+          "stale expected revision conflicts",
+          "PATCH requires expectedRevision",
+          "PATCH validates the definition",
+          "concurrent PATCH at same revision: exactly one wins",
+          "revision history is append-only and complete",
+          "definition change creates revision 4 with a new hash; revision 1 is unchanged",
+          "readback returns stored definition whose hash re-derives",
+          "saved execution = DE signups 2 with saved provenance",
+          "preview of the read-back definition equals saved execution data",
+          "execute rejects caller overrides",
+          "stranger cannot read, execute or patch a private draft",
+          "team member cannot see owner\u2019s private draft",
+          "list is principal-scoped and bounded",
+          "page size above 100 is rejected",
+          "team view-only member can read but not edit a ready team analysis",
+          "execution rechecks source access: viewer lacks website access \u2192 denied",
+          "revoked source access denies saved execution (no stale grant)",
+          "restored access executes again",
+          "board with own analysis widget saves at revision 1",
+          "renderer incompatible with result shape is rejected",
+          "widget config cannot carry SQL/rows/extra props",
+          "cannot reference another principal\u2019s analysis",
+          "team board cannot expose a private draft",
+          "team board may reference a ready team analysis",
+          "board compare-and-set at revision 1 \u2192 2",
+          "stale board revision \u2192 409 without mutation",
+          "legacy save without expectedRevision still works and advances revision",
+          "board update re-validates analysis visibility",
+          "sharing a board with analysis widgets is explicitly unsupported",
+          "refused share leaves widget intact and creates no share",
+          "revoked source access denies board create and update save",
+          "bundle commits one board + two analyses with revisions atomically",
+          "bundle-linked signup totals = 3 (all interior timestamps, no boundary rows)",
+          "bundle with ref outside AnalysisWidget props is rejected and writes nothing",
+          "bundle-created series executes with correct UTC buckets on non-UTC session",
+          "principal/task/key replay and concurrent same-key commits return the same board",
+          "cancelled task: fenced bundle commits no board/analysis/operation",
+          "winning commit records provenance in-transaction; cancelled task rejects late writes",
+          "cancel-first cancel/commit round 0 is all-or-nothing; cancel stays terminal",
+          "round 0: pause/resume/ensureTask after cancel do not revive the task",
+          "commit-first cancel/commit round 1 is all-or-nothing; cancel stays terminal",
+          "round 1: pause/resume/ensureTask after cancel do not revive the task",
+          "concurrent cancel/commit round 2 is all-or-nothing; cancel stays terminal",
+          "round 2: pause/resume/ensureTask after cancel do not revive the task",
+          "cancel-first cancel/commit round 3 is all-or-nothing; cancel stays terminal",
+          "round 3: pause/resume/ensureTask after cancel do not revive the task",
+          "commit-first cancel/commit round 4 is all-or-nothing; cancel stays terminal",
+          "round 4: pause/resume/ensureTask after cancel do not revive the task",
+          "concurrent cancel/commit round 5 is all-or-nothing; cancel stays terminal",
+          "round 5: pause/resume/ensureTask after cancel do not revive the task",
+          "both cancel-won and commit-won linearizations observed",
+          "same key is scoped by principal/task; changed request under a key conflicts",
+          "unknown analysisRef is rejected before any write",
+          "no public self-service confirmation route; invented grant ids are denied",
+          "existing-board edit without/with wrong-task, wrong-diff, foreign-principal or expired (otherwise matching) grant is denied with no mutation",
+          "authority revoked after grant issuance denies the commit with zero mutation",
+          "confirmation grant is bound to the exact bundle hash",
+          "stale revision conflicts and rolls back analyses, grant claim and idempotency record",
+          "matching grant applies once; identical bundle under a fresh key cannot reuse it; same key replays",
+          "revoked source denies bundle save",
+          "before fresh writes: rolling 24h = 0, fixed = 3",
+          "after fresh writes: rolling 24h = 2 (48h-old excluded), fixed stays 3",
+          "restarted process executes persisted definitions with identical semantics and results",
+          "flag off: saved execution works, mutation is disabled"
+        ],
+        "passed": true
+      },
+      {
+        "suite": "clickhouse-supplement-UTC",
+        "assertions": [
+          "exact observed labels and daily event occurrences, separate product/ops",
+          "identified users stay source-scoped despite repeated identity",
+          "staff board persists separate source widgets and observed-only meaning",
+          "filtered event/person series survives real child process reopen",
+          "numeric zero/null aggregates and unsupported numeric grouping",
+          "absent collection coverage differs from covered explicit zero",
+          "matching saved analysis reused; different filter/population never substituted"
+        ],
+        "passed": true
+      },
+      {
+        "suite": "clickhouse-supplement-Asia/Jakarta",
+        "assertions": [
+          "exact observed labels and daily event occurrences, separate product/ops",
+          "identified users stay source-scoped despite repeated identity",
+          "staff board persists separate source widgets and observed-only meaning",
+          "filtered event/person series survives real child process reopen",
+          "numeric zero/null aggregates and unsupported numeric grouping",
+          "absent collection coverage differs from covered explicit zero",
+          "matching saved analysis reused; different filter/population never substituted"
+        ],
+        "passed": true
+      },
+      {
+        "suite": "clickhouse-supplement-America/New_York",
+        "assertions": [
+          "exact observed labels and daily event occurrences, separate product/ops",
+          "identified users stay source-scoped despite repeated identity",
+          "staff board persists separate source widgets and observed-only meaning",
+          "filtered event/person series survives real child process reopen",
+          "numeric zero/null aggregates and unsupported numeric grouping",
+          "absent collection coverage differs from covered explicit zero",
+          "matching saved analysis reused; different filter/population never substituted"
+        ],
+        "passed": true
+      },
+      {
+        "suite": "clickhouse-supplement",
+        "passed": true,
+        "assertions": [
+          "exact observed labels and daily event occurrences, separate product/ops",
+          "identified users stay source-scoped despite repeated identity",
+          "staff board persists separate source widgets and observed-only meaning",
+          "filtered event/person series survives real child process reopen",
+          "numeric zero/null aggregates and unsupported numeric grouping",
+          "absent collection coverage differs from covered explicit zero",
+          "matching saved analysis reused; different filter/population never substituted"
+        ]
+      },
+      {
+        "suite": "authority-pg-UTC",
+        "assertions": [
+          "discover IDs and schema then ask meaningful ambiguity with needs_input and no guessed mutation",
+          "declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies",
+          "partial failure after metadata writes rolls back board analyses revisions operation and task provenance",
+          "source revocation denies render authority and existing artifact release",
+          "foreign stale malformed and team-revoked references deny capability and artifact release"
+        ],
+        "passed": true
+      },
+      {
+        "suite": "authority-pg-Asia/Jakarta",
+        "assertions": [
+          "discover IDs and schema then ask meaningful ambiguity with needs_input and no guessed mutation",
+          "declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies",
+          "partial failure after metadata writes rolls back board analyses revisions operation and task provenance",
+          "source revocation denies render authority and existing artifact release",
+          "foreign stale malformed and team-revoked references deny capability and artifact release"
+        ],
+        "passed": true
+      },
+      {
+        "suite": "authority-pg-America/New_York",
+        "assertions": [
+          "discover IDs and schema then ask meaningful ambiguity with needs_input and no guessed mutation",
+          "declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies",
+          "partial failure after metadata writes rolls back board analyses revisions operation and task provenance",
+          "source revocation denies render authority and existing artifact release",
+          "foreign stale malformed and team-revoked references deny capability and artifact release"
+        ],
+        "passed": true
+      },
+      {
+        "suite": "authority-pg",
+        "passed": true,
+        "assertions": [
+          "discover IDs and schema then ask meaningful ambiguity with needs_input and no guessed mutation",
+          "source revocation denies render authority and existing artifact release",
+          "foreign stale malformed and team-revoked references deny capability and artifact release",
+          "partial failure after metadata writes rolls back board analyses revisions operation and task provenance",
+          "declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies"
+        ]
+      },
+      {
+        "suite": "authority-reusable",
+        "passed": true,
+        "assertions": [
+          "allows only an active task at exact board/analysis revisions with current view rights",
+          "rejects foreign, stale, failed and mismatched envelopes rather than minting receipts",
+          "rechecks authority after execution and rejects unsupported or incomplete widget sets",
+          "native preparation refuses revoked sources before querying",
+          "rejects stale revision, foreign/empty execution, foreign hash and revoked authority",
+          "canvas handler: no session, forged session, or reused capability is denied"
+        ]
+      },
+      {
+        "suite": "component",
+        "passed": true,
+        "assertions": [
+          "numeric aggregate metric/table renders exact value, zero and unavailable without a series"
+        ]
+      },
+      {
+        "suite": "executor",
+        "passed": true,
+        "assertions": [
+          "omitted native stats key rejects as missing_metric rather than zero"
+        ]
+      },
+      {
+        "suite": "generic-authority",
+        "passed": true,
+        "assertions": [
+          "generic edit share delete and method aliases cannot dispatch lifecycle writes even with nested approval claims"
+        ]
+      }
+    ],
+    "vitestReport": {
+      "numTotalTestSuites": 10,
+      "numPassedTestSuites": 10,
+      "numFailedTestSuites": 0,
+      "numPendingTestSuites": 0,
+      "numTotalTests": 15,
+      "numPassedTests": 15,
+      "numFailedTests": 0,
+      "numPendingTests": 0,
+      "numTodoTests": 0,
+      "snapshot": {
+        "added": 0,
+        "failure": false,
+        "filesAdded": 0,
+        "filesRemoved": 0,
+        "filesRemovedList": [],
+        "filesUnmatched": 0,
+        "filesUpdated": 0,
+        "matched": 0,
+        "total": 0,
+        "unchecked": 0,
+        "uncheckedKeysByFile": [],
+        "unmatched": 0,
+        "updated": 0,
+        "didUpdate": false
+      },
+      "startTime": 1794921120903,
+      "success": true,
+      "testResults": [
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [],
+              "fullName": "requires API completion marker and matching numbered assertions, not an arbitrary green exit",
+              "status": "passed",
+              "title": "requires API completion marker and matching numbered assertions, not an arbitrary green exit",
+              "duration": 17.85627999999997,
+              "failureMessages": [],
+              "meta": {},
+              "tags": []
+            }
+          ],
+          "startTime": 1794921123116,
+          "endTime": 1794921123133.8562,
+          "status": "passed",
+          "message": "",
+          "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/api-evidence.test.ts"
+        },
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [],
+              "fullName": "reusable authority evidence requires exact source-qualified passed assertions and successful nonempty command",
+              "status": "passed",
+              "title": "reusable authority evidence requires exact source-qualified passed assertions and successful nonempty command",
+              "duration": 84.67427700000007,
+              "failureMessages": [],
+              "meta": {},
+              "tags": []
+            }
+          ],
+          "startTime": 1794921123221,
+          "endTime": 1794921123305.6743,
+          "status": "passed",
+          "message": "",
+          "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority-evidence.test.ts"
+        },
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [],
+              "fullName": "needs_input requires the meaningful bounded question, persisted wait and unchanged semantics",
+              "status": "passed",
+              "title": "needs_input requires the meaningful bounded question, persisted wait and unchanged semantics",
+              "duration": 39.66705499999989,
+              "failureMessages": [],
+              "meta": {},
+              "tags": []
+            }
+          ],
+          "startTime": 1794921123487,
+          "endTime": 1794921123526.667,
+          "status": "passed",
+          "message": "",
+          "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/clarification.test.ts"
+        },
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [],
+              "fullName": "generic edit share delete and method aliases cannot dispatch lifecycle writes even with nested approval claims",
+              "status": "passed",
+              "title": "generic edit share delete and method aliases cannot dispatch lifecycle writes even with nested approval claims",
+              "duration": 17.29331899999943,
+              "failureMessages": [],
+              "meta": {},
+              "tags": []
+            }
+          ],
+          "startTime": 1794921127743,
+          "endTime": 1794921127760.2932,
+          "status": "passed",
+          "message": "",
+          "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/generic-authority.test.ts"
+        },
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [],
+              "fullName": "omitted native stats key rejects as missing_metric rather than zero",
+              "status": "passed",
+              "title": "omitted native stats key rejects as missing_metric rather than zero",
+              "duration": 28.68537600000036,
+              "failureMessages": [],
+              "meta": {},
+              "tags": []
+            }
+          ],
+          "startTime": 1794921127651,
+          "endTime": 1794921127679.6853,
+          "status": "passed",
+          "message": "",
+          "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/missing-metric.test.ts"
+        },
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [],
+              "fullName": "numeric aggregate metric/table renders exact value, zero and unavailable without a series",
+              "status": "passed",
+              "title": "numeric aggregate metric/table renders exact value, zero and unavailable without a series",
+              "duration": 281.42785700000013,
+              "failureMessages": [],
+              "meta": {},
+              "tags": []
+            }
+          ],
+          "startTime": 1794921123466,
+          "endTime": 1794921123747.428,
+          "status": "passed",
+          "message": "",
+          "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/numeric-render.test.tsx"
+        },
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [
+                "offline acceptance evidence"
+              ],
+              "fullName": "offline acceptance evidence fails strict acceptance when any required scenario lacks executed assertions",
+              "status": "passed",
+              "title": "fails strict acceptance when any required scenario lacks executed assertions",
+              "duration": 32.52083599999969,
+              "failureMessages": [],
+              "meta": {},
+              "tags": []
+            },
+            {
+              "ancestorTitles": [
+                "offline acceptance evidence"
+              ],
+              "fullName": "offline acceptance evidence requires every scenario1\u20139 assertion and keeps scenarios10\u201312 pending",
+              "status": "passed",
+              "title": "requires every scenario1\u20139 assertion and keeps scenarios10\u201312 pending",
+              "duration": 27.53452100000004,
+              "failureMessages": [],
+              "meta": {},
+              "tags": []
+            },
+            {
+              "ancestorTitles": [
+                "offline acceptance evidence"
+              ],
+              "fullName": "offline acceptance evidence does not accept exit zero without every coverage-linked assertion",
+              "status": "passed",
+              "title": "does not accept exit zero without every coverage-linked assertion",
+              "duration": 7.9278840000001765,
+              "failureMessages": [],
+              "meta": {},
+              "tags": []
+            },
+            {
+              "ancestorTitles": [],
+              "fullName": "historical evaluator-wrapped discovery cannot prove native-loopback scenario6",
+              "status": "passed",
+              "title": "historical evaluator-wrapped discovery cannot prove native-loopback scenario6",
+              "duration": 1.2167810000000827,
+              "failureMessages": [],
+              "meta": {},
+              "tags": []
+            }
+          ],
+          "startTime": 1794921123345,
+          "endTime": 1794921123415.2168,
+          "status": "passed",
+          "message": "",
+          "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/offline.test.ts"
+        },
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [],
+              "fullName": "accepts only the exact four persisted staff bindings with successful matching readback and results",
+              "status": "passed",
+              "title": "accepts only the exact four persisted staff bindings with successful matching readback and results",
+              "duration": 29.41466900000023,
+              "failureMessages": [],
+              "meta": {},
+              "tags": []
+            },
+            {
+              "ancestorTitles": [],
+              "fullName": "rejects duplicated/wrong persisted widget binding and non-distinct intended analysis IDs",
+              "status": "passed",
+              "title": "rejects duplicated/wrong persisted widget binding and non-distinct intended analysis IDs",
+              "duration": 14.369822999999997,
+              "failureMessages": [],
+              "meta": {},
+              "tags": []
+            },
+            {
+              "ancestorTitles": [],
+              "fullName": "rejects per-widget failed/denied execution, mismatched intent/hash, and incorrect actual results",
+              "status": "passed",
+              "title": "rejects per-widget failed/denied execution, mismatched intent/hash, and incorrect actual results",
+              "duration": 5.789620999999897,
+              "failureMessages": [],
+              "meta": {},
+              "tags": []
+            }
+          ],
+          "startTime": 1794921123471,
+          "endTime": 1794921123520.7896,
+          "status": "passed",
+          "message": "",
+          "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/staff-dashboard.test.ts"
+        },
+        {
+          "assertionResults": [
+            {
+              "ancestorTitles": [],
+              "fullName": "retains all structured assertion results and rejects missing/failed Vitest evidence",
+              "status": "passed",
+              "title": "retains all structured assertion results and rejects missing/failed Vitest evidence",
+              "duration": 33.81338599999981,
+              "failureMessages": [],
+              "meta": {},
+              "tags": []
+            },
+            {
+              "ancestorTitles": [],
+              "fullName": "generic authority evidence rejects a matching assertion from the wrong source file",
+              "status": "passed",
+              "title": "generic authority evidence rejects a matching assertion from the wrong source file",
+              "duration": 1.662105999999767,
+              "failureMessages": [],
+              "meta": {},
+              "tags": []
+            }
+          ],
+          "startTime": 1794921123399,
+          "endTime": 1794921123434.662,
+          "status": "passed",
+          "message": "",
+          "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/vitest-evidence.test.ts"
+        }
+      ]
+    }
+  },
+  "postflight": {
+    "postgresMarker": "umami-ai-synthetic-r3",
+    "analystSchemas": [
+      "analyst_fixture"
+    ]
+  },
+  "limitations": [
+    "scenario6 pending actual native HTTP discovery red",
+    "no product fix approved for shared Date binding",
+    "no new full strictE1 run; requalified unchanged source-bound historic engine evidence plus fresh evaluator results",
+    "historical p1-bootstrap-green log name is misleading: exact exit1 and native red retained"
+  ],
+  "unchangedReusedSourceHashes": {
+    "wiki/specs/analyst-dashboard-lifecycle.md": "a418013ff461110daa77ff6007f1b527d106bd9eb2c6b45cf91b1c405de8b638",
+    "src/lib/analyst-verifier/authority.test.ts": "9f8c826f4cccb7b2d11ebf70f6c073e68ca247a4428141e7640618aff5332d11",
+    "src/lib/analyst-verifier/port.test.ts": "27aa659254e454cb970012531fa0f4b7412dc3141debade9fa4eef9687700963",
+    "src/lib/analyst-verifier/port.mjs": "a65dbc012432bfcd281f6c6aeb1859f65618e3cf1c12345fbf08e3d4cad1737a",
+    "src/lib/analyst-verifier/images.mjs": "a3628a5ae3641464823b588f0121a3e058b9cdea964083cd76796dc03f070935",
+    "src/lib/analyst-verifier/capability.mjs": "673e0073c04877577249cc18765093d1bd6f6f93664a5bb6a2d2a05775b66d0a",
+    "src/lib/ai/assistant/analyst/tools.ts": "123c6aae737180d1f6363a92bda0370dd908b4474264b15be0236f17c0dd5a7b",
+    "src/lib/ai/assistant/analyst/task.ts": "adef3d22f3c52067eaf62a63c39e46b9176fb45901a67e9a9a1119db056b51c2",
+    "src/lib/ai/assistant/tools.ts": "76dddfe2aaa0b81cd75b7301cc73b039ad2d65768f1351550542476e5519928b",
+    "src/queries/prisma/analysis.ts": "aee6b8f2069422be73246073f6626fed3f28d9bc59bd6989c16b159c5bb9b079",
+    "src/permissions/analysis.ts": "ab6e7d4416493f2847359e5c075b5ac366faae1d65dcf1266e6c1516b62986f1",
+    "src/permissions/website.ts": "34effa98ed8050bdbd33e2310b7b63ccc4c0a9d452440dd06baa281d9fd67fd8",
+    "src/permissions/share.ts": "85b5cdb46e05b55b266407b3d5a5da9688f884322c33bee6ed9fa8c9bef4d7aa",
+    "src/test/setup.ts": "074a8edf8244ceeb01af9619dd689a087b0ac003e5ab2be93c0858a40de68d1b",
+    "scripts/ai/analyst-evals/staff-dashboard.ts": "234561a3f280bc7fabd531c99fc41d64925e5a43cde424011fe6d53c90482c31",
+    "scripts/test-analyst-api.ts": "58a8a848e0125fe3cea26143d360b4ad1af8a02e5175931d86090621717e4486",
+    "scripts/ai/analyst-evals/dashboard.ts": "7c41e62ed31bee1e1e1e843821771c91e839e7b51f42e9056f0efbd25fd741cd",
+    "src/lib/ai/assistant/analyst/deps.ts": "6b0660b30484b8822e64c20729a08dfdb08c29c11781474f3e8bd1310292ffb0",
+    "src/queries/sql/getWebsiteDateRange.ts": "8dafe559be2d524ba65af19a2f005656db45737c92adfe53fc90ea6e8bf27aa4"
+  }
+}

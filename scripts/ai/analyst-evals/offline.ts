@@ -69,7 +69,13 @@ export function vitestEvidence(report: any, commandPassed: boolean) {
     evidence: ['component', 'executor', 'generic-authority'].map(suite => ({
       suite, passed,
       assertions: requirements.filter(r => r.suite === suite).map(r => r.assertion).filter(name =>
-        assertions.some(a => a.fullName === name && a.status === 'passed'),
+        suite === 'generic-authority'
+          ? report?.testResults?.some((file: any) =>
+              typeof file.name === 'string' &&
+              file.name.endsWith('/scripts/ai/analyst-evals/generic-authority.test.ts') &&
+              file.assertionResults?.some((a: any) => a.fullName === name && a.status === 'passed'),
+            )
+          : assertions.some(a => a.fullName === name && a.status === 'passed'),
       ),
     })),
   };
