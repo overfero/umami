@@ -1,5 +1,6 @@
 import { lstatSync, realpathSync } from 'node:fs';
 import { dirname, isAbsolute, join, resolve } from 'node:path';
+import { capabilityMatchesConfiguration, imageConfiguration } from '../image-capability.mjs';
 
 // No subprocess, worker, addon, WASI or inspector permission is granted.
 export function permissionArgs({ root, scratch, bridge, extension }) {
@@ -63,7 +64,7 @@ export function reasoningLevel(env) {
   return level;
 }
 
-export function gatewayConfig(env) {
+export function gatewayConfig(env, imageCapability, now = Date.now()) {
   reasoningLevel(env);
   const {
     AI_PROVIDER: provider,
@@ -104,23 +105,12 @@ export function gatewayConfig(env) {
         models: [
           {
             id: model,
-            input: ['text'],
-            reasoning: true,
-            thinkingLevelMap: {
-              off: 'none',
-              minimal: null,
-              low: 'low',
-              medium: 'medium',
-              high: 'high',
-              xhigh: 'xhigh',
-            },
-            compat: {
-              supportsStore: false,
-              supportsDeveloperRole: false,
-              supportsReasoningEffort: true,
-              maxTokensField: 'max_tokens',
-              thinkingFormat: 'openai',
-            },
+            input: capabilityMatchesConfiguration(imageCapability, env, now)
+              ? ['text', 'image']
+              : ['text'],
+            reasoning: imageConfiguration(env).settings.reasoning,
+            thinkingLevelMap: imageConfiguration(env).settings.thinkingLevelMap,
+            compat: imageConfiguration(env).settings.compat,
           },
         ],
       },

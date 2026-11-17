@@ -21,6 +21,8 @@ import {
 } from 'node:fs';
 import { basename, dirname, isAbsolute, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { provisionFixtureDatabase, cleanupFixtureDatabase } from './database.mjs';
+import { fixtureSchema } from '../../../src/lib/ai/fixture-database.mjs';
 
 export const FIXTURE_DATABASE =
   'postgresql://ai_synthetic@127.0.0.1:25432/ai_synthetic?schema=analyst_fixture';
@@ -106,7 +108,7 @@ const sha256 = value => createHash('sha256').update(value).digest('hex');
  * the nonce by hash, this exact root, the packaged provider file and its issue time; in built
  * mode also the BUILD_ID of the Next build made here. Only this launcher writes it.
  */
-export function writeReceipt(dir, nonce, buildId) {
+export function writeReceipt(dir, nonce, buildId, databaseUrl = FIXTURE_DATABASE) {
   writeFileSync(
     join(dir, '.analyst-fixture-receipt.json'),
     JSON.stringify({
@@ -117,6 +119,8 @@ export function writeReceipt(dir, nonce, buildId) {
         readFileSync(join(dir, 'scripts/ai/analyst-fixture/offline-provider.mjs')),
       ),
       issuedAt: Date.now(),
+      databaseUrl,
+      schema: fixtureSchema(databaseUrl),
       ...(buildId ? { buildId } : {}),
     }),
     { mode: 0o600 },
@@ -138,6 +142,7 @@ export function fixtureEnv({
   verifier,
   flagsOff = false,
   built = false,
+  databaseUrl = FIXTURE_DATABASE,
 }) {
   return {
     PATH: process.env.PATH,
@@ -148,7 +153,8 @@ export function fixtureEnv({
     NODE_OPTIONS: process.env.ANALYST_FIXTURE_NODE_OPTIONS ?? '--max-old-space-size=2048',
     PORT: port,
     NEXT_TELEMETRY_DISABLED: '1',
-    DATABASE_URL: FIXTURE_DATABASE,
+    DATABASE_URL: databaseUrl,
+    PGOPTIONS: `-c search_path=${fixtureSchema(databaseUrl)}`,
     APP_SECRET: 'synthetic-analyst-fixture-only',
     ...(flagsOff
       ? {}
@@ -185,8 +191,10 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     env: { PATH: process.env.PATH, HOME: '/tmp', DATABASE_URL: FIXTURE_DATABASE },
   });
   if (generated.status !== 0) throw new Error('prisma generate failed');
-  console.log(JSON.stringify({ fixtureProject: dir, verifier, flagsOff, built }));
-  const env = { dir, port, nonce, piRoot, verifier, built };
+  const databaseUrl = provisionFixtureDatabase(dir, nonce.slice(0, 24));
+  writeReceipt(dir, nonce, undefined, databaseUrl);
+  console.log(JSON.stringify({ fixtureProject: dir, verifier, flagsOff, built, schema: fixtureSchema(databaseUrl) }));
+  const env = { dir, port, nonce, piRoot, verifier, built, databaseUrl };
   const next = join(dir, 'node_modules/.bin/next');
   const children = [];
   if (built) {
@@ -206,7 +214,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
       },
     });
     if (build.status !== 0) throw new Error('next build failed');
-    writeReceipt(dir, nonce, readFileSync(join(dir, '.next/BUILD_ID'), 'utf8').trim());
+    writeReceipt(dir, nonce, readFileSync(join(dir, '.next/BUILD_ID'), 'utf8').trim(), databaseUrl);
     const offPort = process.env.ANALYST_FIXTURE_FLAGS_OFF_PORT;
     if (offPort && (!/^\d+$/.test(offPort) || ['3000', '3317', port].includes(offPort)))
       throw new Error('Refusing shared port');
@@ -235,6 +243,10 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   };
   for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => stop(signal));
   child.on('exit', (code, signal) => {
+    const receipt = JSON.parse(readFileSync(join(dir, '.analyst-fixture-receipt.json'), 'utf8'));
+    if (receipt.root !== realpathSync(dir) || receipt.databaseUrl !== databaseUrl || receipt.nonceSha256 !== sha256(nonce))
+      throw new Error('Fixture cleanup receipt mismatch');
+    cleanupFixtureDatabase(databaseUrl, receipt);
     if (code === 0) {
       rmSync(dir, { recursive: true, force: true });
     } else {

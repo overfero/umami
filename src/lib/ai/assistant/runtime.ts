@@ -6,6 +6,8 @@ import { tmpdir } from 'node:os';
 import { basename, isAbsolute, join, resolve } from 'node:path';
 import { StringDecoder } from 'node:string_decoder';
 import { isAnalystEnabled } from '@/lib/analyst/flags';
+import { canInspectImages, capabilityMatchesConfiguration } from '../image-capability.mjs';
+import { fixtureSchema, LEGACY_FIXTURE_DATABASE, FIXTURE_SCHEMA_OWNER } from '../fixture-database.mjs';
 import prisma from '@/lib/prisma';
 import { gatewayConfig, permissionArgs, reasoningLevel } from '../rpc/confinement.mjs';
 import { sanitize, sanitizeSession } from './analyst/sanitize';
@@ -24,6 +26,8 @@ export interface RuntimeInput {
   tool: (name: string, args: unknown) => Promise<unknown>;
   /** Trusted host decision (feature flag), never derived from request fields. */
   analyst?: boolean;
+  /** Same opaque host decision used by the turn's tool closure. */
+  imageCapability?: object;
 }
 export const BASE_TOOLS = [
   'umami_api',
@@ -94,7 +98,8 @@ export function offlineFixtureRuntime(
     throw new Error('Offline fixture runtime refused outside the verified synthetic fixture');
   };
   if (env.AI_OFFLINE_FIXTURE !== OFFLINE_FIXTURE_MODE) fail();
-  if (env.DATABASE_URL !== OFFLINE_FIXTURE_DATABASE) fail();
+  const schema = fixtureSchema(env.DATABASE_URL);
+  if (!schema) fail();
   if (LIVE_KEYS.some(key => env[key] !== undefined)) fail();
   if (Object.keys(env).some(key => /(_API_KEY|_ACCESS_TOKEN)$/.test(key))) fail();
   const nonce = env.AI_OFFLINE_FIXTURE_NONCE;
@@ -128,6 +133,8 @@ export function offlineFixtureRuntime(
     now - receipt.issuedAt > OFFLINE_FIXTURE_RECEIPT_MS
   )
     fail();
+  if (env.DATABASE_URL !== LEGACY_FIXTURE_DATABASE &&
+      (receipt.databaseUrl !== env.DATABASE_URL || receipt.schema !== schema)) fail();
   if (env.NODE_ENV === 'production' && (!buildId || receipt.buildId !== buildId)) fail();
   return {
     provider,
@@ -144,12 +151,16 @@ export function offlineFixtureRuntime(
 /** Independent database-side marker: the owned synthetic engine and this fixture's schema. */
 export async function fixtureDatabaseVerified(
   query: (sql: string) => Promise<any[]> = sql => prisma.client.$queryRawUnsafe(sql),
+  databaseUrl = process.env.DATABASE_URL ?? LEGACY_FIXTURE_DATABASE,
 ) {
   try {
+    const schema = fixtureSchema(databaseUrl);
+    if (!schema) return false;
+    // Identifier has already passed the canonical strict fixture namespace validator.
     const [row] = await query(
-      "select (select owner from public.ai_synthetic_owner) as engine, obj_description('analyst_fixture'::regnamespace) as schema",
+      `select (select owner from public.ai_synthetic_owner) as engine, obj_description('${schema}'::regnamespace) as schema`,
     );
-    return row?.engine === 'umami-ai-synthetic-r3' && row?.schema === 'umami-analyst-fixture-r1';
+    return row?.engine === 'umami-ai-synthetic-r3' && row?.schema === FIXTURE_SCHEMA_OWNER;
   } catch {
     return false;
   }
@@ -193,7 +204,12 @@ export async function runAssistant(input: RuntimeInput) {
   const analyst = !!input.analyst && isAnalystEnabled();
   if (analyst) env.AI_ANALYST_ENABLED = 'true';
   if (!isAbsolute(env.AI_PI_ROOT)) throw new Error('AI installation must be absolute');
-  gatewayConfig(env);
+  gatewayConfig(env, input.imageCapability);
+  if (
+    canInspectImages(input.imageCapability) &&
+    !capabilityMatchesConfiguration(input.imageCapability, env)
+  )
+    throw new Error('Image capability configuration mismatch');
   return runAssistantProcess(input, {
     env,
     bridge: resolve('scripts/ai/native.mjs'),
@@ -239,7 +255,11 @@ export async function runAssistantProcess(input: RuntimeInput, options: RuntimeO
       await writeFile(
         join(agent, 'models.json'),
         // Offline: no gateway provider exists at all, so nothing can reach a network endpoint.
-        JSON.stringify(options.offlineProvider ? { providers: {} } : gatewayConfig(options.env)),
+        JSON.stringify(
+          options.offlineProvider
+            ? { providers: {} }
+            : gatewayConfig(options.env, input.imageCapability),
+        ),
         { mode: 0o600 },
       );
     const args = [
@@ -458,7 +478,8 @@ export async function runAssistantProcess(input: RuntimeInput, options: RuntimeO
                 result => {
                   if (
                     result instanceof ImageToolResult &&
-                    request.name === 'analyst_verify_render'
+                    request.name === 'analyst_verify_render' &&
+                    canInspectImages(input.imageCapability)
                   ) {
                     imageAllowance += IMAGE_TRANSPORT_BYTES;
                     send({
@@ -475,7 +496,11 @@ export async function runAssistantProcess(input: RuntimeInput, options: RuntimeO
                       type: 'extension_ui_response',
                       id: value.id,
                       value: truncate(
-                        result instanceof ImageToolResult ? result.json : result,
+                        result instanceof ImageToolResult
+                          ? { ok: false, code: 'image_capability_unavailable',
+                              visualStatus: 'visual_pending',
+                              message: 'Image delivery unavailable; visual inspection remains pending' }
+                          : result,
                         32768,
                       ),
                     });

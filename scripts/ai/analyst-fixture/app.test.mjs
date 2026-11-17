@@ -126,7 +126,8 @@ test('systemTemp ignores $TMPDIR (e.g. repo scratch) and refuses discovery ances
     for (let dir = root; dir !== dirname(dir); dir = dirname(dir))
       assert.equal(existsSync(join(dir, '.pi')), false);
   } finally {
-    process.env.TMPDIR = saved;
+    if (saved === undefined) delete process.env.TMPDIR;
+    else process.env.TMPDIR = saved;
   }
   const poisoned = mkdtempSync(join(systemTemp(), 'poisoned-'));
   mkdirSync(join(poisoned, '.pi'));

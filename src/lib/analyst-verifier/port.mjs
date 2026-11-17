@@ -76,7 +76,8 @@ export async function resolvePrivateRender(credential) {
 /**
  * @param {{ enabled: boolean, launcher: { launch: () => any, origin: string },
  *   authorize: (scope: any) => Promise<boolean>,
- *   prepare: (scope: any, expected: any[], signal?: AbortSignal) => Promise<any[]> }} options
+ *   prepare: (scope: any, expected: any[], signal?: AbortSignal) => Promise<any[]>,
+ *   renderer?: (input: any) => Promise<any> }} options
  * `authorize` re-checks the principal's current authority and exact revisions on every use;
  * `prepare` runs trusted saved executions whose ids/hashes the receipt must match exactly.
  */
@@ -105,7 +106,7 @@ export function createVerifierPort({ enabled, launcher, authorize, prepare, rend
   });
   return {
     capabilities,
-    async render({ scope, expectedWidgets, signal }) {
+    async render({ scope, expectedWidgets, signal = undefined }) {
       // Trusted host execution of each saved analysis at the captured revision; the receipt must
       // then match these exact execution ids and definition hashes (no wildcard).
       const widgets = await prepare(scope, expectedWidgets, signal);

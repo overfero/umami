@@ -1,0 +1,589 @@
+{
+  "complete": false,
+  "slice": "03",
+  "status": "blocked-on-product-design-approval",
+  "sourceRevision": "217a56e0f00b859daae65738b025f1eb1986546a",
+  "integrationRevision": "217a56e0f00b859daae65738b025f1eb1986546a",
+  "sourceDirty": true,
+  "observedAtJakarta": "2026-11-17T21:44:39.433167+07:00",
+  "environment": {
+    "python": "3.12.16",
+    "node": "22.23.5",
+    "pnpm": "12.3.4",
+    "conda": "/home/overfero/miniconda3/bin/conda",
+    "fixtureMarker": "umami-ai-synthetic-r3"
+  },
+  "sourceHashes": {
+    "playwright.config.ts": "b39f7e9f1d0d0dbbcdf5385fd3a62a92ca1b06e39b258590a92f3c9c63d291f4",
+    "scripts/ai/analyst-evals/authority-evidence.ts": "fc1fcd6c7fa9c6cd6767b5d54994618cedc695cec78571c1a899a5e53a607b75",
+    "scripts/ai/analyst-evals/offline.ts": "a19901b0855dd9c2e104d88431feb165fd2134542be020d9df8a07ea3cf8ca3b",
+    "scripts/ai/analyst-evals/run-offline.ts": "adc3cd6a078e5c5bb9ea9c8bf51b9dc49d730c0e79da3c69d932dce29c5fabe0",
+    "scripts/ai/analyst-evals/visual-capability.test.ts": "85e054e11beba590fbdffb61b908da37c47887b49e92a9199bb649ce5fc62b8d",
+    "scripts/ai/analyst-evals/vitest.config.ts": "ef180650eba93c7f5064ce423e7110c3b57a4c08cd30cdd3ffebdf7fd6ccc3a2",
+    "scripts/ai/analyst-fixture/offline-provider.mjs": "b30bf8714f84cbe09106803b7b2cf75af21b3dc10fc5291bc415ce91aebe28b3",
+    "scripts/ai/eval-analyst.ts": "0892ee067ffa0ba773374b77a2b25d49ccad1d84eaf5d5e54a365716a77c248a",
+    "src/app/(main)/assistant/ResultChart.test.tsx": "57f7b9da8ffe38304a1e3ecbb46a80ec2e9050719d1dedc8372bdc0c37425d45",
+    "src/lib/ai/assistant/analyst/analyst.test.ts": "08ab608b8b90865bd24c15a0dfc4a7c371fcecc22a2410fdf65d57213793a233",
+    "src/lib/ai/assistant/analyst/fake-db.ts": "ae4f84996bdfb4ff4eb0e04d7b31e898bca6e7916cba85837ac2d8fb6d469f07",
+    "src/lib/ai/assistant/analyst/handlers.test.ts": "109202ff8601d182998d8ec9897f9cad9eac1affaefe28329b9a92a3381b5788",
+    "src/lib/ai/assistant/analyst/task.ts": "adef3d22f3c52067eaf62a63c39e46b9176fb45901a67e9a9a1119db056b51c2",
+    "src/lib/ai/assistant/analyst/tools.ts": "123c6aae737180d1f6363a92bda0370dd908b4474264b15be0236f17c0dd5a7b",
+    "src/lib/ai/assistant/handlers.ts": "2a3eef8654518274ecd0e099265b01d24fc3e976a01b9cb918001c1f405e8caa",
+    "src/lib/ai/assistant/runtime.ts": "ef06c5847f1e76c34da1b7b7a50220354942c406421210a3bec7b491a0324cf9",
+    "src/lib/ai/rpc/confinement.mjs": "db0a80250c20df678628982d258ba49c6abb1d83394020ba38dd16ada3631afb",
+    "src/lib/analyst-verifier/authority.test.ts": "9f8c826f4cccb7b2d11ebf70f6c073e68ca247a4428141e7640618aff5332d11",
+    "src/lib/analyst-verifier/port.test.ts": "27aa659254e454cb970012531fa0f4b7412dc3141debade9fa4eef9687700963",
+    "src/lib/boards.test.ts": "d572e5edc0b5e9a34ff75c9703a38a0a42a5cb5d0ecd816978632d30198597eb",
+    "src/test/setup.ts": "074a8edf8244ceeb01af9619dd689a087b0ac003e5ab2be93c0858a40de68d1b",
+    "vitest.config.ts": "0e97b7a56a7f67ffa6cefb9afa106dc4d448bd924d9d7efd91634e45cc114391"
+  },
+  "reportHashes": {
+    "scripts/ai/analyst-evals/evidence/slice03-visual-capability-red.json": "62d084d77b93a6d394d2cb665be1a08e52262f049c6fd0e145f43e2a25805fa0",
+    "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json": "90660a0df11096941b205a33ad5ec466fb8c0d30a2c18e875c21f5e97dac4a3b"
+  },
+  "commands": [
+    {
+      "command": "conda run -n umami bash -c (Docker inspect, select marker from public.ai_synthetic_owner, Prisma generate)",
+      "exit": 1,
+      "classification": "setup failure: nonexistent column marker; stopped before generation; no DB mutation"
+    },
+    {
+      "command": "conda run -n umami bash -c 'set -e; psql -h 127.0.0.1 -p 25432 -U ai_synthetic -d ai_synthetic -Atc \"select owner from public.ai_synthetic_owner\" | grep -x umami-ai-synthetic-r3; DATABASE_URL=postgresql://ai_synthetic@127.0.0.1:25432/ai_synthetic npx --yes pnpm@12.3.4 exec prisma generate'",
+      "exit": 0,
+      "classification": "supervisor-authorized corrected marker preflight and local generation"
+    },
+    {
+      "command": "conda run -n umami npx --yes pnpm@12.3.4 exec vitest run -c scripts/ai/analyst-evals/vitest.config.ts scripts/ai/analyst-evals/visual-capability.test.ts --reporter=json --outputFile=/tmp/analyst-slice03/visual-capability-red.json",
+      "exit": 1,
+      "classification": "genuine product-contract red; 1 failed assertion, images released without capability"
+    },
+    {
+      "command": "conda run -n umami npx --yes pnpm@12.3.4 exec vitest run src/lib/ai/assistant/analyst/analyst.test.ts src/lib/ai/assistant/analyst/handlers.test.ts src/lib/analyst-verifier/port.test.ts src/lib/analyst-verifier/authority.test.ts 'src/app/(main)/assistant/ResultChart.test.tsx' src/lib/boards.test.ts --reporter=json --outputFile=/tmp/analyst-slice03/reusable-vitest.json",
+      "exit": 0,
+      "classification": "6 files / 80 passed assertions; collaborators injected, not browser/Docker proof"
+    },
+    {
+      "command": "git merge-base --is-ancestor 217a56e0f HEAD",
+      "exit": 0
+    },
+    {
+      "command": "git merge --no-edit analyst-completion",
+      "exit": 0,
+      "classification": "Already up to date; integration equals slice base"
+    },
+    {
+      "command": "git diff --check",
+      "exit": 0
+    },
+    {
+      "command": "git diff --cached --name-only",
+      "exit": 0,
+      "classification": "empty; no staged files"
+    }
+  ],
+  "executedAssertions": [
+    {
+      "sourcePath": "scripts/ai/analyst-evals/visual-capability.test.ts",
+      "assertion": "absent image capability keeps screenshots out of the tool result and inspection unavailable",
+      "status": "failed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-visual-capability-red.json"
+    },
+    {
+      "sourcePath": "src/lib/boards.test.ts",
+      "assertion": "comparison websites are included in board permission checks for every board type",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/boards.test.ts",
+      "assertion": "isBoardComponentSupported allows events chart on website boards",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/boards.test.ts",
+      "assertion": "isBoardComponentSupported rejects events chart on pixel and link boards",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/boards.test.ts",
+      "assertion": "isBoardComponentSupported rejects event metrics bar and weekly traffic on pixel and link boards",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/boards.test.ts",
+      "assertion": "board component compatibility matrix defines website-only components explicitly",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/boards.test.ts",
+      "assertion": "isBoardComponentSupported leaves other components available for all board entities",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/boards.test.ts",
+      "assertion": "metrics table limits pixel and link boards to overview-page metric types",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/boards.test.ts",
+      "assertion": "AnalysisWidget carries no entity ids, so board entity checks never trust its props",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/analyst-verifier/authority.test.ts",
+      "assertion": "allows only an active task at exact board/analysis revisions with current view rights",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/analyst-verifier/authority.test.ts",
+      "assertion": "prepares a deeply frozen saved board and exact execution envelope",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/analyst-verifier/authority.test.ts",
+      "assertion": "rejects foreign, stale, failed and mismatched envelopes rather than minting receipts",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/analyst-verifier/authority.test.ts",
+      "assertion": "rechecks authority after execution and rejects unsupported or incomplete widget sets",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/analyst-verifier/authority.test.ts",
+      "assertion": "native preparation refuses revoked sources before querying",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/analyst-verifier/authority.test.ts",
+      "assertion": "prepares supported native widgets through the native stats helpers with exact source and hash",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/analyst-verifier/authority.test.ts",
+      "assertion": "verifier flag alone never yields a port without a registered isolated launcher",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/analyst-verifier/port.test.ts",
+      "assertion": "fails closed: flag off, missing prepare, or a callback-shaped (non-restricted) launcher",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/analyst-verifier/port.test.ts",
+      "assertion": "docker argv: no network, non-root, cap-drop ALL, read-only, no-new-privileges, no mounts/env",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/analyst-verifier/port.test.ts",
+      "assertion": "render: capability exchange over the private channel, canvas from trusted executions, exact binding",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/analyst-verifier/port.test.ts",
+      "assertion": "canvas is denied without the exchanged session",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/analyst-verifier/port.test.ts",
+      "assertion": "rejects stale revision, foreign/empty execution, foreign hash and revoked authority",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/analyst-verifier/port.test.ts",
+      "assertion": "registration accepts only a restricted launcher, once",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/analyst-verifier/port.test.ts",
+      "assertion": "canvas handler: no session, forged session, or reused capability is denied",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/app/(main)/assistant/ResultChart.test.tsx",
+      "assertion": "result chart presentation formats day in Asia/Tokyo without changing data",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/app/(main)/assistant/ResultChart.test.tsx",
+      "assertion": "result chart presentation formats hour in Asia/Tokyo without changing data",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/app/(main)/assistant/ResultChart.test.tsx",
+      "assertion": "result chart presentation formats month in Asia/Tokyo without changing data",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/app/(main)/assistant/ResultChart.test.tsx",
+      "assertion": "result chart presentation formats day in America/Los_Angeles without changing data",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/app/(main)/assistant/ResultChart.test.tsx",
+      "assertion": "result chart presentation formats hour in America/New_York without changing data",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/app/(main)/assistant/ResultChart.test.tsx",
+      "assertion": "result chart presentation uses the light Umami chart palette",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/app/(main)/assistant/ResultChart.test.tsx",
+      "assertion": "result chart presentation uses the dark Umami chart palette",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "binds tasks to the chat owner; a foreign principal cannot open or read the task",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "persists consumed budgets: exhaustion blocks and a resumed task does not reset limits",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "user-wait pauses do not consume the execution window; 24h expiry starts a new task",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "rejects JSON that could carry images or unbounded data into task records",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "tool calls are budgeted per task and model-supplied taskId/principal fields are rejected",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "creates private drafts automatically but never edits a pre-existing board via commit",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "existing-board change needs human confirmation bound to exact revision; rejection mutates nothing",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "a stale revision after confirmation returns conflict without issuing a grant",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "repair policy: provenance required, semantics preserved, at most two repairs",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "renamed analysis refs cannot bypass semantic-change or repair policy on a stable widget",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "abort during awaited validation/authorization prevents grants and writes",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "a task cancelled while a tool awaits is not overwritten by the late tool completion",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "cancellation that wins at the commit boundary leaves no board and no late task record",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "terminal tasks are absorbing: pause/resume/block/late updates never revive them",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "openTask never revives a task cancelled between its read and its write",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "terminal task data is immutable: late callbacks cannot append provenance or context",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "a commit that wins records provenance atomically; a later cancel needs no late write",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "without an isolated verifier, render reports visual_pending and never claims verification",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "verified render yields images only on the transient path; receipts hold hashes and are inspectable",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "render expectations include every saved native and analysis widget and reject unsupported widgets",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "sanitizes image blocks, data URLs and capabilities while keeping session structure",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "adds analyst lifecycle prompt rules only for analyst turns",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "stable widget repair: keeping a committed widget by analysisId is repairable by widget id",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "a stable-widget repair never edits a board the task did not create",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "discover exposes the exact nested definition, widget and repair contracts",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/analyst.test.ts",
+      "assertion": "completeTask closes only a plain running task; paused and blocked tasks keep their state",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "flag on: binds a persisted task, runs analyst tools and keeps image bytes out of chat/SSE",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "flag off: no task is created and analyst tools are not executed by the host",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "a foreign chat cannot start or select a task",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "outer handler deadline excludes user wait and blocks the task when execution time runs out",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "a blocked task is not silently restarted with a fresh budget",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "chat deletion cleans up artifacts for every task of the chat",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "an opening turn that loses to cancellation fails without a new task or any model/tool run",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "a later independent turn after cancellation starts a fresh task",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "flag on: SSE task events carry the host task id, persisted status and tool-derived phase",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "flag on: a tool that exhausts the budget emits the persisted blocked status after it",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "flag on: cancellation emits the persisted cancelled status",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "flag off (legacy): no task events are emitted",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "cancel resolves only after the cancelled task and message are persisted",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "judge: invalid render arguments returning ok:false do not complete the task",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "authorization denied on readback/render does not complete",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "failed data execution on readback does not complete",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "render failure with a configured verifier does not complete",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "inspection failure after a readback does not complete",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "an intervening write after readback invalidates the evidence",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "a draft revised after readback (stale revision) does not complete",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "verification for a different board cannot complete the saved draft",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "a later readback requires fresh verification",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "a saved draft with a current rendered receipt settles without inventing inspection",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "a saved draft with valid readback and visual_pending settles complete",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    },
+    {
+      "sourcePath": "src/lib/ai/assistant/analyst/handlers.test.ts",
+      "assertion": "turns that did not reach render, or end paused/blocked/cancelled, are not completed",
+      "status": "passed",
+      "report": "scripts/ai/analyst-evals/evidence/slice03-reusable-vitest.json"
+    }
+  ],
+  "counts": {
+    "reusablePassed": 80,
+    "newRegressionFailed": 1
+  },
+  "pendingScenarioGroups": [
+    10,
+    11,
+    12
+  ],
+  "limitations": [
+    "No product fix or evaluator acceptance mapping implemented. Existing scenarios1-9 unchanged and not rerun here.",
+    "All structured results retained, including red failure. No name-only assertion acceptance added.",
+    "Synthetic screenshot artifact and injected collaborators are contract-only, not renderer or configured provider image proof.",
+    "No new browser/Docker test execution, strict E1 run, live model call, deployment or commit.",
+    "Earlier progress update incorrectly said85 reusable tests; actual structured report proves80."
+  ],
+  "noStagedFiles": true
+}

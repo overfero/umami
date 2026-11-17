@@ -20,6 +20,7 @@ import { describe, expect, it, onTestFinished, vi } from 'vitest';
 vi.mock('@/lib/prisma', () => ({ default: {} }));
 
 import { ANALYST_TOOLS } from './analyst/tools';
+import { syntheticImageCapabilityForTests } from '../image-capability.mjs';
 import {
   BASE_TOOLS,
   fixtureDatabaseVerified,
@@ -299,6 +300,7 @@ async function runImage(repeat: number, session: string | null = null) {
       {
         message: 'verify',
         session,
+        imageCapability: syntheticImageCapabilityForTests(),
         signal: new AbortController().signal,
         emit: e => events.push(e),
         tool: async () => new ImageToolResult({ ok: true, receipt: 'r' }, MAX_IMAGES),
@@ -344,6 +346,38 @@ it('round-trips maximal 6×1 MiB images and keeps them out of session, parts and
   expect(outcome.session).toContain('"toolCallId":"t1"');
   expect(seeded(JSON.stringify(events))).toBe(false);
 });
+it('expiry between image tool completion and bridge send returns visual pending without pixels or a success receipt', async () => {
+  const dir = mkdtempSync(resolve(tmpdir(), 'assistant-expired-image-'));
+  const bridge = resolve(dir, 'bridge.mjs');
+  writeFileSync(bridge, `import { createInterface } from 'node:readline';
+const emit = v => process.stdout.write(JSON.stringify(v)+'\\n');
+createInterface({input:process.stdin}).on('line', line => {
+ const request=JSON.parse(line);
+ if(request.type==='prompt') {
+ emit({type:'response',id:request.id,command:'prompt',success:true});
+ emit({type:'extension_ui_request',id:'expired-image',method:'input',title:'umami-assistant-tool',placeholder:JSON.stringify({name:'analyst_verify_render',args:{}})});
+ } else if(request.type==='extension_ui_response') {
+ const value=JSON.parse(request.value);
+ if(value.umamiImageEnvelope || value.ok!==false || value.code!=='image_capability_unavailable' || value.visualStatus!=='visual_pending' || value.receipt || value.images) emit({type:'extension_error'});
+ else emit({type:'agent_settled'});
+ }
+});`);
+  const grant = syntheticImageCapabilityForTests(Date.now() + 60_000);
+  const events: any[] = [];
+  const { ImageToolResult } = await import('./runtime');
+  try {
+    const result = await runAssistantProcess({ message: 'verify', session: null,
+      signal: new AbortController().signal, imageCapability: grant, emit: e => events.push(e),
+      tool: async () => {
+        vi.spyOn(Date, 'now').mockReturnValue(Number.MAX_SAFE_INTEGER);
+        return new ImageToolResult({ ok: true, receipt: { status: 'rendered_not_inspected' } }, MAX_IMAGES);
+      },
+    }, { ...options, bridge, tools: ['analyst_verify_render'] });
+    expect(result.error).toBeUndefined();
+    expect(seeded(JSON.stringify(events))).toBe(false);
+  } finally { vi.restoreAllMocks(); rmSync(dir, { recursive: true, force: true }); }
+});
+
 it('aborts cleanly when repeated image events exhaust the 32 MiB transport budget', async () => {
   const { outcome } = await runImage(5);
   expect(outcome.error).toBe('Assistant image transport exceeded limit');
@@ -503,6 +537,20 @@ describe('offline fixture runtime selector', () => {
   });
   it('refuses a receipt outside a launcher-owned root', () =>
     refuses(fixtureEnv, project({}, 'offline-fixture-')));
+  it('unique fixture URL requires exact receipt-bound canonical schema and refuses altered DB identities', () => {
+    const databaseUrl = 'postgresql://ai_synthetic@127.0.0.1:25432/ai_synthetic?schema=analyst_fixture_' + 'ab'.repeat(12);
+    const schema = 'analyst_fixture_' + 'ab'.repeat(12);
+    const uniqueEnv = { ...fixtureEnv, DATABASE_URL: databaseUrl };
+    const valid = project({ databaseUrl, schema });
+    try { expect(offlineFixtureRuntime(uniqueEnv, valid)).not.toBeNull(); }
+    finally { rmSync(valid, { recursive: true, force: true }); }
+    refuses(uniqueEnv, project());
+    refuses(uniqueEnv, project({ databaseUrl, schema: 'analyst_fixture_' + 'cd'.repeat(12) }));
+    for (const changed of [databaseUrl.replace('25432', '5432'), databaseUrl.replace('127.0.0.1', 'localhost'),
+      databaseUrl.replace('ai_synthetic@', 'other@'), databaseUrl.replace('/ai_synthetic?', '/other?'),
+      databaseUrl + '&extra=1', databaseUrl.replace('ai_synthetic@', 'ai_synthetic:secret@')])
+      refuses({ ...uniqueEnv, DATABASE_URL: changed }, project({ databaseUrl: changed, schema }));
+  });
   it('database marker: requires both the synthetic engine and fixture schema receipts', async () => {
     const row = (engine: string, schema: string) => async () => [{ engine, schema }];
     expect(

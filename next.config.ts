@@ -1,4 +1,6 @@
 import 'dotenv/config';
+import { randomUUID } from 'node:crypto';
+import { packageImagePolicy } from './scripts/ai/package-image-policy.mjs';
 import createNextIntlPlugin from 'next-intl/plugin';
 import pkg from './package.json' with { type: 'json' };
 import { getContentSecurityPolicy } from './src/lib/csp';
@@ -223,6 +225,18 @@ if (isProd && cloudMode) {
 
 /** @type {import('next').NextConfig} */
 export default withNextIntl({
+  generateBuildId: async () => {
+    const buildId = randomUUID();
+    packageImagePolicy(
+      process.cwd(),
+      buildId,
+      process.env.NEXT_PUBLIC_SOURCE_URL || 'unqualified-development',
+    );
+    return buildId;
+  },
+  outputFileTracingIncludes: {
+    '/api/ai/**/*': ['./generated/analyst-image-policy.json'],
+  },
   reactStrictMode: false,
   devIndicators: {
     position: 'bottom-right',

@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+import { resolveTurnImageCapability } from './image-context';
 import { parseRequest } from '@/lib/request';
 import {
   applyAssistantEvent,
@@ -171,6 +172,7 @@ export async function runTurn(request: Request, context: Context): Promise<Respo
   };
   // Trusted server decision; the request cannot opt in, select a task or a principal.
   const analyst = isAnalystEnabled();
+  const imageCapability = analyst ? await resolveTurnImageCapability() : undefined;
   const lifecycle = analyst ? await analystModules() : null;
   let scope: TaskScope | undefined;
   // Host-derived task status/phase; only emitted when the analyst flag bound a persisted task.
@@ -282,6 +284,7 @@ export async function runTurn(request: Request, context: Context): Promise<Respo
         let readbackBoard: string | null = null;
         let readbackRevision: unknown;
         let verified = false;
+        let visualPending = false;
         // Legacy: fixed 5-minute wall clock. Analyst: 5 minutes of non-waiting execution.
         const timeout = analyst ? undefined : setTimeout(() => controller.abort(), 300000);
         if (analyst) arm(remainingAtPause);
@@ -299,6 +302,7 @@ export async function runTurn(request: Request, context: Context): Promise<Respo
               signal: controller.signal,
               emit,
               analyst,
+              imageCapability,
               tool: async (name, args) => {
                 if (
                   scope &&
@@ -316,6 +320,7 @@ export async function runTurn(request: Request, context: Context): Promise<Respo
                       interaction,
                       deps,
                       running: queryState,
+                      imageCapability,
                     },
                   );
                   // Completion evidence comes from host tool results, never the attempted phase.
@@ -340,20 +345,22 @@ export async function runTurn(request: Request, context: Context): Promise<Respo
                       result.data.analyses.length > 0 &&
                       result.data.analyses.every(
                         (a: any) =>
-                          a.execution && a.execution.ok !== false && a.matchesIntent !== false,
+                          a.execution && a.execution.ok !== false &&
+                          a.execution.completeness === 'complete' && a.matchesIntent !== false,
                       )
                         ? String(result.data.board?.id)
                         : null;
-                  if (name === 'analyst_verify_render')
+                  if (name === 'analyst_verify_render') {
+                    visualPending =
+                      result?.visualStatus === 'visual_pending' &&
+                      ((!deps.verifier && result?.code === 'verifier_unavailable') ||
+                        result?.code === 'image_capability_unavailable');
                     verified =
                       !!readbackBoard &&
                       (args as any)?.boardId === readbackBoard &&
-                      // A rendered receipt, or visual_pending only because no verifier exists;
-                      // a failed/revoked render with a verifier configured is not eligible.
-                      (result?.ok === true ||
-                        (!deps.verifier &&
-                          result?.code === 'verifier_unavailable' &&
-                          result?.visualStatus === 'visual_pending'));
+                      // Image capability absence is distinct from configured verifier failure.
+                      (result?.ok === true || visualPending);
+                  }
                   if (name === 'analyst_record_inspection' && result?.ok !== true) verified = false;
                   // The tool may have persisted a lifecycle change (e.g. budget block); re-read it.
                   const persisted = await lifecycle.getTask(scope).catch(() => null);
@@ -402,7 +409,7 @@ export async function runTurn(request: Request, context: Context): Promise<Respo
                   !!task?.draftIds.some(
                     d => d.boardId === readbackBoard && d.revision === readbackRevision,
                   ) &&
-                  (!deps?.verifier ||
+                  (visualPending ||
                     task.receipts.some(
                       r => r.boardId === readbackBoard && r.boardRevision === readbackRevision,
                     )),

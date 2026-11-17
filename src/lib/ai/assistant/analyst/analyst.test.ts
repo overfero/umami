@@ -1,5 +1,6 @@
 // @vitest-environment node
 import { beforeEach, expect, it, vi } from 'vitest';
+import { syntheticImageCapabilityForTests } from '../../image-capability.mjs';
 import { createFakeDb } from './fake-db';
 const db = vi.hoisted(() => ({ current: null as any }));
 vi.mock('@/lib/prisma', () => ({
@@ -149,6 +150,7 @@ async function setup(over: Partial<AnalystDeps> = {}, controller = new AbortCont
       scope,
       interaction,
       deps,
+      imageCapability: syntheticImageCapabilityForTests(),
     });
   return { task, scope, parts, interaction, deps, boards, run };
 }
@@ -748,6 +750,133 @@ it('discover exposes the exact nested definition, widget and repair contracts', 
   );
   expect(data.contracts.definition.additionalProperties).toBe(false);
   expect(data.contracts.widget.component.type).toBe('AnalysisWidget');
+});
+
+it.each([
+  ['throws', 'both'], ['returns-success', 'both'], ['returns-success', 'task-only'], ['returns-success', 'signal-only'],
+])('query cancellation propagates abort and late query %s under %s cannot revive or mutate the task', async (outcome, cancellation) => {
+  const controller = new AbortController();
+  let release!: () => void;
+  let entered!: () => void;
+  const started = new Promise<void>(resolve => {
+    entered = resolve;
+  });
+  let querySignal: AbortSignal | undefined;
+  const s = await setup(
+    {
+      execute: async (_auth, _definition, options) => {
+        querySignal = options.signal;
+        entered();
+        await new Promise<void>(resolve => {
+          release = resolve;
+        });
+        if (outcome === 'throws') throw new DOMException('Cancelled', 'AbortError');
+        return { executionId: 'late', completeness: 'complete', rows: [{ value: 42 }] };
+      },
+    },
+    controller,
+  );
+  const pending = s.run('analyst_preview', { definition: definition() });
+  await started;
+  if (cancellation !== 'task-only') controller.abort();
+  if (cancellation !== 'signal-only') await cancelTask(s.scope);
+  const cancelled = structuredClone((await getTask(s.scope))!);
+  expect(querySignal!.aborted).toBe(cancellation !== 'task-only');
+  release();
+  const result = await pending;
+  expect((result.json as any).ok).toBe(false);
+  expect(result.json).not.toHaveProperty('data');
+  expect(result.images).toBeUndefined();
+  expect(await getTask(s.scope)).toEqual(cancelled);
+  expect(s.boards.size).toBe(0);
+});
+
+it('repair cancellation after validation preserves the committed private draft without late provenance', async () => {
+  const controller = new AbortController();
+  const s = await setup({}, controller);
+  const first: any = (
+    await s.run('analyst_commit_draft', { ...bundle(), operationKey: 'before-cancel' })
+  ).json;
+  const beforeBoard = structuredClone(s.boards.get(first.board.id));
+  const validate = s.deps.validateBundle as any;
+  const original = validate.getMockImplementation();
+  let release!: () => void;
+  let entered!: () => void;
+  const started = new Promise<void>(resolve => {
+    entered = resolve;
+  });
+  validate.mockImplementation(async (auth: any, body: any) => {
+    entered();
+    await new Promise<void>(resolve => {
+      release = resolve;
+    });
+    return original(auth, body);
+  });
+  const repaired = bundle(
+    definition('pageviews', {
+      semanticBinding: { ...definition().semanticBinding, label: 'Readable label' },
+    }),
+  );
+  const pending = s.run('analyst_commit_draft', {
+    ...repaired,
+    boardId: first.board.id,
+    expectedRevision: first.board.revision,
+    operationKey: 'repair-after-cancel',
+    repair: { widgetId: 'w1', reason: 'label clipped' },
+  });
+  await started;
+  controller.abort();
+  await cancelTask(s.scope);
+  const cancelled = structuredClone((await getTask(s.scope))!);
+  release();
+  expect((await pending).json).toMatchObject({ ok: false, code: 'cancelled' });
+  expect(s.boards.get(first.board.id)).toEqual(beforeBoard);
+  expect(await getTask(s.scope)).toEqual(cancelled);
+  expect(s.deps.commitBundle).toHaveBeenCalledTimes(1);
+  expect(cancelled.draftIds).toHaveLength(1);
+});
+
+it('render cancellation during artifact fetch discards pixels and cannot append a receipt or images', async () => {
+  const controller = new AbortController();
+  let release!: () => void;
+  let entered!: () => void;
+  const started = new Promise<void>(resolve => {
+    entered = resolve;
+  });
+  const verifier = {
+    render: vi.fn(async () => ({
+      artifactId: 'private-cancelled-artifact',
+      receipt: {
+        boardRevision: 1,
+        completedAt: 'now',
+        views: [],
+      },
+    })),
+    fetch: vi.fn(async () => {
+      entered();
+      await new Promise<void>(resolve => {
+        release = resolve;
+      });
+      return [{ bytes: Buffer.from(MARKER), mime: 'image/png', hash: 'a'.repeat(64) }];
+    }),
+    discard: vi.fn(),
+    cleanup: vi.fn(),
+  };
+  const s = await setup({ verifier }, controller);
+  s.boards.set(BOARD, { id: BOARD, revision: 1, userId: USER, teamId: null, parameters: {} });
+  const pending = s.run('analyst_verify_render', { boardId: BOARD });
+  await started;
+  controller.abort();
+  await cancelTask(s.scope);
+  const cancelled = structuredClone((await getTask(s.scope))!);
+  release();
+  const result = await pending;
+  expect((result.json as any).ok).toBe(false);
+  expect(result.images).toBeUndefined();
+  expect(verifier.discard).toHaveBeenCalledWith('private-cancelled-artifact');
+  expect(await getTask(s.scope)).toEqual(cancelled);
+  expect(cancelled.receipts).toEqual([]);
+  expect(JSON.stringify(cancelled)).not.toContain(MARKER);
 });
 
 it('completeTask closes only a plain running task; paused and blocked tasks keep their state', async () => {

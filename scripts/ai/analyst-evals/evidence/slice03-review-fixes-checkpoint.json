@@ -1,0 +1,111 @@
+{
+  "complete": false,
+  "sourceRevision": "217a56e0f00b859daae65738b025f1eb1986546a",
+  "observedAtJakarta": "2026-11-17T23:48:23.797318+07:00",
+  "sourceHashes": {
+    "next.config.ts": "3ddd427358e818adcf5f6a9c549847a77725d16626b04958e0ecc0df3e620e94",
+    "scripts/ai/analyst-evals/compatibility.test.tsx": "a0e12a1b6d02d142f09eccc90125a50b729b4354038b82dad7e5154cd4ade7b6",
+    "scripts/ai/analyst-evals/dispatcher-cancel.test.ts": "d4b55d5709cbb14b754aaafa60033ed5afce523fbef493b2045da2166dfc00f1",
+    "scripts/ai/analyst-evals/docker-visual.test.ts": "bb80824f48a2714d6166c105bdc16a8e53da105202193e8608cc817abf2ab6a2",
+    "scripts/ai/analyst-evals/image-capability.test.ts": "bd9e8fd3db8acd0a284052334b0f8d68ffef6921d47e4d8ef8f4647ce1a34bd2",
+    "scripts/ai/analyst-evals/image-context.test.ts": "0f17bcdf1905f01e687739b83584b37fdac7c0c7d3f8877606990aafd365e4dd",
+    "scripts/ai/analyst-evals/preflight-interface.test.ts": "89a92592c5289ef928272b13992e79f4937933cc0af6e0792da6505224df1371",
+    "scripts/ai/analyst-evals/slice03-implementation-checkpoint.md": "9002f822b100d28eff50690888cee62263fafada574dc60d523638473e3f2b37",
+    "scripts/ai/analyst-evals/visual-cancel-compat-investigation.md": "9bb7c824071a3f0021a3ed686eaaab54e697c8022ce7eac5a087b97ad587c6b3",
+    "scripts/ai/analyst-evals/visual-capability.test.ts": "c91e598a07dd4ac8fb08def054fb6202791815e1da409d0a337cba393cc3392d",
+    "scripts/ai/analyst-fixture/app.mjs": "d1c897aa6e9b69a01442dc543bea27c68aa5216489055191d6cc97d31c241275",
+    "scripts/ai/analyst-fixture/app.test.mjs": "6057f346ead6f20dc8b6a28317696320e22d599a9d3c7ef396e6d8465f29e426",
+    "scripts/ai/analyst-fixture/database.mjs": "f56e944c5cedde2491fd1ca24e01eb052cdeb6089d9fb8d5d705b26d5f244f8d",
+    "scripts/ai/analyst-fixture/offline-provider.mjs": "10ad02a13f17fb8c46a245f6e52cc8ab81a63fa293e8ed551659bb723bf2f8b9",
+    "scripts/ai/package-image-policy.mjs": "2f9acde01e272401981465bbfea049a89500a888dc89103781f1c9539663d07c",
+    "scripts/ai/vision-preflight.mjs": "62208f287b23122e718a9330b1b4b6f9f9cd957421c986b6ebb3a58b9d8becc6",
+    "src/lib/ai/assistant/analyst/analyst.test.ts": "537a8326fc6f292464c453e631cc0f4111c3b909de8bf58a273f19fec8badc9d",
+    "src/lib/ai/assistant/analyst/handlers.test.ts": "a9bd8cb014a43318b0dc9d9918f9df45d2396a47b3aa50c2e2f637b7e0ee6712",
+    "src/lib/ai/assistant/analyst/tools.ts": "86e1546eecde5356825daa84cab8629a34663d3da723460b178c566ae5c83b26",
+    "src/lib/ai/assistant/handlers.ts": "e73c4b5a4ddc7a0bdd178d198c886bac828439f9e3537c007c76eb0288f85a1a",
+    "src/lib/ai/assistant/image-context.ts": "56d8792d9b345ae43edbb7bab405813e9babc5810443cddf073884713350f2e0",
+    "src/lib/ai/assistant/runtime.test.ts": "485cff7db6cc6c6c07b9bfbe5f2b9744e3bafd65a5bb0fe24b0825e2300eacd0",
+    "src/lib/ai/assistant/runtime.ts": "0ac2c230f86fef62dc53e600e408848ae250420f1d459a80c983495040af992f",
+    "src/lib/ai/fixture-database.mjs": "07acc0a2cb02a1b864c4f35c05f9ba56ae0d0e277cdad577aefc0ce9ee976715",
+    "src/lib/ai/image-capability.mjs": "c4c17471867dd46f6c7ffa299b3355b7b404993adfe32b91ff2d9b8f9800b571",
+    "src/lib/ai/rpc/confinement.mjs": "1bb243d63060064d350b61f0b7fd604775f4f6af3e65cb5c0bdf842a7f07ec20",
+    "src/lib/analyst-verifier/port.mjs": "f4687b72808dac220d452c0af83f7ea189c17e597bc41ac02e30c2a02b01564f"
+  },
+  "reports": {
+    "readback-red": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-readback-red.json",
+      "sha256": "85bff91a9f6963abc17ed504a930b07be37d9bbefa655255f260943edb1495f9",
+      "exit": 1,
+      "passed": 27,
+      "failed": 2,
+      "skipped": 0
+    },
+    "runtime-expiry-red": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-runtime-expiry-red.json",
+      "sha256": "1d5a3d9fb58681546e6a43185f87d223152bfd05a4201c3904859d858ad6df2b",
+      "exit": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 40
+    },
+    "query-late-red": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-query-late-red.json",
+      "sha256": "95a2b4f8ed401ac11b91a12b75e2b834a9b14e6f1ca6e741bf469d110576e1c2",
+      "exit": 1,
+      "passed": 1,
+      "failed": 1,
+      "skipped": 28
+    },
+    "review-fixes-green": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-review-fixes-green.json",
+      "sha256": "8adc17acd55cf9bd2d2fe376de670989cdc9bd5149764eeac1bb086b075979f5",
+      "exit": 0,
+      "passed": 101,
+      "failed": 0,
+      "skipped": 1
+    },
+    "docker-visual-corrected": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-docker-visual-corrected.json",
+      "sha256": "788fc7ad8ee5fdda2166188c1600eb7ff51fd7a232f13d7e038ddd6b09ec2265",
+      "exit": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    "evaluator-current": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-evaluator-current.json",
+      "sha256": "b266b64f8347d165756989c48ac61bdf2b84e0ff0aa22a4ce1fad79788449952",
+      "exit": 0,
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0
+    },
+    "guard-current": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-guard-current.json",
+      "sha256": "f1df8f7d7c3f8563bd233ffc57b91a4f71ff2321a2e82ff2ab22ff05e8f6fefa",
+      "exit": 0,
+      "passed": 70,
+      "failed": 0,
+      "skipped": 1
+    },
+    "image-context": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-image-context.json",
+      "sha256": "90b37e78359308f097d35aaf98014a3d1d4760545ce38718525ad892f3011994",
+      "exit": 0,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "fixtureRecovery": {
+    "command": "conda run -n umami node --test scripts/ai/analyst-fixture/app.test.mjs scripts/ai/analyst-fixture/offline-provider.test.mjs with pinned AI_PI_ROOT1.4.0",
+    "exit": 0,
+    "passed": 10
+  },
+  "limitations": [
+    "Checkpoint incomplete, latest source not all tested together; strict E1 pending10-12.",
+    "Docker synthetic fixture renderer proof passed; not B3 real AnalysisWidget or model understanding.",
+    "Real provider preflight not executed, no positive runtime receipt provisioned.",
+    "Unique schema launcher/runtime support not yet real-DB provisioned; no existing analyst_fixture mutation."
+  ]
+}
