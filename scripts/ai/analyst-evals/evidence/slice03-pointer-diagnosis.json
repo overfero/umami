@@ -1,0 +1,39 @@
+{
+  "target": {
+    "tag": "BUTTON",
+    "text": " New chat",
+    "rect": {
+      "x": 268,
+      "y": 72,
+      "width": 205,
+      "height": 36
+    }
+  },
+  "hit": {
+    "tag": "DIV",
+    "text": "A new version of Umami v3.5.0 is available!View detailsDismiss",
+    "rect": {
+      "x": 340,
+      "y": 10,
+      "width": 600,
+      "height": 92
+    },
+    "html": "<div data-slot=\"alert\" role=\"alert\" class=\"relative grid w-full grid-cols-[0_1fr] items-start gap-y-0.5 rounded-lg border border-edge-muted px-4 py-3 text-sm has-[&gt;svg]:grid-cols-[calc(var(--spacing)*4)_1fr] has-[&gt;svg]:gap-x-3 [&amp;&gt;svg]:size-4 [&amp;&gt;svg]:translate-y-0.5 [&amp;&gt;svg]:text-current bg-surface text-fg\" style=\"width: 100%;\"><div data-slot=\"alert-title\" class=\"col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight\">A new version of Umami v3.5.0 is available!</div><div class=\"pt-2 flex flex-row gap-3\"><button type=\"button\" tabindex=\"0\" data-slot=\"button\" data-variant=\"primary\" data-size=\"md\" class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap shrink-0 font-medium rounded border border-transparent cursor-pointer transition-all relative no-underline outline-none focus-visible:border-focus-ring focus-visible:ring-[3px] focus-visible:ring-focus-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-status-error aria-invalid:ring-status-error/20 [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 [&amp;_svg:not([class*='size-'])]:size-4 bg-primary text-primary-fg hover:opacity-90 active:opacity-80 h-9 px-4 py-2 text-sm has-[&gt;svg]:px-3\">View details</button><button type=\"button\" tabindex=\"0\" data-slot=\"button\" data-variant=\"default\" data-size=\"md\" class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap shrink-0 font-medium rounded border border-transparent cursor-pointer transition-all relat",
+    "style": {
+      "position": "relative",
+      "zIndex": "auto"
+    }
+  },
+  "scrollY": 0,
+  "alerts": [
+    {
+      "text": "A new version of Umami v3.5.0 is available!View detailsDismiss",
+      "rect": {
+        "x": 340,
+        "y": 10,
+        "width": 600,
+        "height": 92
+      }
+    }
+  ]
+}

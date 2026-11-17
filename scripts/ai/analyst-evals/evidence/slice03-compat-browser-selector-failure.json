@@ -1,0 +1,148 @@
+{
+  "config": {
+    "argv": [
+      "/home/overfero/miniconda3/envs/umami/bin/node",
+      "/home/overfero/Project/ocbc/umami-analyst-slice-03/node_modules/@playwright/test/cli.js",
+      "test",
+      "-c",
+      "playwright.config.ts",
+      "tests/e2e/analyst-compatibility.spec.ts",
+      "--workers=1",
+      "--reporter=json",
+      "--global-timeout=330000"
+    ],
+    "configFile": "/home/overfero/Project/ocbc/umami-analyst-slice-03/playwright.config.ts",
+    "rootDir": "/home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 330000,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/overfero/Project/ocbc/umami-analyst-slice-03/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "analyst-compatibility.spec.ts",
+      "file": "analyst-compatibility.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "flags off browser preserves native board and persisted historical snapshot without live analysis execution",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6476,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[data-widget-id=\"native-widget\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('[data-widget-id=\"native-widget\"]') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-widget-id=\"native-widget\"]')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[data-widget-id=\"native-widget\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('[data-widget-id=\"native-widget\"]') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-widget-id=\"native-widget\"]')\u001b[22m\n\n    at /home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e/analyst-compatibility.spec.ts:24:88",
+                    "location": {
+                      "file": "/home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e/analyst-compatibility.spec.ts",
+                      "column": 88,
+                      "line": 24
+                    },
+                    "snippet": "  22 |   try {\n  23 |     await page.goto(`/boards/${board.id}?date=range:1790812800000:1792022400000`);\n> 24 |     const native=page.locator('[data-widget-id=\"native-widget\"]');await expect(native).toBeVisible();\n     |                                                                                        ^\n  25 |     await expect(native).toContainText('Views'); await expect(native).not.toContainText('Unsupported');\n  26 |     expect(await (await request.get(`/api/boards/${board.id}`,{headers})).json()).toEqual(board);\n  27 |     let executions=0;page.on('request',r=>{if(/\\/api\\/analyses\\/.+\\/execute/.test(r.url()))executions++;});"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e/analyst-compatibility.spec.ts",
+                        "column": 88,
+                        "line": 24
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[data-widget-id=\"native-widget\"]')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('[data-widget-id=\"native-widget\"]') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[data-widget-id=\"native-widget\"]')\u001b[22m\n\n\n  22 |   try {\n  23 |     await page.goto(`/boards/${board.id}?date=range:1790812800000:1792022400000`);\n> 24 |     const native=page.locator('[data-widget-id=\"native-widget\"]');await expect(native).toBeVisible();\n     |                                                                                        ^\n  25 |     await expect(native).toContainText('Views'); await expect(native).not.toContainText('Unsupported');\n  26 |     expect(await (await request.get(`/api/boards/${board.id}`,{headers})).json()).toEqual(board);\n  27 |     let executions=0;page.on('request',r=>{if(/\\/api\\/analyses\\/.+\\/execute/.test(r.url()))executions++;});\n    at /home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e/analyst-compatibility.spec.ts:24:88"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-17T17:07:55.499Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/overfero/Project/ocbc/umami-analyst-slice-03/test-results/analyst-compatibility-flag-ddfa2-out-live-analysis-execution-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e/analyst-compatibility.spec.ts",
+                    "column": 88,
+                    "line": 24
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "351b864871162363703b-22df4c08227873aff6f0",
+          "file": "analyst-compatibility.spec.ts",
+          "line": 8,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-17T17:07:52.792Z",
+    "duration": 34154.452999999994,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

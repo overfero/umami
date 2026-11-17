@@ -1,0 +1,344 @@
+{
+  "config": {
+    "argv": [
+      "/home/overfero/miniconda3/envs/umami/bin/node",
+      "/home/overfero/Project/ocbc/umami-analyst-slice-03/node_modules/@playwright/test/cli.js",
+      "test",
+      "-c",
+      "playwright.config.ts",
+      "tests/e2e/analyst-lifecycle.spec.ts",
+      "--grep-invert",
+      "flags off:",
+      "--workers=1",
+      "--reporter=json"
+    ],
+    "configFile": "/home/overfero/Project/ocbc/umami-analyst-slice-03/playwright.config.ts",
+    "rootDir": "/home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/overfero/Project/ocbc/umami-analyst-slice-03/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "analyst-lifecycle.spec.ts",
+      "file": "analyst-lifecycle.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "create → readback → repair → render via real SSE task events, then live board",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [
+                {
+                  "type": "serial",
+                  "location": {
+                    "file": "/home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e/analyst-lifecycle.spec.ts",
+                    "line": 0,
+                    "column": 0
+                  }
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 0,
+                  "error": {
+                    "message": "Error: apiRequestContext.get: connect ECONNREFUSED 127.0.0.1:3363\nCall log:\n\u001b[2m  - → GET http://127.0.0.1:3363/assistant\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n",
+                    "stack": "Error: apiRequestContext.get: connect ECONNREFUSED 127.0.0.1:3363\nCall log:\n\u001b[2m  - → GET http://127.0.0.1:3363/assistant\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n    at /home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e/analyst-lifecycle.spec.ts:31:40",
+                    "location": {
+                      "file": "/home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e/analyst-lifecycle.spec.ts",
+                      "column": 40,
+                      "line": 31
+                    },
+                    "snippet": "  29 |     for (let attempt = 0; attempt < 2; attempt++) {\n  30 |       try {\n> 31 |         const response = await request.get(`${base}${path}`, { timeout: 120_000 });\n     |                                        ^\n  32 |         expect([200, 401, 403, 404, 405]).toContain(response.status());\n  33 |         break;\n  34 |       } catch (error) {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e/analyst-lifecycle.spec.ts",
+                        "column": 40,
+                        "line": 31
+                      },
+                      "message": "Error: apiRequestContext.get: connect ECONNREFUSED 127.0.0.1:3363\nCall log:\n\u001b[2m  - → GET http://127.0.0.1:3363/assistant\u001b[22m\n\u001b[2m    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.8010.12 Safari/537.36\u001b[22m\n\u001b[2m    - accept: */*\u001b[22m\n\u001b[2m    - accept-encoding: gzip,deflate,br\u001b[22m\n\n\n  29 |     for (let attempt = 0; attempt < 2; attempt++) {\n  30 |       try {\n> 31 |         const response = await request.get(`${base}${path}`, { timeout: 120_000 });\n     |                                        ^\n  32 |         expect([200, 401, 403, 404, 405]).toContain(response.status());\n  33 |         break;\n  34 |       } catch (error) {\n    at /home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e/analyst-lifecycle.spec.ts:31:40"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-17T16:54:13.572Z",
+                  "annotations": [
+                    {
+                      "type": "serial",
+                      "location": {
+                        "file": "/home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e/analyst-lifecycle.spec.ts",
+                        "line": 0,
+                        "column": 0
+                      }
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "startup-worker-restart",
+                      "contentType": "text/plain",
+                      "body": "L2Fzc2lzdGFudDogRXJyb3I6IGFwaVJlcXVlc3RDb250ZXh0LmdldDogY29ubmVjdCBFQ09OTlJFRlVTRUQgMTI3LjAuMC4xOjMzNjMKQ2FsbCBsb2c6ChtbMm0gIC0g4oaSIEdFVCBodHRwOi8vMTI3LjAuMC4xOjMzNjMvYXNzaXN0YW50G1syMm0KG1sybSAgICAtIHVzZXItYWdlbnQ6IE1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8xNTMuMC44MDEwLjEyIFNhZmFyaS81MzcuMzYbWzIybQobWzJtICAgIC0gYWNjZXB0OiAqLyobWzIybQobWzJtICAgIC0gYWNjZXB0LWVuY29kaW5nOiBnemlwLGRlZmxhdGUsYnIbWzIybQo="
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/overfero/Project/ocbc/umami-analyst-slice-03/test-results/analyst-lifecycle-create-→-8a451-task-events-then-live-board-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e/analyst-lifecycle.spec.ts",
+                    "column": 40,
+                    "line": 31
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d59d95d396fa6ca94591-6385167ebbdd3a0e434a",
+          "file": "analyst-lifecycle.spec.ts",
+          "line": 81,
+          "column": 1
+        },
+        {
+          "title": "mobile: keyboard-only turn and narrow board without horizontal overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [
+                {
+                  "type": "serial",
+                  "location": {
+                    "file": "/home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e/analyst-lifecycle.spec.ts",
+                    "line": 0,
+                    "column": 0
+                  }
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-17T16:54:13.658Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d59d95d396fa6ca94591-ef7715ec37c20387f2ed",
+          "file": "analyst-lifecycle.spec.ts",
+          "line": 135,
+          "column": 1
+        },
+        {
+          "title": "cancel: Stop ends the turn and the task never shows complete",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [
+                {
+                  "type": "serial",
+                  "location": {
+                    "file": "/home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e/analyst-lifecycle.spec.ts",
+                    "line": 0,
+                    "column": 0
+                  }
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-17T16:54:13.658Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d59d95d396fa6ca94591-b71958a87ca2dc55d5a4",
+          "file": "analyst-lifecycle.spec.ts",
+          "line": 165,
+          "column": 1
+        },
+        {
+          "title": "screens: task panel and live board, light/dark/narrow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [
+                {
+                  "type": "serial",
+                  "location": {
+                    "file": "/home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e/analyst-lifecycle.spec.ts",
+                    "line": 0,
+                    "column": 0
+                  }
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-17T16:54:13.658Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d59d95d396fa6ca94591-3e0e458b6741a2140458",
+          "file": "analyst-lifecycle.spec.ts",
+          "line": 184,
+          "column": 1
+        },
+        {
+          "title": "existing board: rejected change writes nothing; confirmed change applies",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 300000,
+              "annotations": [
+                {
+                  "type": "serial",
+                  "location": {
+                    "file": "/home/overfero/Project/ocbc/umami-analyst-slice-03/tests/e2e/analyst-lifecycle.spec.ts",
+                    "line": 0,
+                    "column": 0
+                  }
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-17T16:54:13.658Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "d59d95d396fa6ca94591-468815ea2e11168dbebb",
+          "file": "analyst-lifecycle.spec.ts",
+          "line": 246,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-17T16:54:10.558Z",
+    "duration": 3130.65,
+    "expected": 0,
+    "skipped": 4,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

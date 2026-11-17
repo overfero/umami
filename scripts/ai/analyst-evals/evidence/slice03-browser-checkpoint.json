@@ -1,0 +1,117 @@
+{
+  "complete": false,
+  "sourceRevision": "7d4bb9ffc1584778bff3402c98c3f1859eb92c70",
+  "observedAtJakarta": "2026-11-18T00:15:01.225486+07:00",
+  "sourceHashes": {
+    "tests/e2e/analyst-lifecycle.spec.ts": "64bc692f6cc01b027b47803e3cc937ec0210389882fc528706a867f1a7b9c4e9",
+    "tests/e2e/analyst-compatibility.spec.ts": "f6e9d81549b75faa6c03f0693f5c49afc49829b0cdcaf09566ea4ac978b23133",
+    "tests/e2e/analyst-verifier-integration.spec.ts": "b47e55b2a2a16cafa5a9541b4cad831a26efb47259e1e93236d80dcef025997b",
+    "playwright.config.ts": "b39f7e9f1d0d0dbbcdf5385fd3a62a92ca1b06e39b258590a92f3c9c63d291f4",
+    "src/test/setup.ts": "074a8edf8244ceeb01af9619dd689a087b0ac003e5ab2be93c0858a40de68d1b",
+    "scripts/ai/analyst-evals/run-offline.ts": "adc3cd6a078e5c5bb9ea9c8bf51b9dc49d730c0e79da3c69d932dce29c5fabe0",
+    "scripts/ai/analyst-evals/offline.ts": "a19901b0855dd9c2e104d88431feb165fd2134542be020d9df8a07ea3cf8ca3b"
+  },
+  "reports": {
+    "d2-on": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-d2-on.json",
+      "sha256": "7d992f6e19b1b724223ad0fe54cf071437e9547d4ea3f7d74c2dba052b3f3932"
+    },
+    "d2-on-corrected": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-d2-on-corrected.json",
+      "sha256": "abe8cf30328087f69dc4d573cee6e4b6f02ec7ff67e8890be9ba9bb288a09d66"
+    },
+    "d2-keyboard": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-d2-keyboard.json",
+      "sha256": "635088294fef2212a4c0c78c77206e029056ed37a29e4f68bbdc62564946d228"
+    },
+    "d2-off": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-d2-off.json",
+      "sha256": "81c0dadc370dd2774bc6f064d649418326155546f1751cfea89dc81d0f94b5fd"
+    },
+    "b3": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-b3.json",
+      "sha256": "61372a083fc8f5470898a4b764fbe95e5bdf134f389f01f3d2ded36a77d44bfc"
+    },
+    "compat-browser-cache-failure": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-compat-browser-cache-failure.json",
+      "sha256": "1f3e597c04c3e14d06b4f52a811c138ede2edd93f13588d602bb444981dfdb7d"
+    },
+    "compat-browser-selector-failure": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-compat-browser-selector-failure.json",
+      "sha256": "8e3200263074c2cc6ba0fc8e47858aa98d08f17c00e7dc45cfdd955e36e6d0ef"
+    },
+    "compat-browser-duplicate-title-failure": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-compat-browser-duplicate-title-failure.json",
+      "sha256": "08f354e730731f3f24af4662dc3c949c368204cb87121adc9967a53a11845cf6"
+    },
+    "compat-browser": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-compat-browser.json",
+      "sha256": "5c0291a9b3f51e29c9a9cc43dbdef7bb9045edeef5a8bc3e4c162ad6df7ed762"
+    },
+    "standalone-proof": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-standalone-proof.json",
+      "sha256": "300dc34fe39fe7a351f3043fb292946d8450c10dcea1ed89be1c8818e8468945"
+    },
+    "product-full": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-product-full.json",
+      "sha256": "df19f557b0cf35bac5c86b6d59238e0fe29390b7f31e8146279aad21cbf5a30e"
+    },
+    "pointer-diagnosis": {
+      "path": "scripts/ai/analyst-evals/evidence/slice03-pointer-diagnosis.json",
+      "sha256": "909a5d9034fe3b3ce231ad543bd9d263fe515cc85ca0132d2e75cd4f85c50916"
+    }
+  },
+  "build": {
+    "exit": 0,
+    "buildId": "4a98b6fe-368a-40f5-962e-ea28283ef157",
+    "policySha256": "9e0fcfe865ed3f28fceb772806487c1d92e7eba2dc2918aab74e3f65df61336a",
+    "standaloneHeartbeat": 200,
+    "warning": "27 external dependency traces excluded; not hermetic packaging proof"
+  },
+  "results": {
+    "D2InitialShortSourceSetup": {
+      "exit": 1,
+      "passed": 0,
+      "skipped": 4
+    },
+    "D2Corrected": {
+      "exit": 1,
+      "passed": 4,
+      "failed": 1,
+      "reason": "persistent New chat mouse interception"
+    },
+    "D2KeyboardRecovery": {
+      "exit": 0,
+      "passed": 1
+    },
+    "D2FlagsOff": {
+      "exit": 0,
+      "passed": 1
+    },
+    "B3": {
+      "exit": 0,
+      "passed": 1
+    },
+    "CompatibilityBrowser": {
+      "exit": 0,
+      "passed": 1
+    },
+    "ProductFull": {
+      "exit": 0,
+      "passed": 173,
+      "skipped": 8
+    },
+    "NodeVerifier": {
+      "exit": 0,
+      "passed": 16
+    }
+  },
+  "limitations": [
+    "E1 manifest scenarios10-12 not yet bound, strict acceptance not passed.",
+    "Newchat pointer bug confirmed actual release-notice overlay; keyboard recovery not pointer fix.",
+    "Shared package direct tsup build performed into worktree dist; node_modules facade resolves own packages, not main.",
+    "Build/standalone startup executed without migrating Docker startup script; operator-attested provenance only.",
+    "Unique fixture namespace remains for bounded tests; no public/analyst_fixture mutation; cleanup pending.",
+    "No paid/configured provider preflight or deployment."
+  ]
+}
