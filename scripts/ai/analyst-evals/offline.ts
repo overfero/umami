@@ -1,8 +1,13 @@
+import { authorityApiRequirements, authorityPgRequirements, reusableAuthorityAssertions } from './authority-evidence';
 export type Evidence = { suite: string; assertions: string[]; passed: boolean };
 export type Requirement = { id: string; suite: string; assertion: string };
 
 // Every entry is an executed assertion name, not a test-file-exists check.
 export const requirements: Requirement[] = [
+  ...authorityPgRequirements.map(r => ({ ...r, suite: 'authority-pg' })),
+  ...reusableAuthorityAssertions.map(r => ({ id: r.id, assertion: r.assertion, suite: 'authority-reusable' })),
+  ...['postgres', 'clickhouse'].flatMap(engine => authorityApiRequirements.map(r => ({ ...r, suite: `${engine}-api` }))),
+  { id: '9.generic', suite: 'generic-authority', assertion: 'generic edit share delete and method aliases cannot dispatch lifecycle writes even with nested approval claims' },
   ...['postgres', 'clickhouse'].flatMap(engine => [
     ...[
       ['1.labels', 'exact observed labels and daily event occurrences, separate product/ops'],
@@ -61,7 +66,7 @@ export function vitestEvidence(report: any, commandPassed: boolean) {
   const passed = commandPassed && report?.success === true && assertions.length > 0;
   return {
     report: report ?? null,
-    evidence: ['component', 'executor'].map(suite => ({
+    evidence: ['component', 'executor', 'generic-authority'].map(suite => ({
       suite, passed,
       assertions: requirements.filter(r => r.suite === suite).map(r => r.assertion).filter(name =>
         assertions.some(a => a.fullName === name && a.status === 'passed'),

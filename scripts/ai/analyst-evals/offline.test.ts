@@ -9,7 +9,7 @@ describe('offline acceptance evidence', () => {
     expect(summary.proven).toEqual([]);
   });
 
-  it('requires every scenario1–5 assertion and keeps scenarios6–12 pending', () => {
+  it('requires every scenario1–9 assertion and keeps scenarios10–12 pending', () => {
     const evidence = [...new Set(requirements.map(r => r.suite))].map(suite => ({
       suite,
       passed: true,
@@ -17,8 +17,8 @@ describe('offline acceptance evidence', () => {
     }));
     expect(summarizeCoverage(evidence)).toEqual({
       pass: false,
-      proven: [1, 2, 3, 4, 5],
-      pending: [6, 7, 8, 9, 10, 11, 12],
+      proven: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      pending: [10, 11, 12],
     });
     for (const requirement of requirements) {
       const missing = evidence.map(e => ({
