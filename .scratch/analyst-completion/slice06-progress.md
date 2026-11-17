@@ -23,7 +23,7 @@ Fresh I1 initially exit2 because gitignored Prisma output absent. One bounded re
 
 ## Final committed-source validation
 
-Logs/exits/source map retained at `.scratch/analyst-ci-debug/slice06/`. Tests executed at implementation commit4e9ce489b; later evidence/docs commit does not alter runtime bytes. Full source runtime/build hash map: **1,928 files**, ordered-map SHA256 **1e2c892e75a28128893363ba163edae09aced2d993d35879e90babccae1c45cc**. Historical execution revision is retained honestly, not relabeled as a future tip.
+Logs/exits/source map retained at `.scratch/analyst-ci-debug/slice06/`. Only whitespace was normalized in historical app-initial-red/package-tests logs for diff hygiene; final CLI/app/source fingerprinted files retain exact bytes. Tests executed at implementation commit4e9ce489b; later evidence/docs commit does not alter runtime bytes. Full source runtime/build hash map: **1,928 files**, ordered-map SHA256 **1e2c892e75a28128893363ba163edae09aced2d993d35879e90babccae1c45cc**. Historical execution revision is retained honestly, not relabeled as a future tip.
 
 | Exact command (conda PATH above) | Exit / result |
 | --- | --- |

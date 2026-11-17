@@ -9,9 +9,9 @@ not ok 1 - CLI against disposable real Next handlers + unique owned PostgreSQL p
   failureType: 'testCodeFailure'
   error: |-
     smoke category=ingest-storage-failed cleanup=deleted-owned
-    
+
     1 !== 0
-    
+
   code: 'ERR_ASSERTION'
   name: 'AssertionError'
   expected: 0
