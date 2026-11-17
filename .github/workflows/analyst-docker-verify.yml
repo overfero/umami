@@ -63,6 +63,7 @@ jobs:
       - name: Fixture ownership markers (postgres + clickhouse)
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq postgresql-client
+          echo "PG_BIN=$(dirname "$(command -v psql)")" >> "$GITHUB_ENV"
           psql -h 127.0.0.1 -p 25432 -U ai_synthetic -d ai_synthetic -v ON_ERROR_STOP=1 -c \
             "create table ai_synthetic_owner (owner text); insert into ai_synthetic_owner values ('umami-ai-synthetic-r3');"
           psql -h 127.0.0.1 -p 25432 -U ai_synthetic -d ai_synthetic -v ON_ERROR_STOP=1 -c \
