@@ -74,6 +74,10 @@ export async function verifierAuthority(scope: VerifierScope): Promise<boolean> 
       const analysis = await getAnalysis(id);
       if (!analysis || analysis.revision !== revision) return false;
       if (!(await canViewAnalysis(auth, analysis))) return false;
+      // Analysis ownership alone is not source authority: pixels/capabilities must stop
+      // being usable after website access is revoked, even without another execution.
+      const definition = normalizeDefinition(analysis.definition);
+      if (!(await canViewWebsite(auth, definition.source.websiteId))) return false;
     }
     return true;
   } catch {
