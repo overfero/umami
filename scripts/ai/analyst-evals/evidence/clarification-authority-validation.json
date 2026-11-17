@@ -1,0 +1,592 @@
+{
+  "observedAtJakarta": "2026-11-17T19:53:18.637935+07:00",
+  "sourceRevision": "5a26ea1717f1a8a852014a92249e4bae46a5286a",
+  "sourceHashes": {
+    "wiki/specs/analyst-dashboard-lifecycle.md": "a418013ff461110daa77ff6007f1b527d106bd9eb2c6b45cf91b1c405de8b638",
+    "scripts/ai/analyst-evals/authority.ts": "5c1198708443ecad7cb1bdaa2f2d204d4dceeeabb2df6cb7b8d37f4b4818b4ba",
+    "scripts/ai/analyst-evals/authority-evidence.ts": "1df61caab8484092a2487236e0ac1c23eb3926d5b5857faf14c5be4d96254ca0",
+    "scripts/ai/analyst-evals/authority-evidence.test.ts": "d3d0965c87c313b3267f9bf25afe0ea554edc3357f8e98396b9127495e2daab8",
+    "scripts/ai/analyst-evals/clarification.ts": "741ffdea99dea8467f945a4be2a65325e3e80774a1054d69fe60a4d0bcbb6a34",
+    "scripts/ai/analyst-evals/clarification.test.ts": "5bf9ecf139852f1b8fec30485400a3a0dd176b9d5a62efa9646da8fc4d7f8f23",
+    "scripts/ai/analyst-evals/generic-authority.test.ts": "7f53f631e76a17b576e354666ad92047a1ed291088d5129596effe969d51157f",
+    "src/lib/analyst-verifier/authority.test.ts": "9f8c826f4cccb7b2d11ebf70f6c073e68ca247a4428141e7640618aff5332d11",
+    "src/lib/analyst-verifier/port.test.ts": "27aa659254e454cb970012531fa0f4b7412dc3141debade9fa4eef9687700963",
+    "src/lib/analyst-verifier/port.mjs": "a65dbc012432bfcd281f6c6aeb1859f65618e3cf1c12345fbf08e3d4cad1737a",
+    "src/lib/analyst-verifier/images.mjs": "a3628a5ae3641464823b588f0121a3e058b9cdea964083cd76796dc03f070935",
+    "src/lib/analyst-verifier/capability.mjs": "673e0073c04877577249cc18765093d1bd6f6f93664a5bb6a2d2a05775b66d0a",
+    "src/lib/ai/assistant/analyst/tools.ts": "123c6aae737180d1f6363a92bda0370dd908b4474264b15be0236f17c0dd5a7b",
+    "src/lib/ai/assistant/analyst/task.ts": "adef3d22f3c52067eaf62a63c39e46b9176fb45901a67e9a9a1119db056b51c2",
+    "src/lib/ai/assistant/tools.ts": "76dddfe2aaa0b81cd75b7301cc73b039ad2d65768f1351550542476e5519928b",
+    "src/queries/prisma/analysis.ts": "aee6b8f2069422be73246073f6626fed3f28d9bc59bd6989c16b159c5bb9b079",
+    "src/permissions/analysis.ts": "ab6e7d4416493f2847359e5c075b5ac366faae1d65dcf1266e6c1516b62986f1",
+    "src/permissions/website.ts": "34effa98ed8050bdbd33e2310b7b63ccc4c0a9d452440dd06baa281d9fd67fd8",
+    "src/permissions/share.ts": "85b5cdb46e05b55b266407b3d5a5da9688f884322c33bee6ed9fa8c9bef4d7aa",
+    "scripts/ai/eval-analyst.ts": "0892ee067ffa0ba773374b77a2b25d49ccad1d84eaf5d5e54a365716a77c248a",
+    "scripts/ai/analyst-evals/run-offline.ts": "6f4cbf78350ce2fef4ba374a2076ce505b046d30d8d41275a01ad1899cb7905a",
+    "scripts/ai/analyst-evals/vitest.config.ts": "ef180650eba93c7f5064ce423e7110c3b57a4c08cd30cdd3ffebdf7fd6ccc3a2",
+    "src/test/setup.ts": "074a8edf8244ceeb01af9619dd689a087b0ac003e5ab2be93c0858a40de68d1b",
+    "scripts/ai/analyst-evals/staff-dashboard.ts": "234561a3f280bc7fabd531c99fc41d64925e5a43cde424011fe6d53c90482c31",
+    "scripts/ai/analyst-evals/staff-dashboard.test.ts": "7da27d4939f751cd148b74f33ac5f0d70ce3d35c43523b5994e5ee1855427de5",
+    "scripts/ai/analyst-evals/vitest-evidence.test.ts": "f2ff557b1bfccd7ae5776fb20ae7967e678f81ce527102446f337737be1efe83",
+    "scripts/ai/analyst-evals/api-evidence.test.ts": "9654740432fb3837707511050478c275a6ebd66f5c84feba873e05b65d2c9e3c",
+    "scripts/ai/analyst-evals/offline.test.ts": "ce0e26773f8c6d6b02c99f15d43fca50cd0308b96c8794dbd0f2ffe2d854e301",
+    "scripts/test-analyst-api.ts": "58a8a848e0125fe3cea26143d360b4ad1af8a02e5175931d86090621717e4486",
+    "scripts/ai/analyst-evals/dashboard.ts": "7c41e62ed31bee1e1e1e843821771c91e839e7b51f42e9056f0efbd25fd741cd",
+    "scripts/ai/analyst-evals/offline.ts": "cb33dc17540739bed1f56ff1216080761af8796a37b1c7b7e3a5d1b092ab7875",
+    "scripts/ai/analyst-evals/numeric-render.test.tsx": "d214e472921949d4eb94c87ca6f2294802c667b54ab8b3d58504f3c8c0cd1a56",
+    "scripts/ai/analyst-evals/missing-metric.test.ts": "618ce55777ffb19c1ccc7110573209c857a480a86715c4b4ad53eeb8e1a6b4ac",
+    "src/lib/ai/assistant/analyst/deps.ts": "6b0660b30484b8822e64c20729a08dfdb08c29c11781474f3e8bd1310292ffb0",
+    "src/queries/sql/getWebsiteDateRange.ts": "8dafe559be2d524ba65af19a2f005656db45737c92adfe53fc90ea6e8bf27aa4"
+  },
+  "commands": [
+    {
+      "command": "clarification-red",
+      "exitCode": 1,
+      "output": "\n RUN  v4.1.11 /home/overfero/Project/ocbc/umami-analyst-slice-02\n\n \u276f scripts/ai/analyst-evals/clarification.test.ts (0 test)\n\n\u23af\u23af\u23af\u23af\u23af\u23af Failed Suites 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  scripts/ai/analyst-evals/clarification.test.ts [ scripts/ai/analyst-evals/clarification.test.ts ]\nError: Failed to resolve import \"./clarification\" from \"scripts/ai/analyst-evals/clarification.test.ts\". Does the file exist?\n  Plugin: vite:import-analysis\n  File: /home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/clarification.test.ts:2:48\n  1  |  import { expect, it } from \"vitest\";\n  2  |  import { assertNeedsInput, clarification } from \"./clarification\";\n     |                                                   ^\n  3  |  it(\"needs_input requires the meaningful bounded question, persisted wait and unchanged semantics\", () => {\n  4  |  \tconst observed = {\n \u276f TransformPluginContext._formatLog ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:30585:39\n \u276f TransformPluginContext.error ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:30582:14\n \u276f normalizeUrl ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:27607:18\n \u276f ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:27675:30\n \u276f TransformPluginContext.transform ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:27643:4\n \u276f EnvironmentPluginContainer.transform ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:30370:14\n \u276f loadAndTransform ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:20290:26\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  no tests\n   Start at  19:34:23\n   Duration  1.30s (transform 30ms, setup 172ms, import 0ms, tests 0ms, environment 926ms)\n\n"
+    },
+    {
+      "command": "clarification-green",
+      "exitCode": 0,
+      "output": "\n RUN  v4.1.11 /home/overfero/Project/ocbc/umami-analyst-slice-02\n\n\n Test Files  1 passed (1)\n      Tests  1 passed (1)\n   Start at  19:36:17\n   Duration  968ms (transform 42ms, setup 166ms, import 12ms, tests 17ms, environment 643ms)\n\n"
+    },
+    {
+      "command": "manifest-red",
+      "exitCode": 1,
+      "output": "\n RUN  v4.1.11 /home/overfero/Project/ocbc/umami-analyst-slice-02\n\n \u276f scripts/ai/analyst-evals/offline.test.ts (3 tests | 1 failed) 20ms\n     \u00d7 requires every scenario1\u20139 assertion and keeps scenarios10\u201312 pending 7ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  scripts/ai/analyst-evals/offline.test.ts > offline acceptance evidence > requires every scenario1\u20139 assertion and keeps scenarios10\u201312 pending\nAssertionError: expected { pass: false, \u2026(2) } to deeply equal { pass: false, \u2026(2) }\n\n- Expected\n+ Received\n\n  {\n    \"pass\": false,\n    \"pending\": [\n+     6,\n+     7,\n+     8,\n+     9,\n      10,\n      11,\n      12,\n    ],\n    \"proven\": [\n      1,\n      2,\n      3,\n      4,\n      5,\n-     6,\n-     7,\n-     8,\n-     9,\n    ],\n  }\n\n \u276f scripts/ai/analyst-evals/offline.test.ts:18:41\n     16|       assertions: requirements.filter(r => r.suite === suite).map(r =>\u2026\n     17|     }));\n     18|     expect(summarizeCoverage(evidence)).toEqual({\n       |                                         ^\n     19|       pass: false,\n     20|       proven: [1, 2, 3, 4, 5, 6, 7, 8, 9],\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  1 failed | 2 passed (3)\n   Start at  19:40:34\n   Duration  1.11s (transform 101ms, setup 263ms, import 41ms, tests 20ms, environment 628ms)\n\n"
+    },
+    {
+      "command": "reuse-red",
+      "exitCode": 1,
+      "output": "\n RUN  v4.1.11 /home/overfero/Project/ocbc/umami-analyst-slice-02\n\n \u276f scripts/ai/analyst-evals/authority-evidence.test.ts (0 test)\n\n\u23af\u23af\u23af\u23af\u23af\u23af Failed Suites 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  scripts/ai/analyst-evals/authority-evidence.test.ts [ scripts/ai/analyst-evals/authority-evidence.test.ts ]\nError: Failed to resolve import \"./authority-evidence\" from \"scripts/ai/analyst-evals/authority-evidence.test.ts\". Does the file exist?\n  Plugin: vite:import-analysis\n  File: /home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority-evidence.test.ts:2:63\n  1  |  import { expect, it } from \"vitest\";\n  2  |  import { authorityEvidence, reusableAuthorityAssertions } from \"./authority-evidence\";\n     |                                                                  ^\n  3  |  it(\"reusable authority evidence requires exact source-qualified passed assertions and successful nonempty command\", (...\n  4  |  \tconst report = {\n \u276f TransformPluginContext._formatLog ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:30585:39\n \u276f TransformPluginContext.error ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:30582:14\n \u276f normalizeUrl ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:27607:18\n \u276f ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:27675:30\n \u276f TransformPluginContext.transform ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:27643:4\n \u276f EnvironmentPluginContainer.transform ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:30370:14\n \u276f loadAndTransform ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:20290:26\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  no tests\n   Start at  19:41:07\n   Duration  975ms (transform 38ms, setup 149ms, import 0ms, tests 0ms, environment 607ms)\n\n"
+    },
+    {
+      "command": "expanded",
+      "exitCode": 1,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n(node:43304) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table analyst_authority_1794919022893_43304._prisma_migrations\ndrop cascades to table analyst_authority_1794919022893_43304.\"user\"\ndrop cascades to table analyst_authority_1794919022893_43304.session\ndrop cascades to table analyst_authority_1794919022893_43304.website\ndrop cascades to table analyst_authority_1794919022893_43304.website_event\ndrop cascades to table analyst_authority_1794919022893_43304.event_data\ndrop cascades to table analyst_authority_1794919022893_43304.team\ndrop cascades to table analyst_authority_1794919022893_43304.team_user\ndrop cascades to table analyst_authority_1794919022893_43304.session_data\ndrop cascades to table analyst_authority_1794919022893_43304.report\ndrop cascades to table analyst_authority_1794919022893_43304.segment\ndrop cascades to table analyst_authority_1794919022893_43304.revenue\ndrop cascades to table analyst_authority_1794919022893_43304.link\ndrop cascades to table analyst_authority_1794919022893_43304.pixel\ndrop cascades to table analyst_authority_1794919022893_43304.share\ndrop cascades to table analyst_authority_1794919022893_43304.board\ndrop cascades to table analyst_authority_1794919022893_43304.session_replay\ndrop cascades to table analyst_authority_1794919022893_43304.session_replay_saved\ndrop cascades to table analyst_authority_1794919022893_43304.heatmap_event\ndrop cascades to table analyst_authority_1794919022893_43304.session_link\ndrop cascades to table analyst_authority_1794919022893_43304.two_factor_auth\ndrop cascades to table analyst_authority_1794919022893_43304.two_factor_backup_code\ndrop cascades to table analyst_authority_1794919022893_43304.two_factor_otp_used\ndrop cascades to table analyst_authority_1794919022893_43304.two_factor_rate_limit\ndrop cascades to table analyst_authority_1794919022893_43304.app_setting\ndrop cascades to table analyst_authority_1794919022893_43304.annotation\ndrop cascades to table analyst_authority_1794919022893_43304.api_key\ndrop cascades to table analyst_authority_1794919022893_43304.ai_chat\ndrop cascades to table analyst_authority_1794919022893_43304.ai_chat_message\ndrop cascades to table analyst_authority_1794919022893_43304.saved_analysis\ndrop cascades to table analyst_authority_1794919022893_43304.saved_analysis_revision\ndrop cascades to table analyst_authority_1794919022893_43304.analysis_operation\ndrop cascades to table analyst_authority_1794919022893_43304.analysis_confirmation\ndrop cascades to table analyst_authority_1794919022893_43304.analyst_task\nPrismaClientValidationError: \nInvalid `tx.websiteEvent.create()` invocation in\n/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:102:31\n\n   99 await client.$transaction(async (tx,[object Object], any) => {\n  100   await tx.$executeRawUnsafe(\"SET LOCAL TimeZone = 'UTC'\");\n  101   await tx.session.create({ data: { id: sessionId, websiteId: website, createdAt: new Date(1790816400000) } });\n\u2192 102   await tx.websiteEvent.create({\n          data: {\n            id: \"56f47efa-eca0-4c3c-9141-05195205007a\",\n            websiteId: \"887b84cf-6c9c-4d15-b7ef-36d1eef68b3b\",\n            sessionId: \"c2c5729a-6bea-483c-a270-6bf81cfda9a4\",\n            visitId: \"c2c5729a-6bea-483c-a270-6bf81cfda9a4\",\n            eventType: 2,\n            eventName: \"login\",\n            createdAt: new Date(\"2026-10-01T01:00:00.000Z\"),\n        +   urlPath: String\n          }\n        })\n\nArgument `urlPath` is missing.\n    at throwValidationException (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/core/errorRendering/throwValidationException.ts:46:9)\n    at vn.handleRequestError (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/RequestHandler.ts:212:7)\n    at vn.handleAndLogRequestError (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/RequestHandler.ts:184:12)\n    at vn.request (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/RequestHandler.ts:153:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async a (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:1014:24)\n    at async <anonymous> (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:102:9)\n    at async Proxy._transactionWithCallback (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:861:18)\n    at async <anonymous> (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:99:7)\n    at async check (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:38:3) {\n  clientVersion: '7.10.0'\n}\n"
+    },
+    {
+      "command": "expanded-corrected",
+      "exitCode": 1,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n(node:43668) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table analyst_authority_1794919047561_43668._prisma_migrations\ndrop cascades to table analyst_authority_1794919047561_43668.\"user\"\ndrop cascades to table analyst_authority_1794919047561_43668.session\ndrop cascades to table analyst_authority_1794919047561_43668.website\ndrop cascades to table analyst_authority_1794919047561_43668.website_event\ndrop cascades to table analyst_authority_1794919047561_43668.event_data\ndrop cascades to table analyst_authority_1794919047561_43668.team\ndrop cascades to table analyst_authority_1794919047561_43668.team_user\ndrop cascades to table analyst_authority_1794919047561_43668.session_data\ndrop cascades to table analyst_authority_1794919047561_43668.report\ndrop cascades to table analyst_authority_1794919047561_43668.segment\ndrop cascades to table analyst_authority_1794919047561_43668.revenue\ndrop cascades to table analyst_authority_1794919047561_43668.link\ndrop cascades to table analyst_authority_1794919047561_43668.pixel\ndrop cascades to table analyst_authority_1794919047561_43668.share\ndrop cascades to table analyst_authority_1794919047561_43668.board\ndrop cascades to table analyst_authority_1794919047561_43668.session_replay\ndrop cascades to table analyst_authority_1794919047561_43668.session_replay_saved\ndrop cascades to table analyst_authority_1794919047561_43668.heatmap_event\ndrop cascades to table analyst_authority_1794919047561_43668.session_link\ndrop cascades to table analyst_authority_1794919047561_43668.two_factor_auth\ndrop cascades to table analyst_authority_1794919047561_43668.two_factor_backup_code\ndrop cascades to table analyst_authority_1794919047561_43668.two_factor_otp_used\ndrop cascades to table analyst_authority_1794919047561_43668.two_factor_rate_limit\ndrop cascades to table analyst_authority_1794919047561_43668.app_setting\ndrop cascades to table analyst_authority_1794919047561_43668.annotation\ndrop cascades to table analyst_authority_1794919047561_43668.api_key\ndrop cascades to table analyst_authority_1794919047561_43668.ai_chat\ndrop cascades to table analyst_authority_1794919047561_43668.ai_chat_message\ndrop cascades to table analyst_authority_1794919047561_43668.saved_analysis\ndrop cascades to table analyst_authority_1794919047561_43668.saved_analysis_revision\ndrop cascades to table analyst_authority_1794919047561_43668.analysis_operation\ndrop cascades to table analyst_authority_1794919047561_43668.analysis_confirmation\ndrop cascades to table analyst_authority_1794919047561_43668.analyst_task\nAssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   'login'\n- ]\n\n    at <anonymous> (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:115:14)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async check (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:38:3)\n    at async main (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/authority.ts:97:5) {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: [],\n  expected: [Array],\n  operator: 'deepStrictEqual',\n  diff: 'simple'\n}\n"
+    },
+    {
+      "command": "scoped-read",
+      "exitCode": 0,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n(node:44843) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n(node:44843) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.\nASSERTION discover IDs and schema then ask meaningful ambiguity with needs_input and no guessed mutation\nASSERTION declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies\nASSERTION partial failure after metadata writes rolls back board analyses revisions operation and task provenance\nASSERTION source revocation denies render authority and existing artifact release\nASSERTION foreign stale malformed and team-revoked references deny capability and artifact release\nEVIDENCE {\"suite\":\"authority-pg\",\"assertions\":[\"discover IDs and schema then ask meaningful ambiguity with needs_input and no guessed mutation\",\"declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies\",\"partial failure after metadata writes rolls back board analyses revisions operation and task provenance\",\"source revocation denies render authority and existing artifact release\",\"foreign stale malformed and team-revoked references deny capability and artifact release\"],\"passed\":true}\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table analyst_authority_1794919128677_44843._prisma_migrations\ndrop cascades to table analyst_authority_1794919128677_44843.\"user\"\ndrop cascades to table analyst_authority_1794919128677_44843.session\ndrop cascades to table analyst_authority_1794919128677_44843.website\ndrop cascades to table analyst_authority_1794919128677_44843.website_event\ndrop cascades to table analyst_authority_1794919128677_44843.event_data\ndrop cascades to table analyst_authority_1794919128677_44843.team\ndrop cascades to table analyst_authority_1794919128677_44843.team_user\ndrop cascades to table analyst_authority_1794919128677_44843.session_data\ndrop cascades to table analyst_authority_1794919128677_44843.report\ndrop cascades to table analyst_authority_1794919128677_44843.segment\ndrop cascades to table analyst_authority_1794919128677_44843.revenue\ndrop cascades to table analyst_authority_1794919128677_44843.link\ndrop cascades to table analyst_authority_1794919128677_44843.pixel\ndrop cascades to table analyst_authority_1794919128677_44843.share\ndrop cascades to table analyst_authority_1794919128677_44843.board\ndrop cascades to table analyst_authority_1794919128677_44843.session_replay\ndrop cascades to table analyst_authority_1794919128677_44843.session_replay_saved\ndrop cascades to table analyst_authority_1794919128677_44843.heatmap_event\ndrop cascades to table analyst_authority_1794919128677_44843.session_link\ndrop cascades to table analyst_authority_1794919128677_44843.two_factor_auth\ndrop cascades to table analyst_authority_1794919128677_44843.two_factor_backup_code\ndrop cascades to table analyst_authority_1794919128677_44843.two_factor_otp_used\ndrop cascades to table analyst_authority_1794919128677_44843.two_factor_rate_limit\ndrop cascades to table analyst_authority_1794919128677_44843.app_setting\ndrop cascades to table analyst_authority_1794919128677_44843.annotation\ndrop cascades to table analyst_authority_1794919128677_44843.api_key\ndrop cascades to table analyst_authority_1794919128677_44843.ai_chat\ndrop cascades to table analyst_authority_1794919128677_44843.ai_chat_message\ndrop cascades to table analyst_authority_1794919128677_44843.saved_analysis\ndrop cascades to table analyst_authority_1794919128677_44843.saved_analysis_revision\ndrop cascades to table analyst_authority_1794919128677_44843.analysis_operation\ndrop cascades to table analyst_authority_1794919128677_44843.analysis_confirmation\ndrop cascades to table analyst_authority_1794919128677_44843.analyst_task\n"
+    },
+    {
+      "command": "preflight",
+      "exitCode": 0,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n(node:47773) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n(node:47773) DeprecationWarning: Calling client.query() when the client is already executing a query is deprecated and will be removed in pg@9.0. Use async/await or an external async flow control mechanism instead.\nASSERTION discover IDs and schema then ask meaningful ambiguity with needs_input and no guessed mutation\nASSERTION declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies\nASSERTION partial failure after metadata writes rolls back board analyses revisions operation and task provenance\nASSERTION source revocation denies render authority and existing artifact release\nASSERTION foreign stale malformed and team-revoked references deny capability and artifact release\nEVIDENCE {\"suite\":\"authority-pg\",\"assertions\":[\"discover IDs and schema then ask meaningful ambiguity with needs_input and no guessed mutation\",\"declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies\",\"partial failure after metadata writes rolls back board analyses revisions operation and task provenance\",\"source revocation denies render authority and existing artifact release\",\"foreign stale malformed and team-revoked references deny capability and artifact release\"],\"passed\":true}\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table analyst_authority_1794919360728_47773._prisma_migrations\ndrop cascades to table analyst_authority_1794919360728_47773.\"user\"\ndrop cascades to table analyst_authority_1794919360728_47773.session\ndrop cascades to table analyst_authority_1794919360728_47773.website\ndrop cascades to table analyst_authority_1794919360728_47773.website_event\ndrop cascades to table analyst_authority_1794919360728_47773.event_data\ndrop cascades to table analyst_authority_1794919360728_47773.team\ndrop cascades to table analyst_authority_1794919360728_47773.team_user\ndrop cascades to table analyst_authority_1794919360728_47773.session_data\ndrop cascades to table analyst_authority_1794919360728_47773.report\ndrop cascades to table analyst_authority_1794919360728_47773.segment\ndrop cascades to table analyst_authority_1794919360728_47773.revenue\ndrop cascades to table analyst_authority_1794919360728_47773.link\ndrop cascades to table analyst_authority_1794919360728_47773.pixel\ndrop cascades to table analyst_authority_1794919360728_47773.share\ndrop cascades to table analyst_authority_1794919360728_47773.board\ndrop cascades to table analyst_authority_1794919360728_47773.session_replay\ndrop cascades to table analyst_authority_1794919360728_47773.session_replay_saved\ndrop cascades to table analyst_authority_1794919360728_47773.heatmap_event\ndrop cascades to table analyst_authority_1794919360728_47773.session_link\ndrop cascades to table analyst_authority_1794919360728_47773.two_factor_auth\ndrop cascades to table analyst_authority_1794919360728_47773.two_factor_backup_code\ndrop cascades to table analyst_authority_1794919360728_47773.two_factor_otp_used\ndrop cascades to table analyst_authority_1794919360728_47773.two_factor_rate_limit\ndrop cascades to table analyst_authority_1794919360728_47773.app_setting\ndrop cascades to table analyst_authority_1794919360728_47773.annotation\ndrop cascades to table analyst_authority_1794919360728_47773.api_key\ndrop cascades to table analyst_authority_1794919360728_47773.ai_chat\ndrop cascades to table analyst_authority_1794919360728_47773.ai_chat_message\ndrop cascades to table analyst_authority_1794919360728_47773.saved_analysis\ndrop cascades to table analyst_authority_1794919360728_47773.saved_analysis_revision\ndrop cascades to table analyst_authority_1794919360728_47773.analysis_operation\ndrop cascades to table analyst_authority_1794919360728_47773.analysis_confirmation\ndrop cascades to table analyst_authority_1794919360728_47773.analyst_task\n"
+    },
+    {
+      "command": "eval-unit",
+      "exitCode": 0,
+      "output": "\n RUN  v4.1.11 /home/overfero/Project/ocbc/umami-analyst-slice-02\n\n\n Test Files  9 passed (9)\n      Tests  13 passed (13)\n   Start at  19:42:21\n   Duration  6.14s (transform 816ms, setup 3.08s, import 6.60s, tests 565ms, environment 12.12s)\n\n"
+    },
+    {
+      "command": "full-eval",
+      "exitCode": 1,
+      "output": "RUN tsx scripts/test-analyst-api.ts --postgres\nDONE tsx scripts/test-analyst-api.ts --postgres (-c timezone=America/New_York)\nRUN tsx scripts/ai/analyst-evals/dashboard.ts postgres\nDONE tsx scripts/ai/analyst-evals/dashboard.ts postgres (-c timezone=UTC)\nRUN tsx scripts/ai/analyst-evals/dashboard.ts postgres\nDONE tsx scripts/ai/analyst-evals/dashboard.ts postgres (-c timezone=Asia/Jakarta)\nRUN tsx scripts/ai/analyst-evals/dashboard.ts postgres\nDONE tsx scripts/ai/analyst-evals/dashboard.ts postgres (-c timezone=America/New_York)\nRUN tsx scripts/test-analyst-api.ts --clickhouse\nDONE tsx scripts/test-analyst-api.ts --clickhouse (-c timezone=America/New_York)\nRUN tsx scripts/ai/analyst-evals/dashboard.ts clickhouse\nDONE tsx scripts/ai/analyst-evals/dashboard.ts clickhouse (-c timezone=UTC)\nRUN tsx scripts/ai/analyst-evals/dashboard.ts clickhouse\nDONE tsx scripts/ai/analyst-evals/dashboard.ts clickhouse (-c timezone=Asia/Jakarta)\nRUN tsx scripts/ai/analyst-evals/dashboard.ts clickhouse\nDONE tsx scripts/ai/analyst-evals/dashboard.ts clickhouse (-c timezone=America/New_York)\nRUN tsx scripts/ai/analyst-evals/authority.ts\nDONE tsx scripts/ai/analyst-evals/authority.ts (-c timezone=UTC)\nRUN tsx scripts/ai/analyst-evals/authority.ts\nDONE tsx scripts/ai/analyst-evals/authority.ts (-c timezone=Asia/Jakarta)\nRUN tsx scripts/ai/analyst-evals/authority.ts\nDONE tsx scripts/ai/analyst-evals/authority.ts (-c timezone=America/New_York)\nRUN vitest run -c scripts/ai/analyst-evals/vitest.config.ts --reporter=json --outputFile=/tmp/analyst-eval-hqOKYE/vitest.json\nDONE vitest run -c scripts/ai/analyst-evals/vitest.config.ts --reporter=json --outputFile=/tmp/analyst-eval-hqOKYE/vitest.json (default)\nRUN vitest run src/lib/analyst-verifier/authority.test.ts src/lib/analyst-verifier/port.test.ts --reporter=json --outputFile=/tmp/analyst-eval-hqOKYE/authority-vitest.json\nDONE vitest run src/lib/analyst-verifier/authority.test.ts src/lib/analyst-verifier/port.test.ts --reporter=json --outputFile=/tmp/analyst-eval-hqOKYE/authority-vitest.json (default)\nOffline assertion coverage: proven=1,2,3,4,5,6,7,8,9 pending=10,11,12\nNOT PASS: required evidence missing or failed; no visual/live verified claim.\n"
+    },
+    {
+      "command": "tsc",
+      "exitCode": 2,
+      "output": "src/app/(main)/websites/[websiteId]/events/EventsTable.tsx(46,46): error TS2322: Type '{ children: Element[]; alignItems: \"center\"; gap: \"2\"; flexWrap: string; style: { minWidth: number; }; }' is not assignable to type 'IntrinsicAttributes & RowProps'.\n  Property 'flexWrap' does not exist on type 'IntrinsicAttributes & RowProps'.\nsrc/app/(main)/websites/[websiteId]/events/EventsTable.tsx(54,44): error TS2322: Type '{ children: Element[]; alignItems: \"center\"; gap: true; flexWrap: string; style: { minWidth: number; }; }' is not assignable to type 'IntrinsicAttributes & RowProps'.\n  Property 'flexWrap' does not exist on type 'IntrinsicAttributes & RowProps'.\nsrc/app/api/admin/users/[userId]/2fa/route.test.ts(61,3): error TS2589: Type instantiation is excessively deep and possibly infinite.\n"
+    },
+    {
+      "command": "affected",
+      "exitCode": 0,
+      "output": "JSON report written to /tmp/slice02-affected-vitest.json\n"
+    }
+  ],
+  "affectedVitestReport": {
+    "numTotalTestSuites": 4,
+    "numPassedTestSuites": 4,
+    "numFailedTestSuites": 0,
+    "numPendingTestSuites": 0,
+    "numTotalTests": 41,
+    "numPassedTests": 41,
+    "numFailedTests": 0,
+    "numPendingTests": 0,
+    "numTodoTests": 0,
+    "snapshot": {
+      "added": 0,
+      "failure": false,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "filesRemovedList": [],
+      "filesUnmatched": 0,
+      "filesUpdated": 0,
+      "matched": 0,
+      "total": 0,
+      "unchecked": 0,
+      "uncheckedKeysByFile": [],
+      "unmatched": 0,
+      "updated": 0,
+      "didUpdate": false
+    },
+    "startTime": 1794919963076,
+    "success": true,
+    "testResults": [
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "allows only an active task at exact board/analysis revisions with current view rights",
+            "status": "passed",
+            "title": "allows only an active task at exact board/analysis revisions with current view rights",
+            "duration": 3.5673329999999623,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "prepares a deeply frozen saved board and exact execution envelope",
+            "status": "passed",
+            "title": "prepares a deeply frozen saved board and exact execution envelope",
+            "duration": 2.0430999999998676,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "rejects foreign, stale, failed and mismatched envelopes rather than minting receipts",
+            "status": "passed",
+            "title": "rejects foreign, stale, failed and mismatched envelopes rather than minting receipts",
+            "duration": 2.12103500000012,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "rechecks authority after execution and rejects unsupported or incomplete widget sets",
+            "status": "passed",
+            "title": "rechecks authority after execution and rejects unsupported or incomplete widget sets",
+            "duration": 0.7088469999998779,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "native preparation refuses revoked sources before querying",
+            "status": "passed",
+            "title": "native preparation refuses revoked sources before querying",
+            "duration": 0.6532700000002478,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "prepares supported native widgets through the native stats helpers with exact source and hash",
+            "status": "passed",
+            "title": "prepares supported native widgets through the native stats helpers with exact source and hash",
+            "duration": 6.347773999999845,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "verifier flag alone never yields a port without a registered isolated launcher",
+            "status": "passed",
+            "title": "verifier flag alone never yields a port without a registered isolated launcher",
+            "duration": 0.7862270000000535,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794919966917,
+        "endTime": 1794919966932.7861,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/analyst-verifier/authority.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "fails closed: flag off, missing prepare, or a callback-shaped (non-restricted) launcher",
+            "status": "passed",
+            "title": "fails closed: flag off, missing prepare, or a callback-shaped (non-restricted) launcher",
+            "duration": 5.687307999999916,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "docker argv: no network, non-root, cap-drop ALL, read-only, no-new-privileges, no mounts/env",
+            "status": "passed",
+            "title": "docker argv: no network, non-root, cap-drop ALL, read-only, no-new-privileges, no mounts/env",
+            "duration": 2.5017119999999977,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "render: capability exchange over the private channel, canvas from trusted executions, exact binding",
+            "status": "passed",
+            "title": "render: capability exchange over the private channel, canvas from trusted executions, exact binding",
+            "duration": 14.25764300000003,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "canvas is denied without the exchanged session",
+            "status": "passed",
+            "title": "canvas is denied without the exchanged session",
+            "duration": 2.3129989999999907,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "rejects stale revision, foreign/empty execution, foreign hash and revoked authority",
+            "status": "passed",
+            "title": "rejects stale revision, foreign/empty execution, foreign hash and revoked authority",
+            "duration": 4.841314000000011,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "registration accepts only a restricted launcher, once",
+            "status": "passed",
+            "title": "registration accepts only a restricted launcher, once",
+            "duration": 0.3531520000000228,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "canvas handler: no session, forged session, or reused capability is denied",
+            "status": "passed",
+            "title": "canvas handler: no session, forged session, or reused capability is denied",
+            "duration": 0.9857549999999264,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794919963931,
+        "endTime": 1794919963962.9858,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/analyst-verifier/port.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "verifier rejects ambient API endpoints and malformed authority",
+            "status": "passed",
+            "title": "verifier rejects ambient API endpoints and malformed authority",
+            "duration": 18.598384000000124,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794919964609,
+        "endTime": 1794919964627.5984,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/analyst-verifier/security.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "binds tasks to the chat owner; a foreign principal cannot open or read the task",
+            "status": "passed",
+            "title": "binds tasks to the chat owner; a foreign principal cannot open or read the task",
+            "duration": 8.15576800000008,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "persists consumed budgets: exhaustion blocks and a resumed task does not reset limits",
+            "status": "passed",
+            "title": "persists consumed budgets: exhaustion blocks and a resumed task does not reset limits",
+            "duration": 3.214538000000175,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "user-wait pauses do not consume the execution window; 24h expiry starts a new task",
+            "status": "passed",
+            "title": "user-wait pauses do not consume the execution window; 24h expiry starts a new task",
+            "duration": 1.3396790000001602,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "rejects JSON that could carry images or unbounded data into task records",
+            "status": "passed",
+            "title": "rejects JSON that could carry images or unbounded data into task records",
+            "duration": 4.057976000000053,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "tool calls are budgeted per task and model-supplied taskId/principal fields are rejected",
+            "status": "passed",
+            "title": "tool calls are budgeted per task and model-supplied taskId/principal fields are rejected",
+            "duration": 8.683994999999868,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "creates private drafts automatically but never edits a pre-existing board via commit",
+            "status": "passed",
+            "title": "creates private drafts automatically but never edits a pre-existing board via commit",
+            "duration": 8.91372599999977,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "existing-board change needs human confirmation bound to exact revision; rejection mutates nothing",
+            "status": "passed",
+            "title": "existing-board change needs human confirmation bound to exact revision; rejection mutates nothing",
+            "duration": 105.2407290000001,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "a stale revision after confirmation returns conflict without issuing a grant",
+            "status": "passed",
+            "title": "a stale revision after confirmation returns conflict without issuing a grant",
+            "duration": 50.81464199999982,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "repair policy: provenance required, semantics preserved, at most two repairs",
+            "status": "passed",
+            "title": "repair policy: provenance required, semantics preserved, at most two repairs",
+            "duration": 6.287950999999794,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "renamed analysis refs cannot bypass semantic-change or repair policy on a stable widget",
+            "status": "passed",
+            "title": "renamed analysis refs cannot bypass semantic-change or repair policy on a stable widget",
+            "duration": 5.672109000000091,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "abort during awaited validation/authorization prevents grants and writes",
+            "status": "passed",
+            "title": "abort during awaited validation/authorization prevents grants and writes",
+            "duration": 53.17833300000029,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "a task cancelled while a tool awaits is not overwritten by the late tool completion",
+            "status": "passed",
+            "title": "a task cancelled while a tool awaits is not overwritten by the late tool completion",
+            "duration": 1.0916080000001784,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "cancellation that wins at the commit boundary leaves no board and no late task record",
+            "status": "passed",
+            "title": "cancellation that wins at the commit boundary leaves no board and no late task record",
+            "duration": 0.9162599999999657,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "terminal tasks are absorbing: pause/resume/block/late updates never revive them",
+            "status": "passed",
+            "title": "terminal tasks are absorbing: pause/resume/block/late updates never revive them",
+            "duration": 0.921509999999671,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "openTask never revives a task cancelled between its read and its write",
+            "status": "passed",
+            "title": "openTask never revives a task cancelled between its read and its write",
+            "duration": 1.236229000000094,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "terminal task data is immutable: late callbacks cannot append provenance or context",
+            "status": "passed",
+            "title": "terminal task data is immutable: late callbacks cannot append provenance or context",
+            "duration": 0.5165219999998953,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "a commit that wins records provenance atomically; a later cancel needs no late write",
+            "status": "passed",
+            "title": "a commit that wins records provenance atomically; a later cancel needs no late write",
+            "duration": 1.0563430000001972,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "without an isolated verifier, render reports visual_pending and never claims verification",
+            "status": "passed",
+            "title": "without an isolated verifier, render reports visual_pending and never claims verification",
+            "duration": 0.916501999999582,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "verified render yields images only on the transient path; receipts hold hashes and are inspectable",
+            "status": "passed",
+            "title": "verified render yields images only on the transient path; receipts hold hashes and are inspectable",
+            "duration": 8.606150999999954,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "render expectations include every saved native and analysis widget and reject unsupported widgets",
+            "status": "passed",
+            "title": "render expectations include every saved native and analysis widget and reject unsupported widgets",
+            "duration": 1.595010000000002,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "sanitizes image blocks, data URLs and capabilities while keeping session structure",
+            "status": "passed",
+            "title": "sanitizes image blocks, data URLs and capabilities while keeping session structure",
+            "duration": 1.321222999999918,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "adds analyst lifecycle prompt rules only for analyst turns",
+            "status": "passed",
+            "title": "adds analyst lifecycle prompt rules only for analyst turns",
+            "duration": 3.5380489999997735,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "stable widget repair: keeping a committed widget by analysisId is repairable by widget id",
+            "status": "passed",
+            "title": "stable widget repair: keeping a committed widget by analysisId is repairable by widget id",
+            "duration": 3.4099879999998848,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "a stable-widget repair never edits a board the task did not create",
+            "status": "passed",
+            "title": "a stable-widget repair never edits a board the task did not create",
+            "duration": 1.2400990000001002,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "discover exposes the exact nested definition, widget and repair contracts",
+            "status": "passed",
+            "title": "discover exposes the exact nested definition, widget and repair contracts",
+            "duration": 1.1879089999997632,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "completeTask closes only a plain running task; paused and blocked tasks keep their state",
+            "status": "passed",
+            "title": "completeTask closes only a plain running task; paused and blocked tasks keep their state",
+            "duration": 1.2797059999998055,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794919966917,
+        "endTime": 1794919967202.2798,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/ai/assistant/analyst/analyst.test.ts"
+      }
+    ]
+  },
+  "postflight": {
+    "postgresMarker": "umami-ai-synthetic-r3",
+    "postgresAnalystSchemas": [
+      "analyst_fixture"
+    ],
+    "clickhouseDatabases": [
+      "INFORMATION_SCHEMA",
+      "default",
+      "information_schema",
+      "system"
+    ]
+  }
+}

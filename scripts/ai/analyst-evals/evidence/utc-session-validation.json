@@ -1,0 +1,1447 @@
+{
+  "observedAtJakarta": "2026-11-17T20:51:57.791148+07:00",
+  "sourceRevision": "c940d3f16eed0617d3ff90495cd24e93254a00b4",
+  "sourceDirty": true,
+  "sourceHashes": {
+    "src/lib/prisma.ts": "14c57096a627a75a816f0536161314c50690777a0ba76ab793a39c84a8c8ba8f",
+    "src/lib/prisma-session.ts": "23e6d90da2ff48a2cdc86c8b840a988b1e4f75c79f490f07ad4cceb0b2e02028",
+    "src/lib/prisma-session.test.ts": "2fadbb7da46bdfbccd05d840272dd680ec58d5815e40cf0359e50c140fa269e8",
+    "scripts/test-analyst-api.ts": "dd0a4f6aa58aaddd4c1bbc26bdd6364cb1e208a501edcc19f438546c8c0b3c1d",
+    "scripts/ai/analyst-evals/session-policy.ts": "ccadd28ff34766d8ba1a6c185e90ed19775258ffe7a5151903da03bf2eaf1de9",
+    "scripts/ai/analyst-evals/schema-bind-diagnostic.ts": "0b5f37053f218c1db2e8212eb8ff6ee8d7ae8c7cbfa9e42937551aad68fcf58e",
+    "scripts/ai/analyst-evals/date-binding-research.md": "e98a10b8771b87d950600a6f521db21a1af9f369c25ed93ee8481820a9cffe84",
+    "scripts/ai/analyst-evals/utc-session-policy.md": "adbc03acd753b00f929c03648fc056b17432fd3d12f5bc39f4438f99a213ace8"
+  },
+  "commands": [
+    {
+      "step": "utc-config-red",
+      "exitCode": 1,
+      "output": "\n RUN  v4.1.11 /home/overfero/Project/ocbc/umami-analyst-slice-02\n\n \u276f src/lib/prisma-session.test.ts (0 test)\n\n\u23af\u23af\u23af\u23af\u23af\u23af Failed Suites 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  src/lib/prisma-session.test.ts [ src/lib/prisma-session.test.ts ]\nError: Failed to resolve import \"./prisma-session\" from \"src/lib/prisma-session.test.ts\". Does the file exist?\n  Plugin: vite:import-analysis\n  File: /home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/prisma-session.test.ts:2:36\n  1  |  import { expect, it } from \"vitest\";\n  2  |  import { prismaSessionConfig } from \"./prisma-session\";\n     |                                       ^\n  3  |  it(\"applies UTC last after inherited and URL startup options while preserving schema and other options\", () => {\n  4  |  \tconst url = \"postgresql://synthetic@localhost/db?schema=owned&options=-c%20timezone%3DAsia%2FJakarta%20-c%20lock_tim...\n \u276f TransformPluginContext._formatLog ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:30585:39\n \u276f TransformPluginContext.error ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:30582:14\n \u276f normalizeUrl ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:27607:18\n \u276f ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:27675:30\n \u276f TransformPluginContext.transform ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:27643:4\n \u276f EnvironmentPluginContainer.transform ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:30370:14\n \u276f loadAndTransform ../umami/node_modules/.pnpm/vite@8.1.6_@types+node@26.5.1_esbuild@0.28.2_jiti@2.7.0_terser@5.46.1_tsx@4.23.13/node_modules/vite/dist/node/chunks/node.js:20290:26\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  no tests\n   Start at  20:30:50\n   Duration  1.25s (transform 39ms, setup 163ms, import 0ms, tests 0ms, environment 653ms)\n\n",
+      "command": "npx --yes pnpm@12.3.4 exec vitest run src/lib/prisma-session.test.ts"
+    },
+    {
+      "step": "utc-policy-red",
+      "exitCode": 1,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table _prisma_migrations\ndrop cascades to table \"user\"\ndrop cascades to table session\ndrop cascades to table website\ndrop cascades to table website_event\ndrop cascades to table event_data\ndrop cascades to table team\ndrop cascades to table team_user\ndrop cascades to table session_data\ndrop cascades to table report\ndrop cascades to table segment\ndrop cascades to table revenue\ndrop cascades to table link\ndrop cascades to table pixel\ndrop cascades to table share\ndrop cascades to table board\ndrop cascades to table session_replay\ndrop cascades to table session_replay_saved\ndrop cascades to table heatmap_event\ndrop cascades to table session_link\ndrop cascades to table two_factor_auth\ndrop cascades to table two_factor_backup_code\ndrop cascades to table two_factor_otp_used\ndrop cascades to table two_factor_rate_limit\ndrop cascades to table app_setting\ndrop cascades to table annotation\ndrop cascades to table api_key\ndrop cascades to table ai_chat\ndrop cascades to table ai_chat_message\ndrop cascades to table saved_analysis\ndrop cascades to table saved_analysis_revision\ndrop cascades to table analysis_operation\ndrop cascades to table analysis_confirmation\ndrop cascades to table analyst_task\n/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/RequestHandler.ts:238\n      throw new PrismaClientKnownRequestError(message, {\n            ^\n\nPrismaClientKnownRequestError: \nInvalid `prisma.$queryRawUnsafe()` invocation:\n\n\nRaw query failed. Code: `N/A`. Message: `Failed to deserialize column of type 'void'. If you're using $queryRaw and this column is explicitly marked as `Unsupported` in your Prisma schema, try casting this column to any supported Prisma type such as `String`.`\n    at vn.handleRequestError (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/RequestHandler.ts:238:13)\n    at vn.handleAndLogRequestError (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/RequestHandler.ts:184:12)\n    at vn.request (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/RequestHandler.ts:153:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async a (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:1014:24)\n    at async state (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/session-policy.ts:26:17)\n    at async Promise.all (index 3)\n    at async <anonymous> (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/session-policy.ts:32:20)\n    at async check (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/session-policy.ts:19:63)\n    at async <anonymous> (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/session-policy.ts:30:3) {\n  code: 'P2010',\n  meta: {\n    driverAdapterError: DriverAdapterError: UnsupportedNativeDataType\n        at PrismaPgAdapter.queryRaw (file:///home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+adapter-pg@7.10.0/node_modules/@prisma/adapter-pg/dist/index.mjs:602:15)\n        at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n        at async <anonymous> (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client-engine-runtime/src/interpreter/query-interpreter.ts:200:28)\n        at async e.run (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client-engine-runtime/src/interpreter/query-interpreter.ts:115:40)\n        at async e.execute (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/core/engines/client/LocalExecutor.ts:81:12)\n        at async yr.request (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/core/engines/client/ClientEngine.ts:510:22)\n        at async Object.singleLoader (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/RequestHandler.ts:113:26)\n        at async vn.request (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/RequestHandler.ts:150:14)\n        at async a (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:1014:24)\n        at async state (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/session-policy.ts:26:17) {\n      cause: { kind: 'UnsupportedNativeDataType', type: 'void' }\n    }\n  },\n  clientVersion: '7.10.0'\n}\n\nNode.js v22.23.5\n",
+      "command": "PGOPTIONS='-c timezone=America/New_York' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/session-policy.ts"
+    },
+    {
+      "step": "utc-policy-corrected-red",
+      "exitCode": 1,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table _prisma_migrations\ndrop cascades to table \"user\"\ndrop cascades to table session\ndrop cascades to table website\ndrop cascades to table website_event\ndrop cascades to table event_data\ndrop cascades to table team\ndrop cascades to table team_user\ndrop cascades to table session_data\ndrop cascades to table report\ndrop cascades to table segment\ndrop cascades to table revenue\ndrop cascades to table link\ndrop cascades to table pixel\ndrop cascades to table share\ndrop cascades to table board\ndrop cascades to table session_replay\ndrop cascades to table session_replay_saved\ndrop cascades to table heatmap_event\ndrop cascades to table session_link\ndrop cascades to table two_factor_auth\ndrop cascades to table two_factor_backup_code\ndrop cascades to table two_factor_otp_used\ndrop cascades to table two_factor_rate_limit\ndrop cascades to table app_setting\ndrop cascades to table annotation\ndrop cascades to table api_key\ndrop cascades to table ai_chat\ndrop cascades to table ai_chat_message\ndrop cascades to table saved_analysis\ndrop cascades to table saved_analysis_revision\ndrop cascades to table analysis_operation\ndrop cascades to table analysis_confirmation\ndrop cascades to table analyst_task\n/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/RequestHandler.ts:238\n      throw new PrismaClientKnownRequestError(message, {\n            ^\n\nPrismaClientKnownRequestError: \nInvalid `prisma.$queryRawUnsafe()` invocation:\n\n\nRaw query failed. Code: `N/A`. Message: `Failed to deserialize column of type 'void'. If you're using $queryRaw and this column is explicitly marked as `Unsupported` in your Prisma schema, try casting this column to any supported Prisma type such as `String`.`\n    at vn.handleRequestError (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/RequestHandler.ts:238:13)\n    at vn.handleAndLogRequestError (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/RequestHandler.ts:184:12)\n    at vn.request (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/RequestHandler.ts:153:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async a (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:1014:24)\n    at async state (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/session-policy.ts:26:17)\n    at async Promise.all (index 0)\n    at async <anonymous> (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/session-policy.ts:32:20)\n    at async check (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/session-policy.ts:19:63)\n    at async <anonymous> (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/session-policy.ts:30:3) {\n  code: 'P2010',\n  meta: {\n    driverAdapterError: DriverAdapterError: UnsupportedNativeDataType\n        at PrismaPgAdapter.queryRaw (file:///home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+adapter-pg@7.10.0/node_modules/@prisma/adapter-pg/dist/index.mjs:602:15)\n        at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n        at async <anonymous> (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client-engine-runtime/src/interpreter/query-interpreter.ts:200:28)\n        at async e.run (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client-engine-runtime/src/interpreter/query-interpreter.ts:115:40)\n        at async e.execute (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/core/engines/client/LocalExecutor.ts:81:12)\n        at async yr.request (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/core/engines/client/ClientEngine.ts:510:22)\n        at async Object.singleLoader (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/RequestHandler.ts:113:26)\n        at async vn.request (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/RequestHandler.ts:150:14)\n        at async a (/home/overfero/Project/ocbc/umami/node_modules/.pnpm/@prisma+client@7.10.0_prisma@7.10.0_@types+node@26.5.1_@types+react-dom@19.3.0_@types+r_76905d212a0ae9389108b57a785ded70/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:1014:24)\n        at async state (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/session-policy.ts:26:17) {\n      cause: { kind: 'UnsupportedNativeDataType', type: 'void' }\n    }\n  },\n  clientVersion: '7.10.0'\n}\n\nNode.js v22.23.5\n",
+      "command": "PGOPTIONS='-c timezone=America/New_York' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/session-policy.ts"
+    },
+    {
+      "step": "utc-policy-real-red",
+      "exitCode": 1,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table _prisma_migrations\ndrop cascades to table \"user\"\ndrop cascades to table session\ndrop cascades to table website\ndrop cascades to table website_event\ndrop cascades to table event_data\ndrop cascades to table team\ndrop cascades to table team_user\ndrop cascades to table session_data\ndrop cascades to table report\ndrop cascades to table segment\ndrop cascades to table revenue\ndrop cascades to table link\ndrop cascades to table pixel\ndrop cascades to table share\ndrop cascades to table board\ndrop cascades to table session_replay\ndrop cascades to table session_replay_saved\ndrop cascades to table heatmap_event\ndrop cascades to table session_link\ndrop cascades to table two_factor_auth\ndrop cascades to table two_factor_backup_code\ndrop cascades to table two_factor_otp_used\ndrop cascades to table two_factor_rate_limit\ndrop cascades to table app_setting\ndrop cascades to table annotation\ndrop cascades to table api_key\ndrop cascades to table ai_chat\ndrop cascades to table ai_chat_message\ndrop cascades to table saved_analysis\ndrop cascades to table saved_analysis_revision\ndrop cascades to table analysis_operation\ndrop cascades to table analysis_confirmation\ndrop cascades to table analyst_task\nnode:internal/modules/run_main:123\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'Asia/Jakarta'\n- 'UTC'\n\n    at state (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/session-policy.ts:27:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async Promise.all (index 3)\n    at async <anonymous> (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/session-policy.ts:32:20)\n    at async check (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/session-policy.ts:19:63)\n    at async <anonymous> (/home/overfero/Project/ocbc/umami-analyst-slice-02/scripts/ai/analyst-evals/session-policy.ts:30:3) {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 'Asia/Jakarta',\n  expected: 'UTC',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v22.23.5\n",
+      "command": "PGOPTIONS='-c timezone=America/New_York' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/session-policy.ts"
+    },
+    {
+      "step": "utc-config-green",
+      "exitCode": 0,
+      "output": "\n RUN  v4.1.11 /home/overfero/Project/ocbc/umami-analyst-slice-02\n\n\n Test Files  2 passed (2)\n      Tests  15 passed (15)\n   Start at  20:33:58\n   Duration  1.45s (transform 145ms, setup 398ms, import 49ms, tests 124ms, environment 1.45s)\n\n",
+      "command": "npx --yes pnpm@12.3.4 exec vitest run src/lib/prisma-session.test.ts src/lib/prisma.test.ts"
+    },
+    {
+      "step": "utc-policy-green",
+      "exitCode": 0,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\nASSERTION base replica and AI physical pools start UTC preserving owned schema and options; reconnect stays UTC\nASSERTION raw Date and ORM create update filter preserve independent stored epochs; preseeded scalar array reads preserve instants\n(node:84466) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\nASSERTION Jakarta midnight half-open grouping and New York DST boundaries remain explicit under UTC sessions\nASSERTION trusted SET LOCAL nonUTC is unsupported inside transaction and restores UTC on commit and rollback\nEVIDENCE {\"suite\":\"session-policy-pg\",\"assertions\":[\"base replica and AI physical pools start UTC preserving owned schema and options; reconnect stays UTC\",\"raw Date and ORM create update filter preserve independent stored epochs; preseeded scalar array reads preserve instants\",\"Jakarta midnight half-open grouping and New York DST boundaries remain explicit under UTC sessions\",\"trusted SET LOCAL nonUTC is unsupported inside transaction and restores UTC on commit and rollback\"],\"passed\":true}\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table _prisma_migrations\ndrop cascades to table \"user\"\ndrop cascades to table session\ndrop cascades to table website\ndrop cascades to table website_event\ndrop cascades to table event_data\ndrop cascades to table team\ndrop cascades to table team_user\ndrop cascades to table session_data\ndrop cascades to table report\ndrop cascades to table segment\ndrop cascades to table revenue\ndrop cascades to table link\ndrop cascades to table pixel\ndrop cascades to table share\ndrop cascades to table board\ndrop cascades to table session_replay\ndrop cascades to table session_replay_saved\ndrop cascades to table heatmap_event\ndrop cascades to table session_link\ndrop cascades to table two_factor_auth\ndrop cascades to table two_factor_backup_code\ndrop cascades to table two_factor_otp_used\ndrop cascades to table two_factor_rate_limit\ndrop cascades to table app_setting\ndrop cascades to table annotation\ndrop cascades to table api_key\ndrop cascades to table ai_chat\ndrop cascades to table ai_chat_message\ndrop cascades to table saved_analysis\ndrop cascades to table saved_analysis_revision\ndrop cascades to table analysis_operation\ndrop cascades to table analysis_confirmation\ndrop cascades to table analyst_task\n",
+      "command": "PGOPTIONS='-c timezone=America/New_York' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/session-policy.ts"
+    },
+    {
+      "step": "utc-http-green",
+      "exitCode": 0,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\n(node:85038) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\nASSERTION native loopback schema discovery then meaningful clarification with persisted wait and no guessed mutation\nASSERTION declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies\nASSERTION partial failure after metadata writes rolls back board analyses revisions operation and task provenance\nASSERTION source revocation denies render authority and existing artifact release\nASSERTION foreign stale malformed and team-revoked references deny capability and artifact release\nEVIDENCE {\"suite\":\"authority-pg\",\"assertions\":[\"native loopback schema discovery then meaningful clarification with persisted wait and no guessed mutation\",\"declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies\",\"partial failure after metadata writes rolls back board analyses revisions operation and task provenance\",\"source revocation denies render authority and existing artifact release\",\"foreign stale malformed and team-revoked references deny capability and artifact release\"],\"passed\":true}\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table _prisma_migrations\ndrop cascades to table \"user\"\ndrop cascades to table session\ndrop cascades to table website\ndrop cascades to table website_event\ndrop cascades to table event_data\ndrop cascades to table team\ndrop cascades to table team_user\ndrop cascades to table session_data\ndrop cascades to table report\ndrop cascades to table segment\ndrop cascades to table revenue\ndrop cascades to table link\ndrop cascades to table pixel\ndrop cascades to table share\ndrop cascades to table board\ndrop cascades to table session_replay\ndrop cascades to table session_replay_saved\ndrop cascades to table heatmap_event\ndrop cascades to table session_link\ndrop cascades to table two_factor_auth\ndrop cascades to table two_factor_backup_code\ndrop cascades to table two_factor_otp_used\ndrop cascades to table two_factor_rate_limit\ndrop cascades to table app_setting\ndrop cascades to table annotation\ndrop cascades to table api_key\ndrop cascades to table ai_chat\ndrop cascades to table ai_chat_message\ndrop cascades to table saved_analysis\ndrop cascades to table saved_analysis_revision\ndrop cascades to table analysis_operation\ndrop cascades to table analysis_confirmation\ndrop cascades to table analyst_task\n",
+      "command": "PGOPTIONS='-c timezone=America/New_York' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/authority.ts"
+    },
+    {
+      "step": "utc-policy-expanded",
+      "exitCode": 0,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\nASSERTION base replica and AI physical pools start UTC preserving owned schema and options; reconnect stays UTC\nASSERTION raw Date and ORM create update filter preserve independent stored epochs; preseeded scalar array reads preserve instants\n(node:85360) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\nASSERTION Jakarta midnight half-open grouping and New York DST boundaries remain explicit under UTC sessions\nASSERTION trusted SET LOCAL nonUTC is unsupported inside transaction and restores UTC on commit and rollback\nEVIDENCE {\"suite\":\"session-policy-pg\",\"assertions\":[\"base replica and AI physical pools start UTC preserving owned schema and options; reconnect stays UTC\",\"raw Date and ORM create update filter preserve independent stored epochs; preseeded scalar array reads preserve instants\",\"Jakarta midnight half-open grouping and New York DST boundaries remain explicit under UTC sessions\",\"trusted SET LOCAL nonUTC is unsupported inside transaction and restores UTC on commit and rollback\"],\"passed\":true}\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table _prisma_migrations\ndrop cascades to table \"user\"\ndrop cascades to table session\ndrop cascades to table website\ndrop cascades to table website_event\ndrop cascades to table event_data\ndrop cascades to table team\ndrop cascades to table team_user\ndrop cascades to table session_data\ndrop cascades to table report\ndrop cascades to table segment\ndrop cascades to table revenue\ndrop cascades to table link\ndrop cascades to table pixel\ndrop cascades to table share\ndrop cascades to table board\ndrop cascades to table session_replay\ndrop cascades to table session_replay_saved\ndrop cascades to table heatmap_event\ndrop cascades to table session_link\ndrop cascades to table two_factor_auth\ndrop cascades to table two_factor_backup_code\ndrop cascades to table two_factor_otp_used\ndrop cascades to table two_factor_rate_limit\ndrop cascades to table app_setting\ndrop cascades to table annotation\ndrop cascades to table api_key\ndrop cascades to table ai_chat\ndrop cascades to table ai_chat_message\ndrop cascades to table saved_analysis\ndrop cascades to table saved_analysis_revision\ndrop cascades to table analysis_operation\ndrop cascades to table analysis_confirmation\ndrop cascades to table analyst_task\n",
+      "command": "PGOPTIONS='-c timezone=America/New_York' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/session-policy.ts"
+    },
+    {
+      "step": "utc-full",
+      "exitCode": 1,
+      "output": "RUN tsx scripts/test-analyst-api.ts --postgres\nDONE tsx scripts/test-analyst-api.ts --postgres (-c timezone=America/New_York)\nRUN tsx scripts/ai/analyst-evals/dashboard.ts postgres\nDONE tsx scripts/ai/analyst-evals/dashboard.ts postgres (-c timezone=UTC)\nRUN tsx scripts/ai/analyst-evals/dashboard.ts postgres\nDONE tsx scripts/ai/analyst-evals/dashboard.ts postgres (-c timezone=Asia/Jakarta)\nRUN tsx scripts/ai/analyst-evals/dashboard.ts postgres\nDONE tsx scripts/ai/analyst-evals/dashboard.ts postgres (-c timezone=America/New_York)\nRUN tsx scripts/test-analyst-api.ts --clickhouse\nDONE tsx scripts/test-analyst-api.ts --clickhouse (-c timezone=America/New_York)\nRUN tsx scripts/ai/analyst-evals/dashboard.ts clickhouse\nDONE tsx scripts/ai/analyst-evals/dashboard.ts clickhouse (-c timezone=UTC)\nRUN tsx scripts/ai/analyst-evals/dashboard.ts clickhouse\nDONE tsx scripts/ai/analyst-evals/dashboard.ts clickhouse (-c timezone=Asia/Jakarta)\nRUN tsx scripts/ai/analyst-evals/dashboard.ts clickhouse\nDONE tsx scripts/ai/analyst-evals/dashboard.ts clickhouse (-c timezone=America/New_York)\nRUN tsx scripts/ai/analyst-evals/authority.ts\nDONE tsx scripts/ai/analyst-evals/authority.ts (-c timezone=UTC)\nRUN tsx scripts/ai/analyst-evals/authority.ts\nDONE tsx scripts/ai/analyst-evals/authority.ts (-c timezone=Asia/Jakarta)\nRUN tsx scripts/ai/analyst-evals/authority.ts\nDONE tsx scripts/ai/analyst-evals/authority.ts (-c timezone=America/New_York)\nRUN vitest run -c scripts/ai/analyst-evals/vitest.config.ts --reporter=json --outputFile=/tmp/analyst-eval-SlpBQm/vitest.json\nDONE vitest run -c scripts/ai/analyst-evals/vitest.config.ts --reporter=json --outputFile=/tmp/analyst-eval-SlpBQm/vitest.json (default)\nRUN vitest run src/lib/analyst-verifier/authority.test.ts src/lib/analyst-verifier/port.test.ts --reporter=json --outputFile=/tmp/analyst-eval-SlpBQm/authority-vitest.json\nDONE vitest run src/lib/analyst-verifier/authority.test.ts src/lib/analyst-verifier/port.test.ts --reporter=json --outputFile=/tmp/analyst-eval-SlpBQm/authority-vitest.json (default)\nOffline assertion coverage: proven=1,2,3,4,5,6,7,8,9 pending=10,11,12\nNOT PASS: required evidence missing or failed; no visual/live verified claim.\n",
+      "command": "npx --yes pnpm@12.3.4 exec tsx scripts/ai/eval-analyst.ts --offline --strict --output scripts/ai/analyst-evals/evidence/utc-clarification-authority.json"
+    },
+    {
+      "step": "utc-regression",
+      "exitCode": 0,
+      "output": "JSON report written to /tmp/slice02-utc-regression.json\n",
+      "command": "npx --yes pnpm@12.3.4 exec vitest run src/lib/prisma-session.test.ts src/lib/prisma.test.ts src/lib/analyst src/lib/analyst-verifier src/lib/ai/assistant/analyst/analyst.test.ts --reporter=json --outputFile=/tmp/slice02-utc-regression.json"
+    },
+    {
+      "step": "utc-tsc",
+      "exitCode": 2,
+      "output": "src/app/(main)/websites/[websiteId]/events/EventsTable.tsx(46,46): error TS2322: Type '{ children: Element[]; alignItems: \"center\"; gap: \"2\"; flexWrap: string; style: { minWidth: number; }; }' is not assignable to type 'IntrinsicAttributes & RowProps'.\n  Property 'flexWrap' does not exist on type 'IntrinsicAttributes & RowProps'.\nsrc/app/(main)/websites/[websiteId]/events/EventsTable.tsx(54,44): error TS2322: Type '{ children: Element[]; alignItems: \"center\"; gap: true; flexWrap: string; style: { minWidth: number; }; }' is not assignable to type 'IntrinsicAttributes & RowProps'.\n  Property 'flexWrap' does not exist on type 'IntrinsicAttributes & RowProps'.\nsrc/app/api/admin/users/[userId]/2fa/route.test.ts(61,3): error TS2589: Type instantiation is excessively deep and possibly infinite.\n",
+      "command": "npx --yes pnpm@12.3.4 exec tsc --noEmit"
+    },
+    {
+      "step": "utc-matrix-1",
+      "exitCode": 0,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\nASSERTION base replica and AI physical pools start UTC preserving owned schema and options; reconnect stays UTC\nASSERTION raw Date and ORM create update filter preserve independent stored epochs; preseeded scalar array reads preserve instants\n(node:87471) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\nASSERTION Jakarta midnight half-open grouping and New York DST boundaries remain explicit under UTC sessions\nASSERTION trusted SET LOCAL nonUTC is unsupported inside transaction and restores UTC on commit and rollback\nEVIDENCE {\"suite\":\"session-policy-pg\",\"assertions\":[\"base replica and AI physical pools start UTC preserving owned schema and options; reconnect stays UTC\",\"raw Date and ORM create update filter preserve independent stored epochs; preseeded scalar array reads preserve instants\",\"Jakarta midnight half-open grouping and New York DST boundaries remain explicit under UTC sessions\",\"trusted SET LOCAL nonUTC is unsupported inside transaction and restores UTC on commit and rollback\"],\"passed\":true}\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table _prisma_migrations\ndrop cascades to table \"user\"\ndrop cascades to table session\ndrop cascades to table website\ndrop cascades to table website_event\ndrop cascades to table event_data\ndrop cascades to table team\ndrop cascades to table team_user\ndrop cascades to table session_data\ndrop cascades to table report\ndrop cascades to table segment\ndrop cascades to table revenue\ndrop cascades to table link\ndrop cascades to table pixel\ndrop cascades to table share\ndrop cascades to table board\ndrop cascades to table session_replay\ndrop cascades to table session_replay_saved\ndrop cascades to table heatmap_event\ndrop cascades to table session_link\ndrop cascades to table two_factor_auth\ndrop cascades to table two_factor_backup_code\ndrop cascades to table two_factor_otp_used\ndrop cascades to table two_factor_rate_limit\ndrop cascades to table app_setting\ndrop cascades to table annotation\ndrop cascades to table api_key\ndrop cascades to table ai_chat\ndrop cascades to table ai_chat_message\ndrop cascades to table saved_analysis\ndrop cascades to table saved_analysis_revision\ndrop cascades to table analysis_operation\ndrop cascades to table analysis_confirmation\ndrop cascades to table analyst_task\n",
+      "command": "TZ=UTC PGOPTIONS='-c timezone=UTC' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/session-policy.ts"
+    },
+    {
+      "step": "utc-matrix-2",
+      "exitCode": 0,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\nASSERTION base replica and AI physical pools start UTC preserving owned schema and options; reconnect stays UTC\nASSERTION raw Date and ORM create update filter preserve independent stored epochs; preseeded scalar array reads preserve instants\n(node:87799) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\nASSERTION Jakarta midnight half-open grouping and New York DST boundaries remain explicit under UTC sessions\nASSERTION trusted SET LOCAL nonUTC is unsupported inside transaction and restores UTC on commit and rollback\nEVIDENCE {\"suite\":\"session-policy-pg\",\"assertions\":[\"base replica and AI physical pools start UTC preserving owned schema and options; reconnect stays UTC\",\"raw Date and ORM create update filter preserve independent stored epochs; preseeded scalar array reads preserve instants\",\"Jakarta midnight half-open grouping and New York DST boundaries remain explicit under UTC sessions\",\"trusted SET LOCAL nonUTC is unsupported inside transaction and restores UTC on commit and rollback\"],\"passed\":true}\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table _prisma_migrations\ndrop cascades to table \"user\"\ndrop cascades to table session\ndrop cascades to table website\ndrop cascades to table website_event\ndrop cascades to table event_data\ndrop cascades to table team\ndrop cascades to table team_user\ndrop cascades to table session_data\ndrop cascades to table report\ndrop cascades to table segment\ndrop cascades to table revenue\ndrop cascades to table link\ndrop cascades to table pixel\ndrop cascades to table share\ndrop cascades to table board\ndrop cascades to table session_replay\ndrop cascades to table session_replay_saved\ndrop cascades to table heatmap_event\ndrop cascades to table session_link\ndrop cascades to table two_factor_auth\ndrop cascades to table two_factor_backup_code\ndrop cascades to table two_factor_otp_used\ndrop cascades to table two_factor_rate_limit\ndrop cascades to table app_setting\ndrop cascades to table annotation\ndrop cascades to table api_key\ndrop cascades to table ai_chat\ndrop cascades to table ai_chat_message\ndrop cascades to table saved_analysis\ndrop cascades to table saved_analysis_revision\ndrop cascades to table analysis_operation\ndrop cascades to table analysis_confirmation\ndrop cascades to table analyst_task\n",
+      "command": "TZ=UTC PGOPTIONS='-c timezone=Asia/Jakarta' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/session-policy.ts"
+    },
+    {
+      "step": "utc-matrix-3",
+      "exitCode": 0,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\nASSERTION base replica and AI physical pools start UTC preserving owned schema and options; reconnect stays UTC\nASSERTION raw Date and ORM create update filter preserve independent stored epochs; preseeded scalar array reads preserve instants\n(node:88110) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\nASSERTION Jakarta midnight half-open grouping and New York DST boundaries remain explicit under UTC sessions\nASSERTION trusted SET LOCAL nonUTC is unsupported inside transaction and restores UTC on commit and rollback\nEVIDENCE {\"suite\":\"session-policy-pg\",\"assertions\":[\"base replica and AI physical pools start UTC preserving owned schema and options; reconnect stays UTC\",\"raw Date and ORM create update filter preserve independent stored epochs; preseeded scalar array reads preserve instants\",\"Jakarta midnight half-open grouping and New York DST boundaries remain explicit under UTC sessions\",\"trusted SET LOCAL nonUTC is unsupported inside transaction and restores UTC on commit and rollback\"],\"passed\":true}\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table _prisma_migrations\ndrop cascades to table \"user\"\ndrop cascades to table session\ndrop cascades to table website\ndrop cascades to table website_event\ndrop cascades to table event_data\ndrop cascades to table team\ndrop cascades to table team_user\ndrop cascades to table session_data\ndrop cascades to table report\ndrop cascades to table segment\ndrop cascades to table revenue\ndrop cascades to table link\ndrop cascades to table pixel\ndrop cascades to table share\ndrop cascades to table board\ndrop cascades to table session_replay\ndrop cascades to table session_replay_saved\ndrop cascades to table heatmap_event\ndrop cascades to table session_link\ndrop cascades to table two_factor_auth\ndrop cascades to table two_factor_backup_code\ndrop cascades to table two_factor_otp_used\ndrop cascades to table two_factor_rate_limit\ndrop cascades to table app_setting\ndrop cascades to table annotation\ndrop cascades to table api_key\ndrop cascades to table ai_chat\ndrop cascades to table ai_chat_message\ndrop cascades to table saved_analysis\ndrop cascades to table saved_analysis_revision\ndrop cascades to table analysis_operation\ndrop cascades to table analysis_confirmation\ndrop cascades to table analyst_task\n",
+      "command": "TZ=UTC PGOPTIONS='-c timezone=America/New_York' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/session-policy.ts"
+    },
+    {
+      "step": "utc-matrix-4",
+      "exitCode": 0,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\nASSERTION base replica and AI physical pools start UTC preserving owned schema and options; reconnect stays UTC\nASSERTION raw Date and ORM create update filter preserve independent stored epochs; preseeded scalar array reads preserve instants\n(node:88497) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\nASSERTION Jakarta midnight half-open grouping and New York DST boundaries remain explicit under UTC sessions\nASSERTION trusted SET LOCAL nonUTC is unsupported inside transaction and restores UTC on commit and rollback\nEVIDENCE {\"suite\":\"session-policy-pg\",\"assertions\":[\"base replica and AI physical pools start UTC preserving owned schema and options; reconnect stays UTC\",\"raw Date and ORM create update filter preserve independent stored epochs; preseeded scalar array reads preserve instants\",\"Jakarta midnight half-open grouping and New York DST boundaries remain explicit under UTC sessions\",\"trusted SET LOCAL nonUTC is unsupported inside transaction and restores UTC on commit and rollback\"],\"passed\":true}\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table _prisma_migrations\ndrop cascades to table \"user\"\ndrop cascades to table session\ndrop cascades to table website\ndrop cascades to table website_event\ndrop cascades to table event_data\ndrop cascades to table team\ndrop cascades to table team_user\ndrop cascades to table session_data\ndrop cascades to table report\ndrop cascades to table segment\ndrop cascades to table revenue\ndrop cascades to table link\ndrop cascades to table pixel\ndrop cascades to table share\ndrop cascades to table board\ndrop cascades to table session_replay\ndrop cascades to table session_replay_saved\ndrop cascades to table heatmap_event\ndrop cascades to table session_link\ndrop cascades to table two_factor_auth\ndrop cascades to table two_factor_backup_code\ndrop cascades to table two_factor_otp_used\ndrop cascades to table two_factor_rate_limit\ndrop cascades to table app_setting\ndrop cascades to table annotation\ndrop cascades to table api_key\ndrop cascades to table ai_chat\ndrop cascades to table ai_chat_message\ndrop cascades to table saved_analysis\ndrop cascades to table saved_analysis_revision\ndrop cascades to table analysis_operation\ndrop cascades to table analysis_confirmation\ndrop cascades to table analyst_task\n",
+      "command": "TZ=Asia/Jakarta PGOPTIONS='-c timezone=America/New_York' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/session-policy.ts"
+    },
+    {
+      "step": "utc-matrix-5",
+      "exitCode": 0,
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nPrisma schema loaded from prisma/schema.prisma.\nASSERTION base replica and AI physical pools start UTC preserving owned schema and options; reconnect stays UTC\nASSERTION raw Date and ORM create update filter preserve independent stored epochs; preseeded scalar array reads preserve instants\n(node:88808) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\nASSERTION Jakarta midnight half-open grouping and New York DST boundaries remain explicit under UTC sessions\nASSERTION trusted SET LOCAL nonUTC is unsupported inside transaction and restores UTC on commit and rollback\nEVIDENCE {\"suite\":\"session-policy-pg\",\"assertions\":[\"base replica and AI physical pools start UTC preserving owned schema and options; reconnect stays UTC\",\"raw Date and ORM create update filter preserve independent stored epochs; preseeded scalar array reads preserve instants\",\"Jakarta midnight half-open grouping and New York DST boundaries remain explicit under UTC sessions\",\"trusted SET LOCAL nonUTC is unsupported inside transaction and restores UTC on commit and rollback\"],\"passed\":true}\nNOTICE:  drop cascades to 34 other objects\nDETAIL:  drop cascades to table _prisma_migrations\ndrop cascades to table \"user\"\ndrop cascades to table session\ndrop cascades to table website\ndrop cascades to table website_event\ndrop cascades to table event_data\ndrop cascades to table team\ndrop cascades to table team_user\ndrop cascades to table session_data\ndrop cascades to table report\ndrop cascades to table segment\ndrop cascades to table revenue\ndrop cascades to table link\ndrop cascades to table pixel\ndrop cascades to table share\ndrop cascades to table board\ndrop cascades to table session_replay\ndrop cascades to table session_replay_saved\ndrop cascades to table heatmap_event\ndrop cascades to table session_link\ndrop cascades to table two_factor_auth\ndrop cascades to table two_factor_backup_code\ndrop cascades to table two_factor_otp_used\ndrop cascades to table two_factor_rate_limit\ndrop cascades to table app_setting\ndrop cascades to table annotation\ndrop cascades to table api_key\ndrop cascades to table ai_chat\ndrop cascades to table ai_chat_message\ndrop cascades to table saved_analysis\ndrop cascades to table saved_analysis_revision\ndrop cascades to table analysis_operation\ndrop cascades to table analysis_confirmation\ndrop cascades to table analyst_task\n",
+      "command": "TZ=America/New_York PGOPTIONS='-c timezone=Asia/Jakarta' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/session-policy.ts"
+    },
+    {
+      "step": "utc-upstream-America-New_York",
+      "exitCode": 0,
+      "output": "{\"mode\":\"raw-upstream-adapter-without-application-policy\",\"tableType\":\"timestamptz(6)\",\"expectedStartEpoch\":1790812800000,\"literal\":\"1|1790816400000.000000\",\"date\":{\"parameterType\":\"Date\",\"input\":\"2026-10-01T00:00:00.000Z\",\"timezone\":\"America/New_York\",\"timestamptz_epoch\":\"1790827200000\",\"timestamp_wall\":\"2026-10-01 00:00:00\",\"seed_in_bound_range\":false},\"iso\":{\"parameterType\":\"offset-aware ISO string\",\"input\":\"2026-10-01T00:00:00.000Z\",\"timezone\":\"America/New_York\",\"timestamptz_epoch\":\"1790812800000\",\"timestamp_wall\":\"2026-09-30 20:00:00\",\"seed_in_bound_range\":true}}\nNOTICE:  drop cascades to table analyst_bind_1794923391106_94658.website_event\n",
+      "command": "PGOPTIONS='-c timezone=America/New_York' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/schema-bind-diagnostic.ts"
+    },
+    {
+      "step": "utc-upstream-Asia-Jakarta",
+      "exitCode": 0,
+      "output": "{\"mode\":\"raw-upstream-adapter-without-application-policy\",\"tableType\":\"timestamptz(6)\",\"expectedStartEpoch\":1790812800000,\"literal\":\"1|1790816400000.000000\",\"date\":{\"parameterType\":\"Date\",\"input\":\"2026-10-01T00:00:00.000Z\",\"timezone\":\"Asia/Jakarta\",\"timestamptz_epoch\":\"1790787600000\",\"timestamp_wall\":\"2026-10-01 00:00:00\",\"seed_in_bound_range\":true},\"iso\":{\"parameterType\":\"offset-aware ISO string\",\"input\":\"2026-10-01T00:00:00.000Z\",\"timezone\":\"Asia/Jakarta\",\"timestamptz_epoch\":\"1790812800000\",\"timestamp_wall\":\"2026-10-01 07:00:00\",\"seed_in_bound_range\":true}}\nNOTICE:  drop cascades to table analyst_bind_1794923395553_94754.website_event\n",
+      "command": "PGOPTIONS='-c timezone=Asia/Jakarta' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/schema-bind-diagnostic.ts"
+    },
+    {
+      "step": "utc-upstream-UTC",
+      "exitCode": 0,
+      "output": "{\"mode\":\"raw-upstream-adapter-without-application-policy\",\"tableType\":\"timestamptz(6)\",\"expectedStartEpoch\":1790812800000,\"literal\":\"1|1790816400000.000000\",\"date\":{\"parameterType\":\"Date\",\"input\":\"2026-10-01T00:00:00.000Z\",\"timezone\":\"UTC\",\"timestamptz_epoch\":\"1790812800000\",\"timestamp_wall\":\"2026-10-01 00:00:00\",\"seed_in_bound_range\":true},\"iso\":{\"parameterType\":\"offset-aware ISO string\",\"input\":\"2026-10-01T00:00:00.000Z\",\"timezone\":\"UTC\",\"timestamptz_epoch\":\"1790812800000\",\"timestamp_wall\":\"2026-10-01 00:00:00\",\"seed_in_bound_range\":true}}\nNOTICE:  drop cascades to table analyst_bind_1794923402449_94870.website_event\n",
+      "command": "PGOPTIONS='-c timezone=UTC' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/schema-bind-diagnostic.ts"
+    }
+  ],
+  "matrix": [
+    {
+      "case": 1,
+      "processTimezone": "UTC",
+      "requestedSessionTimezone": "UTC",
+      "command": "TZ=UTC PGOPTIONS='-c timezone=UTC' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/session-policy.ts",
+      "exitCode": 0
+    },
+    {
+      "case": 2,
+      "processTimezone": "UTC",
+      "requestedSessionTimezone": "Asia/Jakarta",
+      "command": "TZ=UTC PGOPTIONS='-c timezone=Asia/Jakarta' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/session-policy.ts",
+      "exitCode": 0
+    },
+    {
+      "case": 3,
+      "processTimezone": "UTC",
+      "requestedSessionTimezone": "America/New_York",
+      "command": "TZ=UTC PGOPTIONS='-c timezone=America/New_York' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/session-policy.ts",
+      "exitCode": 0
+    },
+    {
+      "case": 4,
+      "processTimezone": "Asia/Jakarta",
+      "requestedSessionTimezone": "America/New_York",
+      "command": "TZ=Asia/Jakarta PGOPTIONS='-c timezone=America/New_York' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/session-policy.ts",
+      "exitCode": 0
+    },
+    {
+      "case": 5,
+      "processTimezone": "America/New_York",
+      "requestedSessionTimezone": "Asia/Jakarta",
+      "command": "TZ=America/New_York PGOPTIONS='-c timezone=Asia/Jakarta' npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/session-policy.ts",
+      "exitCode": 0
+    }
+  ],
+  "regressionReport": {
+    "numTotalTestSuites": 17,
+    "numPassedTestSuites": 17,
+    "numFailedTestSuites": 0,
+    "numPendingTestSuites": 0,
+    "numTotalTests": 104,
+    "numPassedTests": 104,
+    "numFailedTests": 0,
+    "numPendingTests": 0,
+    "numTodoTests": 0,
+    "snapshot": {
+      "added": 0,
+      "failure": false,
+      "filesAdded": 0,
+      "filesRemoved": 0,
+      "filesRemovedList": [],
+      "filesUnmatched": 0,
+      "filesUpdated": 0,
+      "matched": 0,
+      "total": 0,
+      "unchecked": 0,
+      "uncheckedKeysByFile": [],
+      "unmatched": 0,
+      "updated": 0,
+      "didUpdate": false
+    },
+    "startTime": 1794923290209,
+    "success": true,
+    "testResults": [
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "applies UTC last after inherited and URL startup options while preserving schema and other options",
+            "status": "passed",
+            "title": "applies UTC last after inherited and URL startup options while preserving schema and other options",
+            "duration": 10.545497999999952,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "fails closed on duplicate URL options or trailing escapes rather than guessing precedence",
+            "status": "passed",
+            "title": "fails closed on duplicate URL options or trailing escapes rather than guessing precedence",
+            "duration": 2.188778000000184,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923293638,
+        "endTime": 1794923293650.1887,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/prisma-session.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [
+              "getRawQueryClient"
+            ],
+            "fullName": "getRawQueryClient uses a replica client for read queries when replicas are enabled",
+            "status": "passed",
+            "title": "uses a replica client for read queries when replicas are enabled",
+            "duration": 31.46111400000018,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getRawQueryClient"
+            ],
+            "fullName": "getRawQueryClient keeps read queries on the primary client when replicas are disabled",
+            "status": "passed",
+            "title": "keeps read queries on the primary client when replicas are disabled",
+            "duration": 1.2556859999999688,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getRawQueryClient"
+            ],
+            "fullName": "getRawQueryClient uses the primary client for raw writes when available",
+            "status": "passed",
+            "title": "uses the primary client for raw writes when available",
+            "duration": 0.9674310000000332,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getRawQueryClient"
+            ],
+            "fullName": "getRawQueryClient falls back to the current client for raw writes without a primary helper",
+            "status": "passed",
+            "title": "falls back to the current client for raw writes without a primary helper",
+            "duration": 0.7680890000001455,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getDateSQL timezone formatting"
+            ],
+            "fullName": "getDateSQL timezone formatting formats UTC (default) buckets with an explicit zone and a Z marker",
+            "status": "passed",
+            "title": "formats UTC (default) buckets with an explicit zone and a Z marker",
+            "duration": 0.7344140000000152,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getDateSQL timezone formatting"
+            ],
+            "fullName": "getDateSQL timezone formatting formats non-UTC buckets with the same explicit Z marker, not a bare timestamp",
+            "status": "passed",
+            "title": "formats non-UTC buckets with the same explicit Z marker, not a bare timestamp",
+            "duration": 1.307922999999846,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getDateStringSQL timezone formatting"
+            ],
+            "fullName": "getDateStringSQL timezone formatting formats non-UTC second-precision values with an explicit Z marker",
+            "status": "passed",
+            "title": "formats non-UTC second-precision values with an explicit Z marker",
+            "duration": 1.9153870000000097,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getDateStringSQL timezone formatting"
+            ],
+            "fullName": "getDateStringSQL timezone formatting defaults to explicit UTC formatting regardless of unit when no timezone is given",
+            "status": "passed",
+            "title": "defaults to explicit UTC formatting regardless of unit when no timezone is given",
+            "duration": 1.7648930000000291,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getDateWeeklySQL timezone formatting"
+            ],
+            "fullName": "getDateWeeklySQL timezone formatting falls back to UTC instead of producing invalid SQL when no timezone is given",
+            "status": "passed",
+            "title": "falls back to UTC instead of producing invalid SQL when no timezone is given",
+            "duration": 1.6495390000000043,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "getDateWeeklySQL timezone formatting"
+            ],
+            "fullName": "getDateWeeklySQL timezone formatting uses the given timezone when one is provided",
+            "status": "passed",
+            "title": "uses the given timezone when one is provided",
+            "duration": 2.117917999999918,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "pagedRawQuery default ordering"
+            ],
+            "fullName": "pagedRawQuery default ordering applies trusted default order only to the page query with cap undefined",
+            "status": "passed",
+            "title": "applies trusted default order only to the page query with cap undefined",
+            "duration": 3.698961000000054,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "pagedRawQuery default ordering"
+            ],
+            "fullName": "pagedRawQuery default ordering applies trusted default order only to the page query with cap 5",
+            "status": "passed",
+            "title": "applies trusted default order only to the page query with cap 5",
+            "duration": 1.4918459999998959,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "pagedRawQuery default ordering"
+            ],
+            "fullName": "pagedRawQuery default ordering keeps explicit ordering and legacy no-order behavior",
+            "status": "passed",
+            "title": "keeps explicit ordering and legacy no-order behavior",
+            "duration": 8.245967000000292,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923292929,
+        "endTime": 1794923292988.2458,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/prisma.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix accepts { operation: 'series', metric: 'pageviews', unit: 'day' }",
+            "status": "passed",
+            "title": "accepts { operation: 'series', metric: 'pageviews', unit: 'day' }",
+            "duration": 15.090438000000177,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix accepts { operation: 'series', metric: 'sessions', unit: 'hour' }",
+            "status": "passed",
+            "title": "accepts { operation: 'series', metric: 'sessions', unit: 'hour' }",
+            "duration": 0.8972640000001775,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix accepts { operation: 'series', metric: 'events', unit: 'month', event: 'signup' }",
+            "status": "passed",
+            "title": "accepts { operation: 'series', metric: 'events', unit: 'month', event: 'signup' }",
+            "duration": 0.5889870000000883,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix accepts { operation: 'breakdown', metric: 'sessions', groupBy: { dimension: 'country', top: 5 } }",
+            "status": "passed",
+            "title": "accepts { operation: 'breakdown', metric: 'sessions', groupBy: { dimension: 'country', top: 5 } }",
+            "duration": 0.8582669999996142,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix accepts { operation: 'breakdown', metric: 'events', event: 'signup', groupBy: { dimension: 'path' } }",
+            "status": "passed",
+            "title": "accepts { operation: 'breakdown', metric: 'events', event: 'signup', groupBy: { dimension: 'path' } }",
+            "duration": 0.4857879999999568,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix accepts { operation: 'totals', metric: 'visits' }",
+            "status": "passed",
+            "title": "accepts { operation: 'totals', metric: 'visits' }",
+            "duration": 0.42676899999969464,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix accepts { operation: 'totals', metric: 'identified_users' }",
+            "status": "passed",
+            "title": "accepts { operation: 'totals', metric: 'identified_users' }",
+            "duration": 0.4338710000001811,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix accepts { operation: 'totals', metric: 'events', event: 'signup' }",
+            "status": "passed",
+            "title": "accepts { operation: 'totals', metric: 'events', event: 'signup' }",
+            "duration": 0.42720100000042294,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix accepts { operation: 'numeric_property', metric: 'median', event: 'buy', property: { owner: 'event', name: 'amount' } }",
+            "status": "passed",
+            "title": "accepts { operation: 'numeric_property', metric: 'median', event: 'buy', property: { owner: 'event', name: 'amount' } }",
+            "duration": 0.9464410000000498,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix accepts { operation: 'numeric_property', metric: 'count', property: { owner: 'session', name: 'age' } }",
+            "status": "passed",
+            "title": "accepts { operation: 'numeric_property', metric: 'count', property: { owner: 'session', name: 'age' } }",
+            "duration": 1.176144000000022,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { operation: 'series', metric: 'visitors', unit: 'day' } as unsupported_combination",
+            "status": "passed",
+            "title": "rejects { operation: 'series', metric: 'visitors', unit: 'day' } as unsupported_combination",
+            "duration": 1.9782070000001113,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { operation: 'breakdown', metric: 'pageviews', groupBy: { dimension: 'path' } } as unsupported_combination",
+            "status": "passed",
+            "title": "rejects { operation: 'breakdown', metric: 'pageviews', groupBy: { dimension: 'path' } } as unsupported_combination",
+            "duration": 1.0277809999997771,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { operation: 'totals', metric: 'events' } as invalid_definition",
+            "status": "passed",
+            "title": "rejects { operation: 'totals', metric: 'events' } as invalid_definition",
+            "duration": 0.6162850000000617,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { operation: 'totals', metric: 'pageviews', event: 'x' } as unsupported_combination",
+            "status": "passed",
+            "title": "rejects { operation: 'totals', metric: 'pageviews', event: 'x' } as unsupported_combination",
+            "duration": 0.8330969999997251,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { operation: 'series', metric: 'pageviews' } as invalid_definition",
+            "status": "passed",
+            "title": "rejects { operation: 'series', metric: 'pageviews' } as invalid_definition",
+            "duration": 0.4555979999995543,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { operation: 'totals', metric: 'pageviews', unit: 'day' } as unsupported_combination",
+            "status": "passed",
+            "title": "rejects { operation: 'totals', metric: 'pageviews', unit: 'day' } as unsupported_combination",
+            "duration": 0.33399699999972654,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { operation: 'breakdown', metric: 'sessions' } as invalid_definition",
+            "status": "passed",
+            "title": "rejects { operation: 'breakdown', metric: 'sessions' } as invalid_definition",
+            "duration": 0.3960900000001857,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { operation: 'numeric_property', metric: 'sum', property: { owner: 'event', name: 'a' } } as invalid_definition",
+            "status": "passed",
+            "title": "rejects { operation: 'numeric_property', metric: 'sum', property: { owner: 'event', name: 'a' } } as invalid_definition",
+            "duration": 0.42558699999972305,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { operation: 'numeric_property', metric: 'p99', property: { owner: 'session', name: 'a' } } as unsupported_combination",
+            "status": "passed",
+            "title": "rejects { operation: 'numeric_property', metric: 'p99', property: { owner: 'session', name: 'a' } } as unsupported_combination",
+            "duration": 0.2865220000003319,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { operation: 'totals', metric: 'identified_users', filters: [ { dimension: 'country', operator: 'eq', values: [ 'DE' ] } ] } as unsupported_combination",
+            "status": "passed",
+            "title": "rejects { operation: 'totals', metric: 'identified_users', filters: [ { dimension: 'country', operator: 'eq', values: [ 'DE' ] } ] } as unsupported_combination",
+            "duration": 0.8201550000003408,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { filters: [ { dimension: 'sql', operator: 'eq', values: [ 'x' ] } ] } as unsupported_filter",
+            "status": "passed",
+            "title": "rejects { filters: [ { dimension: 'sql', operator: 'eq', values: [ 'x' ] } ] } as unsupported_filter",
+            "duration": 0.8881250000004002,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { filters: [ { dimension: 'path', operator: 're', values: [ 'x' ] } ] } as unsupported_filter",
+            "status": "passed",
+            "title": "rejects { filters: [ { dimension: 'path', operator: 're', values: [ 'x' ] } ] } as unsupported_filter",
+            "duration": 0.37740500000018073,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { filters: [ { dimension: 'path', operator: 'neq', values: [ 'a,b' ] } ] } as unsupported_filter",
+            "status": "passed",
+            "title": "rejects { filters: [ { dimension: 'path', operator: 'neq', values: [ 'a,b' ] } ] } as unsupported_filter",
+            "duration": 0.38015100000029634,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { filters: [ { dimension: 'country', operator: 'eq', values: [ 'DE,FR' ] } ] } as unsupported_filter",
+            "status": "passed",
+            "title": "rejects { filters: [ { dimension: 'country', operator: 'eq', values: [ 'DE,FR' ] } ] } as unsupported_filter",
+            "duration": 0.30943699999988894,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { propertyFilters: [ { owner: 'session', name: 'n', dataType: 2, operator: 'gt', value: 'abc' } ] } as unsupported_filter",
+            "status": "passed",
+            "title": "rejects { propertyFilters: [ { owner: 'session', name: 'n', dataType: 2, operator: 'gt', value: 'abc' } ] } as unsupported_filter",
+            "duration": 0.9529649999994945,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { propertyFilters: [ { owner: 'session', name: 'b', dataType: 3, operator: 't', value: 'x' } ] } as unsupported_filter",
+            "status": "passed",
+            "title": "rejects { propertyFilters: [ { owner: 'session', name: 'b', dataType: 3, operator: 't', value: 'x' } ] } as unsupported_filter",
+            "duration": 0.5287890000008701,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { propertyFilters: [ { owner: 'session', name: 's', dataType: 1, operator: 'eq', value: '' } ] } as unsupported_filter",
+            "status": "passed",
+            "title": "rejects { propertyFilters: [ { owner: 'session', name: 's', dataType: 1, operator: 'eq', value: '' } ] } as unsupported_filter",
+            "duration": 0.45265699999981734,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { datePolicy: { type: 'fixed', startAt: 5, endAt: 5 } } as invalid_definition",
+            "status": "passed",
+            "title": "rejects { datePolicy: { type: 'fixed', startAt: 5, endAt: 5 } } as invalid_definition",
+            "duration": 0.29733699999997043,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { datePolicy: { type: 'rolling', window: '365d' } } as invalid_definition",
+            "status": "passed",
+            "title": "rejects { datePolicy: { type: 'rolling', window: '365d' } } as invalid_definition",
+            "duration": 0.5516229999993811,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { timezone: 'Mars/Base' } as invalid_definition",
+            "status": "passed",
+            "title": "rejects { timezone: 'Mars/Base' } as invalid_definition",
+            "duration": 0.37552599999980885,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { schemaVersion: 2 } as unsupported_schema_version",
+            "status": "passed",
+            "title": "rejects { schemaVersion: 2 } as unsupported_schema_version",
+            "duration": 0.15582800000083807,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { sql: 'select 1' } as invalid_definition",
+            "status": "passed",
+            "title": "rejects { sql: 'select 1' } as invalid_definition",
+            "duration": 0.32710899999983667,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix rejects { limits: { maxRows: 100000 } } as invalid_definition",
+            "status": "passed",
+            "title": "rejects { limits: { maxRows: 100000 } } as invalid_definition",
+            "duration": 0.3032389999998486,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "definition v1 compatibility matrix"
+            ],
+            "fullName": "definition v1 compatibility matrix every matrix entry is reachable and matrix keys equal the operation enum",
+            "status": "passed",
+            "title": "every matrix entry is reachable and matrix keys equal the operation enum",
+            "duration": 0.6201950000004217,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "normalization and hashing"
+            ],
+            "fullName": "normalization and hashing hash ignores filter order, duplicate eq values and timezone alias but not semantics",
+            "status": "passed",
+            "title": "hash ignores filter order, duplicate eq values and timezone alias but not semantics",
+            "duration": 3.826748000000407,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "normalization and hashing"
+            ],
+            "fullName": "normalization and hashing renderer compatibility follows result shape",
+            "status": "passed",
+            "title": "renderer compatibility follows result shape",
+            "duration": 1.1640679999991335,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "date policy resolution"
+            ],
+            "fullName": "date policy resolution today starts at local midnight; 24h is elapsed time",
+            "status": "passed",
+            "title": "today starts at local midnight; 24h is elapsed time",
+            "duration": 5.288477999999486,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "date policy resolution"
+            ],
+            "fullName": "date policy resolution 7d starts at local midnight six calendar days back across DST",
+            "status": "passed",
+            "title": "7d starts at local midnight six calendar days back across DST",
+            "duration": 0.8545750000002954,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "date policy resolution"
+            ],
+            "fullName": "date policy resolution fixed half-open range maps to native inclusive bounds by excluding the end millisecond",
+            "status": "passed",
+            "title": "fixed half-open range maps to native inclusive bounds by excluding the end millisecond",
+            "duration": 0.2981710000003659,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923296278,
+        "endTime": 1794923296325.298,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/analyst/definition.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [
+              "analyst feature opt-ins"
+            ],
+            "fullName": "analyst feature opt-ins keeps features disabled for undefined",
+            "status": "passed",
+            "title": "keeps features disabled for undefined",
+            "duration": 21.52556999999979,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "analyst feature opt-ins"
+            ],
+            "fullName": "analyst feature opt-ins keeps features disabled for ",
+            "status": "passed",
+            "title": "keeps features disabled for ",
+            "duration": 1.305757000000085,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "analyst feature opt-ins"
+            ],
+            "fullName": "analyst feature opt-ins keeps features disabled for false",
+            "status": "passed",
+            "title": "keeps features disabled for false",
+            "duration": 1.320140000000265,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "analyst feature opt-ins"
+            ],
+            "fullName": "analyst feature opt-ins keeps features disabled for 0",
+            "status": "passed",
+            "title": "keeps features disabled for 0",
+            "duration": 0.8895469999997658,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "analyst feature opt-ins"
+            ],
+            "fullName": "analyst feature opt-ins keeps features disabled for 1",
+            "status": "passed",
+            "title": "keeps features disabled for 1",
+            "duration": 0.8189809999998943,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "analyst feature opt-ins"
+            ],
+            "fullName": "analyst feature opt-ins keeps features disabled for TRUE",
+            "status": "passed",
+            "title": "keeps features disabled for TRUE",
+            "duration": 0.5226999999999862,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "analyst feature opt-ins"
+            ],
+            "fullName": "analyst feature opt-ins keeps features disabled for  true",
+            "status": "passed",
+            "title": "keeps features disabled for  true",
+            "duration": 0.8153109999998378,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "analyst feature opt-ins"
+            ],
+            "fullName": "analyst feature opt-ins keeps features disabled for true ",
+            "status": "passed",
+            "title": "keeps features disabled for true ",
+            "duration": 0.5534569999999803,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [
+              "analyst feature opt-ins"
+            ],
+            "fullName": "analyst feature opt-ins requires independent explicit opt-ins",
+            "status": "passed",
+            "title": "requires independent explicit opt-ins",
+            "duration": 0.7709429999999884,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923292970,
+        "endTime": 1794923292998.771,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/analyst/flags.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "allows only an active task at exact board/analysis revisions with current view rights",
+            "status": "passed",
+            "title": "allows only an active task at exact board/analysis revisions with current view rights",
+            "duration": 4.605756000000838,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "prepares a deeply frozen saved board and exact execution envelope",
+            "status": "passed",
+            "title": "prepares a deeply frozen saved board and exact execution envelope",
+            "duration": 2.122545000000173,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "rejects foreign, stale, failed and mismatched envelopes rather than minting receipts",
+            "status": "passed",
+            "title": "rejects foreign, stale, failed and mismatched envelopes rather than minting receipts",
+            "duration": 2.939220000000205,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "rechecks authority after execution and rejects unsupported or incomplete widget sets",
+            "status": "passed",
+            "title": "rechecks authority after execution and rejects unsupported or incomplete widget sets",
+            "duration": 0.8528690000002825,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "native preparation refuses revoked sources before querying",
+            "status": "passed",
+            "title": "native preparation refuses revoked sources before querying",
+            "duration": 0.7579279999999926,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "prepares supported native widgets through the native stats helpers with exact source and hash",
+            "status": "passed",
+            "title": "prepares supported native widgets through the native stats helpers with exact source and hash",
+            "duration": 9.293099000000439,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "verifier flag alone never yields a port without a registered isolated launcher",
+            "status": "passed",
+            "title": "verifier flag alone never yields a port without a registered isolated launcher",
+            "duration": 0.41939800000000105,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923295986,
+        "endTime": 1794923296007.4194,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/analyst-verifier/authority.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "fails closed: flag off, missing prepare, or a callback-shaped (non-restricted) launcher",
+            "status": "passed",
+            "title": "fails closed: flag off, missing prepare, or a callback-shaped (non-restricted) launcher",
+            "duration": 6.116852999999992,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "docker argv: no network, non-root, cap-drop ALL, read-only, no-new-privileges, no mounts/env",
+            "status": "passed",
+            "title": "docker argv: no network, non-root, cap-drop ALL, read-only, no-new-privileges, no mounts/env",
+            "duration": 4.989863999999898,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "render: capability exchange over the private channel, canvas from trusted executions, exact binding",
+            "status": "passed",
+            "title": "render: capability exchange over the private channel, canvas from trusted executions, exact binding",
+            "duration": 20.52130000000011,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "canvas is denied without the exchanged session",
+            "status": "passed",
+            "title": "canvas is denied without the exchanged session",
+            "duration": 2.3774640000001455,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "rejects stale revision, foreign/empty execution, foreign hash and revoked authority",
+            "status": "passed",
+            "title": "rejects stale revision, foreign/empty execution, foreign hash and revoked authority",
+            "duration": 17.958969000000025,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "registration accepts only a restricted launcher, once",
+            "status": "passed",
+            "title": "registration accepts only a restricted launcher, once",
+            "duration": 2.5519140000001244,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "canvas handler: no session, forged session, or reused capability is denied",
+            "status": "passed",
+            "title": "canvas handler: no session, forged session, or reused capability is denied",
+            "duration": 3.4950000000001182,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923291531,
+        "endTime": 1794923291589.495,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/analyst-verifier/port.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "verifier rejects ambient API endpoints and malformed authority",
+            "status": "passed",
+            "title": "verifier rejects ambient API endpoints and malformed authority",
+            "duration": 38.106158999999934,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923292863,
+        "endTime": 1794923292901.1062,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/analyst-verifier/security.test.ts"
+      },
+      {
+        "assertionResults": [
+          {
+            "ancestorTitles": [],
+            "fullName": "binds tasks to the chat owner; a foreign principal cannot open or read the task",
+            "status": "passed",
+            "title": "binds tasks to the chat owner; a foreign principal cannot open or read the task",
+            "duration": 12.729824000000008,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "persists consumed budgets: exhaustion blocks and a resumed task does not reset limits",
+            "status": "passed",
+            "title": "persists consumed budgets: exhaustion blocks and a resumed task does not reset limits",
+            "duration": 3.4551719999999477,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "user-wait pauses do not consume the execution window; 24h expiry starts a new task",
+            "status": "passed",
+            "title": "user-wait pauses do not consume the execution window; 24h expiry starts a new task",
+            "duration": 1.7210039999999935,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "rejects JSON that could carry images or unbounded data into task records",
+            "status": "passed",
+            "title": "rejects JSON that could carry images or unbounded data into task records",
+            "duration": 7.6015290000004825,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "tool calls are budgeted per task and model-supplied taskId/principal fields are rejected",
+            "status": "passed",
+            "title": "tool calls are budgeted per task and model-supplied taskId/principal fields are rejected",
+            "duration": 8.563554999999724,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "creates private drafts automatically but never edits a pre-existing board via commit",
+            "status": "passed",
+            "title": "creates private drafts automatically but never edits a pre-existing board via commit",
+            "duration": 12.193111999999928,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "existing-board change needs human confirmation bound to exact revision; rejection mutates nothing",
+            "status": "passed",
+            "title": "existing-board change needs human confirmation bound to exact revision; rejection mutates nothing",
+            "duration": 108.34258800000043,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "a stale revision after confirmation returns conflict without issuing a grant",
+            "status": "passed",
+            "title": "a stale revision after confirmation returns conflict without issuing a grant",
+            "duration": 53.871384000000035,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "repair policy: provenance required, semantics preserved, at most two repairs",
+            "status": "passed",
+            "title": "repair policy: provenance required, semantics preserved, at most two repairs",
+            "duration": 7.0985299999993,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "renamed analysis refs cannot bypass semantic-change or repair policy on a stable widget",
+            "status": "passed",
+            "title": "renamed analysis refs cannot bypass semantic-change or repair policy on a stable widget",
+            "duration": 2.355271000000357,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "abort during awaited validation/authorization prevents grants and writes",
+            "status": "passed",
+            "title": "abort during awaited validation/authorization prevents grants and writes",
+            "duration": 56.586310999999114,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "a task cancelled while a tool awaits is not overwritten by the late tool completion",
+            "status": "passed",
+            "title": "a task cancelled while a tool awaits is not overwritten by the late tool completion",
+            "duration": 1.7721879999999146,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "cancellation that wins at the commit boundary leaves no board and no late task record",
+            "status": "passed",
+            "title": "cancellation that wins at the commit boundary leaves no board and no late task record",
+            "duration": 1.4252019999994445,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "terminal tasks are absorbing: pause/resume/block/late updates never revive them",
+            "status": "passed",
+            "title": "terminal tasks are absorbing: pause/resume/block/late updates never revive them",
+            "duration": 0.8655619999999544,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "openTask never revives a task cancelled between its read and its write",
+            "status": "passed",
+            "title": "openTask never revives a task cancelled between its read and its write",
+            "duration": 1.109943000000385,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "terminal task data is immutable: late callbacks cannot append provenance or context",
+            "status": "passed",
+            "title": "terminal task data is immutable: late callbacks cannot append provenance or context",
+            "duration": 0.5473690000007991,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "a commit that wins records provenance atomically; a later cancel needs no late write",
+            "status": "passed",
+            "title": "a commit that wins records provenance atomically; a later cancel needs no late write",
+            "duration": 1.1150049999996554,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "without an isolated verifier, render reports visual_pending and never claims verification",
+            "status": "passed",
+            "title": "without an isolated verifier, render reports visual_pending and never claims verification",
+            "duration": 1.0193820000004052,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "verified render yields images only on the transient path; receipts hold hashes and are inspectable",
+            "status": "passed",
+            "title": "verified render yields images only on the transient path; receipts hold hashes and are inspectable",
+            "duration": 8.347475000000486,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "render expectations include every saved native and analysis widget and reject unsupported widgets",
+            "status": "passed",
+            "title": "render expectations include every saved native and analysis widget and reject unsupported widgets",
+            "duration": 2.003034000000298,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "sanitizes image blocks, data URLs and capabilities while keeping session structure",
+            "status": "passed",
+            "title": "sanitizes image blocks, data URLs and capabilities while keeping session structure",
+            "duration": 1.3332499999996799,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "adds analyst lifecycle prompt rules only for analyst turns",
+            "status": "passed",
+            "title": "adds analyst lifecycle prompt rules only for analyst turns",
+            "duration": 3.6464059999998426,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "stable widget repair: keeping a committed widget by analysisId is repairable by widget id",
+            "status": "passed",
+            "title": "stable widget repair: keeping a committed widget by analysisId is repairable by widget id",
+            "duration": 2.945161999999982,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "a stable-widget repair never edits a board the task did not create",
+            "status": "passed",
+            "title": "a stable-widget repair never edits a board the task did not create",
+            "duration": 0.5046750000001339,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "discover exposes the exact nested definition, widget and repair contracts",
+            "status": "passed",
+            "title": "discover exposes the exact nested definition, widget and repair contracts",
+            "duration": 0.9795060000005833,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          },
+          {
+            "ancestorTitles": [],
+            "fullName": "completeTask closes only a plain running task; paused and blocked tasks keep their state",
+            "status": "passed",
+            "title": "completeTask closes only a plain running task; paused and blocked tasks keep their state",
+            "duration": 1.544821000000411,
+            "failureMessages": [],
+            "meta": {},
+            "tags": []
+          }
+        ],
+        "startTime": 1794923295914,
+        "endTime": 1794923296217.545,
+        "status": "passed",
+        "message": "",
+        "name": "/home/overfero/Project/ocbc/umami-analyst-slice-02/src/lib/ai/assistant/analyst/analyst.test.ts"
+      }
+    ]
+  },
+  "callerAudit": "src/lib/clickhouse.ts:107:    return `formatDateTime(date_trunc('${unit}', ${field}, '${tz}'), '${format}', '${tz}')`;\nsrc/lib/clickhouse.ts:109:  return `formatDateTime(date_trunc('${unit}', ${field}), '${format}')`;\nsrc/queries/sql/getWebsiteListCharts.ts:71:          date_trunc('day', website_event.created_at)\nsrc/queries/sql/getWebsiteListCharts.ts:78:          date_trunc('day', website_event.created_at at time zone '${timezone}')\nsrc/queries/sql/getWebsiteListCharts.ts:79:          + floor(extract(hour from website_event.created_at at time zone '${timezone}') / ${BUCKET_HOURS}) * interval '${BUCKET_HOURS} hour',\nsrc/lib/prisma.test.ts:89:      `to_char(date_trunc('hour', website_event.created_at at time zone 'UTC'), 'YYYY-MM-DD\"T\"HH24:00:00\"Z\"')`,\nsrc/lib/prisma.test.ts:92:      `to_char(date_trunc('hour', website_event.created_at at time zone 'UTC'), 'YYYY-MM-DD\"T\"HH24:00:00\"Z\"')`,\nsrc/lib/prisma.test.ts:99:      `to_char(date_trunc('hour', website_event.created_at at time zone 'Asia/Tehran'), 'YYYY-MM-DD\"T\"HH24:00:00\"Z\"')`,\nsrc/lib/prisma.test.ts:107:      `to_char(event_data.date_value at time zone 'Asia/Tehran', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"')`,\nsrc/lib/prisma.test.ts:113:      `to_char(event_data.date_value at time zone 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"')`,\nsrc/lib/prisma.test.ts:120:    // Regression test: this used to interpolate `undefined` straight into `at time zone`.\nsrc/lib/prisma.test.ts:122:      `concat(extract(dow from (website_event.created_at at time zone 'UTC')), ':', to_char((website_event.created_at at time zone 'UTC'), 'HH24'))`,\nsrc/lib/prisma.test.ts:128:      `concat(extract(dow from (website_event.created_at at time zone 'Asia/Tehran')), ':', to_char((website_event.created_at at time zone 'Asia/Tehran'), 'HH24'))`,\nsrc/lib/prisma.ts:91:  return `${field1}::date - ${field2}::date`;\nsrc/lib/prisma.ts:99:  // Explicit `at time zone` even for UTC \u2014 `date_trunc` without one falls back to the\nsrc/lib/prisma.ts:103:  return `to_char(date_trunc('${unit}', ${field} at time zone '${tz}'), '${DATE_FORMATS[unit]}')`;\nsrc/lib/prisma.ts:115:  return `to_char(${field} at time zone '${tz}', '${format}')`;\nsrc/lib/prisma.ts:121:  return `concat(extract(dow from (${field} at time zone '${tz}')), ':', to_char((${field} at time zone '${tz}'), 'HH24'))`;\nsrc/lib/prisma.ts:380:            ? `(date_value at time zone {{timezone}})::date`\nsrc/lib/prisma.ts:381:            : `(date_value at time zone 'utc')::date`;\nsrc/lib/prisma.ts:383:          [OPERATORS.before]: `${dateCol} < {{${valParam}::date}}`,\nsrc/lib/prisma.ts:384:          [OPERATORS.after]: `${dateCol} > {{${valParam}::date}}`,\nsrc/lib/prisma.ts:386:        condition = opMap[operator] ?? `${dateCol} = {{${valParam}::date}}`;\nsrc/lib/prisma.ts:505:            ? `(date_value at time zone {{timezone}})::date`\nsrc/lib/prisma.ts:506:            : `(date_value at time zone 'utc')::date`;\nsrc/lib/prisma.ts:508:          [OPERATORS.before]: `${dateCol} < {{${valParam}::date}}`,\nsrc/lib/prisma.ts:509:          [OPERATORS.after]: `${dateCol} > {{${valParam}::date}}`,\nsrc/lib/prisma.ts:511:        condition = opMap[operator] ?? `${dateCol} = {{${valParam}::date}}`;\nsrc/lib/prisma.ts:631:            ? `(date_value at time zone {{timezone}})::date`\nsrc/lib/prisma.ts:632:            : `(date_value at time zone 'utc')::date`;\nsrc/lib/prisma.ts:634:          [OPERATORS.before]: `${dateCol} < {{${valParam}::date}}`,\nsrc/lib/prisma.ts:635:          [OPERATORS.after]: `${dateCol} > {{${valParam}::date}}`,\nsrc/lib/prisma.ts:637:        condition = opMap[operator] ?? `${dateCol} = {{${valParam}::date}}`;\nsrc/lib/clickhouse.test.ts:20:      `formatDateTime(date_trunc('hour', website_event.created_at, 'Asia/Tokyo'), '%Y-%m-%dT%H:00:00Z', 'Asia/Tokyo')`,\nsrc/lib/clickhouse.test.ts:26:      `formatDateTime(date_trunc('day', website_event.created_at), '%Y-%m-%dT00:00:00Z')`,\nsrc/lib/clickhouse.test.ts:32:      `formatDateTime(date_trunc('minute', created_at, 'UTC'), '%Y-%m-%dT%R:00Z', 'UTC')`,\nsrc/lib/clickhouse.test.ts:35:      `formatDateTime(date_trunc('month', created_at, 'UTC'), '%Y-%m-01T00:00:00Z', 'UTC')`,\nsrc/lib/clickhouse.test.ts:38:      `formatDateTime(date_trunc('year', created_at, 'UTC'), '%Y-01-01T00:00:00Z', 'UTC')`,\nsrc/queries/sql/events/getEventDataValues.ts:148:              data_type = 4, toString(date_trunc('hour', date_value)),\nsrc/lib/analyst/execute.ts:193:  await getAiQueryScope()?.tx.$executeRawUnsafe(\"SET LOCAL TimeZone = 'UTC'\");\nsrc/queries/sql/sessions/getSessionDataValues.ts:125:              data_type = 4, toString(date_trunc('hour', date_value)),\nsrc/lib/ai/assistant/analyst/deps.ts:308:        await getAiQueryScope()?.tx.$executeRawUnsafe(\"SET LOCAL TimeZone = 'UTC'\");\n",
+  "postflight": {
+    "marker": "umami-ai-synthetic-r3",
+    "analystSchemas": [
+      "analyst_fixture"
+    ]
+  },
+  "limitations": [
+    "StartupUTC operational policy cannot prevent trusted SQL or DB administrator overriding a live connection",
+    "Deliberate SET LOCAL nonUTC transactions are unsupported; their bad instant result is characterized, not counted supported semantics",
+    "All Cartesian process/session combinations not run; five cases explicitly listed",
+    "Initial void query and Python edit failure are harness/tool failures not product red",
+    "Strict E1 remains NOT PASS pending10\u201312; no live/model/browser verification"
+  ]
+}

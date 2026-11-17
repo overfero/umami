@@ -29,7 +29,7 @@ vi.mock('@/permissions/board', () => ({
   canUpdateBoard: vi.fn(),
 }));
 vi.mock('@/permissions/analysis', () => ({ canViewAnalysis: async () => m.viewAnalysis }));
-vi.mock('@/permissions/website', () => ({ canViewWebsite: vi.fn() }));
+vi.mock('@/permissions/website', () => ({ canViewWebsite: async () => m.viewWebsite }));
 vi.mock('@/queries/prisma/website', () => ({ getAllUserWebsitesIncludingTeamAccess: vi.fn() }));
 vi.mock('@/queries/sql/getWebsiteDateRange', () => ({ getWebsiteDateRange: vi.fn() }));
 vi.mock('@/lib/analyst/bundle', () => ({
@@ -71,7 +71,7 @@ const scope = {
 beforeEach(() => {
   m.task = { status: 'running', expiresAt: new Date(Date.now() + 60_000) };
   m.board = { id: 'b', revision: 3 };
-  m.analysis = { id: 'a', revision: 2 };
+  m.analysis = { id: 'a', revision: 2, definition: { source: { websiteId: 'site' } } };
   m.viewBoard = m.viewAnalysis = m.viewWebsite = true;
   m.execute.mockReset();
   m.stats.mockReset();
@@ -90,6 +90,8 @@ it('allows only an active task at exact board/analysis revisions with current vi
     () => (m.analysis = { id: 'a', revision: 3 }),
     () => (m.viewBoard = false),
     () => (m.viewAnalysis = false),
+    () => (m.viewWebsite = false),
+    () => (m.analysis.definition = null),
   ]) {
     beforeEachReset();
     change();
@@ -99,8 +101,8 @@ it('allows only an active task at exact board/analysis revisions with current vi
 function beforeEachReset() {
   m.task = { status: 'running', expiresAt: new Date(Date.now() + 60_000) };
   m.board = { id: 'b', revision: 3 };
-  m.analysis = { id: 'a', revision: 2 };
-  m.viewBoard = m.viewAnalysis = true;
+  m.analysis = { id: 'a', revision: 2, definition: { source: { websiteId: 'site' } } };
+  m.viewBoard = m.viewAnalysis = m.viewWebsite = true;
 }
 
 function preparedAnalysis() {

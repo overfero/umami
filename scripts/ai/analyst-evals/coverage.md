@@ -1,9 +1,21 @@
+# Review correction — native scenario6 now executed, independent review pending
+
+P1 rejected the old evaluator-only withAiRead/UTC wrapper. The historical
+clarification-authority.json receipt does NOT prove6. Fresh
+`evidence/utc-clarification-authority.json` now executes the distinct native-loopback
+assertion in UTC/Jakarta/NY with the operator-approved central sessionUTC policy.
+Real executeTool -> loopbackHTTP -> native handlers discovers login taxonomy and
+property schemas without an evaluator read scope, followed by meaningful ask_user,
+persisted awaiting_user and no guessed mutation. `utc-session-policy.md` documents
+the independently executed input/output/pool/calendar matrix and policy limitations.
+Proven1–9; pending10–12; strictE1 remains exit1. Independent re-review required.
+
 # Offline assertion coverage manifest
 
 Contract: originating `wiki/specs/analyst-dashboard-lifecycle.md` §7 scenarios 1–12.
-This slice implements **1–5**, not twelve-scenario acceptance. The machine-readable
+Integrated slices implement **1–9**, not twelve-scenario acceptance. The machine-readable
 binding is `offline.ts:requirements`; `summarizeCoverage` requires every bound assertion
-from a successfully executed suite. Later slices must add assertions for 6–12, not reuse
+from a successfully executed suite. Later slices must add assertions for 10–12, not reuse
 the former weak proxies. `offline.test.ts` removes each required assertion in turn and
 checks that the corresponding scenario becomes pending. An empty selection fails.
 
@@ -28,7 +40,7 @@ All commands run from the checkout root after the setup in `docs/ai-analyst-eval
 - **E1**:
   `npx --yes pnpm@12.3.4 exec tsx scripts/ai/eval-analyst.ts --offline --strict --output /tmp/analyst-offline.json`.
   Executes the commands above, checks names against their outputs, records source
-  hashes and raw command outputs. **Expected exit 1 while scenarios 6–12 are pending.**
+  hashes and raw command outputs. **Expected exit 1 while scenarios 10–12 are pending.**
   `complete:false` is an interrupted checkpoint, never finished evidence.
 
 ## Exact assertions (source references are symbol/string anchors, not titles alone)
@@ -67,17 +79,14 @@ rejection of every semantically mismatched authorized analysis ID.
 
 ## Pending scenarios (strict acceptance remains blocked)
 
-6. Meaningful question for material ambiguity; discover schema/IDs without user prompting.
-7. Foreign/stale/revoked authority at preview/save/execute/render/artifact release.
-8. Duplicate commit, key/revision conflicts and atomic partial-failure behavior.
-9. Generic/alias edit/share/delete confirmation, declined/stale approval unchanged.
 10. Browser/image/verifier/clipping/narrow/stale evidence cannot yield verified.
 11. In-flight cancellation at query/commit/queue/render/repair, no late mutations/images.
 12. Native boards and historical snapshots unchanged with flags off.
 
-Some existing API tests exercise portions of 7–9/11–12, but this manifest does not
-claim those groups complete from those portions. Later slices must bind all their
-subrequirements and execute their exact assertions. E2 live selection/visual understanding,
+Scenarios6–9 now bind the complete assertion sets in `authority-evidence.ts`,
+`offline.ts` and the map below. Scenarios10–12 remain unproven as groups even when
+some reused tests overlap them. Later slices must bind and execute every missing
+subrequirement. E2 live selection/visual understanding,
 Docker/browser integration and release-target smoke are separately gated, not inferred.
 
 ## Discovered defects and authorized minimal fixes
@@ -112,3 +121,46 @@ supplements and the complete evidence gate execute again.
 
 See `validation.md` for executed receipt/results and limitations. A green title or
 this manifest's presence is never evidence by itself.
+
+
+## Slice02 clarification / authority exact executed map
+
+Receipt: `evidence/clarification-authority.json`, completed thirteen subprocesses,
+**not** just a taxonomy or requirement list. New **AUTH-PG** command is
+`PGOPTIONS="-c timezone=$ZONE" npx --yes pnpm@12.3.4 exec tsx scripts/ai/analyst-evals/authority.ts`
+for UTC, Asia/Jakarta and America/New_York. Every one of its five assertions must
+pass in all three zones. **REUSE** is freshly executed exact source-qualified
+Vitest assertion extraction from `src/lib/analyst-verifier/authority.test.ts` and
+`port.test.ts`; whole structured report is retained as `authorityVitestReport`.
+**GENERIC** is the new `generic-authority.test.ts` in evaluator Vitest.
+API-PG/CH above both freshly execute all114 checks; no API receipt reuse this time.
+Machine anchors below resolve via `authority-evidence.ts` literal assertion names,
+not line numbers that drift under formatting. `offline.test.ts` removes **each**
+binding to prove it makes its scenario pending; parser tests reject wrong source,
+failed/missing results and successful exit without actual assertions.
+
+| Scenario/subrequirement | Exact source-qualified executed evidence | Independent expected outcome / boundary |
+| --- | --- | --- |
+| 6 meaningful question; no guessed semantics | AUTH-PG `authority.ts:check('discover IDs and schema then ask meaningful ambiguity with needs_input and no guessed mutation')`; `clarification.ts:assertNeedsInput`; negative controls `clarification.test.ts` | Actual `ask_user` emits **Does the observed login event mean a successful staff sign-in, or only a sign-in attempt?**, bounded three options including **Unknown: keep the observed login label**. Persisted task **awaiting_user**, no boards/analyses/revisions/operation mutation, forged guess rejected. Actual reply returns unknown, resumes running and stored observed-only definition unchanged. |
+| 6 source IDs/schema discovered without user prompt | Same AUTH-PG assertion | Real `analyst_discover({})` returns exact owned website ID/name + metric capabilities, authenticated native metrics/property routes return **login** and **[]**. Read-only scoped transaction with localUTC guarantees deterministic namespace/timezone. Taxonomy supplies facts, **not** an answer to business meaning. |
+| 7 foreign preview/create/save/private execute | API `authorityApiRequirements`: `7.preview`, `7.save`, `7.private`, `7.board` | Foreign website preview/create **403**; private analysis read/execute/PATCH denied; foreign AnalysisWidget reference rejected. Authenticated routes and real engines, not tool doubles. |
+| 7 revocation preview/save/execute | AUTH-PG `source revocation denies render authority and existing artifact release`; API `7.execute`, `7.board-save`, `7.bundle` | Transfer website to foreign principal; preview and saved execution **403**, validate referenced board bundle rejected. API board create/update and bundle denied after revocation. |
+| 7 foreign/stale/revoked render and artifact release | AUTH-PG `foreign stale malformed and team-revoked references deny capability and artifact release`; `source revocation...` | Mint while authorized, then revoke source, analysis/board ownership, team source membership or increment board/analysis revision: capture preparation, capability exchange and previously minted artifact release denied; denied artifact deleted. Foreign user/task cannot fetch; valid owner/team access remains allowed before each change. Malformed definition denied. Synthetic1x1 PNG validates bytes/privacy boundary, **not a browser screenshot**. |
+| 7 exact render envelopes/current authority rechecked | REUSE `authority.test.ts` exact `7.authority`, `7.envelopes`, `7.after-query`, `7.native` and `port.test.ts` `7.render`, `7.canvas` in `reusableAuthorityAssertions` | Current task/board/analysis rights/revisions, wrong source/hash/ID, post-execution revocation, native source revocation and unauthenticated/replayed canvas denied. Injected collaborators + simulated launcher prove host protocol/denial logic, **not DB/browser success**; AUTH-PG supplies real permissions. |
+| 7 section access | Source `src/permissions/share.ts:canViewWebsiteSection` and AUTH-PG current website ownership/team revocation | Authenticated section access delegates to current canViewWebsite; no separate user section grant exists. Verifier derives a real user, not a share token. No invented independent section-grant test. Native revoked-source REUSE covers its section helper; share-token-only principals cannot enter authenticated analysis/verifier flow. |
+| 7 stale preview/save/execute vocabulary | API `PATCH with expected revision`/`stale expected revision conflicts`, `execute rejects caller overrides`; AUTH-PG stale board/analysis artifact cases | Unsaved preview has no saved-reference revision. Saved execution accepts no caller source/filter/revision override. Stale writes conflict rather than substitute a new saved definition; saved render/artifacts bind exact captured revisions. No claim of a nonexistent preview revision parameter. |
+| 8 duplicate commit / concurrency | API `8.replay` | Same task/principal/key replay returns exact original board ID; concurrent same-key commit results one board, exactly two analyses/revisions, no duplicate metadata. |
+| 8 conflicting key and revision atomicity | API `8.key`, `8.reference`, `8.revision` | Changed request under key **409**; task scoping distinct; bad refs rejected without write. Stale board revision after grant claim/new analysis writes **409**, counts unchanged, grant unused, operation absent. |
+| 8 actual partial failure | AUTH-PG `partial failure after metadata writes rolls back board analyses revisions operation and task provenance` | Trusted transaction-record callback sees **+1 board,+1 analysis,+1 revision** inside transaction, writes task provenance, then throws seeded error. All durable counts and entire task row unchanged; operation key absent. Fault injection **after actual PG writes**, not prevalidation/mock success. |
+| 9 existing edit confirmation; decline/stale unchanged | AUTH-PG `declined and stale existing-board approval leave metadata unchanged; accepted exact edit applies` | Actual existing board (not task-owned) gets exact target/revision diff. Decline denied; revision changes during wait conflict. Whole board row + counts unchanged versus immediately before reply; no grants minted. Accepted exact edit changes name/revision once. |
+| 9 grant binding/expiry/revocation/single-use | API `9.binding`, `9.revoked`, `9.single-use`, `8.revision` | Foreign/task/diff/expired grants denied with no mutation. Revoked source denies after grant; matching grant consumed once; same key replays, fresh key cannot reuse. Stale CAS rollback leaves grant unconsumed. |
+| 9 sharing/deletion/edit generic aliases | GENERIC `generic edit share delete and method aliases cannot dispatch lifecycle writes even with nested approval claims` | POST/PUT/PATCH/DELETE across existing board/delete/share/shares, analyses, bundle and nested team board routes all **denied**, no confirmation or fetch. Lower/mixed-case and unsupported methods invalid. Nested model confirmation/task/_method claims cannot grant authority. A throwing fetch spy is denial evidence, **not mocked persisted success**. |
+| 9 unsupported sharing unchanged | API `9.sharing`, `9.share-unchanged` | Actual sharing route refuses AnalysisWidget board, widget intact and share count0, independent of generic-tool denial. Unsupported capability stays denied, not enabled by confirmation. |
+
+`needs_input` here is the evaluation **outcome** defined in originating UX vocabulary:
+meaningful unresolved question + actual persisted awaiting_user + no guessed mutation.
+It is not a product task-status enum. Code validates question/interaction/persistence;
+scripted fixture does **not** prove a live model notices ambiguity or selects the
+right question. Definition/artifact hashes prove provenance, never model judgment.
+No native Pi, paid provider, image inspection, browser render or deployment claimed.
+Full scenario10–12 group proof and strictE1 PASS remain later slice03 work.
