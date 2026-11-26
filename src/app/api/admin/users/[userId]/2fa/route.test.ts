@@ -1,5 +1,6 @@
 import { beforeEach, expect, test, vi } from 'vitest';
 import { canEnforceTwoFactorAuthForUser } from '@/permissions';
+import prisma from '@/lib/prisma';
 import { parseRequest } from '@/lib/request';
 import { isTwoFactorConfigured } from '@/lib/two-factor/crypto';
 import { updateUser } from '@/queries/prisma/user';
@@ -25,31 +26,43 @@ vi.mock('@/lib/two-factor/crypto', () => ({
   isTwoFactorConfigured: vi.fn(),
 }));
 
-const prismaMock = vi.hoisted(() => ({
-  client: {
-    twoFactorAuth: {
-      findUnique: vi.fn(),
-      deleteMany: vi.fn(),
+vi.mock('@/lib/prisma', () => ({
+  default: {
+    client: {
+      twoFactorAuth: {
+        findUnique: vi.fn(),
+        deleteMany: vi.fn(),
+      },
+      twoFactorBackupCode: {
+        deleteMany: vi.fn(),
+      },
+      twoFactorOtpUsed: {
+        deleteMany: vi.fn(),
+      },
+      twoFactorRateLimit: {
+        deleteMany: vi.fn(),
+      },
     },
-    twoFactorBackupCode: {
-      deleteMany: vi.fn(),
-    },
-    twoFactorOtpUsed: {
-      deleteMany: vi.fn(),
-    },
-    twoFactorRateLimit: {
-      deleteMany: vi.fn(),
-    },
+    transaction: vi.fn(),
   },
-  transaction: vi.fn<(operations: Promise<unknown>[]) => Promise<unknown[]>>(),
 }));
-
-vi.mock('@/lib/prisma', () => ({ default: prismaMock }));
 
 const parseRequestMock = vi.mocked(parseRequest);
 const canEnforceTwoFactorAuthForUserMock = vi.mocked(canEnforceTwoFactorAuthForUser);
 const isTwoFactorConfiguredMock = vi.mocked(isTwoFactorConfigured);
 const updateUserMock = vi.mocked(updateUser);
+const prismaMock = prisma as unknown as {
+  client: {
+    twoFactorAuth: {
+      findUnique: ReturnType<typeof vi.fn>;
+      deleteMany: ReturnType<typeof vi.fn>;
+    };
+    twoFactorBackupCode: { deleteMany: ReturnType<typeof vi.fn> };
+    twoFactorOtpUsed: { deleteMany: ReturnType<typeof vi.fn> };
+    twoFactorRateLimit: { deleteMany: ReturnType<typeof vi.fn> };
+  };
+  transaction: ReturnType<typeof vi.fn>;
+};
 
 beforeEach(() => {
   parseRequestMock.mockReset();
@@ -105,12 +118,9 @@ test('POST updates the user-level 2FA requirement flag', async () => {
   });
   updateUserMock.mockResolvedValue({ id: 'user-1' } as any);
 
-  const response = await POST(
-    new Request('http://localhost/api/admin/users/user-1/2fa', { method: 'POST' }),
-    {
-      params: Promise.resolve({ userId: 'user-1' }),
-    },
-  );
+  const response = await POST(new Request('http://localhost/api/admin/users/user-1/2fa', { method: 'POST' }), {
+    params: Promise.resolve({ userId: 'user-1' }),
+  });
 
   expect(updateUserMock).toHaveBeenCalledWith('user-1', { twoFactorRequired: true });
   await expect(response.json()).resolves.toEqual({
@@ -136,12 +146,9 @@ test('POST rejects enabling a user-level 2FA requirement when the encryption key
   });
   isTwoFactorConfiguredMock.mockReturnValue(false);
 
-  const response = await POST(
-    new Request('http://localhost/api/admin/users/user-1/2fa', { method: 'POST' }),
-    {
-      params: Promise.resolve({ userId: 'user-1' }),
-    },
-  );
+  const response = await POST(new Request('http://localhost/api/admin/users/user-1/2fa', { method: 'POST' }), {
+    params: Promise.resolve({ userId: 'user-1' }),
+  });
 
   expect(updateUserMock).not.toHaveBeenCalled();
   await expect(response.json()).resolves.toMatchObject({
@@ -166,9 +173,7 @@ test('DELETE clears the user 2FA configuration and related support tables', asyn
     },
   );
 
-  expect(prismaMock.client.twoFactorAuth.deleteMany).toHaveBeenCalledWith({
-    where: { userId: 'user-1' },
-  });
+  expect(prismaMock.client.twoFactorAuth.deleteMany).toHaveBeenCalledWith({ where: { userId: 'user-1' } });
   expect(prismaMock.client.twoFactorBackupCode.deleteMany).toHaveBeenCalledWith({
     where: { userId: 'user-1' },
   });

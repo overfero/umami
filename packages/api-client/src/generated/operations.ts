@@ -4,7 +4,7 @@
 import type { RequestOptions } from '../types';
 import type { components, operations as OperationTypes } from './types';
 
-export const API_VERSION = '3.4.1';
+export const API_VERSION = '3.5.0';
 
 export type HttpMethod = 'get' | 'post' | 'put' | 'patch' | 'delete';
 
@@ -462,6 +462,7 @@ export const operations = {
       'page',
       'pageSize',
       'maxResults',
+      'period',
     ],
     hasBody: false,
   },
@@ -502,6 +503,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -549,6 +551,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -585,6 +588,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -622,6 +626,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -663,6 +668,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -701,6 +707,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -743,6 +750,7 @@ export const operations = {
       'page',
       'pageSize',
       'maxResults',
+      'period',
     ],
     hasBody: false,
   },
@@ -779,6 +787,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -819,6 +828,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -855,6 +865,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -894,6 +905,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -1123,6 +1135,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -1161,6 +1174,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -1201,6 +1215,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -1239,6 +1254,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -1281,6 +1297,7 @@ export const operations = {
       'page',
       'pageSize',
       'maxResults',
+      'period',
     ],
     hasBody: false,
   },
@@ -1318,6 +1335,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -1357,6 +1375,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -1396,6 +1415,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -1434,6 +1454,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -1594,7 +1615,7 @@ export const operations = {
     method: 'get',
     path: '/api/websites/{websiteId}/annotations',
     pathParams: ['websiteId'],
-    queryParams: ['startAt', 'endAt', 'search', 'page', 'pageSize', 'maxResults'],
+    queryParams: ['startAt', 'endAt', 'search', 'page', 'pageSize', 'maxResults', 'period'],
     hasBody: false,
   },
   getWebsiteAttribution: {
@@ -1686,6 +1707,128 @@ export const operations = {
     queryParams: [],
     hasBody: false,
   },
+  getWebsiteErrorEvent: {
+    operationId: 'getWebsiteErrorEvent',
+    method: 'get',
+    path: '/api/websites/{websiteId}/errors/{issueId}/events/{eventId}',
+    pathParams: ['websiteId', 'issueId', 'eventId'],
+    queryParams: [],
+    hasBody: false,
+  },
+  getWebsiteErrorEvents: {
+    operationId: 'getWebsiteErrorEvents',
+    method: 'get',
+    path: '/api/websites/{websiteId}/errors/{issueId}/events',
+    pathParams: ['websiteId', 'issueId'],
+    queryParams: [
+      'startAt',
+      'endAt',
+      'status',
+      'search',
+      'release',
+      'environment',
+      'browser',
+      'urlPath',
+      'page',
+      'pageSize',
+    ],
+    hasBody: false,
+  },
+  getWebsiteErrorIssue: {
+    operationId: 'getWebsiteErrorIssue',
+    method: 'get',
+    path: '/api/websites/{websiteId}/errors/{issueId}',
+    pathParams: ['websiteId', 'issueId'],
+    queryParams: [
+      'startAt',
+      'endAt',
+      'status',
+      'search',
+      'release',
+      'environment',
+      'browser',
+      'urlPath',
+      'page',
+      'pageSize',
+    ],
+    hasBody: false,
+  },
+  getWebsiteErrorIssueValues: {
+    operationId: 'getWebsiteErrorIssueValues',
+    method: 'get',
+    path: '/api/websites/{websiteId}/errors/{issueId}/values',
+    pathParams: ['websiteId', 'issueId'],
+    queryParams: [
+      'startAt',
+      'endAt',
+      'status',
+      'search',
+      'release',
+      'environment',
+      'browser',
+      'urlPath',
+      'type',
+      'value',
+    ],
+    hasBody: false,
+  },
+  getWebsiteErrors: {
+    operationId: 'getWebsiteErrors',
+    method: 'get',
+    path: '/api/websites/{websiteId}/errors',
+    pathParams: ['websiteId'],
+    queryParams: [
+      'startAt',
+      'endAt',
+      'status',
+      'search',
+      'release',
+      'environment',
+      'browser',
+      'urlPath',
+      'page',
+      'pageSize',
+    ],
+    hasBody: false,
+  },
+  getWebsiteErrorStats: {
+    operationId: 'getWebsiteErrorStats',
+    method: 'get',
+    path: '/api/websites/{websiteId}/errors/stats',
+    pathParams: ['websiteId'],
+    queryParams: [
+      'startAt',
+      'endAt',
+      'status',
+      'search',
+      'release',
+      'environment',
+      'browser',
+      'urlPath',
+      'page',
+      'pageSize',
+    ],
+    hasBody: false,
+  },
+  getWebsiteErrorValues: {
+    operationId: 'getWebsiteErrorValues',
+    method: 'get',
+    path: '/api/websites/{websiteId}/errors/values',
+    pathParams: ['websiteId'],
+    queryParams: [
+      'startAt',
+      'endAt',
+      'status',
+      'search',
+      'release',
+      'environment',
+      'browser',
+      'urlPath',
+      'type',
+      'value',
+    ],
+    hasBody: false,
+  },
   getWebsiteEvents: {
     operationId: 'getWebsiteEvents',
     method: 'get',
@@ -1699,6 +1842,7 @@ export const operations = {
       'timezone',
       'unit',
       'compare',
+      'period',
       'path',
       'referrer',
       'title',
@@ -1767,6 +1911,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -2062,6 +2207,7 @@ export const operations = {
       'timezone',
       'unit',
       'compare',
+      'period',
       'type',
       'limit',
       'offset',
@@ -2107,6 +2253,7 @@ export const operations = {
       'timezone',
       'unit',
       'compare',
+      'period',
       'path',
       'referrer',
       'title',
@@ -2623,7 +2770,7 @@ export const operations = {
     method: 'get',
     path: '/api/websites/charts',
     pathParams: [],
-    queryParams: ['ids', 'startAt', 'endAt', 'timezone'],
+    queryParams: ['ids', 'startAt', 'endAt', 'timezone', 'period'],
     hasBody: false,
   },
   getWebsiteSegment: {
@@ -2655,7 +2802,7 @@ export const operations = {
     method: 'get',
     path: '/api/websites/{websiteId}/sessions/{sessionId}/activity',
     pathParams: ['websiteId', 'sessionId'],
-    queryParams: ['startAt', 'endAt', 'distinctId'],
+    queryParams: ['startAt', 'endAt', 'distinctId', 'period'],
     hasBody: false,
   },
   getWebsiteSessionProperties: {
@@ -2699,6 +2846,7 @@ export const operations = {
       'timezone',
       'unit',
       'compare',
+      'period',
       'path',
       'referrer',
       'title',
@@ -2764,6 +2912,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -2801,6 +2950,7 @@ export const operations = {
       'cohort',
       'eventType',
       'match',
+      'period',
     ],
     hasBody: false,
   },
@@ -2854,6 +3004,7 @@ export const operations = {
       'timezone',
       'unit',
       'compare',
+      'period',
       'path',
       'referrer',
       'title',
@@ -3219,6 +3370,14 @@ export const operations = {
     queryParams: [],
     hasBody: true,
   },
+  updateWebsiteErrorIssue: {
+    operationId: 'updateWebsiteErrorIssue',
+    method: 'patch',
+    path: '/api/websites/{websiteId}/errors/{issueId}',
+    pathParams: ['websiteId', 'issueId'],
+    queryParams: [],
+    hasBody: true,
+  },
   updateWebsiteFunnel: {
     operationId: 'updateWebsiteFunnel',
     method: 'post',
@@ -3506,7 +3665,8 @@ export abstract class GeneratedUmamiClient {
   }
 
   /**
-   * Create website funnel
+   * Create a website funnel
+   * Saves a named funnel for the website with an optional description, its ordered steps, and the conversion window.
    * `POST /api/websites/{websiteId}/funnels`
    */
   createWebsiteFunnel(
@@ -3517,7 +3677,8 @@ export abstract class GeneratedUmamiClient {
   }
 
   /**
-   * Create website goal
+   * Create a website goal
+   * Saves a named goal for the website with an optional description and the goal type and value to track.
    * `POST /api/websites/{websiteId}/goals`
    */
   createWebsiteGoal(
@@ -3684,7 +3845,8 @@ export abstract class GeneratedUmamiClient {
   }
 
   /**
-   * Delete website funnel
+   * Delete a website funnel
+   * Deletes the specified saved funnel from the website after checking the caller's permissions.
    * `DELETE /api/websites/{websiteId}/funnels/{funnelId}`
    */
   deleteWebsiteFunnel(
@@ -3695,7 +3857,8 @@ export abstract class GeneratedUmamiClient {
   }
 
   /**
-   * Delete website goal
+   * Delete a website goal
+   * Deletes the specified saved goal from the website after checking the caller's permissions.
    * `DELETE /api/websites/{websiteId}/goals/{goalId}`
    */
   deleteWebsiteGoal(
@@ -4499,6 +4662,7 @@ export abstract class GeneratedUmamiClient {
 
   /**
    * Get website attribution
+   * Attributes conversions for a page path or custom event to referrers, paid ads, and UTM parameters using a first-click or last-click model.
    * `GET /api/websites/{websiteId}/attribution`
    */
   getWebsiteAttribution(
@@ -4510,6 +4674,7 @@ export abstract class GeneratedUmamiClient {
 
   /**
    * Get website breakdown
+   * Returns pageviews, visitors, visits, bounces, and total time for the website, grouped by the requested fields, over the date range.
    * `GET /api/websites/{websiteId}/breakdown`
    */
   getWebsiteBreakdown(
@@ -4529,6 +4694,90 @@ export abstract class GeneratedUmamiClient {
     options?: RequestOptions,
   ): Promise<OperationOutput<'getWebsiteDateRange'>> {
     return this.execute('getWebsiteDateRange', input, options);
+  }
+
+  /**
+   * Get an error occurrence
+   * Returns a single occurrence of an error issue, including its stack trace, tags, and session details.
+   * `GET /api/websites/{websiteId}/errors/{issueId}/events/{eventId}`
+   */
+  getWebsiteErrorEvent(
+    input: OperationInput<'getWebsiteErrorEvent'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'getWebsiteErrorEvent'>> {
+    return this.execute('getWebsiteErrorEvent', input, options);
+  }
+
+  /**
+   * List error occurrences
+   * Returns a paginated list of occurrences for an error issue, newest first.
+   * `GET /api/websites/{websiteId}/errors/{issueId}/events`
+   */
+  getWebsiteErrorEvents(
+    input: OperationInput<'getWebsiteErrorEvents'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'getWebsiteErrorEvents'>> {
+    return this.execute('getWebsiteErrorEvents', input, options);
+  }
+
+  /**
+   * Get an error issue
+   * Returns an error issue with its status, occurrence counts, and first and last seen times for the selected date range.
+   * `GET /api/websites/{websiteId}/errors/{issueId}`
+   */
+  getWebsiteErrorIssue(
+    input: OperationInput<'getWebsiteErrorIssue'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'getWebsiteErrorIssue'>> {
+    return this.execute('getWebsiteErrorIssue', input, options);
+  }
+
+  /**
+   * Get error issue filter values
+   * Returns the distinct values and occurrence counts of an error field, such as release or browser, for one issue.
+   * `GET /api/websites/{websiteId}/errors/{issueId}/values`
+   */
+  getWebsiteErrorIssueValues(
+    input: OperationInput<'getWebsiteErrorIssueValues'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'getWebsiteErrorIssueValues'>> {
+    return this.execute('getWebsiteErrorIssueValues', input, options);
+  }
+
+  /**
+   * List error issues
+   * Returns a paginated list of error issues for the website, with occurrence and affected visit counts for the selected date range.
+   * `GET /api/websites/{websiteId}/errors`
+   */
+  getWebsiteErrors(
+    input: OperationInput<'getWebsiteErrors'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'getWebsiteErrors'>> {
+    return this.execute('getWebsiteErrors', input, options);
+  }
+
+  /**
+   * Get error stats
+   * Returns the total number of error occurrences, issues, and affected visits for the selected date range, with a daily trend in UTC.
+   * `GET /api/websites/{websiteId}/errors/stats`
+   */
+  getWebsiteErrorStats(
+    input: OperationInput<'getWebsiteErrorStats'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'getWebsiteErrorStats'>> {
+    return this.execute('getWebsiteErrorStats', input, options);
+  }
+
+  /**
+   * Get error filter values
+   * Returns the distinct values and occurrence counts of an error field, such as release or browser, across all issues.
+   * `GET /api/websites/{websiteId}/errors/values`
+   */
+  getWebsiteErrorValues(
+    input: OperationInput<'getWebsiteErrorValues'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'getWebsiteErrorValues'>> {
+    return this.execute('getWebsiteErrorValues', input, options);
   }
 
   /**
@@ -4580,7 +4829,8 @@ export abstract class GeneratedUmamiClient {
   }
 
   /**
-   * Get website funnel
+   * Get a website funnel
+   * Returns a saved funnel for the website, including its name, description, steps, and conversion window.
    * `GET /api/websites/{websiteId}/funnels/{funnelId}`
    */
   getWebsiteFunnel(
@@ -4592,6 +4842,7 @@ export abstract class GeneratedUmamiClient {
 
   /**
    * Get website funnels
+   * Returns a paginated list of the saved funnels for the website, optionally filtered by search text.
    * `GET /api/websites/{websiteId}/funnels`
    */
   getWebsiteFunnels(
@@ -4603,6 +4854,7 @@ export abstract class GeneratedUmamiClient {
 
   /**
    * Get website funnel stats
+   * Returns visitor counts and drop-off for each step of an ad-hoc funnel, given its steps and conversion window, over the date range.
    * `GET /api/websites/{websiteId}/funnels/stats`
    */
   getWebsiteFunnelStats(
@@ -4613,7 +4865,8 @@ export abstract class GeneratedUmamiClient {
   }
 
   /**
-   * Get website goal
+   * Get a website goal
+   * Returns a saved goal for the website, including its name, description, and the type and value it tracks.
    * `GET /api/websites/{websiteId}/goals/{goalId}`
    */
   getWebsiteGoal(
@@ -4625,6 +4878,7 @@ export abstract class GeneratedUmamiClient {
 
   /**
    * Get website goals
+   * Returns a paginated list of the saved goals for the website, optionally filtered by search text.
    * `GET /api/websites/{websiteId}/goals`
    */
   getWebsiteGoals(
@@ -4636,6 +4890,7 @@ export abstract class GeneratedUmamiClient {
 
   /**
    * Get website goal stats
+   * Returns the number of conversions and the total for an ad-hoc goal, given its type and value, over the selected date range.
    * `GET /api/websites/{websiteId}/goals/stats`
    */
   getWebsiteGoalStats(
@@ -4647,6 +4902,7 @@ export abstract class GeneratedUmamiClient {
 
   /**
    * Get website heatmaps
+   * Returns click or scroll heatmap data for the website, optionally for a single page path, along with the pages that have recorded data.
    * `GET /api/websites/{websiteId}/heatmaps`
    */
   getWebsiteHeatmaps(
@@ -4658,6 +4914,7 @@ export abstract class GeneratedUmamiClient {
 
   /**
    * Get website journeys
+   * Returns the most common paths visitors take through the website, between 2 and 7 steps long, with optional start and end steps.
    * `GET /api/websites/{websiteId}/journeys`
    */
   getWebsiteJourneys(
@@ -4693,6 +4950,7 @@ export abstract class GeneratedUmamiClient {
 
   /**
    * Get website performance chart
+   * Returns p50, p75, and p95 values over time for a Core Web Vitals metric such as LCP, INP, CLS, FCP, or TTFB.
    * `GET /api/websites/{websiteId}/performance/chart`
    */
   getWebsitePerformanceChart(
@@ -4704,6 +4962,7 @@ export abstract class GeneratedUmamiClient {
 
   /**
    * Get website performance metrics
+   * Ranks pages, titles, devices, or browsers by a Core Web Vitals metric, with p50, p75, and p95 values and a measurement count.
    * `GET /api/websites/{websiteId}/performance/metrics`
    */
   getWebsitePerformanceMetrics(
@@ -4715,6 +4974,7 @@ export abstract class GeneratedUmamiClient {
 
   /**
    * Get website performance stats
+   * Returns p50, p75, and p95 values for LCP, INP, CLS, FCP, and TTFB and the number of measurements in the date range.
    * `GET /api/websites/{websiteId}/performance/stats`
    */
   getWebsitePerformanceStats(
@@ -4774,6 +5034,7 @@ export abstract class GeneratedUmamiClient {
 
   /**
    * Get website retention
+   * Returns daily retention for the website: for each first-visit date, how many visitors returned on later days and the percentage.
    * `GET /api/websites/{websiteId}/retention`
    */
   getWebsiteRetention(
@@ -4833,6 +5094,7 @@ export abstract class GeneratedUmamiClient {
 
   /**
    * Get website saved funnel stats
+   * Returns visitor counts and drop-off for each step of a saved funnel over the selected date range, with optional filters.
    * `GET /api/websites/{websiteId}/funnels/{funnelId}/stats`
    */
   getWebsiteSavedFunnelStats(
@@ -4844,6 +5106,7 @@ export abstract class GeneratedUmamiClient {
 
   /**
    * Get website saved goal stats
+   * Returns the number of conversions and the total for a saved goal over the selected date range, with optional filters.
    * `GET /api/websites/{websiteId}/goals/{goalId}/stats`
    */
   getWebsiteSavedGoalStats(
@@ -5034,7 +5297,8 @@ export abstract class GeneratedUmamiClient {
   }
 
   /**
-   * Get website utm metrics
+   * Get website UTM metrics
+   * Returns pageview counts grouped by a UTM parameter, such as source, medium, campaign, term, or content, for the selected date range.
    * `GET /api/websites/{websiteId}/utm/metrics`
    */
   getWebsiteUtmMetrics(
@@ -5432,7 +5696,20 @@ export abstract class GeneratedUmamiClient {
   }
 
   /**
-   * Update website funnel
+   * Update an error issue status
+   * Changes the status of an error issue to unresolved, resolved, or ignored. Changing the status does not discard new occurrences.
+   * `PATCH /api/websites/{websiteId}/errors/{issueId}`
+   */
+  updateWebsiteErrorIssue(
+    input: OperationInput<'updateWebsiteErrorIssue'>,
+    options?: RequestOptions,
+  ): Promise<OperationOutput<'updateWebsiteErrorIssue'>> {
+    return this.execute('updateWebsiteErrorIssue', input, options);
+  }
+
+  /**
+   * Update a website funnel
+   * Updates the name, description, steps, or conversion window of a saved funnel for the website.
    * `POST /api/websites/{websiteId}/funnels/{funnelId}`
    */
   updateWebsiteFunnel(
@@ -5443,7 +5720,8 @@ export abstract class GeneratedUmamiClient {
   }
 
   /**
-   * Update website goal
+   * Update a website goal
+   * Updates the name, description, or the type and value tracked by a saved goal for the website.
    * `POST /api/websites/{websiteId}/goals/{goalId}`
    */
   updateWebsiteGoal(
