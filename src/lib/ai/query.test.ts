@@ -4,7 +4,11 @@ import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
 const mock = vi.hoisted(() => {
   process.env.DATABASE_URL = 'postgresql://synthetic@127.0.0.1:25432/postgres';
   process.env.CLICKHOUSE_URL = 'http://default@127.0.0.1:28123/default';
-  const model = { findUnique: vi.fn(async () => ({ id: 'synthetic' })) };
+  const model = {
+    findUnique: vi.fn(async () => ({ id: 'synthetic' })),
+    findMany: vi.fn(async () => [{ id: 'synthetic' }]),
+    count: vi.fn(async () => 1),
+  };
   const tx = {
     website: model,
     share: { findFirst: vi.fn(async () => null) },
@@ -55,6 +59,13 @@ describe('AI-only shared database scope (synthetic forwarding, not engine proof)
       await gate;
       expect(prisma.client).toBe(mock.tx);
       await prisma.client.website.findUnique({ where: { id: 'synthetic' } });
+      const where = { id: 'synthetic' };
+      expect(await prisma.pagedQuery('website', { where })).toMatchObject({
+        data: [{ id: 'synthetic' }],
+        count: 1,
+      });
+      expect(mock.tx.website.findMany).toHaveBeenCalledWith(expect.objectContaining({ where }));
+      expect(mock.tx.website.count).toHaveBeenCalledWith({ where });
       await prisma.rawQuery('select 1', {});
       expect(getAiQueryScope()).toBeDefined();
     }, new AbortController().signal);
@@ -78,6 +89,7 @@ describe('AI-only shared database scope (synthetic forwarding, not engine proof)
     expect(mock.adapter).toHaveBeenCalledWith(
       {
         connectionString: 'postgresql://synthetic@127.0.0.1:25432/postgres',
+        options: '-c TimeZone=UTC',
         max: 4,
         connectionTimeoutMillis: 1000,
         statement_timeout: 1000,
