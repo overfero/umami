@@ -18,7 +18,6 @@ import { PasswordChangeRequiredModal } from '@/components/modals/PasswordChangeR
 import { TwoFactorSetupModal } from '@/components/modals/TwoFactorSetupModal';
 import { LAST_TEAM_CONFIG } from '@/lib/constants';
 import { removeItem, setItem } from '@/lib/storage';
-import { UpdateNotice } from './UpdateNotice';
 
 export function App({ children }) {
   const { user, isLoading, error } = useLoginQuery();
@@ -113,7 +112,6 @@ export function App({ children }) {
         <SideNav />
       </Column>
       <Column overflowX="hidden" minHeight="0" position="relative">
-        <UpdateNotice user={user} config={config} />
         <TopNav />
         <Column
           alignItems="center"
