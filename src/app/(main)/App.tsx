@@ -130,7 +130,6 @@ export function App({ children }) {
       </Column>
       {needsTwoFactorSetup && <TwoFactorSetupModal required={true} />}
       {passwordChangeRequired && !needsTwoFactorSetup && <PasswordChangeRequiredModal />}
-      <UpdateNotice user={user} config={config} />
       {process.env.NODE_ENV === 'production' && !pathname.includes('/share/') && (
         <Script src={`${process.env.basePath || ''}/telemetry.js`} />
       )}

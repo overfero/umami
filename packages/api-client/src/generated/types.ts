@@ -5764,9 +5764,54 @@ export interface operations {
         content: {
           'application/json': {
             /** @description Number of matching records. */
-            count: unknown;
+            count: number;
             /** @description Data returned by the operation. */
-            data: unknown;
+            data: {
+              /**
+               * Format: date-time
+               * @description Date and time the record was created.
+               */
+              createdAt: string;
+              createdByTaskId: string;
+              definition:
+                | string
+                | number
+                | false
+                | true
+                | {
+                    [key: string]:
+                      | string
+                      | number
+                      | false
+                      | true
+                      | unknown
+                      | {
+                          length: number;
+                        };
+                  }
+                | {
+                    length: number;
+                  };
+              definitionHash: string;
+              /** @description Description of the resource. */
+              description: string;
+              /** @description Unique identifier of the resource. */
+              id: string;
+              /** @description Display name of the resource. */
+              name: string;
+              revision: number;
+              schemaVersion: number;
+              status: string;
+              /** @description ID of the associated team. */
+              teamId: string;
+              /**
+               * Format: date-time
+               * @description Date and time the record was last updated.
+               */
+              updatedAt: string;
+              /** @description ID of the associated user. */
+              userId: string;
+            }[];
             /** @description Page number, starting at 1. */
             page: number;
             /** @description Number of results per page. */
@@ -5902,13 +5947,58 @@ export interface operations {
     };
     requestBody?: never;
     responses: {
-      /** @description Successful response. The response shape is inferred as free-form because the handler does not expose a reusable response schema. */
+      /** @description The operation completed successfully. */
       200: {
         headers: {
           [name: string]: unknown;
         };
         content: {
-          'application/json': unknown;
+          'application/json': {
+            /**
+             * Format: date-time
+             * @description Date and time the record was created.
+             */
+            createdAt: string;
+            createdByTaskId: string;
+            definition:
+              | string
+              | number
+              | false
+              | true
+              | {
+                  [key: string]:
+                    | string
+                    | number
+                    | false
+                    | true
+                    | unknown
+                    | {
+                        length: number;
+                      };
+                }
+              | {
+                  length: number;
+                };
+            definitionHash: string;
+            /** @description Description of the resource. */
+            description: string;
+            /** @description Unique identifier of the resource. */
+            id: string;
+            /** @description Display name of the resource. */
+            name: string;
+            revision: number;
+            schemaVersion: number;
+            status: string;
+            /** @description ID of the associated team. */
+            teamId: string;
+            /**
+             * Format: date-time
+             * @description Date and time the record was last updated.
+             */
+            updatedAt: string;
+            /** @description ID of the associated user. */
+            userId: string;
+          };
         };
       };
       /** @description Unauthorized. */
@@ -6035,34 +6125,34 @@ export interface operations {
               filters: {
                 dimension:
                   | 'query'
-                  | 'path'
-                  | 'title'
-                  | 'referrer'
-                  | 'hostname'
-                  | 'tag'
                   | 'utmSource'
                   | 'utmMedium'
                   | 'utmCampaign'
                   | 'utmContent'
                   | 'utmTerm'
+                  | 'tag'
+                  | 'hostname'
                   | 'browser'
                   | 'os'
                   | 'device'
+                  | 'language'
                   | 'country'
                   | 'region'
                   | 'city'
-                  | 'language'
-                  | 'distinctId';
+                  | 'distinctId'
+                  | 'title'
+                  | 'path'
+                  | 'referrer';
                 operator: 'eq' | 'neq' | 'c' | 'dnc';
                 values: string[];
               }[];
               propertyFilters: {
                 /** @description Data type of the custom property. */
-                dataType?: 1 | 4 | 2;
+                dataType?: 1 | 2 | 4;
                 /** @description Display name of the resource. */
                 name: string;
                 operator: 'bf' | 'eq' | 'neq' | 'c' | 'dnc' | 'gt' | 'gte' | 'lt' | 'lte' | 'af';
-                owner: 'event' | 'session';
+                owner: 'session' | 'event';
                 value: string;
               }[];
             } & {
@@ -6216,34 +6306,34 @@ export interface operations {
               filters: {
                 dimension:
                   | 'query'
-                  | 'path'
-                  | 'title'
-                  | 'referrer'
-                  | 'hostname'
-                  | 'tag'
                   | 'utmSource'
                   | 'utmMedium'
                   | 'utmCampaign'
                   | 'utmContent'
                   | 'utmTerm'
+                  | 'tag'
+                  | 'hostname'
                   | 'browser'
                   | 'os'
                   | 'device'
+                  | 'language'
                   | 'country'
                   | 'region'
                   | 'city'
-                  | 'language'
-                  | 'distinctId';
+                  | 'distinctId'
+                  | 'title'
+                  | 'path'
+                  | 'referrer';
                 operator: 'eq' | 'neq' | 'c' | 'dnc';
                 values: string[];
               }[];
               propertyFilters: {
                 /** @description Data type of the custom property. */
-                dataType?: 1 | 4 | 2;
+                dataType?: 1 | 2 | 4;
                 /** @description Display name of the resource. */
                 name: string;
                 operator: 'bf' | 'eq' | 'neq' | 'c' | 'dnc' | 'gt' | 'gte' | 'lt' | 'lte' | 'af';
-                owner: 'event' | 'session';
+                owner: 'session' | 'event';
                 value: string;
               }[];
             } & {
