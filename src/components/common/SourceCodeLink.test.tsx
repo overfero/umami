@@ -44,6 +44,7 @@ test('accepts an exact commit or reviewed release tag without hardcoding a stale
   const url = `https://github.com/giovannirandykusuma/umami/tree/${'a'.repeat(40)}`;
   expect(() => validateSourceUrl(url, true)).not.toThrow();
   expect(getSourceCodeUrl(url)).toBe(url);
+  expect(() => validateSourceUrl(url.replace('giovannirandykusuma', 'overfero'), true)).not.toThrow();
 });
 
 test('labels development fallback and rejects missing production binding at config load', () => {
@@ -64,6 +65,8 @@ test.each([
   'https://github.com/giovannirandykusuma/umami/tree/latest',
   'https://github.com/giovannirandykusuma/umami',
   'https://private.invalid/source',
+  'https://github.com/overfero/umami/tree/main',
+  `https://github.com/unapproved/umami/tree/${'a'.repeat(40)}`,
   'https://user:secret@github.com/giovannirandykusuma/umami/tree/v1',
   `${releaseUrl}?token=secret`,
   `${releaseUrl}#fragment`,

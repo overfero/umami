@@ -17,7 +17,7 @@ export function validateSourceUrl(url: string | undefined, production = isProd) 
   if (!url && !production) return;
   if (
     !url ||
-    !/^https:\/\/github\.com\/giovannirandykusuma\/umami\/tree\/(?:[a-f0-9]{40}|source-release-[A-Za-z0-9][A-Za-z0-9._-]*)$/.test(
+    !/^https:\/\/github\.com\/(?:giovannirandykusuma|overfero)\/umami\/tree\/(?:[a-f0-9]{40}|source-release-[A-Za-z0-9][A-Za-z0-9._-]*)$/.test(
       url,
     )
   ) {

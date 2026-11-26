@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { MobileNav } from '@/app/(main)/MobileNav';
 import { SideNav } from '@/app/(main)/SideNav';
 import { TopNav } from '@/app/(main)/TopNav';
+import { SourceCodeLink } from '@/components/common/SourceCodeLink';
 import {
   useConfig,
   useLoginQuery,
@@ -81,6 +82,11 @@ export function App({ children }) {
         >
           {children}
         </Column>
+        <footer aria-label="Source code">
+          <Row justifyContent="center" padding="3">
+            <SourceCodeLink />
+          </Row>
+        </footer>
       </Column>
       {needsTwoFactorSetup && <TwoFactorSetupModal required={true} />}
       {process.env.NODE_ENV === 'production' && !pathname.includes('/share/') && (
