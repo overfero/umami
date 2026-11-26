@@ -78,10 +78,20 @@ createInterface({ input: process.stdin }).on('line', async line => {
       receipt: result.receipt,
       images: images.map(image => ({ mime: image.mime, data: image.bytes.toString('base64') })),
     });
-  } catch {
+  } catch (error) {
     await browser?.close();
     try {
-      await finish({ type: 'failure', code: 'render_unavailable' });
+      const code = [
+        'browser_errors',
+        'browser_crashed',
+        'clipped_canvas',
+        'incomplete_coverage',
+        'incomplete_receipt',
+        'cancelled_or_timeout',
+      ].includes(error?.message)
+        ? error.message
+        : 'render_unavailable';
+      await finish({ type: 'failure', code });
     } catch {
       process.exit(1);
     }

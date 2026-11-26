@@ -160,6 +160,28 @@ it('prepares a deeply frozen saved board and exact execution envelope', async ()
   });
 });
 
+it('prepares an intentional Top N without upgrading its data completeness', async () => {
+  const envelope = {
+    ...preparedAnalysis(),
+    operation: 'breakdown',
+    completeness: 'partial',
+    reasons: ['top_n_truncated'],
+  };
+  m.execute.mockResolvedValue(envelope);
+  const [widget] = await prepareVerifierWidgets(scope, [{ id: 'w', definitionHash: 'hash' }]);
+  expect(widget.envelope).toMatchObject({
+    completeness: 'partial',
+    reasons: ['top_n_truncated'],
+  });
+  m.execute.mockResolvedValue({
+    ...envelope,
+    reasons: ['top_n_truncated', 'range_clamped_by_retention'],
+  });
+  await expect(
+    prepareVerifierWidgets(scope, [{ id: 'w', definitionHash: 'hash' }]),
+  ).rejects.toThrow('stale_revision');
+});
+
 it('rejects foreign, stale, failed and mismatched envelopes rather than minting receipts', async () => {
   for (const patch of [
     { definition: { id: 'foreign', revision: 2, definitionHash: 'hash' } },

@@ -127,6 +127,7 @@ export async function prepareVerifierWidgets(
   if (!user) throw new Error('revoked');
   const auth = { user: { ...user, isAdmin: user.role === 'admin' } } as any;
   const widgets = [];
+  const now = Date.now();
   for (const widget of expected) {
     if (signal?.aborted) throw new Error('cancelled');
     const component = bound.get(widget.id);
@@ -193,7 +194,7 @@ export async function prepareVerifierWidgets(
     )
       throw new Error('stale_revision');
     const envelope = await executeAnalysis(auth, normalizeDefinition(analysis.definition), {
-      now: Date.now(),
+      now,
       signal,
       saved: {
         id: analysis.id,
@@ -208,7 +209,15 @@ export async function prepareVerifierWidgets(
       envelope.definition.definitionHash !== analysis.definitionHash ||
       envelope.source.websiteId !== normalizeDefinition(analysis.definition).source.websiteId ||
       !envelope.executionId ||
-      envelope.completeness !== 'complete'
+      // An intentional Top N is visually verifiable as displayed. Its provenance still
+      // says partial; a receipt does not certify the omitted rows or the full population.
+      (envelope.completeness !== 'complete' &&
+        !(
+          envelope.completeness === 'partial' &&
+          envelope.operation === 'breakdown' &&
+          envelope.reasons.length === 1 &&
+          envelope.reasons[0] === 'top_n_truncated'
+        ))
     )
       throw new Error('stale_revision');
     widgets.push({
@@ -251,7 +260,9 @@ function verifier(): VerifierPort | null {
   if (!isAnalystVerifierEnabled()) return null;
   // Trusted bootstrap: only the explicit server setting selects the restricted Docker launcher.
   if (!isolatedLauncher() && process.env.AI_ANALYST_VERIFIER_LAUNCHER === 'docker')
-    registerIsolatedLauncher(createDockerLauncher({ image: process.env.AI_ANALYST_VERIFIER_IMAGE }));
+    registerIsolatedLauncher(
+      createDockerLauncher({ image: process.env.AI_ANALYST_VERIFIER_IMAGE }),
+    );
   const launcher = isolatedLauncher();
   if (!launcher) return null;
   port ??= createVerifierPort({

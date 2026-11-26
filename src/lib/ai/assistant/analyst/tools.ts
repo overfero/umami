@@ -705,10 +705,22 @@ async function verifyRender(
       expectedWidgets,
       signal: input.interaction.signal,
     });
-  } catch {
+  } catch (error) {
+    const message = error instanceof Error ? error.message : '';
+    const reason = [
+      'browser_errors',
+      'browser_crashed',
+      'clipped_canvas',
+      'incomplete_coverage',
+      'incomplete_receipt',
+      'cancelled_or_timeout',
+    ].includes(message)
+      ? message
+      : undefined;
     return {
       json: fail('verifier_unavailable', 'Render failed or was revoked', {
         visualStatus: 'visual_pending',
+        ...(reason ? { reason } : {}),
       }),
     };
   }

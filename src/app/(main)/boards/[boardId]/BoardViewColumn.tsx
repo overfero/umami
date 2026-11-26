@@ -76,7 +76,7 @@ export function BoardViewColumn({
   const showBadge = showEntityBadge && isOpenBoardType(boardType) && !!entityBadge;
 
   return (
-    <Panel height="100%">
+    <Panel height="100%" paddingY={component.type === 'AnalysisWidget' ? '3' : '6'}>
       {showBadge ? (
         <Row justifyContent={title ? 'space-between' : 'flex-end'} alignItems="center">
           {title && <Heading>{title}</Heading>}

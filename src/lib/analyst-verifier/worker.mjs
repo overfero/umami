@@ -45,6 +45,10 @@ export async function renderJob({
   const deadline = AbortSignal.timeout(timeoutMs);
   const abort = AbortSignal.any([deadline, ...(signal ? [signal] : [])]);
   let context;
+  let failPage;
+  const pageFailed = new Promise((_, reject) => {
+    failPage = reject;
+  });
   let artifact;
   let cancel;
   const stopped = new Promise((_, reject) => {
@@ -115,7 +119,8 @@ export async function renderJob({
       void download.cancel();
     });
     const errors = [];
-    page.on('pageerror', () => errors.push('page_error'));
+    page.on('pageerror', () => failPage(new Error('browser_errors')));
+    page.on('crash', () => failPage(new Error('browser_crashed')));
     page.on('console', message => {
       if (message.type() === 'error') errors.push('console_error');
     });
@@ -189,15 +194,18 @@ export async function renderJob({
       if (panelHeight <= 80) throw new Error('clipped_canvas');
       for (let y = 0; y < box.height; y += panelHeight - 80) {
         if (images.length >= 6) throw new Error('incomplete_coverage');
+        const height = Math.min(panelHeight, box.height - y);
         const bytes = await page.screenshot({
           type: 'png',
+          // Playwright clips against the viewport unless fullPage is set. These
+          // offsets are document coordinates, including panels below the fold.
+          fullPage: true,
           clip: {
             x: box.x,
             y: box.y + y,
             width: box.width,
-            height: Math.min(panelHeight, box.height - y),
+            height,
           },
-          captureBeyondViewport: true,
         });
         const hash = validateImage(bytes, 'image/png');
         images.push({ bytes, mime: 'image/png' });
@@ -212,6 +220,8 @@ export async function renderJob({
             definitionHash: w.definitionHash,
           })),
         });
+        // Once this panel reaches the end, the next offset would only capture overlap.
+        if (y + height >= box.height) break;
       }
     }
     if (errors.length) throw new Error('browser_errors');
@@ -236,7 +246,7 @@ export async function renderJob({
     };
   };
   try {
-    return await Promise.race([work(), stopped]);
+    return await Promise.race([work(), stopped, pageFailed]);
   } catch (error) {
     if (artifact) artifacts.discard(artifact.id);
     throw error;

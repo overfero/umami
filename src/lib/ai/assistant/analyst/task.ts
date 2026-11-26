@@ -5,7 +5,7 @@ import prisma from '@/lib/prisma';
 /** Initial hard ceilings (spec §3.1). Consumption is persisted so retries/resumes never reset it. */
 export const TASK_LIMITS = {
   toolCalls: 40,
-  analytics: 20,
+  analytics: 60,
   concurrentQueries: 3,
   widgets: 12,
   renders: 2,

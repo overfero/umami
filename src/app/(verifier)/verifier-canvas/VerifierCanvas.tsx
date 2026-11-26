@@ -74,62 +74,52 @@ export function VerifierCanvas({ payload }: { payload: any }) {
           registerLayoutGetter: unsupported,
         }}
       >
-        <FrozenExecutionProvider
-          executions={widgets
-            .filter(w => w.envelope)
-            .map(w => ({
-              analysisId: w.analysisId,
-              revision: w.revision,
-              definitionHash: w.definitionHash,
-              envelope: w.envelope,
-            }))}
-        >
-          <main
-            data-verifier-canvas
-            style={{ padding: 16, width: '100%', boxSizing: 'border-box' }}
-          >
-            {board.parameters.rows.map(row => (
-              <div
-                key={row.id}
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
-                  gap: 16,
-                  marginBottom: 16,
-                }}
-              >
-                {row.columns.map(column => {
-                  const widget = widgets.find(w => w.id === column.id);
-                  const content = (
-                    <BoardViewColumn
-                      component={column.component}
-                      widgetId={column.id}
-                      showEntityBadge={false}
-                    />
-                  );
-                  return (
-                    <div key={column.id} style={{ minWidth: 0 }}>
-                      {widget.native ? (
-                        <FrozenWebsiteStatsProvider
-                          value={{
-                            ...widget.native,
-                            widgetId: widget.id,
-                            executionId: widget.executionId,
-                            definitionHash: widget.definitionHash,
-                          }}
-                        >
-                          {content}
-                        </FrozenWebsiteStatsProvider>
-                      ) : (
-                        content
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
-          </main>
-        </FrozenExecutionProvider>
+        <main data-verifier-canvas style={{ padding: 12, width: '100%', boxSizing: 'border-box' }}>
+          {board.parameters.rows.map(row => (
+            <div
+              key={row.id}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
+                gap: 8,
+                marginBottom: 8,
+              }}
+            >
+              {row.columns.map(column => {
+                const widget = widgets.find(w => w.id === column.id);
+                const content = (
+                  <BoardViewColumn
+                    component={column.component}
+                    widgetId={column.id}
+                    showEntityBadge={false}
+                  />
+                );
+                return (
+                  <div key={column.id} style={{ minWidth: 0 }}>
+                    {widget.native ? (
+                      <FrozenWebsiteStatsProvider
+                        value={{
+                          ...widget.native,
+                          widgetId: widget.id,
+                          executionId: widget.executionId,
+                          definitionHash: widget.definitionHash,
+                        }}
+                      >
+                        {content}
+                      </FrozenWebsiteStatsProvider>
+                    ) : (
+                      // A metric and a table may share an analysis, but each widget's
+                      // receipt must match its own frozen execution ID.
+                      <FrozenExecutionProvider executions={[widget]}>
+                        {content}
+                      </FrozenExecutionProvider>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </main>
       </BoardContext.Provider>
     </VerifierBoardContext.Provider>
   );

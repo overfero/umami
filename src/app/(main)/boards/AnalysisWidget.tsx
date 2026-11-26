@@ -74,7 +74,7 @@ export function AnalysisWidget({
       <Row gap="2" alignItems="center" wrap="wrap" justifyContent="space-between">
         <Row gap="2" alignItems="center" wrap="wrap">
           <Text size="sm" weight="bold">
-            Live
+            {label}
           </Text>
           {data && (
             <Text size="sm" color="muted">
@@ -85,6 +85,7 @@ export function AnalysisWidget({
           )}
         </Row>
         <Button
+          size="sm"
           aria-label={`Refresh ${label}`}
           onPress={() => void refetch()}
           isDisabled={isFetching}
@@ -165,7 +166,7 @@ function AnalysisResult({
       ) : (
         <div role="img" aria-label={`${data.semanticBinding.label} ${kind} chart`}>
           <Chart
-            height="200px"
+            height="120px"
             type={kind === 'bar' ? 'bar' : 'line'}
             animationDuration={0}
             chartData={{
@@ -182,7 +183,7 @@ function AnalysisResult({
             }}
             chartOptions={{
               scales: {
-                x: { type: 'category', ticks: { color: colors.chart.text, maxTicksLimit: 6 } },
+                x: { type: 'category', ticks: { color: colors.chart.text, maxTicksLimit: 4 } },
                 y: { beginAtZero: true, ticks: { color: colors.chart.text } },
               },
               plugins: { legend: { display: false } },

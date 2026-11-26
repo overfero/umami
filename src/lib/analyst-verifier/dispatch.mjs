@@ -190,7 +190,21 @@ export function createDispatcher({
                       status: 'rendered_not_inspected',
                     },
                   });
-                } else if (message.type === 'failure') throw new Error('render_unavailable');
+                } else if (message.type === 'failure') {
+                  const code =
+                    typeof message.code === 'string' &&
+                    [
+                      'browser_errors',
+                      'browser_crashed',
+                      'clipped_canvas',
+                      'incomplete_coverage',
+                      'incomplete_receipt',
+                      'cancelled_or_timeout',
+                    ].includes(message.code)
+                      ? message.code
+                      : 'render_unavailable';
+                  stop(new Error(code));
+                }
               } catch {
                 stop(new Error('render_unavailable'));
               }
